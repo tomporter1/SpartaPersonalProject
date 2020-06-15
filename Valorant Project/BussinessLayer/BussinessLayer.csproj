@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ValorantDatabase\ValorantDatabase.csproj" />
     <ProjectReference Include="..\ValorantDatabase\ValorantDatabase\ValorantDatabase.csproj" />
   </ItemGroup>
 
