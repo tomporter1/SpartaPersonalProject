@@ -6,8 +6,4 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ValorantDBContext\ValorantAppBusinessLayer\ValorantAppBusinessLayer.csproj" />
-  </ItemGroup>
-
 </Project>
