@@ -17,13 +17,13 @@ GO
 CREATE TABLE "Maps"(
 	MapID int IDENTITY(1,1),
 	MapName varchar(20) NOT NULL
-	PRIMARY KEY(MapID)
+	CONSTRAINT PK_MapID PRIMARY KEY(MapID)
 );
 
 CREATE TABLE "AgentType"(
 	TypeID int IDENTITY(1,1),
 	TypeName varchar(20) NOT NULL
-	PRIMARY KEY(TypeID)
+	CONSTRAINT PK_TypeID PRIMARY KEY(TypeID)
 );
 
 CREATE TABLE "Agents"(
@@ -39,8 +39,8 @@ CREATE TABLE "Agents"(
 	AbilityTwoName varchar(30),
 	AbilityTwoDiscription varchar(300),
 	Bio varchar(400),
-	PRIMARY KEY (AgentID),
-	FOREIGN KEY (AgentTypeID) REFERENCES AgentType(TypeID)
+	CONSTRAINT PK_AgentID PRIMARY KEY (AgentID),
+	CONSTRAINT FK_AgentType FOREIGN KEY (AgentTypeID) REFERENCES AgentType(TypeID)
 );
 
 CREATE TABLE "GameLogs"(
@@ -54,8 +54,12 @@ CREATE TABLE "GameLogs"(
 	Assits int,
 	ADR int,
 	DateLogged datetime,
-	PRIMARY KEY (GameID),
-	FOREIGN KEY (MapID) REFERENCES Maps(MapID),
-	FOREIGN KEY (AgentID) REFERENCES Agents(AgentID)
-	CONSTRAINT "ValidTeamScore" CHECK(TeamScore >=0 AND TeamScore<=13)
+	CONSTRAINT PK_GameLogs PRIMARY KEY (GameID),
+	CONSTRAINT FK_Map FOREIGN KEY (MapID) REFERENCES Maps(MapID),
+	CONSTRAINT FK_Agent FOREIGN KEY (AgentID) REFERENCES Agents(AgentID),
+	CONSTRAINT ValidTeamScore CHECK(TeamScore >= 0 AND TeamScore <= 13),
+	CONSTRAINT ValidOpponentScore CHECK(OpponentScore >= 0 AND OpponentScore <= 13),
+	CONSTRAINT ValidKills CHECK(Kills >= 0),
+	CONSTRAINT ValidDeaths CHECK(Deaths >= 0),
+	CONSTRAINT ValidAssits CHECK(Assits >= 0)
 )
