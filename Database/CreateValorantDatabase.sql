@@ -57,4 +57,5 @@ CREATE TABLE "GameLogs"(
 	PRIMARY KEY (GameID),
 	FOREIGN KEY (MapID) REFERENCES Maps(MapID),
 	FOREIGN KEY (AgentID) REFERENCES Agents(AgentID)
+	CONSTRAINT "ValidTeamScore" CHECK(TeamScore >=0 AND TeamScore<=13)
 )
