@@ -31,5 +31,22 @@ namespace BussinessLayer
             AbilityTwoDiscription = abilityTwoDiscription;
             Bio = bio;
         }
+
+        public AgentManagerArgs(string name, object typeObj, string signatureAbilityName, string signatureAbilityDiscription, string ultamateAbilityName, string ultamateAbilityDiscription, string abilityOneName, string abilityOneDiscription, string abilityTwoName, string abilityTwoDiscription, string bio)
+        {
+            AgentType type = (AgentType)typeObj;
+
+            Name = name ?? throw new ArgumentNullException(nameof(name));
+            TypeID = type.TypeId;
+            SignatureAbilityName = signatureAbilityName;
+            SignatureAbilityDiscription = signatureAbilityDiscription;
+            UltamateAbilityName = ultamateAbilityName;
+            UltamateAbilityDiscription = ultamateAbilityDiscription;
+            AbilityOneName = abilityOneName;
+            AbilityOneDiscription = abilityOneDiscription;
+            AbilityTwoName = abilityTwoName;
+            AbilityTwoDiscription = abilityTwoDiscription;
+            Bio = bio;
+        }
     }
 }

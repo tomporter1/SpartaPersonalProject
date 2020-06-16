@@ -66,5 +66,11 @@ namespace ValorantGUI
         {
             AbilityDiscriptionTextBox.Text = agentManager.GetAbilityDiscription(AgentNameListBox.SelectedItem, AbilitiesListBox.SelectedItem);           
         }
+
+        private void AddNewAgent(object sender, RoutedEventArgs e)
+        {
+            AddAgent addAgentWindow = new AddAgent();
+            addAgentWindow.Show();
+        }
     }
 }

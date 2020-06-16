@@ -10,6 +10,7 @@
 
     <Grid>
         <Button x:Name="button" Content="Back" HorizontalAlignment="Left" Margin="714,10,0,0" VerticalAlignment="Top" Click="BackButton_Click" Height="39" Width="76"/>
+        <Button x:Name="AddAgentButton" Content="Add a new Agent" HorizontalAlignment="Left" Margin="599,12,0,0" VerticalAlignment="Top" Click="AddNewAgent" Height="39" Width="110"/>
         <Label x:Name="label" Content="Agents" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="143" Height="39" FontSize="20"/>
         <ListBox x:Name="AgentNameListBox" Margin="10,72,600,37" SelectionChanged="OnAgentSelected"/>
         <ListBox x:Name="AbilitiesListBox" Margin="205,72,405,37" SelectionChanged="OnAbilitySelect"/>

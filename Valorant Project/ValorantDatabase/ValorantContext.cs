@@ -52,7 +52,7 @@ namespace ValorantDatabase
                 entity.Property(e => e.AgentId).HasColumnName("AgentID");
 
                 entity.Property(e => e.AbilityOneDiscription)
-                    .HasMaxLength(300)
+                    .HasMaxLength(400)
                     .IsUnicode(false);
 
                 entity.Property(e => e.AbilityOneName)
@@ -60,7 +60,7 @@ namespace ValorantDatabase
                     .IsUnicode(false);
 
                 entity.Property(e => e.AbilityTwoDiscription)
-                    .HasMaxLength(300)
+                    .HasMaxLength(400)
                     .IsUnicode(false);
 
                 entity.Property(e => e.AbilityTwoName)
@@ -75,11 +75,11 @@ namespace ValorantDatabase
                 entity.Property(e => e.AgentTypeId).HasColumnName("AgentTypeID");
 
                 entity.Property(e => e.Bio)
-                    .HasMaxLength(400)
+                    .HasMaxLength(700)
                     .IsUnicode(false);
 
                 entity.Property(e => e.SignatureAbilityDiscription)
-                    .HasMaxLength(300)
+                    .HasMaxLength(400)
                     .IsUnicode(false);
 
                 entity.Property(e => e.SignatureAbilityName)
@@ -87,7 +87,7 @@ namespace ValorantDatabase
                     .IsUnicode(false);
 
                 entity.Property(e => e.UltamateAbilityDiscription)
-                    .HasMaxLength(300)
+                    .HasMaxLength(400)
                     .IsUnicode(false);
 
                 entity.Property(e => e.UltamateAbilityName)
