@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,14 +14,23 @@ using System.Windows.Shapes;
 namespace ValorantGUI
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MapsPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MapsPage : Page
     {
-        public MainWindow()
+        MainPage _mainPage;
+        MainWindow _window;
+
+        public MapsPage(MainWindow window, MainPage page)
         {
             InitializeComponent();
-            Content = new MainPage(this);
+            _mainPage = page;
+            _window = window;
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            _window.Content = _mainPage;
         }
     }
 }
