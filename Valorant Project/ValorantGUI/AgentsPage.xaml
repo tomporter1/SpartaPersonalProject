@@ -11,7 +11,8 @@
     <Grid>
         <Button x:Name="button" Content="Back" HorizontalAlignment="Left" Margin="714,10,0,0" VerticalAlignment="Top" Click="BackButton_Click" Height="39" Width="76"/>
         <Label x:Name="label" Content="Agents" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="143" Height="39" FontSize="20"/>
-        <ListBox x:Name="AgentNameListBox" Margin="10,72,600,37"/>
+        <ListBox x:Name="AgentNameListBox" Margin="10,72,600,37" SelectionChanged="GetSelectedAgentsAbilities"/>
+        <ListBox x:Name="AbilitiesListBox" Margin="205,72,405,37"/>
 
 
     </Grid>

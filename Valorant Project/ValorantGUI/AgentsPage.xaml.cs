@@ -31,6 +31,8 @@ namespace ValorantGUI
             _window = window;
             agentManager = new AgentManager();
             typeManager = new AgentTypeManager();
+
+            PopulateAgents();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -40,7 +42,16 @@ namespace ValorantGUI
 
         private void PopulateAgents()
         {
+            AgentNameListBox.ItemsSource = null;
+            AgentNameListBox.SelectedIndex = -1;
+            AgentNameListBox.ItemsSource = agentManager.GetAllAgents();
+        }
 
+        private void GetSelectedAgentsAbilities(object sender, SelectionChangedEventArgs e)
+        {
+            AbilitiesListBox.ItemsSource = null;
+            AbilitiesListBox.SelectedIndex = -1;
+            AbilitiesListBox.ItemsSource = agentManager.GetAgentsAbilities(AgentNameListBox.SelectedItem);
         }
     }
 }

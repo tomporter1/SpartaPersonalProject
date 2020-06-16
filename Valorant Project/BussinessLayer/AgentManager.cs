@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ValorantDatabase;
@@ -51,6 +52,22 @@ namespace BussinessLayer
             db.SaveChanges();
         }
 
+        public List<string> GetAgentsAbilities(object selectedItem)
+        {
+            using ValorantContext db = new ValorantContext();
+            Agents agent = (Agents)selectedItem;
+
+            List<string> output = new List<string>
+            {
+                db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.SignatureAbilityName).FirstOrDefault(),
+                db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.UltamateAbilityName).FirstOrDefault(),
+                db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AbilityOneName).FirstOrDefault(),
+                db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AbilityTwoName).FirstOrDefault()
+            };
+
+            return output;
+        }
+
         public void RemoveAgent(object selectedAgent)
         {
             using ValorantContext db = new ValorantContext();
@@ -63,7 +80,7 @@ namespace BussinessLayer
         {
             using ValorantContext db = new ValorantContext();
             Agents agentToUpdate = db.Agents.Where(a => a.AgentId == id).FirstOrDefault();
-            if(agentToUpdate!= null)
+            if (agentToUpdate != null)
             {
                 agentToUpdate.AgentName = args.Name;
                 agentToUpdate.AgentTypeId = args.TypeID;
