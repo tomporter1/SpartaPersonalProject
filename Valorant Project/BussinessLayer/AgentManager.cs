@@ -68,6 +68,23 @@ namespace BussinessLayer
             return output;
         }
 
+        public string GetAbilityDiscription(object selectedAgent,object selectedItem)
+        {
+            string abilityName = (string)selectedItem;
+            Agents agent = (Agents)selectedAgent;
+            using ValorantContext db = new ValorantContext();
+
+            if (agent.SignatureAbilityName == abilityName)
+                return GetAgentData(selectedAgent, Fields.SignatureAbilityDiscription);
+            if (agent.UltamateAbilityName == abilityName)
+                return GetAgentData(selectedAgent, Fields.UltamateAbilityDiscription); 
+            if (agent.AbilityOneName == abilityName)
+                return GetAgentData(selectedAgent, Fields.AbilityOneDiscription);
+            if (agent.AbilityTwoName == abilityName)
+                return GetAgentData(selectedAgent, Fields.AbilityTwoDiscription);
+            return "";
+        }
+
         public void RemoveAgent(object selectedAgent)
         {
             using ValorantContext db = new ValorantContext();
@@ -105,29 +122,29 @@ namespace BussinessLayer
             switch (field)
             {
                 case Fields.ID:
-                    return agent.AgentId.ToString();
+                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AgentId).ToString();
                 case Fields.Name:
-                    return agent.AgentName;
+                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AgentName).FirstOrDefault();
                 case Fields.Type:
-                    return agent.AgentTypeId.ToString();
+                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AgentTypeId).FirstOrDefault().ToString();
                 case Fields.SignatureAbilityName:
-                    return agent.SignatureAbilityName;
+                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.SignatureAbilityName).FirstOrDefault();
                 case Fields.SignatureAbilityDiscription:
-                    return agent.SignatureAbilityDiscription;
+                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.SignatureAbilityDiscription).FirstOrDefault();
                 case Fields.UltamateAbilityName:
-                    return agent.UltamateAbilityName;
+                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.UltamateAbilityName).FirstOrDefault();
                 case Fields.UltamateAbilityDiscription:
-                    return agent.UltamateAbilityDiscription;
+                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.UltamateAbilityDiscription).FirstOrDefault();
                 case Fields.AbilityOneName:
-                    return agent.AbilityOneName;
+                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AbilityOneName).FirstOrDefault();
                 case Fields.AbilityOneDiscription:
-                    return agent.AbilityOneDiscription;
+                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AbilityOneDiscription).FirstOrDefault();
                 case Fields.AbilityTwoName:
-                    return agent.AbilityTwoName;
+                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AbilityTwoName).FirstOrDefault();
                 case Fields.AbilityTwoDiscription:
-                    return agent.AbilityTwoDiscription;
+                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AbilityTwoDiscription).FirstOrDefault();
                 case Fields.Bio:
-                    return agent.Bio;
+                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.Bio).FirstOrDefault();
                 default:
                     return "";
             }

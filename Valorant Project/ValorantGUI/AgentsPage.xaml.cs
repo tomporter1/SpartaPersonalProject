@@ -37,7 +37,7 @@ namespace ValorantGUI
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            _window.Content= _mainPage;
+            _window.Content = _mainPage;
         }
 
         private void PopulateAgents()
@@ -45,13 +45,26 @@ namespace ValorantGUI
             AgentNameListBox.ItemsSource = null;
             AgentNameListBox.SelectedIndex = -1;
             AgentNameListBox.ItemsSource = agentManager.GetAllAgents();
+            ClearAbilitiesListBox();
         }
 
-        private void GetSelectedAgentsAbilities(object sender, SelectionChangedEventArgs e)
+        private void OnAgentSelected(object sender, SelectionChangedEventArgs e)
+        {
+            ClearAbilitiesListBox();
+            AbilitiesListBox.ItemsSource = agentManager.GetAgentsAbilities(AgentNameListBox.SelectedItem);
+
+            BioTextBox.Text = agentManager.GetAgentData(AgentNameListBox.SelectedItem, AgentManager.Fields.Bio);
+        }
+
+        private void ClearAbilitiesListBox()
         {
             AbilitiesListBox.ItemsSource = null;
             AbilitiesListBox.SelectedIndex = -1;
-            AbilitiesListBox.ItemsSource = agentManager.GetAgentsAbilities(AgentNameListBox.SelectedItem);
+        }
+
+        private void OnAbilitySelect(object sender, SelectionChangedEventArgs e)
+        {
+            AbilityDiscriptionTextBox.Text = agentManager.GetAbilityDiscription(AgentNameListBox.SelectedItem, AbilitiesListBox.SelectedItem);           
         }
     }
 }

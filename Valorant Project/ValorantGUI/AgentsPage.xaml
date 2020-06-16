@@ -11,8 +11,12 @@
     <Grid>
         <Button x:Name="button" Content="Back" HorizontalAlignment="Left" Margin="714,10,0,0" VerticalAlignment="Top" Click="BackButton_Click" Height="39" Width="76"/>
         <Label x:Name="label" Content="Agents" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="143" Height="39" FontSize="20"/>
-        <ListBox x:Name="AgentNameListBox" Margin="10,72,600,37" SelectionChanged="GetSelectedAgentsAbilities"/>
-        <ListBox x:Name="AbilitiesListBox" Margin="205,72,405,37"/>
+        <ListBox x:Name="AgentNameListBox" Margin="10,72,600,37" SelectionChanged="OnAgentSelected"/>
+        <ListBox x:Name="AbilitiesListBox" Margin="205,72,405,37" SelectionChanged="OnAbilitySelect"/>
+        <TextBox x:Name="BioTextBox" HorizontalAlignment="Left" Margin="408,104,0,0" Text="" TextWrapping="Wrap" Width="382" Height="130" VerticalAlignment="Top"/>
+        <TextBox x:Name="AbilityDiscriptionTextBox" HorizontalAlignment="Left" Margin="408,283,0,0" Text="" TextWrapping="Wrap" Width="382" Height="130" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="Ability Discription:" HorizontalAlignment="Left" Margin="408,247,0,176" Width="382"/>
+        <Label x:Name="label2" Content="Agent Bio:" HorizontalAlignment="Left" Margin="408,72,0,351" Width="382"/>
 
 
     </Grid>
