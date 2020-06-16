@@ -4,9 +4,9 @@ using ValorantDatabase;
 namespace BussinessLayer
 {
     public class AgentManagerArgs
-    {
+    {       
         public string Name { get; private set; }
-        public AgentType Type { get; private set; }
+        public int TypeID { get; private set; }
         public string SignatureAbilityName { get; private set; }
         public string SignatureAbilityDiscription { get; private set; }
         public string UltamateAbilityName { get; private set; }
@@ -17,10 +17,10 @@ namespace BussinessLayer
         public string AbilityTwoDiscription { get; private set; }
         public string Bio { get; private set; }
 
-        public AgentManagerArgs(string name, AgentType type, string signatureAbilityName, string signatureAbilityDiscription, string ultamateAbilityName, string ultamateAbilityDiscription, string abilityOneName, string abilityOneDiscription, string abilityTwoName, string abilityTwoDiscription, string bio)
+        public AgentManagerArgs(string name, int typeID, string signatureAbilityName, string signatureAbilityDiscription, string ultamateAbilityName, string ultamateAbilityDiscription, string abilityOneName, string abilityOneDiscription, string abilityTwoName, string abilityTwoDiscription, string bio)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
-            Type = type ?? throw new ArgumentNullException(nameof(type));
+            TypeID = typeID;
             SignatureAbilityName = signatureAbilityName;
             SignatureAbilityDiscription = signatureAbilityDiscription;
             UltamateAbilityName = ultamateAbilityName;

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ValorantDatabase;
 
@@ -31,10 +32,11 @@ namespace BussinessLayer
         public void AddNewAgent(AgentManagerArgs args)
         {
             using ValorantContext db = new ValorantContext();
+            AgentType type = db.AgentType.Where(t => t.TypeId == args.TypeID).FirstOrDefault();
             Agents newAgent = new Agents()
             {
                 AgentName = args.Name,
-                AgentTypeId = args.Type.TypeId,
+                AgentType = type,
                 SignatureAbilityName = args.SignatureAbilityName,
                 SignatureAbilityDiscription = args.SignatureAbilityDiscription,
                 UltamateAbilityName = args.UltamateAbilityName,
@@ -64,7 +66,7 @@ namespace BussinessLayer
             if(agentToUpdate!= null)
             {
                 agentToUpdate.AgentName = args.Name;
-                agentToUpdate.AgentTypeId = args.Type.TypeId;
+                agentToUpdate.AgentTypeId = args.TypeID;
                 agentToUpdate.SignatureAbilityName = args.SignatureAbilityName;
                 agentToUpdate.SignatureAbilityDiscription = args.SignatureAbilityDiscription;
                 agentToUpdate.UltamateAbilityName = args.UltamateAbilityName;
