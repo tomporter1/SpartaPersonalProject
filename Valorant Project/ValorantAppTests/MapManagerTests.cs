@@ -105,17 +105,17 @@ namespace ValorantAppTests
         public void UpdateMapTest()
         {
             MapManager manager = new MapManager();
-            int addedMapId = -1;
+            object addedMap = null;
             using (ValorantContext db = new ValorantContext())
             {
                 //setup
                 manager.AddNewMap("new map");
-                addedMapId = db.Maps.ToList().Last().MapId;
+                addedMap = db.Maps.ToList().Last();
             }
 
             string newMapName = "better map";
 
-            manager.UpdateMap(addedMapId, newMapName);
+            manager.UpdateMap(addedMap, newMapName);
 
             using (ValorantContext db = new ValorantContext())
             {

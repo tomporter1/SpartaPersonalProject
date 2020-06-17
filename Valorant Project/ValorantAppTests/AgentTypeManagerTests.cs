@@ -103,17 +103,17 @@ namespace ValorantAppTests
         public void UpdateAgentTypeTest()
         {
             AgentTypeManager manager = new AgentTypeManager();
-            int addedTypeId = -1;
+            object addedType = null;
             using (ValorantContext db = new ValorantContext())
             {
                 //setup
                 manager.AddNewAgentType("new type");
-                addedTypeId = db.AgentType.ToList().Last().TypeId;
+                addedType = db.AgentType.ToList().Last();
             }
 
             string newTypeName = "better type";
 
-            manager.UpdateAgentType(addedTypeId, newTypeName);
+            manager.UpdateAgentType(addedType, newTypeName);
 
             using (ValorantContext db = new ValorantContext())
             {

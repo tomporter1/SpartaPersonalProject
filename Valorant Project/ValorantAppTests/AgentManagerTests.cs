@@ -9,40 +9,10 @@ namespace ValorantAppTests
 {
     public class AgentManagerTests
     {
-        static AgentManagerArgs _newAgentArgs, _newAgentArgsUpdatedName;
 
         [SetUp]
         public void Setup()
         {
-            AgentType type = new AgentType();
-
-            using (ValorantContext db = new ValorantContext())
-            {
-                type = db.AgentType.First();
-            }
-
-            _newAgentArgs = new AgentManagerArgs(
-                "Reyna",
-                type.TypeId,
-                "Leer",
-                "Equip an ethereal, destructible eye. Activate to cast the eye a short distance forward. The eye will nearsight all enemies who look at it.",
-                "Empress",
-                "Instantly enter a frenzy, increasing firing, equip and reload speed dramatically. Gain infinite charges of Soul Harvest abilities. Scoring a kill renews the duration.", "Devour",
-                "Enemies killed by Reyna leave behind Soul Orbs that last 3 seconds. Instantly consume a nearby soul orb, rapidly healing for a short duration. Health gained through this skill exceeding 100 will decay over time. If Empress is active, this skill will automatically cast and not consume the Soul Orb.",
-                "Dismiss",
-                "Instantly consume a nearby Soul Orb, becoming instangible for a short duration. If Empress is active, also become invisible.",
-                "Reyna is a VALORANT agent with an aggressive, duel-centric playstyle. Reyna's unique mechanic are the so-called Soul Orbs, which drop when she kills an opponent and which, upon consumption, give her various bonuses — from massive healing to invisibility. Reyna's ultimate ability is Empress, which turns her into a rapid-fire death machine, dramatically increasing all her combat stats. Every kill renews Empress' duration, and a skilled Reyna player can wipe away the entire team in one swift offense.");
-            _newAgentArgsUpdatedName = new AgentManagerArgs(
-                "Bob",
-                type.TypeId,
-                "Leer",
-                "Equip an ethereal, destructible eye. Activate to cast the eye a short distance forward. The eye will nearsight all enemies who look at it.",
-                "Empress",
-                "Instantly enter a frenzy, increasing firing, equip and reload speed dramatically. Gain infinite charges of Soul Harvest abilities. Scoring a kill renews the duration.", "Devour",
-                "Enemies killed by Reyna leave behind Soul Orbs that last 3 seconds. Instantly consume a nearby soul orb, rapidly healing for a short duration. Health gained through this skill exceeding 100 will decay over time. If Empress is active, this skill will automatically cast and not consume the Soul Orb.",
-                "Dismiss",
-                "Instantly consume a nearby Soul Orb, becoming instangible for a short duration. If Empress is active, also become invisible.",
-                "Reyna is a VALORANT agent with an aggressive, duel-centric playstyle. Reyna's unique mechanic are the so-called Soul Orbs, which drop when she kills an opponent and which, upon consumption, give her various bonuses — from massive healing to invisibility. Reyna's ultimate ability is Empress, which turns her into a rapid-fire death machine, dramatically increasing all her combat stats. Every kill renews Empress' duration, and a skilled Reyna player can wipe away the entire team in one swift offense.");
         }
 
         [Test]
@@ -59,14 +29,21 @@ namespace ValorantAppTests
             //setup
             bool testPassed = false;
             AgentManager manager = new AgentManager();
+            AgentManagerArgs args = null;
             int beforeCount = -1;
+            AgentType type = new AgentType() { TypeName = "New Type" };
             using (ValorantContext db = new ValorantContext())
             {
+                db.AgentType.Add(type);
+                db.SaveChanges();
+
+                args = new AgentManagerArgs("Reyna", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
+
                 beforeCount = db.Agents.ToList().Count;
             }
 
-            //Test method call
-            manager.AddNewAgent(_newAgentArgs);
+            //Test method call            
+            manager.AddNewAgent(args);
 
             //Assersion 
             using (ValorantContext db = new ValorantContext())
@@ -83,8 +60,9 @@ namespace ValorantAppTests
                 using (ValorantContext db = new ValorantContext())
                 {
                     Agents agentToRemove = db.Agents.ToList().Last();
-
                     db.Agents.Remove(agentToRemove);
+                    AgentType lastTypeInDB = db.AgentType.ToList().Last();
+                    db.AgentType.Remove(lastTypeInDB);
                     db.SaveChanges();
                 }
             }
@@ -98,10 +76,15 @@ namespace ValorantAppTests
             int beforeCount = -1;
             AgentManager manager = new AgentManager();
             object addedAgent = null;
-
-            manager.AddNewAgent(_newAgentArgs);
+            AgentType type = new AgentType() { TypeName = "New Type" };
             using (ValorantContext db = new ValorantContext())
             {
+                db.AgentType.Add(type);
+                db.SaveChanges();
+
+                AgentManagerArgs args = new AgentManagerArgs("Reyna", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
+
+                manager.AddNewAgent(args);
                 beforeCount = db.Agents.ToList().Count;
                 addedAgent = db.Agents.ToList().Last();
             }
@@ -124,10 +107,15 @@ namespace ValorantAppTests
                 using (ValorantContext db = new ValorantContext())
                 {
                     Agents agentToRemove = db.Agents.ToList().Last();
-
                     db.Agents.Remove(agentToRemove);
                     db.SaveChanges();
                 }
+            }
+            using (ValorantContext db = new ValorantContext())
+            {
+                AgentType lastTypeInDB = db.AgentType.ToList().Last();
+                db.AgentType.Remove(lastTypeInDB);
+                db.SaveChanges();
             }
         }
 
@@ -136,42 +124,56 @@ namespace ValorantAppTests
         {
             //setup
             AgentManager manager = new AgentManager();
-            int addedAgentId = -1;
+            object addedAgent = null;
+            AgentType type = new AgentType() { TypeName = "New Type" };
+            AgentManagerArgs updatedArgs = null;
+
             using (ValorantContext db = new ValorantContext())
             {
-                manager.AddNewAgent(_newAgentArgs);
-                addedAgentId = db.Agents.ToList().Last().AgentId;
+                db.AgentType.Add(type);
+                db.SaveChanges();
+
+                AgentManagerArgs args = new AgentManagerArgs("Reyna", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
+                updatedArgs = new AgentManagerArgs("Bob", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
+                manager.AddNewAgent(args);
+                addedAgent = db.Agents.ToList().Last();
             }
 
             //Test
-            manager.UpdateAgent(addedAgentId, _newAgentArgsUpdatedName);
+            manager.UpdateAgent(addedAgent, updatedArgs);
 
             //assertion and removing the new entry from the database
             using (ValorantContext db = new ValorantContext())
             {
                 Agents lastAgentInDB = db.Agents.ToList().Last();
-                Assert.AreEqual(_newAgentArgsUpdatedName.Name, lastAgentInDB.AgentName);
+
+                Assert.AreEqual(updatedArgs.Name, lastAgentInDB.AgentName);
 
                 db.Agents.Remove(lastAgentInDB);
+                AgentType lastTypeInDB = db.AgentType.ToList().Last();
+                db.AgentType.Remove(lastTypeInDB);
                 db.SaveChanges();
             }
         }
 
         [TestCase("Reyna", AgentManager.Fields.Name)]
-        [TestCase("Leer", AgentManager.Fields.SignatureAbilityName)]
-        [TestCase("Empress", AgentManager.Fields.UltamateAbilityName)]
-        [TestCase("Devour", AgentManager.Fields.AbilityOneName)]
-        [TestCase("Dismiss", AgentManager.Fields.AbilityTwoName)]
+        [TestCase("sigName", AgentManager.Fields.SignatureAbilityName)]
+        [TestCase("ultName", AgentManager.Fields.UltamateAbilityName)]
+        [TestCase("normal1Name", AgentManager.Fields.AbilityOneName)]
+        [TestCase("normal2Name", AgentManager.Fields.AbilityTwoName)]
         public void GetAgentDataTest(string expectedResult, AgentManager.Fields field)
         {
             //setup
             AgentManager manager = new AgentManager();
             object addedAgent = null;
 
-            manager.AddNewAgent(_newAgentArgs);
-
             using (ValorantContext db = new ValorantContext())
             {
+                db.AgentType.Add(new AgentType() { TypeName = "New Type" });
+                db.SaveChanges();
+                AgentManagerArgs args = new AgentManagerArgs("Reyna", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
+                manager.AddNewAgent(args);
+
                 addedAgent = db.Agents.ToList().Last();
             }
 
@@ -186,6 +188,126 @@ namespace ValorantAppTests
             {
                 Agents lastAgentInDB = db.Agents.ToList().Last();
                 db.Agents.Remove(lastAgentInDB);
+                AgentType lastTypeInDB = db.AgentType.ToList().Last();
+                db.AgentType.Remove(lastTypeInDB);
+                db.SaveChanges();
+            }
+        }
+
+        [Test]
+        public void GetAgentTypeTest()
+        {
+            //Setup
+            AgentManager agentManager = new AgentManager();
+            AgentType newAgentType = new AgentType() { TypeName = "New Type" };
+            object selectedAgent = null;
+            using (ValorantContext db = new ValorantContext())
+            {
+                db.AgentType.Add(newAgentType);
+                db.SaveChanges();
+
+                AgentManagerArgs args = new AgentManagerArgs("name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "UltDisc", "Normal1Name", "Normal1Disc", "Normal2Name", "Normal2Disc", "bio");
+
+                agentManager.AddNewAgent(args);
+
+                selectedAgent = db.Agents.ToList().Last();
+            }
+
+            //Test
+            var result = agentManager.GetAgentTypeObj(selectedAgent);
+
+            //Assertion
+            Assert.IsTrue(newAgentType.Equals(result));
+
+            //Undo database changes done by the test
+            using (ValorantContext db = new ValorantContext())
+            {
+                Agents lastAgentInDB = db.Agents.ToList().Last();
+                db.Agents.Remove(lastAgentInDB);
+                AgentType lastTypeInDB = db.AgentType.ToList().Last();
+                db.AgentType.Remove(lastTypeInDB);
+                db.SaveChanges();
+            }
+        }
+
+        [TestCase("signatureDisc", "sigName")]
+        [TestCase("ultDisc", "ultName")]
+        [TestCase("normal1Disc", "normal1Name")]
+        [TestCase("normal2Disc", "normal2Name")]
+        public void GetAgentAbilityDiscriptionTest(string expectedResult, object abilityName)
+        {
+            //Setup
+            AgentManager agentManager = new AgentManager();
+            AgentType newAgentType = new AgentType() { TypeName = "New Type" };
+            object selectedAgent = null;
+            using (ValorantContext db = new ValorantContext())
+            {
+                db.AgentType.Add(newAgentType);
+                db.SaveChanges();
+
+                AgentManagerArgs args = new AgentManagerArgs("name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
+
+                agentManager.AddNewAgent(args);
+
+                selectedAgent = db.Agents.ToList().Last();
+            }
+
+            //Test
+            var result = agentManager.GetAbilityDiscription(selectedAgent, abilityName);
+
+            //Assertion
+            Assert.AreEqual(expectedResult, result);
+
+            //Undo database changes done by the test
+            using (ValorantContext db = new ValorantContext())
+            {
+                Agents lastAgentInDB = db.Agents.ToList().Last();
+                db.Agents.Remove(lastAgentInDB);
+                AgentType lastTypeInDB = db.AgentType.ToList().Last();
+                db.AgentType.Remove(lastTypeInDB);
+                db.SaveChanges();
+            }
+        }
+
+        [Test]
+        public void GetAgentAbilitiesTest()
+        {
+            //Setup
+            AgentManager agentManager = new AgentManager();
+            AgentType newAgentType = new AgentType() { TypeName = "New Type" };
+            List<string> expectedResult = new List<string>()
+            {
+                "sigName",
+                "ultName",
+                "normal1Name",
+                "normal2Name"
+            };
+            object selectedAgent = null;
+            using (ValorantContext db = new ValorantContext())
+            {
+                db.AgentType.Add(newAgentType);
+                db.SaveChanges();
+
+                AgentManagerArgs args = new AgentManagerArgs("name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
+
+                agentManager.AddNewAgent(args);
+
+                selectedAgent = db.Agents.ToList().Last();
+            }
+
+            //Test
+            var result = agentManager.GetAgentsAbilities(selectedAgent);
+
+            //Assertion
+            Assert.AreEqual(expectedResult, result);
+
+            //Undo database changes done by the test
+            using (ValorantContext db = new ValorantContext())
+            {
+                Agents lastAgentInDB = db.Agents.ToList().Last();
+                db.Agents.Remove(lastAgentInDB);
+                AgentType lastTypeInDB = db.AgentType.ToList().Last();
+                db.AgentType.Remove(lastTypeInDB);
                 db.SaveChanges();
             }
         }
