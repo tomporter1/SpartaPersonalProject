@@ -21,6 +21,7 @@ namespace ValorantGUI
     {
         AddAgent _addAgent;
         AgentClassesPage _agentClasses;
+
         public AddAgentType(AddAgent addAgent)
         {
             InitializeComponent();

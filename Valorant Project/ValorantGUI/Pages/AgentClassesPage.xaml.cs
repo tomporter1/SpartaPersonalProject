@@ -53,6 +53,7 @@ namespace ValorantGUI
             TypesListBox.SelectedIndex = -1;
             NameTextBox.Text = "";
             TypesListBox.ItemsSource = new AgentTypeManager().GetAllTypes();
+            NameTextBox.IsEnabled = false;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -71,6 +72,7 @@ namespace ValorantGUI
             if (TypesListBox.SelectedIndex >= 0)
             {
                 NameTextBox.Text = new AgentTypeManager().GetTypeData(TypesListBox.SelectedItem, AgentTypeManager.Fields.Name);
+                NameTextBox.IsEnabled = true;
             }
         }
 

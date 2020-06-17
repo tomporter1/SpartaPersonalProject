@@ -4,9 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ValorantGUI"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="AgentClassesPage">
+      mc:Ignorable="d"
+      Title="Agent Classes" Height="297" Width="431">
 
     <Grid>
         <ListBox x:Name="TypesListBox" HorizontalAlignment="Left" Height="185" Margin="11,56,0,0" VerticalAlignment="Top" Width="151" SelectionChanged="OnSelectionChanged"/>
@@ -22,7 +21,7 @@
         <Button x:Name="SaveChangesButton"  HorizontalAlignment="Left" Margin="190,114,0,0" VerticalAlignment="Top" Height="39" Width="110" Click="SaveChangesButton_Click">
             <TextBlock x:Name="textBlock3" Text="Save changes to Class" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Width="109" TextAlignment="Center"/>
         </Button>
-        <Button x:Name="button" Content="Back" HorizontalAlignment="Left" Margin="714,10,0,0" VerticalAlignment="Top" Click="BackButton_Click" Height="39" Width="76"/>
+        <Button x:Name="button" Content="Back" HorizontalAlignment="Left" Margin="324,10,0,0" VerticalAlignment="Top" Click="BackButton_Click" Height="39" Width="76"/>
 
     </Grid>
 </Page>

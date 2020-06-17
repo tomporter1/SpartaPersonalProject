@@ -36,10 +36,10 @@ namespace BussinessLayer
             db.SaveChanges();
         }
 
-        public void UpdateMap(int id, string newName)
+        public void UpdateMap(object selectedMap, string newName)
         {
             using ValorantContext db = new ValorantContext();
-            Maps mapToUpdate = db.Maps.Where(m => m.MapId == id).FirstOrDefault();
+            Maps mapToUpdate = db.Maps.Where(m => m.MapId == ((Maps)selectedMap).MapId).FirstOrDefault();
             if (mapToUpdate != null)
             {
                 mapToUpdate.MapName = newName;
