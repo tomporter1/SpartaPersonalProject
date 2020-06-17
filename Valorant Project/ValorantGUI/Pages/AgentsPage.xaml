@@ -9,10 +9,12 @@
       Title="AgentsPage">
 
     <Grid>
-        <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="714,10,0,0" VerticalAlignment="Top" Click="BackButton_Click" Height="39" Width="76"/>
-        <Button x:Name="AddAgentButton" Content="Add a New Agent" HorizontalAlignment="Left" Margin="599,10,0,0" VerticalAlignment="Top" Click="AddNewAgent" Height="39" Width="110"/>
-        <Button x:Name="EditAgentButton" Content="Edit Selected Agent" HorizontalAlignment="Left" Margin="484,10,0,0" VerticalAlignment="Top" Click="AddNewAgent" Height="39" Width="110"/>
-        <Label x:Name="label" Content="Agents" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="143" Height="39" FontSize="20"/>
+        <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="762,10,0,0" VerticalAlignment="Top" Click="BackButton_Click" Height="39" Width="auto"/>
+        <Button x:Name="AddAgentButton" Content="Add a New Agent" HorizontalAlignment="Left" Margin="659,10,0,0" VerticalAlignment="Top" Click="AddNewAgent" Height="39" Width="auto"/>
+        <Button x:Name="EditAgentButton" Content="Edit Selected Agent" HorizontalAlignment="Left" Margin="547,10,0,0" VerticalAlignment="Top" Click="EditAgentButton_Click" Height="39" Width="auto"/>
+        <Button x:Name="RemoveAgentButton" Content="Delete Selected Agent" HorizontalAlignment="Left" Margin="420,10,0,0" VerticalAlignment="Top" Click="RemoveAgentButton_Click" Height="39" Width="auto"/>
+        <Label x:Name="label" Content="Agents:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="143" Height="39" FontSize="20"/>
+        <Label x:Name="Abilitieslabel" Content="Abilities:" HorizontalAlignment="Left" Margin="205,10,0,0" VerticalAlignment="Top" Width="143" Height="39" FontSize="20"/>
         <ListBox x:Name="AgentNameListBox" Margin="10,54,600,0" SelectionChanged="OnAgentSelected" Height="335" VerticalAlignment="Top"/>
         <ListBox x:Name="AbilitiesListBox" Margin="205,54,405,0" SelectionChanged="OnAbilitySelect" Height="335" VerticalAlignment="Top"/>
         <TextBox x:Name="BioTextBox" HorizontalAlignment="Left" Margin="408,82,0,0" Text="" TextWrapping="Wrap" Width="382" Height="130" VerticalAlignment="Top"/>

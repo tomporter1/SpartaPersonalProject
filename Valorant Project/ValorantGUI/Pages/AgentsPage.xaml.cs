@@ -93,5 +93,35 @@ namespace ValorantGUI
             AddAgent addAgentWindow = new AddAgent(this);
             addAgentWindow.Show();
         }
+
+        private void EditAgentButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (AgentNameListBox.SelectedIndex >= 0)
+            {
+                EditAgent editAgent = new EditAgent(AgentNameListBox.SelectedItem, this);
+                editAgent.Show();
+            }
+            else
+            {
+                MessageBox.Show("You need to select an agent to edit first");
+            }
+        }
+
+        private void RemoveAgentButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (AgentNameListBox.SelectedIndex >= 0)
+            {
+                MessageBoxResult messageBoxResult = MessageBox.Show($"Are you sure out want to delete {AgentNameListBox.SelectedItem}?", "Delete Confirmation", MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                    agentManager.RemoveAgent(AgentNameListBox.SelectedItem);
+                    PopulateAgents();
+                }
+            }
+            else
+            {
+                MessageBox.Show("You need to select an agent to remove first");
+            }
+        }
     }
 }

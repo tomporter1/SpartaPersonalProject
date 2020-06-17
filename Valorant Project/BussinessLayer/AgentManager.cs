@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,7 @@ namespace BussinessLayer
     {
         public enum Fields
         {
-            ID,
             Name,
-            Type,
             SignatureAbilityName,
             SignatureAbilityDiscription,
             UltamateAbilityName,
@@ -21,7 +20,9 @@ namespace BussinessLayer
             AbilityOneDiscription,
             AbilityTwoName,
             AbilityTwoDiscription,
-            Bio
+            Bio,
+            ID,
+            Type
         }
 
         public List<Agents> GetAllAgents()
@@ -48,9 +49,16 @@ namespace BussinessLayer
                 AbilityTwoDiscription = args.AbilityTwoDiscription,
                 Bio = args.Bio
             };
-            
+
             db.Agents.Add(newAgent);
             db.SaveChanges();
+        }
+
+        public object GetAgentTypeObj(object selectedAgent)
+        {
+            using ValorantContext db = new ValorantContext();
+            Agents agent = (Agents)selectedAgent;
+            return db.Agents.Where(a => a.AgentId == agent.AgentId).Include(a => a.AgentType).Select(a => a.AgentType).FirstOrDefault();
         }
 
         public List<string> GetAgentsAbilities(object selectedItem)
@@ -58,18 +66,16 @@ namespace BussinessLayer
             using ValorantContext db = new ValorantContext();
             Agents agent = (Agents)selectedItem;
 
-            List<string> output = new List<string>
+            return new List<string>
             {
                 db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.SignatureAbilityName).FirstOrDefault(),
                 db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.UltamateAbilityName).FirstOrDefault(),
                 db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AbilityOneName).FirstOrDefault(),
                 db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AbilityTwoName).FirstOrDefault()
             };
-
-            return output;
         }
 
-        public string GetAbilityDiscription(object selectedAgent,object selectedItem)
+        public string GetAbilityDiscription(object selectedAgent, object selectedItem)
         {
             string abilityName = (string)selectedItem;
             Agents agent = (Agents)selectedAgent;
@@ -78,7 +84,7 @@ namespace BussinessLayer
             if (agent.SignatureAbilityName == abilityName)
                 return GetAgentData(selectedAgent, Fields.SignatureAbilityDiscription);
             if (agent.UltamateAbilityName == abilityName)
-                return GetAgentData(selectedAgent, Fields.UltamateAbilityDiscription); 
+                return GetAgentData(selectedAgent, Fields.UltamateAbilityDiscription);
             if (agent.AbilityOneName == abilityName)
                 return GetAgentData(selectedAgent, Fields.AbilityOneDiscription);
             if (agent.AbilityTwoName == abilityName)
@@ -94,10 +100,14 @@ namespace BussinessLayer
             db.SaveChanges();
         }
 
-        public void UpdateAgent(int id, AgentManagerArgs args)
+        public void UpdateAgent(object selectedAgent, AgentManagerArgs args)
         {
             using ValorantContext db = new ValorantContext();
-            Agents agentToUpdate = db.Agents.Where(a => a.AgentId == id).FirstOrDefault();
+
+            Agents agentToUpdate = db.Agents
+                .Where(a => a.AgentId == ((Agents)selectedAgent).AgentId)
+                .FirstOrDefault();
+
             if (agentToUpdate != null)
             {
                 agentToUpdate.AgentName = args.Name;
