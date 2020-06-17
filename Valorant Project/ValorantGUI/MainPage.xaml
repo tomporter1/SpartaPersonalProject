@@ -15,6 +15,6 @@
         <Button x:Name="AgentsButton" Content="Agents" Margin="0,134,0,0" HorizontalAlignment="Center" Width="130" Height="48" VerticalAlignment="Top" Click="AgentsButton_Click"/>
         <Button x:Name="MapsButton" Content="Maps" HorizontalAlignment="Center" Width="130" Margin="0,187,0,0" Height="48" VerticalAlignment="Top" Click="MapsButton_Click"/>
         <Button x:Name="GameLogButton" Content="Game History" Margin="0,240,0,0" HorizontalAlignment="Center" Width="130" Height="48" VerticalAlignment="Top"/>
-        <Image x:Name="image" Grid.Column="1" HorizontalAlignment="Center" Height="294" VerticalAlignment="Center" Width="527" Source="/ValorantLogo.png"/>
+        <Image x:Name="image" Grid.Column="1" HorizontalAlignment="Center" Height="294" VerticalAlignment="Center" Width="527" Source="images/ValorantLogo.png"/>
     </Grid>
 </Page>

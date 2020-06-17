@@ -29,8 +29,9 @@
         <TextBox x:Name="Normal2DiscTextBox" HorizontalAlignment="Left" Height="120" Margin="466,249,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="184"/>
         <Label x:Name="BioLabel" Content="Bio:" HorizontalAlignment="Left" Height="29" Margin="15,528,0,0" VerticalAlignment="Top" Width="113" HorizontalContentAlignment="Right"/>
         <TextBox x:Name="BioTextBox" HorizontalAlignment="Left" Height="120" Margin="132,528,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="516"/>
-        <ListBox x:Name="AgentTypesListBox" HorizontalAlignment="Left" Height="109" Margin="15,409,0,0" VerticalAlignment="Top" Width="635"/>
-        <Label x:Name="TypesLabel" Content="Agent Types:" HorizontalAlignment="Left" Height="30" Margin="15,374,0,0" VerticalAlignment="Top" Width="160"/>
+        <ListBox x:Name="AgentTypesListBox" HorizontalAlignment="Left" Height="109" Margin="15,409,0,0" VerticalAlignment="Top" Width="447"/>
+        <Label x:Name="TypesLabel" Content="Agent Classes:" HorizontalAlignment="Left" Height="30" Margin="15,374,0,0" VerticalAlignment="Top" Width="160"/>
+        <Button x:Name="AddTypeButton" Content="Add a new Agent type" HorizontalAlignment="Left" Height="109" Margin="467,409,0,0" VerticalAlignment="Top" Width="183" Click="AddTypeButton_Click"/>
 
 
     </Grid>

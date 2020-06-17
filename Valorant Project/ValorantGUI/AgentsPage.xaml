@@ -9,15 +9,16 @@
       Title="AgentsPage">
 
     <Grid>
-        <Button x:Name="button" Content="Back" HorizontalAlignment="Left" Margin="714,10,0,0" VerticalAlignment="Top" Click="BackButton_Click" Height="39" Width="76"/>
-        <Button x:Name="AddAgentButton" Content="Add a new Agent" HorizontalAlignment="Left" Margin="599,12,0,0" VerticalAlignment="Top" Click="AddNewAgent" Height="39" Width="110"/>
+        <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="714,10,0,0" VerticalAlignment="Top" Click="BackButton_Click" Height="39" Width="76"/>
+        <Button x:Name="AddAgentButton" Content="Add a New Agent" HorizontalAlignment="Left" Margin="599,10,0,0" VerticalAlignment="Top" Click="AddNewAgent" Height="39" Width="110"/>
+        <Button x:Name="EditAgentButton" Content="Edit Selected Agent" HorizontalAlignment="Left" Margin="484,10,0,0" VerticalAlignment="Top" Click="AddNewAgent" Height="39" Width="110"/>
         <Label x:Name="label" Content="Agents" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="143" Height="39" FontSize="20"/>
-        <ListBox x:Name="AgentNameListBox" Margin="10,72,600,37" SelectionChanged="OnAgentSelected"/>
-        <ListBox x:Name="AbilitiesListBox" Margin="205,72,405,37" SelectionChanged="OnAbilitySelect"/>
-        <TextBox x:Name="BioTextBox" HorizontalAlignment="Left" Margin="408,104,0,0" Text="" TextWrapping="Wrap" Width="382" Height="130" VerticalAlignment="Top"/>
-        <TextBox x:Name="AbilityDiscriptionTextBox" HorizontalAlignment="Left" Margin="408,283,0,0" Text="" TextWrapping="Wrap" Width="382" Height="130" VerticalAlignment="Top"/>
-        <Label x:Name="label1" Content="Ability Discription:" HorizontalAlignment="Left" Margin="408,247,0,176" Width="382"/>
-        <Label x:Name="label2" Content="Agent Bio:" HorizontalAlignment="Left" Margin="408,72,0,351" Width="382"/>
+        <ListBox x:Name="AgentNameListBox" Margin="10,54,600,0" SelectionChanged="OnAgentSelected" Height="335" VerticalAlignment="Top"/>
+        <ListBox x:Name="AbilitiesListBox" Margin="205,54,405,0" SelectionChanged="OnAbilitySelect" Height="335" VerticalAlignment="Top"/>
+        <TextBox x:Name="BioTextBox" HorizontalAlignment="Left" Margin="408,82,0,0" Text="" TextWrapping="Wrap" Width="382" Height="130" VerticalAlignment="Top"/>
+        <TextBox x:Name="AbilityDiscriptionTextBox" HorizontalAlignment="Left" Margin="408,259,0,0" Text="" TextWrapping="Wrap" Width="382" Height="130" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="Ability Discription:" HorizontalAlignment="Left" Margin="408,227,0,0" Width="382" Height="27" VerticalAlignment="Top"/>
+        <Label x:Name="label2" Content="Agent Bio:" HorizontalAlignment="Left" Margin="408,54,0,0" Width="382" Height="28" VerticalAlignment="Top"/>
 
 
     </Grid>

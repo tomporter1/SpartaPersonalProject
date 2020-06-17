@@ -48,6 +48,7 @@ namespace BussinessLayer
                 AbilityTwoDiscription = args.AbilityTwoDiscription,
                 Bio = args.Bio
             };
+            
             db.Agents.Add(newAgent);
             db.SaveChanges();
         }

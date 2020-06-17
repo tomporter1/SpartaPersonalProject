@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ValorantDatabase;
 
 namespace ValorantGUI
 {
@@ -40,20 +41,37 @@ namespace ValorantGUI
             _window.Content = _mainPage;
         }
 
-        private void PopulateAgents()
+        internal void PopulateAgents()
+        {
+            ClearAllUi();
+            List<Agents> allAgents = agentManager.GetAllAgents();
+            if (allAgents.Count != 0)
+            {
+                AgentNameListBox.ItemsSource = allAgents;
+                ClearAbilitiesListBox();
+            }
+        }
+
+        private void ClearAllUi()
         {
             AgentNameListBox.ItemsSource = null;
             AgentNameListBox.SelectedIndex = -1;
-            AgentNameListBox.ItemsSource = agentManager.GetAllAgents();
+
             ClearAbilitiesListBox();
+
+            BioTextBox.Text = "";
+            AbilityDiscriptionTextBox.Text = "";
         }
 
         private void OnAgentSelected(object sender, SelectionChangedEventArgs e)
         {
-            ClearAbilitiesListBox();
-            AbilitiesListBox.ItemsSource = agentManager.GetAgentsAbilities(AgentNameListBox.SelectedItem);
+            if (AgentNameListBox.SelectedIndex >= 0)
+            {
+                ClearAbilitiesListBox();
+                AbilitiesListBox.ItemsSource = agentManager.GetAgentsAbilities(AgentNameListBox.SelectedItem);
 
-            BioTextBox.Text = agentManager.GetAgentData(AgentNameListBox.SelectedItem, AgentManager.Fields.Bio);
+                BioTextBox.Text = agentManager.GetAgentData(AgentNameListBox.SelectedItem, AgentManager.Fields.Bio);
+            }
         }
 
         private void ClearAbilitiesListBox()
@@ -64,12 +82,15 @@ namespace ValorantGUI
 
         private void OnAbilitySelect(object sender, SelectionChangedEventArgs e)
         {
-            AbilityDiscriptionTextBox.Text = agentManager.GetAbilityDiscription(AgentNameListBox.SelectedItem, AbilitiesListBox.SelectedItem);           
+            if (AbilitiesListBox.SelectedIndex >= 0)
+            {
+                AbilityDiscriptionTextBox.Text = agentManager.GetAbilityDiscription(AgentNameListBox.SelectedItem, AbilitiesListBox.SelectedItem);
+            }
         }
 
         private void AddNewAgent(object sender, RoutedEventArgs e)
         {
-            AddAgent addAgentWindow = new AddAgent();
+            AddAgent addAgentWindow = new AddAgent(this);
             addAgentWindow.Show();
         }
     }
