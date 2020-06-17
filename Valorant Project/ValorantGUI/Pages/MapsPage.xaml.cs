@@ -19,14 +19,14 @@ namespace ValorantGUI
     /// </summary>
     public partial class MapsPage : Page
     {
-        MainPage _mainPage;
         MainWindow _window;
+        internal MapManager MapManager { get; private set; }
 
-        public MapsPage(MainWindow window, MainPage page)
+        public MapsPage(MainWindow window)
         {
             InitializeComponent();
-            _mainPage = page;
             _window = window;
+            MapManager = new MapManager();
 
             PopulateMaps();
         }
@@ -36,7 +36,7 @@ namespace ValorantGUI
             MapsListBox.ItemsSource = null;
             MapsListBox.SelectedIndex = -1;
             NameTextBox.Text = "";
-            MapsListBox.ItemsSource = new MapManager().GetAllMaps();
+            MapsListBox.ItemsSource = MapManager.GetAllMaps();
             NameTextBox.IsEnabled = false;
         }
 
@@ -48,14 +48,14 @@ namespace ValorantGUI
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            _window.Content = _mainPage;
+            _window.SetHomePage();
         }
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (MapsListBox.SelectedIndex >= 0)
             {
                 NameTextBox.IsEnabled = true;
-                NameTextBox.Text = new MapManager().GetMapsData(MapsListBox.SelectedItem, MapManager.Fields.Name);
+                NameTextBox.Text = MapManager.GetMapsData(MapsListBox.SelectedItem, MapManager.Fields.Name);
             }
         }
 
@@ -66,7 +66,7 @@ namespace ValorantGUI
                 MessageBoxResult messageBoxResult = MessageBox.Show($"Are you sure out want to delete {MapsListBox.SelectedItem}?", "Delete Confirmation", MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
-                    new MapManager().RemoveMap(MapsListBox.SelectedItem);
+                    MapManager.RemoveMap(MapsListBox.SelectedItem);
                     PopulateMaps();
                 }
             }
@@ -80,7 +80,7 @@ namespace ValorantGUI
         {
             if (MapsListBox.SelectedIndex >= 0)
             {
-                new MapManager().UpdateMap(MapsListBox.SelectedItem, NameTextBox.Text.Trim());
+                MapManager.UpdateMap(MapsListBox.SelectedItem, NameTextBox.Text.Trim());
                 PopulateMaps();
             }
             else

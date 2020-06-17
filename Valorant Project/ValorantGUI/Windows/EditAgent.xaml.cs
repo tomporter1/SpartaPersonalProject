@@ -20,6 +20,7 @@ namespace ValorantGUI
     {
         object _selectedAgent;
         AgentsPage _agentsPage;
+
         public EditAgent(object selectedAgent, AgentsPage agentsPage)
         {
             InitializeComponent();
@@ -40,15 +41,14 @@ namespace ValorantGUI
                 BioTextBox
             };
 
-            AgentManager agentManager = new AgentManager();
             for (int i = 0; i < textBoxes.Count; i++)
             {
-                textBoxes[i].Text = agentManager.GetAgentData(_selectedAgent, (AgentManager.Fields)i);
+                textBoxes[i].Text = _agentsPage.AgentManager.GetAgentData(_selectedAgent, (AgentManager.Fields)i);
             }
 
             AgentTypeManager typeManager = new AgentTypeManager();
             AgentTypesListBox.ItemsSource = typeManager.GetAllTypes();
-            object agentType = agentManager.GetAgentTypeObj(_selectedAgent);
+            object agentType = _agentsPage.AgentManager.GetAgentTypeObj(_selectedAgent);
 
             foreach (var item in AgentTypesListBox.ItemsSource)
             {
@@ -74,7 +74,7 @@ namespace ValorantGUI
                 Normal2DiscTextBox.Text.Trim(), 
                 BioTextBox.Text.Trim());
 
-            new AgentManager().UpdateAgent(_selectedAgent, args);
+            _agentsPage.AgentManager.UpdateAgent(_selectedAgent, args);
             _agentsPage.PopulateAgents();
             this.Close();
         }

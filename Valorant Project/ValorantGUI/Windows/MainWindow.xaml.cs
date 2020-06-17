@@ -20,10 +20,25 @@ namespace ValorantGUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ddda _mainPage;
+
         public MainWindow()
         {
             InitializeComponent();
-            Content = new MainPage(this);
+            SetHomePage();
+        }
+
+        internal void SetHomePage()
+        {
+            if (_mainPage == null)
+            {
+                _mainPage = new ddda(this);
+                Content = _mainPage;
+            }
+            else
+            {
+                Content = _mainPage;
+            }
         }
     }
 }

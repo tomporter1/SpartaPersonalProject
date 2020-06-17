@@ -19,14 +19,13 @@ namespace ValorantGUI
     /// </summary>
     public partial class AgentClassesPage : Page
     {
-        MainPage _mainPage;
         MainWindow _window;
-
-        public AgentClassesPage(MainWindow window, MainPage page)
+        internal AgentTypeManager AgentTypeManager { get; private set; }
+        public AgentClassesPage(MainWindow window)
         {
             InitializeComponent();
-            _mainPage = page;
             _window = window;
+            AgentTypeManager = new AgentTypeManager();
             PopulateTypes();
         }
 
@@ -37,7 +36,7 @@ namespace ValorantGUI
                 MessageBoxResult messageBoxResult = MessageBox.Show($"Are you sure out want to delete {TypesListBox.SelectedItem}?", "Delete Confirmation", MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
-                    new AgentTypeManager().RemoveAgentType(TypesListBox.SelectedItem);
+                    AgentTypeManager.RemoveAgentType(TypesListBox.SelectedItem);
                     PopulateTypes();
                 }
             }
@@ -52,7 +51,7 @@ namespace ValorantGUI
             TypesListBox.ItemsSource = null;
             TypesListBox.SelectedIndex = -1;
             NameTextBox.Text = "";
-            TypesListBox.ItemsSource = new AgentTypeManager().GetAllTypes();
+            TypesListBox.ItemsSource = AgentTypeManager.GetAllTypes();
             NameTextBox.IsEnabled = false;
         }
 
@@ -64,14 +63,14 @@ namespace ValorantGUI
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            _window.Content = _mainPage;
+            _window.SetHomePage();
         }
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (TypesListBox.SelectedIndex >= 0)
             {
-                NameTextBox.Text = new AgentTypeManager().GetTypeData(TypesListBox.SelectedItem, AgentTypeManager.Fields.Name);
+                NameTextBox.Text = AgentTypeManager.GetTypeData(TypesListBox.SelectedItem, AgentTypeManager.Fields.Name);
                 NameTextBox.IsEnabled = true;
             }
         }
@@ -80,7 +79,7 @@ namespace ValorantGUI
         {
             if (TypesListBox.SelectedIndex >= 0)
             {
-                new AgentTypeManager().UpdateAgentType(TypesListBox.SelectedItem, NameTextBox.Text.Trim());
+                AgentTypeManager.UpdateAgentType(TypesListBox.SelectedItem, NameTextBox.Text.Trim());
                 PopulateTypes();
             }
             else

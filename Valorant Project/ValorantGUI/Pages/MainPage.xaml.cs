@@ -16,32 +16,32 @@ namespace ValorantGUI
     /// <summary>
     /// Interaction logic for MainPage.xaml
     /// </summary>
-    public partial class MainPage : Page
+    public partial class ddda : Page
     {
-        MainWindow _mainWindow;
+        MainWindow _window;
 
-        public MainPage(MainWindow mainWindow)
+        public ddda(MainWindow mainWindow)
         {
             InitializeComponent();
-            _mainWindow = mainWindow;
+            _window = mainWindow;
         }
 
         private void AgentsButton_Click(object sender, RoutedEventArgs e)
         {
-            AgentsPage agentsPage = new AgentsPage(_mainWindow, this);
-            _mainWindow.Content = agentsPage;
+            AgentsPage agentsPage = new AgentsPage(_window);
+            _window.Content = agentsPage;
         }
 
         private void MapsButton_Click(object sender, RoutedEventArgs e)
         {
-            MapsPage mapsPage = new MapsPage(_mainWindow, this);
-            _mainWindow.Content = mapsPage;
+            MapsPage mapsPage = new MapsPage(_window);
+            _window.Content = mapsPage;
         }
 
         private void ClassesButton_Click(object sender, RoutedEventArgs e)
         {
-            AgentClassesPage classesPage = new AgentClassesPage(_mainWindow, this);
-            _mainWindow.Content = classesPage;
+            AgentClassesPage classesPage = new AgentClassesPage(_window);
+            _window.Content = classesPage;
         }
     }
 }

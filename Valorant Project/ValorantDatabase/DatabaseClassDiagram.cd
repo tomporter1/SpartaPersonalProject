@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="ValorantDatabase.Agents">
+    <Position X="5.25" Y="1" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>EIAEAACAAAoQAAEEiAICEAQQIQAQAeAAAABgAQBAAiI=</HashCode>
+      <FileName>PartialClasses\Agents.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AgentType" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="GameLogs" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ValorantDatabase.AgentType" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEgAEAAAAAAAAAAJAgAAAAAAAAAiA=</HashCode>
+      <FileName>PartialClasses\AgentType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Agents" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ValorantDatabase.GameLogs">
+    <Position X="11" Y="1" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAABASAAQEiAEAAAABCAAAAIAgAAIAAAAAAiA=</HashCode>
+      <FileName>GameLogs.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Agent" />
+      <Property Name="Map" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ValorantDatabase.Maps">
+    <Position X="10.25" Y="6.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAICAAAEgAAAAAAAABAAAIAAAAAAAAAAAiA=</HashCode>
+      <FileName>PartialClasses\Maps.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="GameLogs" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

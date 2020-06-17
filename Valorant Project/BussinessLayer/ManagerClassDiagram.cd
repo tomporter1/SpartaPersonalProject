@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="BussinessLayer.AgentManager">
+    <Position X="0.5" Y="1.5" Width="3" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="BussinessLayer.AgentManager.Fields" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>AgentManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABQBAAAAAAECAAAAAACAAAEAAAAAAAABAAA=</HashCode>
+      <FileName>AgentManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLayer.AgentManagerArgs">
+    <Position X="8.75" Y="1.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAECAIAAAQAIAAQAUAgAAAAAAAAAAI=</HashCode>
+      <FileName>AgentManagerArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLayer.AgentTypeManager">
+    <Position X="3.75" Y="1.5" Width="4.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="BussinessLayer.AgentTypeManager.Fields" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>AgentTypeManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAIAgAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAgAQA=</HashCode>
+      <FileName>AgentTypeManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLayer.MapManager">
+    <Position X="13.25" Y="1.5" Width="3.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="BussinessLayer.MapManager.Fields" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MapManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAEAAAAAAAAAE=</HashCode>
+      <FileName>MapManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
