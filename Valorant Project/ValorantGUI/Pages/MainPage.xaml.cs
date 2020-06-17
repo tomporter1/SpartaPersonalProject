@@ -37,5 +37,11 @@ namespace ValorantGUI
             MapsPage mapsPage = new MapsPage(_mainWindow, this);
             _mainWindow.Content = mapsPage;
         }
+
+        private void ClassesButton_Click(object sender, RoutedEventArgs e)
+        {
+            AgentClassesPage classesPage = new AgentClassesPage(_mainWindow, this);
+            _mainWindow.Content = classesPage;
+        }
     }
 }

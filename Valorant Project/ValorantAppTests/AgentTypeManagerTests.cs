@@ -140,7 +140,7 @@ namespace ValorantAppTests
             }
 
             //Test
-            string result = manager.GetAgentData(addedType, field);
+            string result = manager.GetTypeData(addedType, field);
 
             //Assertion
             Assert.AreEqual(result, expectedResult);

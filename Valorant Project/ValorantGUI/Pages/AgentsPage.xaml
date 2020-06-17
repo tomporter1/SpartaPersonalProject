@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ValorantGUI"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AgentsPage">
+      Title="Agents">
 
     <Grid>
         <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="762,10,0,0" VerticalAlignment="Top" Click="BackButton_Click" Height="39" Width="auto"/>
@@ -21,7 +21,5 @@
         <TextBox x:Name="AbilityDiscriptionTextBox" HorizontalAlignment="Left" Margin="408,259,0,0" Text="" TextWrapping="Wrap" Width="382" Height="130" VerticalAlignment="Top"/>
         <Label x:Name="label1" Content="Ability Discription:" HorizontalAlignment="Left" Margin="408,227,0,0" Width="382" Height="27" VerticalAlignment="Top"/>
         <Label x:Name="label2" Content="Agent Bio:" HorizontalAlignment="Left" Margin="408,54,0,0" Width="382" Height="28" VerticalAlignment="Top"/>
-
-
     </Grid>
 </Page>

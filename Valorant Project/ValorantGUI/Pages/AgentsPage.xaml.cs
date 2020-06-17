@@ -22,16 +22,14 @@ namespace ValorantGUI
     {
         MainPage _mainPage;
         MainWindow _window;
-        AgentManager agentManager;
-        AgentTypeManager typeManager;
+        AgentManager _agentManager;
 
         public AgentsPage(MainWindow window, MainPage page)
         {
             InitializeComponent();
             _mainPage = page;
             _window = window;
-            agentManager = new AgentManager();
-            typeManager = new AgentTypeManager();
+            _agentManager = new AgentManager();
 
             PopulateAgents();
         }
@@ -44,7 +42,7 @@ namespace ValorantGUI
         internal void PopulateAgents()
         {
             ClearAllUi();
-            List<Agents> allAgents = agentManager.GetAllAgents();
+            List<Agents> allAgents = _agentManager.GetAllAgents();
             if (allAgents.Count != 0)
             {
                 AgentNameListBox.ItemsSource = allAgents;
@@ -68,9 +66,9 @@ namespace ValorantGUI
             if (AgentNameListBox.SelectedIndex >= 0)
             {
                 ClearAbilitiesListBox();
-                AbilitiesListBox.ItemsSource = agentManager.GetAgentsAbilities(AgentNameListBox.SelectedItem);
+                AbilitiesListBox.ItemsSource = _agentManager.GetAgentsAbilities(AgentNameListBox.SelectedItem);
 
-                BioTextBox.Text = agentManager.GetAgentData(AgentNameListBox.SelectedItem, AgentManager.Fields.Bio);
+                BioTextBox.Text = _agentManager.GetAgentData(AgentNameListBox.SelectedItem, AgentManager.Fields.Bio);
             }
         }
 
@@ -84,7 +82,7 @@ namespace ValorantGUI
         {
             if (AbilitiesListBox.SelectedIndex >= 0)
             {
-                AbilityDiscriptionTextBox.Text = agentManager.GetAbilityDiscription(AgentNameListBox.SelectedItem, AbilitiesListBox.SelectedItem);
+                AbilityDiscriptionTextBox.Text = _agentManager.GetAbilityDiscription(AgentNameListBox.SelectedItem, AbilitiesListBox.SelectedItem);
             }
         }
 
@@ -114,7 +112,7 @@ namespace ValorantGUI
                 MessageBoxResult messageBoxResult = MessageBox.Show($"Are you sure out want to delete {AgentNameListBox.SelectedItem}?", "Delete Confirmation", MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
-                    agentManager.RemoveAgent(AgentNameListBox.SelectedItem);
+                    _agentManager.RemoveAgent(AgentNameListBox.SelectedItem);
                     PopulateAgents();
                 }
             }

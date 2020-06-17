@@ -36,10 +36,10 @@ namespace BussinessLayer
             db.SaveChanges();
         }
 
-        public void UpdateAgentType(int id,string newName)
+        public void UpdateAgentType(object SelectedType,string newName)
         {
             using ValorantContext db = new ValorantContext();
-            AgentType typeToUpdate = db.AgentType.Where(a => a.TypeId == id).FirstOrDefault();
+            AgentType typeToUpdate = db.AgentType.Where(a => a.TypeId == ((AgentType)SelectedType).TypeId).FirstOrDefault();
             if (typeToUpdate != null)
             {
                 typeToUpdate.TypeName = newName;
@@ -48,7 +48,7 @@ namespace BussinessLayer
             }
         }
 
-        public string GetAgentData(object selectedType, Fields field)
+        public string GetTypeData(object selectedType, Fields field)
         {
             using ValorantContext db = new ValorantContext();
             AgentType type = (AgentType)selectedType;
