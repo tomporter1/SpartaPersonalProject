@@ -41,7 +41,7 @@ namespace ValorantDatabase
         public string SignatureAbilityDiscription
         {
             get { return _signatureAbilityDiscription; }
-            set { _signatureAbilityDiscription = value.Length <= 350 ? value : value.Substring(0, 350); }
+            set { _signatureAbilityDiscription = value.Length <= 500 ? value : value.Substring(0, 500); }
         }
         public string UltamateAbilityName
         {
@@ -51,7 +51,7 @@ namespace ValorantDatabase
         public string UltamateAbilityDiscription
         {
             get { return _ultamateAbilityDiscription; }
-            set { _ultamateAbilityDiscription = value.Length <= 350 ? value : value.Substring(0, 350); }
+            set { _ultamateAbilityDiscription = value.Length <= 500 ? value : value.Substring(0, 500); }
         }
         public string AbilityOneName
         {
@@ -61,7 +61,7 @@ namespace ValorantDatabase
         public string AbilityOneDiscription
         {
             get { return _abilityOneDiscription; }
-            set { _abilityOneDiscription = value.Length <= 350 ? value : value.Substring(0, 350); }
+            set { _abilityOneDiscription = value.Length <= 500 ? value : value.Substring(0, 500); }
         }
         public string AbilityTwoName
         {
@@ -76,7 +76,7 @@ namespace ValorantDatabase
         public string Bio
         {
             get { return _bio; }
-            set { _bio = value.Length <= 350 ? value : value.Substring(0, 350); }
+            set { _bio = value.Length <= 700 ? value : value.Substring(0, 700); }
         }
 
         public virtual AgentType AgentType { get; set; }

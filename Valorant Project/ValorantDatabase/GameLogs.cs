@@ -12,8 +12,8 @@ namespace ValorantDatabase
         public int? Kills { get; set; }
         public int? Deaths { get; set; }
         public int? Assits { get; set; }
-        public int? Adr { get; set; }
-        public DateTime? DateLogged { get; set; }
+        public float? Adr { get; set; }
+        public DateTime DateLogged { get; set; }
 
         public virtual Agents Agent { get; set; }
         public virtual Maps Map { get; set; }
