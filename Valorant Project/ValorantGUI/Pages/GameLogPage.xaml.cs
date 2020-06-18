@@ -95,7 +95,7 @@ namespace ValorantGUI
             }
             else
             {
-                MessageBox.Show("You need to select an agent to remove first");
+                MessageBox.Show("You need to select an game to remove first");
             }
         }
 
@@ -112,7 +112,7 @@ namespace ValorantGUI
             }
             else
             {
-                MessageBox.Show("You need to select an agent to remove first");
+                MessageBox.Show("You need to select an game to remove first");
             }
         }
     }
