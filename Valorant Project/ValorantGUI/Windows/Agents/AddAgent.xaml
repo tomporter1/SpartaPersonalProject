@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ValorantGUI"
         mc:Ignorable="d"
-        Title="Add Agent" Height="736" Width="674" ResizeMode="NoResize">
+        Title="Add Agent" Height="618" Width="674" ResizeMode="NoResize">
     <Grid>
-        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Center" Height="29" Margin="0,664,0,0" VerticalAlignment="Top" Width="644" Click="SaveButton_Click"/>
+        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Height="29" Margin="17,534,0,0" VerticalAlignment="Top" Width="644" Click="SaveButton_Click"/>
 
         <Label x:Name="nameLabel" Content="Name:" HorizontalAlignment="Left" Height="29" Margin="32,24,0,0" VerticalAlignment="Top" Width="98" HorizontalContentAlignment="Right"/>
         <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="29" Margin="136,22,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="514"/>
@@ -27,11 +27,10 @@
         <TextBox x:Name="Normal2NameTextBox" HorizontalAlignment="Left" Height="29" Margin="466,215,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="184"/>
         <Label x:Name="Normal2DiscLabel" Content="Normal 2 Discription:" HorizontalAlignment="Left" Height="29" Margin="338,249,0,0" VerticalAlignment="Top" Width="124" HorizontalContentAlignment="Right"/>
         <TextBox x:Name="Normal2DiscTextBox" HorizontalAlignment="Left" Height="120" Margin="466,249,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="184"/>
-        <Label x:Name="BioLabel" Content="Bio:" HorizontalAlignment="Left" Height="29" Margin="15,528,0,0" VerticalAlignment="Top" Width="113" HorizontalContentAlignment="Right"/>
-        <TextBox x:Name="BioTextBox" HorizontalAlignment="Left" Height="120" Margin="132,528,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="516"/>
-        <ListBox x:Name="AgentTypesListBox" HorizontalAlignment="Left" Height="109" Margin="15,409,0,0" VerticalAlignment="Top" Width="447"/>
-        <Label x:Name="TypesLabel" Content="Agent Classes:" HorizontalAlignment="Left" Height="30" Margin="15,374,0,0" VerticalAlignment="Top" Width="160"/>
-        <Button x:Name="AddTypeButton" Content="Add a new Agent type" HorizontalAlignment="Left" Height="109" Margin="467,409,0,0" VerticalAlignment="Top" Width="183" Click="AddTypeButton_Click"/>
+        <Label x:Name="BioLabel" Content="Bio:" HorizontalAlignment="Left" Height="29" Margin="17,407,0,0" VerticalAlignment="Top" Width="113" HorizontalContentAlignment="Right"/>
+        <TextBox x:Name="BioTextBox" HorizontalAlignment="Left" Height="120" Margin="135,409,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="516"/>
+        <ComboBox x:Name="AgentTypesComboBox" HorizontalAlignment="Left" Height="30" Margin="136,374,0,0" VerticalAlignment="Top" Width="514"/>
+        <Label x:Name="TypesLabel" Content="Agent Classes:" HorizontalAlignment="Left" Height="30" Margin="17,374,0,0" VerticalAlignment="Top" Width="115"/>
 
 
     </Grid>

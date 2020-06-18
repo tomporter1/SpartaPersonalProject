@@ -20,14 +20,14 @@ namespace ValorantGUI
 
         internal void PopulateTypes()
         {
-            AgentTypesListBox.ItemsSource = null;
-            AgentTypesListBox.SelectedIndex = -1;
-            AgentTypesListBox.ItemsSource = new AgentTypeManager().GetAllTypes();
+            AgentTypesComboBox.ItemsSource = null;
+            AgentTypesComboBox.SelectedIndex = -1;
+            AgentTypesComboBox.ItemsSource = new AgentTypeManager().GetAllTypes();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (AgentTypesListBox.SelectedIndex < 0)
+            if (AgentTypesComboBox.SelectedIndex < 0)
             {
                 MessageBox.Show("Please select a Class for this agent");
             }
@@ -36,7 +36,7 @@ namespace ValorantGUI
                 AgentManagerArgs args = new AgentManagerArgs
                     (
                         NameTextBox.Text.Trim(),
-                        AgentTypesListBox.SelectedItem,
+                        AgentTypesComboBox.SelectedItem,
                         SigTextBox.Text.Trim(),
                         SigDiscTextBox.Text.Trim(),
                         UltTextBox.Text.Trim(),
@@ -51,12 +51,6 @@ namespace ValorantGUI
                 _agentsPage.PopulateAgents();
                 this.Close();
             }
-        }
-
-        private void AddTypeButton_Click(object sender, RoutedEventArgs e)
-        {
-            AddAgentType addAgentType = new AddAgentType(this);
-            addAgentType.Show();
         }
     }
 }

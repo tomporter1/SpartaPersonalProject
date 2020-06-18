@@ -39,14 +39,14 @@ namespace ValorantGUI
             }
 
             AgentTypeManager typeManager = new AgentTypeManager();
-            AgentTypesListBox.ItemsSource = typeManager.GetAllTypes();
+            AgentTypesComboBox.ItemsSource = typeManager.GetAllTypes();
             object agentType = _agentsPage.AgentManager.GetAgentTypeObj(_selectedAgent);
 
-            foreach (var item in AgentTypesListBox.ItemsSource)
+            foreach (var item in AgentTypesComboBox.ItemsSource)
             {
                 if (agentType.Equals(item))
                 {
-                    AgentTypesListBox.SelectedItem = item;
+                    AgentTypesComboBox.SelectedItem = item;
                 }
             }
         }
@@ -55,7 +55,7 @@ namespace ValorantGUI
         {
             AgentManagerArgs args = new AgentManagerArgs(
                 NameTextBox.Text.Trim(),
-                AgentTypesListBox.SelectedItem,
+                AgentTypesComboBox.SelectedItem,
                 SigTextBox.Text.Trim(),
                 SigDiscTextBox.Text.Trim(),
                 UltTextBox.Text.Trim(), 
