@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ValorantGUI"
         mc:Ignorable="d"
-        Title="Add Agent" Height="736" Width="674">
+        Title="Add Agent" Height="736" Width="674" ResizeMode="NoResize">
     <Grid>
         <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Center" Height="29" Margin="0,664,0,0" VerticalAlignment="Top" Width="644" Click="SaveButton_Click"/>
 

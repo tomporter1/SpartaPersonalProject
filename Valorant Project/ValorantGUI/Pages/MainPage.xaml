@@ -7,15 +7,31 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainPage">
-    <Grid>
+    <Grid ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="246*"/>
+            <RowDefinition Height="70*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="51*"/>
-            <ColumnDefinition Width="149*"/>
+            <ColumnDefinition Width="37*"/>
+            <ColumnDefinition Width="134*"/>
+            <ColumnDefinition Width="33*"/>
+            <ColumnDefinition Width="596*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="AgentsButton" Content="Agents" Margin="0,124,0,0" HorizontalAlignment="Center" Width="130" Height="48" VerticalAlignment="Top" Click="AgentsButton_Click"/>
-        <Button x:Name="ClassesButton" Content="Classes" Margin="0,177,0,0" HorizontalAlignment="Center" Width="130" Height="48" VerticalAlignment="Top" Click="ClassesButton_Click"/>
-        <Button x:Name="MapsButton" Content="Maps" HorizontalAlignment="Center" Width="130" Margin="0,230,0,0" Height="48" VerticalAlignment="Top" Click="MapsButton_Click"/>
-        <Button x:Name="GameLogButton" Content="Game History" Margin="0,283,0,0" HorizontalAlignment="Center" Width="130" Height="48" VerticalAlignment="Top" Click="GameLogButton_Click"/>
-        <Image x:Name="image" Grid.Column="1" HorizontalAlignment="Center" Height="294" VerticalAlignment="Center" Width="527" Source="/Pages/Images/ValorantLogo.png"/>
+
+        <Image x:Name="image" Grid.Column="3" HorizontalAlignment="Center" Height="294" VerticalAlignment="Center" Width="528" Source="/Pages/Images/ValorantLogo.png" Grid.Row="1"/>
+        <Grid Grid.Column="1" HorizontalAlignment="Center" Height="273" Grid.Row="1" VerticalAlignment="Center" Width="134">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Button x:Name="AgentsButton" Content="Agents" Margin="0,5,0,5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Click="AgentsButton_Click" Grid.Row="0"/>
+            <Button x:Name="ClassesButton" Content="Classes" Margin="0,5,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="ClassesButton_Click" Grid.Row="1"/>
+            <Button x:Name="MapsButton" Content="Maps" Margin="0,5,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="MapsButton_Click" Grid.Row="2"/>
+            <Button x:Name="GameLogButton" Content="Game History" Margin="0,5,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="GameLogButton_Click" Grid.Row="3"/>
+        </Grid>
     </Grid>
 </Page>

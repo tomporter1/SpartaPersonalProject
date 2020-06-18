@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ValorantGUI"
         mc:Ignorable="d"
-        Title="Edit Game" Height="451" Width="301">
+        Title="Edit Game" Height="451" Width="301" ResizeMode="NoResize">
     <Grid>
         <Label x:Name="teamScoreLabel" Content="Team Score:" HorizontalAlignment="Left" Margin="22,30,0,0" VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="32"/>
         <TextBox x:Name="TeamScoreTextBox" HorizontalAlignment="Left" Margin="137,30,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="32" VerticalContentAlignment="Center"/>

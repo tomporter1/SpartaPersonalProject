@@ -6,26 +6,79 @@
       xmlns:local="clr-namespace:ValorantGUI"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="GameLogPage">
+      Title="Game History">
 
     <Grid>
-        <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="762,10,0,0" VerticalAlignment="Top" Click="BackButton_Click" Height="39" Width="auto"/>
-        <Button x:Name="LogGameButton" Content="Log Game" HorizontalAlignment="Left" Margin="699,10,0,0" VerticalAlignment="Top" Click="LogGameButton_Click" Height="39" Width="auto"/>
-        <Button x:Name="EditGameButton" Content="Edit Selected Game" HorizontalAlignment="Left" Margin="588,10,0,0" VerticalAlignment="Top" Click="EditGameButton_Click" Height="39" Width="auto"/>
-        <Button x:Name="RemoveGameButton" Content="Remove Selected Game" HorizontalAlignment="Left" Margin="454,10,0,0" VerticalAlignment="Top" Click="RemoveGameButton_Click" Height="39" Width="auto"/>
-        <ListBox x:Name="GamesListBox" HorizontalAlignment="Left" Height="305" Margin="23,56,0,0" VerticalAlignment="Top" Width="318" SelectionChanged="OnSelectionChanged"/>
-        <Label x:Name="ResultLabel" Content="Result: -" HorizontalAlignment="Left" Height="30" Margin="360,61,0,0" VerticalAlignment="Top" Width="145"/>
-        <Label x:Name="ScoreLabel" Content="Score: -" HorizontalAlignment="Left" Height="30" Margin="360,96,0,0" VerticalAlignment="Top" Width="145"/>
-        <Label x:Name="KillsLabel" Content="Kills: -" HorizontalAlignment="Left" Height="30" Margin="360,131,0,0" VerticalAlignment="Top" Width="145"/>
-        <Label x:Name="DeathsLabel" Content="Deaths: -" HorizontalAlignment="Left" Height="30" Margin="360,161,0,0" VerticalAlignment="Top" Width="145"/>
-        <Label x:Name="AssistsLabel" Content="Assists: -" HorizontalAlignment="Left" Height="30" Margin="360,196,0,0" VerticalAlignment="Top" Width="145"/>
-        <Label x:Name="AdrLabel" Content="ADR: -" HorizontalAlignment="Left" Height="30" Margin="360,231,0,0" VerticalAlignment="Top" Width="145"/>
-        <Label x:Name="KDLabel" Content="K/D: -" HorizontalAlignment="Left" Height="30" Margin="360,266,0,0" VerticalAlignment="Top" Width="145"/>
-        <Label x:Name="AgentLabel" Content="Agent: -" HorizontalAlignment="Left" Height="30" Margin="360,296,0,0" VerticalAlignment="Top" Width="145"/>
-        <Label x:Name="MapLabel" Content="Map: -" HorizontalAlignment="Left" Height="30" Margin="360,331,0,0" VerticalAlignment="Top" Width="145"/>
-
-        <Label x:Name="TotalKDLabel" Content="Overall K/D: -" HorizontalAlignment="Left" Height="30" Margin="559,113,0,0" VerticalAlignment="Top" Width="145"/>
-        <Label x:Name="TotalWinLossLabel" Content="Overall Win Loss: -" HorizontalAlignment="Left" Height="30" Margin="559,148,0,0" VerticalAlignment="Top" Width="145"/>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="177*"/>
+            <ColumnDefinition Width="223*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="133*"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="label" Content="Past Games" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" VerticalContentAlignment="Bottom" FontSize="20"/>
+        <ListBox x:Name="GamesListBox" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" SelectionChanged="OnSelectionChanged" Grid.Column="0" Grid.Row="1"/>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="69*"/>
+                <ColumnDefinition Width="154*"/>
+            </Grid.ColumnDefinitions>
+            <Rectangle HorizontalAlignment="Stretch" Margin="5,5,5,5" Stroke="Black" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0"/>
+            <Rectangle HorizontalAlignment="Stretch" Margin="5,5,5,5" Stroke="Black" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="1"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label x:Name="GameStatsLabel" Content="Game Stats" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" FontWeight="Bold"/>
+                <Label x:Name="ResultLabel" Content="Result: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0"/>
+                <Label x:Name="ScoreLabel" Content="Score: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="0"/>
+                <Label x:Name="KillsLabel" Content="Kills: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="3" Grid.Column="0"/>
+                <Label x:Name="DeathsLabel" Content="Deaths: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="4" Grid.Column="0"/>
+                <Label x:Name="AssistsLabel" Content="Assists: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="5" Grid.Column="0"/>
+                <Label x:Name="AdrLabel" Content="ADR: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="6" Grid.Column="0"/>
+                <Label x:Name="KDLabel" Content="K/D: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="7" Grid.Column="0"/>
+                <Label x:Name="AgentLabel" Content="Agent: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="8" Grid.Column="0"/>
+                <Label x:Name="MapLabel" Content="Map: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="9" Grid.Column="0"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label x:Name="LifetimeStatsLabel" Content="Lifetime Stats" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" FontWeight="Bold" Grid.Row="0" Grid.Column="0" VerticalContentAlignment="Center"/>
+                <Label x:Name="TotalKDLabel" Content="Overall K/D: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" VerticalContentAlignment="Center"/>
+                <Label x:Name="TotalWinLossLabel" Content="Overall Win Loss: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="0" VerticalContentAlignment="Center"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="RemoveGameButton" HorizontalAlignment="Stretch" Margin="1,5,1,5" VerticalAlignment="Stretch" Click="RemoveGameButton_Click" Grid.Row="0" Grid.Column="1">
+                <TextBlock Text="Remove Selected Game" TextWrapping="Wrap" TextAlignment="Center" Width="82"/>
+            </Button>
+            <Button x:Name="EditGameButton"  HorizontalAlignment="Stretch" Margin="1,5,1,5" VerticalAlignment="Stretch" Click="EditGameButton_Click" Grid.Row="0" Grid.Column="2">
+                <TextBlock Text="Edit Selected Game" TextWrapping="Wrap" TextAlignment="Center" Width="82"/>
+            </Button>
+            <Button x:Name="LogGameButton" HorizontalAlignment="Stretch" Margin="1,5,1,5" VerticalAlignment="Stretch" Click="LogGameButton_Click" Grid.Row="0" Grid.Column="3">
+                <TextBlock Text="Log Game" TextWrapping="Wrap" TextAlignment="Center" Width="82"/>
+            </Button>
+            <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Stretch" Margin="1,5,1,5" VerticalAlignment="Stretch" Click="BackButton_Click" Grid.Row="0" Grid.Column="4"/>
+        </Grid>
     </Grid>
 </Page>

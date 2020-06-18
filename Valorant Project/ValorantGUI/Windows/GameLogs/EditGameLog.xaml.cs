@@ -9,9 +9,10 @@ namespace ValorantGUI
     /// </summary>
     public partial class EditGameLog : Window
     {
-        GameLogPage _gameLogPage;
-        object _selectedGame;
-        DateTime oldTime;
+        private GameLogPage _gameLogPage;
+        private object _selectedGame;
+        private DateTime _oldTime;
+
         public EditGameLog(GameLogPage gameLogPage, object selectedGame)
         {
             InitializeComponent();
@@ -25,8 +26,8 @@ namespace ValorantGUI
             DeathsTextBox.Text = _gameLogPage.GameManager.GetGameData(selectedGame, GameLogManager.Fields.Deaths);
             ADRTextBox.Text = _gameLogPage.GameManager.GetGameData(selectedGame, GameLogManager.Fields.ADR);
 
-            oldTime = _gameLogPage.GameManager.GetDatePlayed(selectedGame);
-            DatePlayedPicker.SelectedDate = oldTime;
+            _oldTime = _gameLogPage.GameManager.GetDatePlayed(selectedGame);
+            DatePlayedPicker.SelectedDate = _oldTime;
 
             MapComboBox.ItemsSource = new MapManager().GetAllMaps();
             object gameMap = _gameLogPage.GameManager.GetGameMap(selectedGame);
@@ -60,7 +61,7 @@ namespace ValorantGUI
                 int.Parse(DeathsTextBox.Text.Trim()),
                 int.Parse(AssistsTextBox.Text.Trim()),
                 int.Parse(ADRTextBox.Text.Trim()),
-                ((DateTime)DatePlayedPicker.SelectedDate).AddHours(oldTime.Hour).AddMinutes(oldTime.Minute).AddSeconds(oldTime.Second));
+                ((DateTime)DatePlayedPicker.SelectedDate).AddHours(_oldTime.Hour).AddMinutes(_oldTime.Minute).AddSeconds(_oldTime.Second));
             _gameLogPage.GameManager.UpdateGame(_selectedGame, args);
             _gameLogPage.PopulateGames();
             this.Close();

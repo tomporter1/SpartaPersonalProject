@@ -56,7 +56,7 @@ namespace BussinessLayer
         {
             GameLogs game = (GameLogs)selectedGame;
             using ValorantContext db = new ValorantContext();
-            return (DateTime)db.GameLogs.Where(gl => gl.GameId == game.GameId).Select(gl => gl.DateLogged).FirstOrDefault();
+            return db.GameLogs.Where(gl => gl.GameId == game.GameId).Select(gl => gl.DateLogged).FirstOrDefault();
             throw new NotImplementedException();
         }
 

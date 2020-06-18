@@ -8,20 +8,36 @@
       Title="Agent Classes" Height="297" Width="431">
 
     <Grid>
-        <ListBox x:Name="TypesListBox" HorizontalAlignment="Left" Height="185" Margin="11,56,0,0" VerticalAlignment="Top" Width="151" SelectionChanged="OnSelectionChanged"/>
-        <Label x:Name="label" Content="Classes:" HorizontalAlignment="Left" Height="26" Margin="11,25,0,0" VerticalAlignment="Top" Width="150"/>
-        <Label x:Name="label1" Content="Class Name:" HorizontalAlignment="Left" Height="27" Margin="190,56,0,0" VerticalAlignment="Top" Width="110"/>
-        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Margin="190,88,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="110" Height="21"/>
-        <Button x:Name="RemoveButton"  HorizontalAlignment="Left" Margin="190,158,0,0" VerticalAlignment="Top" Height="39" Width="110" Click="RemoveButton_Click">
-            <TextBlock x:Name="textBlock" Text="Remove Selected Class" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Width="109" TextAlignment="Center"/>
-        </Button>
-        <Button x:Name="AddButton"  HorizontalAlignment="Left" Margin="190,202,0,0" VerticalAlignment="Top" Height="39" Width="110" Click="AddButton_Click">
-            <TextBlock x:Name="textBlock2" Text="Add a New Class" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Width="109" TextAlignment="Center"/>
-        </Button>
-        <Button x:Name="SaveChangesButton"  HorizontalAlignment="Left" Margin="190,114,0,0" VerticalAlignment="Top" Height="39" Width="110" Click="SaveChangesButton_Click">
-            <TextBlock x:Name="textBlock3" Text="Save changes to Class" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Width="109" TextAlignment="Center"/>
-        </Button>
-        <Button x:Name="button" Content="Back" HorizontalAlignment="Left" Margin="324,10,0,0" VerticalAlignment="Top" Click="BackButton_Click" Height="39" Width="76"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="41*"/>
+            <RowDefinition Height="256*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="176*"/>
+            <ColumnDefinition Width="255*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="label" Content="Classes:"  Margin="5,5,5,5" Grid.Column="0" Grid.Row="0" VerticalContentAlignment="Bottom"/>
+        <Button x:Name="button" Content="Back" HorizontalAlignment="Left" Margin="191,5,0,5" Click="BackButton_Click" Grid.Column="1" Grid.Row="0" Width="59"/>
+        <ListBox x:Name="TypesListBox" Margin="5,5,5,5" SelectionChanged="OnSelectionChanged" Grid.Column="0" Grid.Row="1"/>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="12*"/>
+                <RowDefinition Height="18.25*"/>
+                <RowDefinition Height="18.25*"/>
+                <RowDefinition Height="18.25*"/>
+                <RowDefinition Height="18.25*"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="label1" Content="Class Name:" Margin="5,5,5,5" Grid.Column="0" Grid.Row="0"/>
+            <TextBox x:Name="NameTextBox" Margin="5,5,5,5" Text="" TextWrapping="Wrap" Grid.Column="0" Grid.Row="1"/>
+            <Button x:Name="RemoveButton" Margin="5,5,5,5" Click="RemoveButton_Click" Grid.Column="0" Grid.Row="2">
+                <TextBlock x:Name="textBlock" Text="Remove Selected Class" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Width="168" TextAlignment="Center"/>
+            </Button>
+            <Button x:Name="AddButton" Margin="5,5,5,5" Click="AddButton_Click" Grid.Column="0" Grid.Row="3">
+                <TextBlock x:Name="textBlock2" Text="Add a New Class" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Width="109" TextAlignment="Center"/>
+            </Button>
+            <Button x:Name="SaveChangesButton" Margin="5,5,5,5" Click="SaveChangesButton_Click" Grid.Row="4">
+                <TextBlock x:Name="textBlock3" Text="Save changes to Class" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Width="175" TextAlignment="Center"/>
+            </Button>
+        </Grid>
     </Grid>
 </Page>

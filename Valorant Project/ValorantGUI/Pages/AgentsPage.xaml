@@ -9,17 +9,49 @@
       Title="Agents">
 
     <Grid>
-        <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="762,10,0,0" VerticalAlignment="Top" Click="BackButton_Click" Height="39" Width="auto"/>
-        <Button x:Name="AddAgentButton" Content="Add a New Agent" HorizontalAlignment="Left" Margin="659,10,0,0" VerticalAlignment="Top" Click="AddNewAgent" Height="39" Width="auto"/>
-        <Button x:Name="EditAgentButton" Content="Edit Selected Agent" HorizontalAlignment="Left" Margin="547,10,0,0" VerticalAlignment="Top" Click="EditAgentButton_Click" Height="39" Width="auto"/>
-        <Button x:Name="RemoveAgentButton" Content="Delete Selected Agent" HorizontalAlignment="Left" Margin="420,10,0,0" VerticalAlignment="Top" Click="RemoveAgentButton_Click" Height="39" Width="auto"/>
-        <Label x:Name="label" Content="Agents:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="143" Height="39" FontSize="20"/>
-        <Label x:Name="Abilitieslabel" Content="Abilities:" HorizontalAlignment="Left" Margin="205,10,0,0" VerticalAlignment="Top" Width="143" Height="39" FontSize="20"/>
-        <ListBox x:Name="AgentNameListBox" Margin="10,54,600,0" SelectionChanged="OnAgentSelected" Height="335" VerticalAlignment="Top"/>
-        <ListBox x:Name="AbilitiesListBox" Margin="205,54,405,0" SelectionChanged="OnAbilitySelect" Height="335" VerticalAlignment="Top"/>
-        <TextBox x:Name="BioTextBox" HorizontalAlignment="Left" Margin="408,82,0,0" Text="" TextWrapping="Wrap" Width="382" Height="130" VerticalAlignment="Top"/>
-        <TextBox x:Name="AbilityDiscriptionTextBox" HorizontalAlignment="Left" Margin="408,259,0,0" Text="" TextWrapping="Wrap" Width="382" Height="130" VerticalAlignment="Top"/>
-        <Label x:Name="label1" Content="Ability Discription:" HorizontalAlignment="Left" Margin="408,227,0,0" Width="382" Height="27" VerticalAlignment="Top"/>
-        <Label x:Name="label2" Content="Agent Bio:" HorizontalAlignment="Left" Margin="408,54,0,0" Width="382" Height="28" VerticalAlignment="Top"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="206*"/>
+            <ColumnDefinition Width="201*"/>
+            <ColumnDefinition Width="393*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55*"/>
+            <RowDefinition Height="338*"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="label" Content="Agents:" HorizontalAlignment="Stretch" Margin="10,10,10,10" VerticalAlignment="Stretch" FontSize="20" Grid.Column="0" Grid.Row="0"/>
+        <Label x:Name="Abilitieslabel" Content="Abilities:" HorizontalAlignment="Stretch" Margin="10,10,10,10" VerticalAlignment="Stretch"  FontSize="20" Grid.Column="1" Grid.Row="0"/>
+        <ListBox x:Name="AgentNameListBox" Margin="5,5,5,5" SelectionChanged="OnAgentSelected" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="1"/>
+        <ListBox x:Name="AbilitiesListBox" Margin="5,5,5,5" SelectionChanged="OnAbilitySelect" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1"/>
+
+        <Grid Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="RemoveAgentButton"  HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Click="RemoveAgentButton_Click" Grid.Column="0" Grid.Row="0">
+                <TextBlock Text="Delete Selected Agent" TextWrapping="Wrap" TextAlignment="Center" Width="84"/>
+            </Button>
+            <Button x:Name="EditAgentButton" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Click="EditAgentButton_Click" Grid.Column="1"  Grid.Row="0">
+                <TextBlock Text="Edit Selected Agent" TextWrapping="Wrap" TextAlignment="Center" Width="84"/>
+            </Button>
+            <Button x:Name="AddAgentButton" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Click="AddNewAgent"  Grid.Column="2" Grid.Row="0">
+                <TextBlock Text="Add a New Agent" TextWrapping="Wrap" TextAlignment="Center" Width="84"/>
+            </Button>
+            <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Click="BackButton_Click" Grid.Column="3" Grid.Row="0"/>
+        </Grid>
+        <Grid Grid.Column="2" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="152.5*"/>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="152.5*"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="label2" Content="Agent Bio:" Margin="5,5,5,5" Grid.Row="0" Grid.Column="0"/>
+            <TextBox x:Name="BioTextBox" Margin="5,5,5,5" Text="" TextWrapping="Wrap" Grid.Row="1" Grid.Column="0"/>
+            <Label x:Name="label1" Content="Ability Discription:" Margin="5,5,5,5" Grid.Row="2" Grid.Column="0"/>
+            <TextBox x:Name="AbilityDiscriptionTextBox" Margin="5,5,5,5" Text="" TextWrapping="Wrap" Grid.Row="3" Grid.Column="0"/>
+        </Grid>
     </Grid>
 </Page>
