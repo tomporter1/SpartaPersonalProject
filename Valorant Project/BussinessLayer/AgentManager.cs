@@ -26,7 +26,7 @@ namespace BussinessLayer
         public List<Agents> GetAllAgents()
         {
             using ValorantContext db = new ValorantContext();
-            return db.Agents.ToList();
+            return db.Agents.OrderBy(a => a.AgentName).ToList();
         }
 
         public void AddNewAgent(AgentManagerArgs args)

@@ -12,10 +12,10 @@ namespace BussinessLayer
         public int Kills { get; private set; }
         public int Deaths { get; private set; }
         public int Assists { get; private set; }
-        public int ADR { get; private set; }
+        public float ADR { get; private set; }
         public DateTime DateLogged { get; private set; }
        
-        public GameLogArgs(object mapObj, object agentObj, int teamScore, int opponentScore, int kills, int deaths, int assists, int aDR, DateTime dateLogged)
+        public GameLogArgs(object mapObj, object agentObj, int teamScore, int opponentScore, int kills, int deaths, int assists, float aDR, DateTime dateLogged)
         {
             MapId = ((Maps)mapObj).MapId;
             AgentId = ((Agents)agentObj).AgentId;
@@ -28,7 +28,7 @@ namespace BussinessLayer
             DateLogged = dateLogged;
         }
 
-        public GameLogArgs(int mapId, int agentId, int teamScore, int opponentScore, int kills, int deaths, int assists, int aDR, DateTime dateLogged)
+        public GameLogArgs(int mapId, int agentId, int teamScore, int opponentScore, int kills, int deaths, int assists, float aDR, DateTime dateLogged)
         {
             MapId = mapId;
             AgentId = agentId;

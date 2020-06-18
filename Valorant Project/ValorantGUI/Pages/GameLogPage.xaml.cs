@@ -1,4 +1,5 @@
 ﻿using BussinessLayer;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -25,9 +26,14 @@ namespace ValorantGUI
             ClearAllUi();
 
             GamesListBox.ItemsSource = GameManager.GetAllGames();
-            TotalKDLabel.Content = $"Overall K/D: - {GameManager.GetTotalKD()}";
-            TotalWinLossLabel.Content = $"Overall Win Loss: - {GameManager.GetTotalWinLoss()}";
+            TotalKDStatLabel.Content = Math.Round(GameManager.GetTotalKD(), 3).ToString();
+            TotalWinLossStatLabel.Content = Math.Round(GameManager.GetTotalWinLoss(), 3).ToString();
+            TotalKillsLossStatLabel.Content = GameManager.GetTotals(GameLogManager.Fields.Kills).ToString();
+            TotalDeathsLossStatLabel.Content = GameManager.GetTotals(GameLogManager.Fields.Deaths).ToString();
+            BestMapStatLabel.Content = GameManager.GetBestMap().ToString();
+            FavAgentStatLabel.Content = GameManager.GetMostPlayedAgent().ToString();
         }
+
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             _window.SetHomePage();
@@ -58,12 +64,12 @@ namespace ValorantGUI
                 int deaths = int.Parse(GameManager.GetGameData(GamesListBox.SelectedItem, GameLogManager.Fields.Deaths));
 
                 ResultLabel.Content = $"Result: {(teamScore > opponentScore ? "Win" : "Loss")}";
-                ScoreLabel.Content = $"Score: {teamScore} : {opponentScore}";
+                ScoreLabel.Content = $"Score: {teamScore}:{opponentScore}";
                 KillsLabel.Content = $"Kills: {kills}";
                 DeathsLabel.Content = $"Deaths: {deaths}";
                 AssistsLabel.Content = $"Assists: {GameManager.GetGameData(GamesListBox.SelectedItem, GameLogManager.Fields.Assists)}";
                 AdrLabel.Content = $"ADR: {GameManager.GetGameData(GamesListBox.SelectedItem, GameLogManager.Fields.ADR)}";
-                KDLabel.Content = $"K/D: {((float)kills) / ((float)deaths)}";
+                KDLabel.Content = $"K/D: {Math.Round((float)kills / (float)deaths, 3)}";
 
                 MapLabel.Content = $"Map: {GameManager.GetGameData(GamesListBox.SelectedItem, GameLogManager.Fields.Map)}";
                 AgentLabel.Content = $"Agent: {GameManager.GetGameData(GamesListBox.SelectedItem, GameLogManager.Fields.Agent)}";

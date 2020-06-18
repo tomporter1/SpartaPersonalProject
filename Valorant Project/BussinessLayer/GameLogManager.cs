@@ -27,7 +27,7 @@ namespace BussinessLayer
         public List<GameLogs> GetAllGames()
         {
             using ValorantContext db = new ValorantContext();
-            return db.GameLogs.OrderByDescending(gl=>gl.DateLogged).ToList();
+            return db.GameLogs.OrderByDescending(gl => gl.DateLogged).ToList();
         }
 
         public void AddNewGame(GameLogArgs args)
@@ -52,6 +52,57 @@ namespace BussinessLayer
             db.SaveChanges();
         }
 
+        public object GetMostPlayedAgent()
+        {
+            using ValorantContext db = new ValorantContext();
+            int favAgentID = db.GameLogs
+                    .GroupBy(
+                        gl => gl.AgentId,
+                        gl => gl,
+                        (agent, games) => new
+                        {
+                            AgentId = agent,
+                            GamesWon = games.Count()
+                        })
+                    .OrderByDescending(m => m.GamesWon)
+                    .FirstOrDefault().AgentId;
+
+            return db.Agents.Where(m => m.AgentId == favAgentID).FirstOrDefault();
+        }
+
+        public object GetBestMap()
+        {
+            using ValorantContext db = new ValorantContext();
+            int bestMapID = db.GameLogs
+                    .Where(gl => gl.TeamScore > gl.OpponentScore)
+                    .GroupBy(
+                        gl => gl.MapId,
+                        gl => gl,
+                        (map, games) => new
+                        {
+                            MapID = map,
+                            GamesWon = games.Count()
+                        })
+                    .OrderByDescending(m => m.GamesWon)
+                    .FirstOrDefault().MapID;
+
+            return db.Maps.Where(m => m.MapId == bestMapID).FirstOrDefault();
+        }
+
+        public int GetTotals(Fields field)
+        {
+            using ValorantContext db = new ValorantContext();
+            switch (field)
+            {
+                case Fields.Kills:
+                    return (int)db.GameLogs.Select(gl => gl.Kills).Sum();
+                case Fields.Deaths:
+                    return (int)db.GameLogs.Select(gl => gl.Deaths).Sum();
+                default:
+                    return 0;
+            }
+        }
+
         public DateTime GetDatePlayed(object selectedGame)
         {
             GameLogs game = (GameLogs)selectedGame;
@@ -63,8 +114,8 @@ namespace BussinessLayer
         public float GetTotalKD()
         {
             using ValorantContext db = new ValorantContext();
-            float totalKills = (float)db.GameLogs.Select(gl=>gl.Kills).Sum();
-            float totalDeaths = (float)db.GameLogs.Select(gl=>gl.Deaths).Sum();
+            float totalKills = GetTotals(Fields.Kills);
+            float totalDeaths = GetTotals(Fields.Deaths);
 
             if (totalDeaths == 0)
                 return totalKills;
@@ -74,9 +125,9 @@ namespace BussinessLayer
         public float GetTotalWinLoss()
         {
             using ValorantContext db = new ValorantContext();
-            float totalWins = db.GameLogs.Where(gl =>gl.TeamScore > gl.OpponentScore).Count();
+            float totalWins = db.GameLogs.Where(gl => gl.TeamScore > gl.OpponentScore).Count();
             float totalLosses = db.GameLogs.Where(gl => gl.TeamScore < gl.OpponentScore).Count();
-            
+
             if (totalLosses == 0)
                 return totalWins;
             return totalWins / totalLosses;
@@ -93,7 +144,7 @@ namespace BussinessLayer
                 case Fields.AgentID:
                     return db.GameLogs.Where(gl => gl.GameId == game.GameId).Select(gl => gl.AgentId).FirstOrDefault().ToString();
                 case Fields.Agent:
-                    return db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl=>gl.Agent).Select(gl => gl.Agent).FirstOrDefault().ToString();
+                    return db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Agent).Select(gl => gl.Agent).FirstOrDefault().ToString();
                 case Fields.MapId:
                     return db.GameLogs.Where(gl => gl.GameId == game.GameId).Select(gl => gl.MapId).FirstOrDefault().ToString();
                 case Fields.Map:

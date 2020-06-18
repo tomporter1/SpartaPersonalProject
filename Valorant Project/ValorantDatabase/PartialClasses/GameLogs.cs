@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ValorantDatabase
 {
@@ -21,7 +23,14 @@ namespace ValorantDatabase
             return HashCode.Combine(GameId);
         }
 
-        public override string ToString() => $"Game number {GameId}, played on: {DateLogged}";
+        public override string ToString()
+        {
+            using ValorantContext db = new ValorantContext();
+            Maps map = db.GameLogs.Where(gl => gl.GameId == this.GameId).Include(gl => gl.Map).Select(gl => gl.Map).FirstOrDefault();
+            Agents agent = db.GameLogs.Where(gl => gl.GameId == this.GameId).Include(gl => gl.Agent).Select(gl => gl.Agent).FirstOrDefault();
+
+            return $"{(this.TeamScore > this.OpponentScore ? "Vicotry" : "Defeat")} on {map} as {agent} - Played on: {DateLogged}";
+        }
 
         public static bool operator ==(GameLogs left, GameLogs right)
         {
