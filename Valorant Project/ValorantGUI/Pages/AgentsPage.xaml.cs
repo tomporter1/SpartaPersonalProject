@@ -46,6 +46,11 @@ namespace ValorantGUI
 
             ClearAbilitiesListBox();
 
+            ClearTextBoxes();
+        }
+
+        private void ClearTextBoxes()
+        {
             BioTextBox.Text = "";
             AbilityDiscriptionTextBox.Text = "";
         }
@@ -57,6 +62,7 @@ namespace ValorantGUI
                 ClearAbilitiesListBox();
                 AbilitiesListBox.ItemsSource = AgentManager.GetAgentsAbilities(AgentNameListBox.SelectedItem);
 
+                ClearTextBoxes();
                 BioTextBox.Text = AgentManager.GetAgentData(AgentNameListBox.SelectedItem, AgentManager.Fields.Bio);
             }
         }
