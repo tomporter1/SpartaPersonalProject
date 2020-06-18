@@ -85,5 +85,35 @@ namespace ValorantGUI
             AddGameLogWindow addGameWindow = new AddGameLogWindow(this);
             addGameWindow.Show();
         }
+
+        private void EditGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (GamesListBox.SelectedIndex >= 0)
+            {
+                EditGameLog editGameLog = new EditGameLog(this, GamesListBox.SelectedItem);
+                editGameLog.Show();
+            }
+            else
+            {
+                MessageBox.Show("You need to select an agent to remove first");
+            }
+        }
+
+        private void RemoveGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (GamesListBox.SelectedIndex >= 0)
+            {
+                MessageBoxResult messageBoxResult = MessageBox.Show($"Are you sure out want to delete {GamesListBox.SelectedItem}?", "Delete Confirmation", MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                    GameManager.RemoveGame(GamesListBox.SelectedItem);
+                    PopulateGames();
+                }
+            }
+            else
+            {
+                MessageBox.Show("You need to select an agent to remove first");
+            }
+        }
     }
 }

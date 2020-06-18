@@ -1,0 +1,30 @@
+﻿<Window x:Class="ValorantGUI.EditGameLog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ValorantGUI"
+        mc:Ignorable="d"
+        Title="Edit Game" Height="451" Width="301">
+    <Grid>
+        <Label x:Name="teamScoreLabel" Content="Team Score:" HorizontalAlignment="Left" Margin="22,30,0,0" VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="32"/>
+        <TextBox x:Name="TeamScoreTextBox" HorizontalAlignment="Left" Margin="137,30,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="32" VerticalContentAlignment="Center"/>
+        <Label x:Name="opponentScoreLabel" Content="Opponent Score:" HorizontalAlignment="Left" Margin="22,67,0,0" VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="32"/>
+        <TextBox x:Name="OpponentScoreTextBox" HorizontalAlignment="Left" Margin="137,67,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="32" VerticalContentAlignment="Center"/>
+        <Label x:Name="MapLabel" Content="Map:" HorizontalAlignment="Left" Margin="22,104,0,0" VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="32"/>
+        <ComboBox x:Name="MapComboBox" HorizontalAlignment="Left" Margin="137,104,0,0" VerticalAlignment="Top" Width="120" Height="32"/>
+        <Label x:Name="AgentLabel" Content="Agent:" HorizontalAlignment="Left" Margin="22,141,0,0" VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="32"/>
+        <ComboBox x:Name="AgentComboBox" HorizontalAlignment="Left" Margin="137,143,0,0" VerticalAlignment="Top" Width="120" Height="28"/>
+        <Label x:Name="KillsLabel" Content="Kills:" HorizontalAlignment="Left" Margin="22,178,0,0" VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="32"/>
+        <TextBox x:Name="KillsTextBox" HorizontalAlignment="Left" Margin="137,176,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="32" VerticalContentAlignment="Center"/>
+        <Label x:Name="DeathsLabel" Content="Deaths:" HorizontalAlignment="Left" Margin="22,215,0,0" VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="32"/>
+        <TextBox x:Name="DeathsTextBox" HorizontalAlignment="Left" Margin="137,215,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="32" VerticalContentAlignment="Center"/>
+        <Label x:Name="AssistsLabel" Content="Assists:" HorizontalAlignment="Left" Margin="22,252,0,0" VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="32"/>
+        <TextBox x:Name="AssistsTextBox" HorizontalAlignment="Left" Margin="137,252,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="32" VerticalContentAlignment="Center"/>
+        <Label x:Name="ADRLabel" Content="ADR:" HorizontalAlignment="Left" Margin="22,289,0,0" VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="32"/>
+        <TextBox x:Name="ADRTextBox" HorizontalAlignment="Left" Margin="137,289,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="32" VerticalContentAlignment="Center"/>
+        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="22,363,0,0" VerticalAlignment="Top" Height="36" Width="235" Click="SaveButton_Click"/>
+        <Label x:Name="DateLabel" Content="Date played:" HorizontalAlignment="Left" Margin="22,326,0,0" VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="32"/>
+        <DatePicker x:Name="DatePlayedPicker" HorizontalAlignment="Left" Margin="137,326,0,0" VerticalAlignment="Top" Height="32" Width="120"/>
+    </Grid>
+</Window>

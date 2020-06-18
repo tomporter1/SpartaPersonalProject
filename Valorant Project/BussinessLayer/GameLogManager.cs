@@ -53,6 +53,14 @@ namespace BussinessLayer
             db.SaveChanges();
         }
 
+        public DateTime GetDatePlayed(object selectedGame)
+        {
+            GameLogs game = (GameLogs)selectedGame;
+            using ValorantContext db = new ValorantContext();
+            return (DateTime)db.GameLogs.Where(gl => gl.GameId == game.GameId).Select(gl => gl.DateLogged).FirstOrDefault();
+            throw new NotImplementedException();
+        }
+
         public float GetTotalKD()
         {
             using ValorantContext db = new ValorantContext();
@@ -112,12 +120,16 @@ namespace BussinessLayer
 
         public object GetGameMap(object selectedGame)
         {
-            throw new NotImplementedException();
+            using ValorantContext db = new ValorantContext();
+            GameLogs game = (GameLogs)selectedGame;
+            return db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Map).Select(gl => gl.Map).FirstOrDefault();
         }
 
-        public object GetAgentMap(object selectedGame)
+        public object GetGameAgent(object selectedGame)
         {
-            throw new NotImplementedException();
+            using ValorantContext db = new ValorantContext();
+            GameLogs game = (GameLogs)selectedGame;
+            return db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Agent).Select(gl => gl.Agent).FirstOrDefault();
         }
 
         public void RemoveGame(object selectedGame)

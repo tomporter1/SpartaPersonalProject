@@ -11,6 +11,8 @@
     <Grid>
         <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="762,10,0,0" VerticalAlignment="Top" Click="BackButton_Click" Height="39" Width="auto"/>
         <Button x:Name="LogGameButton" Content="Log Game" HorizontalAlignment="Left" Margin="699,10,0,0" VerticalAlignment="Top" Click="LogGameButton_Click" Height="39" Width="auto"/>
+        <Button x:Name="EditGameButton" Content="Edit Selected Game" HorizontalAlignment="Left" Margin="588,10,0,0" VerticalAlignment="Top" Click="EditGameButton_Click" Height="39" Width="auto"/>
+        <Button x:Name="RemoveGameButton" Content="Remove Selected Game" HorizontalAlignment="Left" Margin="454,10,0,0" VerticalAlignment="Top" Click="RemoveGameButton_Click" Height="39" Width="auto"/>
         <ListBox x:Name="GamesListBox" HorizontalAlignment="Left" Height="305" Margin="23,56,0,0" VerticalAlignment="Top" Width="318" SelectionChanged="OnSelectionChanged"/>
         <Label x:Name="ResultLabel" Content="Result: -" HorizontalAlignment="Left" Height="30" Margin="360,61,0,0" VerticalAlignment="Top" Width="145"/>
         <Label x:Name="ScoreLabel" Content="Score: -" HorizontalAlignment="Left" Height="30" Margin="360,96,0,0" VerticalAlignment="Top" Width="145"/>
