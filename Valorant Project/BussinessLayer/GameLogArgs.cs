@@ -15,10 +15,10 @@ namespace BussinessLayer
         public int ADR { get; private set; }
         public DateTime DateLogged { get; private set; }
        
-        public GameLogArgs(Maps map, Agents agent, int teamScore, int opponentScore, int kills, int deaths, int assists, int aDR, DateTime dateLogged)
+        public GameLogArgs(object mapObj, object agentObj, int teamScore, int opponentScore, int kills, int deaths, int assists, int aDR, DateTime dateLogged)
         {
-            MapId = map.MapId;
-            AgentId = agent.AgentId;
+            MapId = ((Maps)mapObj).MapId;
+            AgentId = ((Agents)agentObj).AgentId;
             TeamScore = teamScore;
             OpponentScore = opponentScore;
             Kills = kills;

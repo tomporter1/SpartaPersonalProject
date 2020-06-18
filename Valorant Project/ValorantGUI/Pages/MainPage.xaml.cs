@@ -43,5 +43,11 @@ namespace ValorantGUI
             AgentClassesPage classesPage = new AgentClassesPage(_window);
             _window.Content = classesPage;
         }
+        
+        private void GameLogButton_Click(object sender, RoutedEventArgs e)
+        {
+            GameLogPage gamessPage = new GameLogPage(_window);
+            _window.Content = gamessPage;
+        }
     }
 }
