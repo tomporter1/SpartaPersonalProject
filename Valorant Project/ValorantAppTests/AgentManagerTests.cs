@@ -60,11 +60,15 @@ namespace ValorantAppTests
                 using (ValorantContext db = new ValorantContext())
                 {
                     Agents agentToRemove = db.Agents.ToList().Last();
-                    db.Agents.Remove(agentToRemove);
-                    AgentType lastTypeInDB = db.AgentType.ToList().Last();
-                    db.AgentType.Remove(lastTypeInDB);
+                    db.Agents.Remove(agentToRemove);                    
                     db.SaveChanges();
                 }
+            }
+            using (ValorantContext db = new ValorantContext())
+            {               
+                AgentType lastTypeInDB = db.AgentType.ToList().Last();
+                db.AgentType.Remove(lastTypeInDB);
+                db.SaveChanges();
             }
         }
 
@@ -76,10 +80,9 @@ namespace ValorantAppTests
             int beforeCount = -1;
             AgentManager manager = new AgentManager();
             object addedAgent = null;
-            AgentType type = new AgentType() { TypeName = "New Type" };
             using (ValorantContext db = new ValorantContext())
             {
-                db.AgentType.Add(type);
+                db.AgentType.Add(new AgentType() { TypeName = "New Type" });
                 db.SaveChanges();
 
                 AgentManagerArgs args = new AgentManagerArgs("Reyna", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");

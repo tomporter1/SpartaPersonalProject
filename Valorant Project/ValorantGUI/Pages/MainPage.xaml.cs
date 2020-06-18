@@ -16,11 +16,11 @@ namespace ValorantGUI
     /// <summary>
     /// Interaction logic for MainPage.xaml
     /// </summary>
-    public partial class ddda : Page
+    public partial class MainPage : Page
     {
         MainWindow _window;
 
-        public ddda(MainWindow mainWindow)
+        public MainPage(MainWindow mainWindow)
         {
             InitializeComponent();
             _window = mainWindow;

@@ -20,7 +20,7 @@ namespace ValorantGUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ddda _mainPage;
+        private MainPage _mainPage;
 
         public MainWindow()
         {
@@ -32,7 +32,7 @@ namespace ValorantGUI
         {
             if (_mainPage == null)
             {
-                _mainPage = new ddda(this);
+                _mainPage = new MainPage(this);
                 Content = _mainPage;
             }
             else

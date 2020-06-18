@@ -51,6 +51,9 @@
       <HashCode>AAAAAAAAgAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Windows\MainWindow.xaml.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_mainPage" />
+    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ValorantGUI.AgentClassesPage" BaseTypeListCollapsed="true">
@@ -77,8 +80,8 @@
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ValorantGUI.ddda" BaseTypeListCollapsed="true">
-    <Position X="18" Y="4" Width="3.75" />
+  <Class Name="ValorantGUI.MainPage" BaseTypeListCollapsed="true">
+    <Position X="19.5" Y="0.5" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAgAIAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
       <FileName>Pages\MainPage.xaml.cs</FileName>
