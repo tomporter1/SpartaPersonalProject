@@ -1,6 +1,8 @@
 ﻿using BussinessLayer;
 using System;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Input;
 
 namespace ValorantGUI
 {
@@ -37,6 +39,12 @@ namespace ValorantGUI
 
             _gameLogPage.PopulateGames();
             this.Close();
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }
