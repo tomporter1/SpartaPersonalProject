@@ -25,24 +25,26 @@ namespace BussinessLayer
             db.SaveChanges();
         }
 
-        public override void AddNewEntry(string name)
+        public override void AddNewEntry(SuperArgs args)
         {
             using ValorantContext db = new ValorantContext();
+            AgentTypeArgs typeArgs = (AgentTypeArgs)args;
             AgentType newAgentType = new AgentType()
             {
-                TypeName = name
+                TypeName = typeArgs.Name
             };
             db.AgentType.Add(newAgentType);
             db.SaveChanges();
         }
 
-        public override void UpdateEntry(object selectedEntry, string newName)
+        public override void UpdateEntry(object selectedEntry, SuperArgs args)
         {
             using ValorantContext db = new ValorantContext();
+            AgentTypeArgs typeArgs = (AgentTypeArgs)args;
             AgentType typeToUpdate = db.AgentType.Where(a => a.TypeId == ((AgentType)selectedEntry).TypeId).FirstOrDefault();
             if (typeToUpdate != null)
             {
-                typeToUpdate.TypeName = newName;
+                typeToUpdate.TypeName = typeArgs.Name;
 
                 db.SaveChanges();
             }

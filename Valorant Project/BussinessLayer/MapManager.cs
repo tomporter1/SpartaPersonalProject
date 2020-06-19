@@ -25,24 +25,26 @@ namespace BussinessLayer
             db.SaveChanges();
         }
 
-        public override void AddNewEntry(string name)
+        public override void AddNewEntry(SuperArgs args)
         {
             using ValorantContext db = new ValorantContext();
+            MapArgs mapArgs = (MapArgs)args;
             Maps newMap = new Maps()
             {
-                MapName = name
+                MapName = mapArgs.Name
             };
             db.Maps.Add(newMap);
             db.SaveChanges();
         }        
 
-        public override void UpdateEntry(object selectedEntry, string newName)
+        public override void UpdateEntry(object selectedEntry, SuperArgs args)
         {
             using ValorantContext db = new ValorantContext();
+            MapArgs mapArgs = (MapArgs)args;
             Maps mapToUpdate = db.Maps.Where(m => m.MapId == ((Maps)selectedEntry).MapId).FirstOrDefault();
             if (mapToUpdate != null)
             {
-                mapToUpdate.MapName = newName;
+                mapToUpdate.MapName = mapArgs.Name;
 
                 db.SaveChanges();
             }

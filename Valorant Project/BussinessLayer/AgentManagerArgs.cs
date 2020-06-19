@@ -3,8 +3,8 @@ using ValorantDatabase;
 
 namespace BussinessLayer
 {
-    public class AgentManagerArgs
-    {       
+    public class AgentManagerArgs : SuperArgs
+    {
         public string Name { get; private set; }
         public int TypeID { get; private set; }
         public string SignatureAbilityName { get; private set; }

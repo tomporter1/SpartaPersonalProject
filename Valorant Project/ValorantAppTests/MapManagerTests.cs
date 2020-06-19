@@ -35,7 +35,7 @@ namespace ValorantAppTests
             }
 
             //Test method call
-            manager.AddNewEntry("new map");
+            manager.AddNewEntry(new MapArgs("new map"));
 
             //Assersion 
             using (ValorantContext db = new ValorantContext())
@@ -69,7 +69,7 @@ namespace ValorantAppTests
             int beforeCount = -1;
             using (ValorantContext db = new ValorantContext())
             {
-                manager.AddNewEntry("New Map");
+                manager.AddNewEntry(new MapArgs("New Map"));
 
                 beforeCount = db.Maps.ToList().Count;
                 addedAgent = db.Maps.ToList().Last();
@@ -109,13 +109,13 @@ namespace ValorantAppTests
             using (ValorantContext db = new ValorantContext())
             {
                 //setup
-                manager.AddNewEntry("new map");
+                manager.AddNewEntry(new MapArgs("new map"));
                 addedMap = db.Maps.ToList().Last();
             }
 
             string newMapName = "better map";
 
-            manager.UpdateEntry(addedMap, newMapName);
+            manager.UpdateEntry(addedMap, new MapArgs(newMapName));
 
             using (ValorantContext db = new ValorantContext())
             {
@@ -134,7 +134,7 @@ namespace ValorantAppTests
             MapManager manager = new MapManager();
             object addedMap = null;
 
-            manager.AddNewEntry(expectedResult);
+            manager.AddNewEntry(new MapArgs(expectedResult));
 
             using (ValorantContext db = new ValorantContext())
             {

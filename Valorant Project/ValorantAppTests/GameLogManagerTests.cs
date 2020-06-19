@@ -39,14 +39,14 @@ namespace ValorantAppTests
 
                 AgentManagerArgs agentArgs = new AgentManagerArgs("Name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
 
-                new AgentManager().AddNewAgent(agentArgs);
+                new AgentManager().AddNewEntry(agentArgs);
                 beforeCount = db.GameLogs.ToList().Count;
 
                 args = new GameLogArgs(db.Maps.ToList().Last(), db.Agents.ToList().Last(), 13, 12, 20, 12, 4, 150, DateTime.Now);
             }
 
             //Test method call            
-            logManager.AddNewGame(args);
+            logManager.AddNewEntry(args);
 
             //Assersion 
             using (ValorantContext db = new ValorantContext())
@@ -96,10 +96,10 @@ namespace ValorantAppTests
 
                 AgentManagerArgs agentArgs = new AgentManagerArgs("Name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
 
-                new AgentManager().AddNewAgent(agentArgs);
+                new AgentManager().AddNewEntry(agentArgs);
 
                 args = new GameLogArgs(db.Maps.ToList().Last(), db.Agents.ToList().Last(), 13, 12, 20, 12, 4, 150, DateTime.Now);
-                logManager.AddNewGame(args);
+                logManager.AddNewEntry(args);
                 beforeCount = db.GameLogs.ToList().Count;
                 addedGame = db.GameLogs.ToList().Last();
             }
@@ -153,18 +153,18 @@ namespace ValorantAppTests
 
                 AgentManagerArgs agentArgs = new AgentManagerArgs("Name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
 
-                new AgentManager().AddNewAgent(agentArgs);
+                new AgentManager().AddNewEntry(agentArgs);
 
                 GameLogArgs args = new GameLogArgs(db.Maps.ToList().Last(), db.Agents.ToList().Last(), 13, 12, 20, 12, 4, 150, DateTime.Now);
                 updatedArgs = new GameLogArgs(db.Maps.ToList().Last(), db.Agents.ToList().Last(), 13, 12, 30, 45, 0, 150, DateTime.Now);
                 
-                logManager.AddNewGame(args);
+                logManager.AddNewEntry(args);
                 
                 addedGame = db.GameLogs.ToList().Last();
             }
 
             //Test method call            
-            logManager.UpdateGame(addedGame, updatedArgs);
+            logManager.UpdateEntry(addedGame, updatedArgs);
 
             //Assersion 
             using (ValorantContext db = new ValorantContext())

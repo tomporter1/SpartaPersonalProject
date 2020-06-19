@@ -35,7 +35,7 @@ namespace ValorantAppTests
             }
 
             //Test method call
-            manager.AddNewEntry("new type");
+            manager.AddNewEntry(new AgentTypeArgs("new type"));
 
             //Assersion 
             using (ValorantContext db = new ValorantContext())
@@ -69,7 +69,7 @@ namespace ValorantAppTests
             object addedAgent = null;
             using (ValorantContext db = new ValorantContext())
             {
-                manager.AddNewEntry("New Type");
+                manager.AddNewEntry(new AgentTypeArgs("New Type"));
                 beforeCount = db.AgentType.ToList().Count;
                 addedAgent = db.AgentType.ToList().Last();
             }
@@ -107,13 +107,13 @@ namespace ValorantAppTests
             using (ValorantContext db = new ValorantContext())
             {
                 //setup
-                manager.AddNewEntry("new type");
+                manager.AddNewEntry(new AgentTypeArgs("new type"));
                 addedType = db.AgentType.ToList().Last();
             }
 
             string newTypeName = "better type";
 
-            manager.UpdateEntry(addedType, newTypeName);
+            manager.UpdateEntry(addedType, new AgentTypeArgs(newTypeName));
 
             using (ValorantContext db = new ValorantContext())
             {
@@ -132,7 +132,7 @@ namespace ValorantAppTests
             AgentTypeManager manager = new AgentTypeManager();
             object addedType = null;
 
-            manager.AddNewEntry(expectedResult);
+            manager.AddNewEntry(new AgentTypeArgs(expectedResult));
 
             using (ValorantContext db = new ValorantContext())
             {

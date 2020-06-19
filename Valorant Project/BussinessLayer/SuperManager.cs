@@ -11,8 +11,8 @@ namespace BussinessLayer
 
         public abstract void RemoveEntry(object selectedMap);
 
-        public virtual void AddNewEntry(string name) { }
+        public abstract void AddNewEntry(SuperArgs args);
 
-        public virtual void UpdateEntry(object selectedEntry, string newName) { }
+        public abstract void UpdateEntry(object selectedEntry, SuperArgs args);
     }
 }

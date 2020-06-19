@@ -38,26 +38,52 @@ namespace BussinessLayer
             db.SaveChanges();
         }
 
-        public void AddNewGame(GameLogArgs args)
+        public override void AddNewEntry(SuperArgs args)
         {
             using ValorantContext db = new ValorantContext();
-            Agents agent = db.Agents.Where(a => a.AgentId == args.AgentId).FirstOrDefault();
-            Maps map = db.Maps.Where(m => m.MapId == args.MapId).FirstOrDefault();
+            GameLogArgs logArgs = (GameLogArgs)args;
+            Agents agent = db.Agents.Where(a => a.AgentId == logArgs.AgentId).FirstOrDefault();
+            Maps map = db.Maps.Where(m => m.MapId == logArgs.MapId).FirstOrDefault();
             GameLogs game = new GameLogs()
             {
-                TeamScore = args.TeamScore,
-                OpponentScore = args.OpponentScore,
-                Kills = args.Kills,
-                Deaths = args.Deaths,
-                Assits = args.Assists,
-                Adr = args.ADR,
-                DateLogged = args.DateLogged,
+                TeamScore = logArgs.TeamScore,
+                OpponentScore = logArgs.OpponentScore,
+                Kills = logArgs.Kills,
+                Deaths = logArgs.Deaths,
+                Assits = logArgs.Assists,
+                Adr = logArgs.ADR,
+                DateLogged = logArgs.DateLogged,
                 Map = map,
                 Agent = agent
             };
 
             db.GameLogs.Add(game);
             db.SaveChanges();
+        }
+
+        public override void UpdateEntry(object selectedGame, SuperArgs args)
+        {
+            using ValorantContext db = new ValorantContext();
+            GameLogArgs logArgs = (GameLogArgs)args;
+
+            GameLogs gameToUpdate = db.GameLogs
+                .Where(gl => gl.GameId == ((GameLogs)selectedGame).GameId)
+                .FirstOrDefault();
+
+            if (gameToUpdate != null)
+            {
+                gameToUpdate.TeamScore = logArgs.TeamScore;
+                gameToUpdate.OpponentScore = logArgs.OpponentScore;
+                gameToUpdate.MapId = logArgs.MapId;
+                gameToUpdate.AgentId = logArgs.AgentId;
+                gameToUpdate.Kills = logArgs.Kills;
+                gameToUpdate.Assits = logArgs.Assists;
+                gameToUpdate.Deaths = logArgs.Deaths;
+                gameToUpdate.Adr = logArgs.ADR;
+                gameToUpdate.DateLogged = logArgs.DateLogged;
+
+                db.SaveChanges();
+            }
         }
 
         public object GetMostPlayedAgent()
@@ -190,29 +216,6 @@ namespace BussinessLayer
             return db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Agent).Select(gl => gl.Agent).FirstOrDefault();
         }        
 
-        public void UpdateGame(object selectedGame, GameLogArgs args)
-        {
-            using ValorantContext db = new ValorantContext();
-
-            GameLogs gameToUpdate = db.GameLogs
-                .Where(gl => gl.GameId == ((GameLogs)selectedGame).GameId)
-                .FirstOrDefault();
-
-            if (gameToUpdate != null)
-            {
-                gameToUpdate.TeamScore = args.TeamScore;
-                gameToUpdate.OpponentScore = args.OpponentScore;
-                gameToUpdate.MapId = args.MapId;
-                gameToUpdate.AgentId = args.AgentId;
-                gameToUpdate.Kills = args.Kills;
-                gameToUpdate.Assits = args.Assists;
-                gameToUpdate.Deaths = args.Deaths;
-                gameToUpdate.Adr = args.ADR;
-                gameToUpdate.DateLogged = args.DateLogged;
-
-
-                db.SaveChanges();
-            }
-        }
+        
     }
 }

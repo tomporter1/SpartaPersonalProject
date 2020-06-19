@@ -47,7 +47,7 @@ namespace ValorantGUI
                         Normal2DiscTextBox.Text.Trim(),
                         BioTextBox.Text.Trim()
                     );
-                _agentsPage.AgentManager.AddNewAgent(args);
+                _agentsPage.AgentManager.AddNewEntry(args);
                 _agentsPage.PopulateAgents();
                 this.Close();
             }

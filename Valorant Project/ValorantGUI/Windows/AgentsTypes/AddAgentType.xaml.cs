@@ -25,7 +25,7 @@ namespace ValorantGUI
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            new AgentTypeManager().AddNewEntry(NameTextBox.Text.Trim());
+            new AgentTypeManager().AddNewEntry(new AgentTypeArgs(NameTextBox.Text.Trim()));
 
             if (_addAgent != null)
             {

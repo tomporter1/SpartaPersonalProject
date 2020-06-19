@@ -37,23 +37,24 @@ namespace BussinessLayer
             db.SaveChanges();
         }
 
-        public void AddNewAgent(AgentManagerArgs args)
+        public override void AddNewEntry(SuperArgs args)
         {
             using ValorantContext db = new ValorantContext();
-            AgentType type = db.AgentType.Where(t => t.TypeId == args.TypeID).FirstOrDefault();
+            AgentManagerArgs agentArgs = (AgentManagerArgs)args;
+            AgentType type = db.AgentType.Where(t => t.TypeId == agentArgs.TypeID).FirstOrDefault();
             Agents newAgent = new Agents()
             {
-                AgentName = args.Name,
+                AgentName = agentArgs.Name,
                 AgentType = type,
-                SignatureAbilityName = args.SignatureAbilityName,
-                SignatureAbilityDiscription = args.SignatureAbilityDiscription,
-                UltamateAbilityName = args.UltamateAbilityName,
-                UltamateAbilityDiscription = args.UltamateAbilityDiscription,
-                AbilityOneName = args.AbilityOneName,
-                AbilityOneDiscription = args.AbilityOneDiscription,
-                AbilityTwoName = args.AbilityTwoName,
-                AbilityTwoDiscription = args.AbilityTwoDiscription,
-                Bio = args.Bio
+                SignatureAbilityName = agentArgs.SignatureAbilityName,
+                SignatureAbilityDiscription = agentArgs.SignatureAbilityDiscription,
+                UltamateAbilityName = agentArgs.UltamateAbilityName,
+                UltamateAbilityDiscription = agentArgs.UltamateAbilityDiscription,
+                AbilityOneName = agentArgs.AbilityOneName,
+                AbilityOneDiscription = agentArgs.AbilityOneDiscription,
+                AbilityTwoName = agentArgs.AbilityTwoName,
+                AbilityTwoDiscription = agentArgs.AbilityTwoDiscription,
+                Bio = agentArgs.Bio
             };
 
             db.Agents.Add(newAgent);
@@ -96,29 +97,29 @@ namespace BussinessLayer
             if (agent.AbilityTwoName == abilityName)
                 return GetAgentData(selectedAgent, Fields.AbilityTwoDiscription);
             return "";
-        }        
+        }
 
-        public void UpdateAgent(object selectedAgent, AgentManagerArgs args)
+        public override void UpdateEntry(object selectedAgent, SuperArgs args)
         {
             using ValorantContext db = new ValorantContext();
-
+            AgentManagerArgs agentArgs = (AgentManagerArgs)args;
             Agents agentToUpdate = db.Agents
                 .Where(a => a.AgentId == ((Agents)selectedAgent).AgentId)
                 .FirstOrDefault();
 
             if (agentToUpdate != null)
             {
-                agentToUpdate.AgentName = args.Name;
-                agentToUpdate.AgentTypeId = args.TypeID;
-                agentToUpdate.SignatureAbilityName = args.SignatureAbilityName;
-                agentToUpdate.SignatureAbilityDiscription = args.SignatureAbilityDiscription;
-                agentToUpdate.UltamateAbilityName = args.UltamateAbilityName;
-                agentToUpdate.UltamateAbilityDiscription = args.UltamateAbilityDiscription;
-                agentToUpdate.AbilityOneName = args.AbilityOneName;
-                agentToUpdate.AbilityOneDiscription = args.AbilityOneDiscription;
-                agentToUpdate.AbilityTwoName = args.AbilityTwoName;
-                agentToUpdate.AbilityTwoDiscription = args.AbilityTwoDiscription;
-                agentToUpdate.Bio = args.Bio;
+                agentToUpdate.AgentName = agentArgs.Name;
+                agentToUpdate.AgentTypeId = agentArgs.TypeID;
+                agentToUpdate.SignatureAbilityName = agentArgs.SignatureAbilityName;
+                agentToUpdate.SignatureAbilityDiscription = agentArgs.SignatureAbilityDiscription;
+                agentToUpdate.UltamateAbilityName = agentArgs.UltamateAbilityName;
+                agentToUpdate.UltamateAbilityDiscription = agentArgs.UltamateAbilityDiscription;
+                agentToUpdate.AbilityOneName = agentArgs.AbilityOneName;
+                agentToUpdate.AbilityOneDiscription = agentArgs.AbilityOneDiscription;
+                agentToUpdate.AbilityTwoName = agentArgs.AbilityTwoName;
+                agentToUpdate.AbilityTwoDiscription = agentArgs.AbilityTwoDiscription;
+                agentToUpdate.Bio = agentArgs.Bio;
 
                 db.SaveChanges();
             }

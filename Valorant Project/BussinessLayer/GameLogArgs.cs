@@ -3,7 +3,7 @@ using ValorantDatabase;
 
 namespace BussinessLayer
 {
-    public class GameLogArgs
+    public class GameLogArgs : SuperArgs
     {
         public int MapId { get; private set; }
         public int AgentId { get; private set; }
@@ -14,7 +14,7 @@ namespace BussinessLayer
         public int Assists { get; private set; }
         public float ADR { get; private set; }
         public DateTime DateLogged { get; private set; }
-       
+
         public GameLogArgs(object mapObj, object agentObj, int teamScore, int opponentScore, int kills, int deaths, int assists, float aDR, DateTime dateLogged)
         {
             MapId = ((Maps)mapObj).MapId;

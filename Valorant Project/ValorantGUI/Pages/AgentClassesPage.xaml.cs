@@ -69,7 +69,7 @@ namespace ValorantGUI
         {
             if (TypesListBox.SelectedIndex >= 0)
             {
-                AgentTypeManager.UpdateEntry(TypesListBox.SelectedItem, NameTextBox.Text.Trim());
+                AgentTypeManager.UpdateEntry(TypesListBox.SelectedItem, new AgentTypeArgs(NameTextBox.Text.Trim()));
                 PopulateTypes();
             }
             else

@@ -33,7 +33,7 @@ namespace ValorantGUI
                 int.Parse(ADRTextBox.Text),
                 DateTime.Now);
 
-            _gameLogPage.GameManager.AddNewGame(args);
+            _gameLogPage.GameManager.AddNewEntry(args);
 
             _gameLogPage.PopulateGames();
             this.Close();

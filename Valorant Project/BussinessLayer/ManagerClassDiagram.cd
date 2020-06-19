@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
   <Class Name="BussinessLayer.AgentManager">
-    <Position X="5.75" Y="2.5" Width="3" />
+    <Position X="6" Y="3" Width="3" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -18,14 +18,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="BussinessLayer.AgentManagerArgs">
-    <Position X="10.5" Y="2.75" Width="4" />
+    <Position X="10.5" Y="3" Width="4" />
     <TypeIdentifier>
       <HashCode>AIAAAAAAAAAAAAAECAIAAAQAIAAQAUAgAAAAAAAAAAI=</HashCode>
       <FileName>AgentManagerArgs.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BussinessLayer.AgentTypeManager">
-    <Position X="16.5" Y="2.5" Width="4.5" />
+    <Position X="16.5" Y="3" Width="4.5" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -37,12 +37,12 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAgAAAAAAAAAAAAAAAAAQAAAAAAAIAABAAAAAgAAA=</HashCode>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAQAAAAAAAAQABAAAAAgAAA=</HashCode>
       <FileName>AgentTypeManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BussinessLayer.MapManager">
-    <Position X="21.75" Y="2.5" Width="3.5" />
+    <Position X="21.75" Y="3" Width="3.5" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -54,19 +54,19 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AQAAAAAAAAAAAAAAEAAAAAQAAAAAAAAAEBAAAAAAAAA=</HashCode>
+      <HashCode>ABAAAAAAAAAAAAAAEAAAAAQAAAAAAAAQABAAAAAAAAA=</HashCode>
       <FileName>MapManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BussinessLayer.SuperManager">
     <Position X="8.75" Y="0.5" Width="4.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAQAAAAAAAAQABAAAAAAAAA=</HashCode>
       <FileName>SuperManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BussinessLayer.GameLogManager">
-    <Position X="1.5" Y="2.5" Width="3.5" />
+    <Position X="1.5" Y="3" Width="3.5" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using BussinessLayer;
+using System.Windows;
 
 namespace ValorantGUI
 {
@@ -16,7 +17,7 @@ namespace ValorantGUI
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            _mapPage.MapManager.AddNewEntry(NameTextBox.Text.Trim());
+            _mapPage.MapManager.AddNewEntry(new MapArgs(NameTextBox.Text.Trim()));
             _mapPage.PopulateMaps();
             this.Close();
         }

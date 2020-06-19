@@ -62,7 +62,7 @@ namespace ValorantGUI
                 int.Parse(AssistsTextBox.Text.Trim()),
                 float.Parse(ADRTextBox.Text.Trim()),
                 ((DateTime)DatePlayedPicker.SelectedDate).AddHours(_oldTime.Hour).AddMinutes(_oldTime.Minute).AddSeconds(_oldTime.Second));
-            _gameLogPage.GameManager.UpdateGame(_selectedGame, args);
+            _gameLogPage.GameManager.UpdateEntry(_selectedGame, args);
             _gameLogPage.PopulateGames();
             this.Close();
         }
