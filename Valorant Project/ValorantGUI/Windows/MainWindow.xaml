@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ValorantGUI"
         mc:Ignorable="d"
-        Title="Valorant Companion" Height="635" Width="983">
+        Title="Valorant Companion" Height="621" Width="1243">
     <Grid>
     </Grid>
 </Window>

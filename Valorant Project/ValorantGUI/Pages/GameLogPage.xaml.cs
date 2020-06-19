@@ -51,7 +51,7 @@ namespace ValorantGUI
             AssistsLabel.Content = "Assists: -";
             AdrLabel.Content = "ADR: -";
             MapLabel.Content = "Map: -";
-            AgentLabel.Content = "Agent: ";
+            AgentLabel.Content = "Agent: -";
 
         }
 

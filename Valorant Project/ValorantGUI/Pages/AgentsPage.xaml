@@ -17,8 +17,8 @@
             <RowDefinition Height="55*"/>
             <RowDefinition Height="338*"/>
         </Grid.RowDefinitions>
-        <Label x:Name="label" Content="Agents:" HorizontalAlignment="Stretch" Margin="10,10,10,10" VerticalAlignment="Stretch" FontSize="20" Grid.Column="0" Grid.Row="0" Foreground="#FFECE8E1"/>
-        <Label x:Name="Abilitieslabel" Content="Abilities:" HorizontalAlignment="Stretch" Margin="10,10,10,10" VerticalAlignment="Stretch"  FontSize="20" Grid.Column="1" Grid.Row="0" Foreground="#FFECE8E1"/>
+        <Label x:Name="label" Content="Agents" HorizontalAlignment="Stretch" Margin="10,10,10,0" VerticalAlignment="Stretch" FontSize="20" Grid.Column="0" Grid.Row="0" Foreground="#FFECE8E1" VerticalContentAlignment="Bottom"/>
+        <Label x:Name="Abilitieslabel" Content="Abilities" HorizontalAlignment="Stretch" Margin="10,10,10,0" VerticalAlignment="Stretch"  FontSize="20" Grid.Column="1" Grid.Row="0" Foreground="#FFECE8E1" VerticalContentAlignment="Bottom"/>
         <ListBox x:Name="AgentNameListBox" Margin="5,5,5,5" SelectionChanged="OnAgentSelected" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="1" Background="#FF2F3F4F" Foreground="#FFECE8E1" BorderBrush="#FF121213"/>
         <ListBox x:Name="AbilitiesListBox" Margin="5,5,5,5" SelectionChanged="OnAbilitySelect" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Background="#FF2F3F4F" Foreground="#FFECE8E1" BorderBrush="#FF121213"/>
 
@@ -47,16 +47,16 @@
             </Grid.ColumnDefinitions>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40*"/>
-                    <RowDefinition Height="40*"/>
-                    <RowDefinition Height="152.5*"/>
-                    <RowDefinition Height="40*"/>
-                    <RowDefinition Height="152.5*"/>
+                    <RowDefinition Height="36*"/>
+                    <RowDefinition Height="34*"/>
+                    <RowDefinition Height="142*"/>
+                    <RowDefinition Height="34*"/>
+                    <RowDefinition Height="142*"/>
                 </Grid.RowDefinitions>
                 <Label x:Name="AgentClassLabel" Content="Agent Class:" Margin="5,5,5,5" Grid.Row="0" Grid.Column="0" Foreground="#FFECE8E1"/>
-                <Label x:Name="label2" Content="Agent Bio:" Margin="5,5,5,5" Grid.Row="1" Grid.Column="0" Foreground="#FFECE8E1"/>
+                <Label x:Name="label2" Content="Agent Bio:" Margin="5,5,5,0" Grid.Row="1" Grid.Column="0" Foreground="#FFECE8E1" VerticalContentAlignment="Bottom"/>
                 <TextBox x:Name="BioTextBox" Margin="5,5,5,5" Text="" TextWrapping="Wrap" Grid.Row="2" Grid.Column="0" Background="#FF2F3F4F" Foreground="#FFECE8E1" BorderBrush="#FF121213"/>
-                <Label x:Name="label1" Content="Ability Discription:" Margin="5,5,5,5" Grid.Row="3" Grid.Column="0" Foreground="#FFECE8E1"/>
+                <Label x:Name="label1" Content="Ability Discription:" Margin="5,5,5,0" Grid.Row="3" Grid.Column="0" Foreground="#FFECE8E1" VerticalContentAlignment="Bottom"/>
                 <TextBox x:Name="AbilityDiscriptionTextBox" Margin="5,5,5,5" Text="" TextWrapping="Wrap" Grid.Row="4" Grid.Column="0" Background="#FF2F3F4F" Foreground="#FFECE8E1" BorderBrush="#FF121213"/>
             </Grid>
             <Image x:Name="AgentImage" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch"/>
