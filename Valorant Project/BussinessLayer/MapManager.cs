@@ -25,7 +25,7 @@ namespace BussinessLayer
             db.SaveChanges();
         }
 
-        public void AddNewMap(string name)
+        public override void AddNewEntry(string name)
         {
             using ValorantContext db = new ValorantContext();
             Maps newMap = new Maps()
@@ -36,10 +36,10 @@ namespace BussinessLayer
             db.SaveChanges();
         }        
 
-        public void UpdateMap(object selectedMap, string newName)
+        public override void UpdateEntry(object selectedEntry, string newName)
         {
             using ValorantContext db = new ValorantContext();
-            Maps mapToUpdate = db.Maps.Where(m => m.MapId == ((Maps)selectedMap).MapId).FirstOrDefault();
+            Maps mapToUpdate = db.Maps.Where(m => m.MapId == ((Maps)selectedEntry).MapId).FirstOrDefault();
             if (mapToUpdate != null)
             {
                 mapToUpdate.MapName = newName;

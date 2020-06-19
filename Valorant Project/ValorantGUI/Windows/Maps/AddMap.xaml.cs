@@ -16,7 +16,7 @@ namespace ValorantGUI
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            _mapPage.MapManager.AddNewMap(NameTextBox.Text.Trim());
+            _mapPage.MapManager.AddNewEntry(NameTextBox.Text.Trim());
             _mapPage.PopulateMaps();
             this.Close();
         }

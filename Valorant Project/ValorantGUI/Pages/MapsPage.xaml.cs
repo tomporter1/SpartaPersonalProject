@@ -80,7 +80,7 @@ namespace ValorantGUI
         {
             if (MapsListBox.SelectedIndex >= 0)
             {
-                MapManager.UpdateMap(MapsListBox.SelectedItem, NameTextBox.Text.Trim());
+                MapManager.UpdateEntry(MapsListBox.SelectedItem, NameTextBox.Text.Trim());
                 PopulateMaps();
             }
             else

@@ -25,7 +25,7 @@ namespace BussinessLayer
             db.SaveChanges();
         }
 
-        public void AddNewAgentType(string name)
+        public override void AddNewEntry(string name)
         {
             using ValorantContext db = new ValorantContext();
             AgentType newAgentType = new AgentType()
@@ -36,10 +36,10 @@ namespace BussinessLayer
             db.SaveChanges();
         }
 
-        public void UpdateAgentType(object SelectedType, string newName)
+        public override void UpdateEntry(object selectedEntry, string newName)
         {
             using ValorantContext db = new ValorantContext();
-            AgentType typeToUpdate = db.AgentType.Where(a => a.TypeId == ((AgentType)SelectedType).TypeId).FirstOrDefault();
+            AgentType typeToUpdate = db.AgentType.Where(a => a.TypeId == ((AgentType)selectedEntry).TypeId).FirstOrDefault();
             if (typeToUpdate != null)
             {
                 typeToUpdate.TypeName = newName;
