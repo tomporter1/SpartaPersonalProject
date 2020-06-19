@@ -20,7 +20,8 @@ namespace BussinessLayer
             AbilityTwoDiscription,
             Bio,
             ID,
-            Type
+            Type,
+            ImagePath
         }
 
         public override List<object> GetAllEntries()
@@ -155,6 +156,8 @@ namespace BussinessLayer
                     return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AbilityTwoDiscription).FirstOrDefault();
                 case Fields.Bio:
                     return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.Bio).FirstOrDefault();
+                case Fields.ImagePath:
+                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.ImagePath).FirstOrDefault();
                 default:
                     return "";
             }

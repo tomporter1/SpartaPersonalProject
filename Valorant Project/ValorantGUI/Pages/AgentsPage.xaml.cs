@@ -1,7 +1,10 @@
 ﻿using BussinessLayer;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using ValorantDatabase;
 
 namespace ValorantGUI
@@ -65,7 +68,9 @@ namespace ValorantGUI
 
                 ClearTextBoxes();
                 BioTextBox.Text = AgentManager.GetAgentData(AgentNameListBox.SelectedItem, AgentManager.Fields.Bio);
-                AgentClassLabel.Content = $"Agent Class: {AgentManager.GetAgentData(AgentNameListBox.SelectedItem,AgentManager.Fields.Type)}";
+                AgentClassLabel.Content = $"Agent Class: {AgentManager.GetAgentData(AgentNameListBox.SelectedItem, AgentManager.Fields.Type)}";
+
+                AgentImage.Source = new BitmapImage(new Uri(AgentManager.GetAgentData(AgentNameListBox.SelectedItem, AgentManager.Fields.ImagePath), UriKind.Relative));
             }
         }
 

@@ -12,6 +12,8 @@ namespace ValorantDatabase
 
         public int MapId { get; set; }
         public string MapName { get; set; }
+        public string ImagePath { get; set; }
+        public string LayoutImagePath { get; set; }
 
         public virtual ICollection<GameLogs> GameLogs { get; set; }
     }

@@ -8,7 +8,10 @@ namespace BussinessLayer
     {
         public enum Fields
         {
-            Name
+            Name,
+            ImagePath,
+            LayoutImagePath
+
         }
 
         public override List<object> GetAllEntries()
@@ -58,6 +61,10 @@ namespace BussinessLayer
             {
                 case Fields.Name:
                     return map.MapName;
+                case Fields.ImagePath:
+                    return db.Maps.Where(m => m.MapId == map.MapId).Select(a => a.ImagePath).FirstOrDefault();
+                case Fields.LayoutImagePath:
+                    return db.Maps.Where(m => m.MapId == map.MapId).Select(a => a.LayoutImagePath).FirstOrDefault();
                 default:
                     return "";
             }

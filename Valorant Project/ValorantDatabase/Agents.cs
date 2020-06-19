@@ -24,6 +24,7 @@ namespace ValorantDatabase
         private string _abilityTwoName;
         private string _abilityTwoDiscription;
         private string _bio;
+        private string _imagePath;
 
 
         public int AgentId { get { return _agentId; } set { _agentId = value; } }
@@ -77,6 +78,12 @@ namespace ValorantDatabase
         {
             get { return _bio; }
             set { _bio = value.Length <= 700 ? value : value.Substring(0, 700); }
+        }
+
+        public string ImagePath
+        {
+            get { return _imagePath; }
+            set { _imagePath = value.Length <= 35 ? value : value.Substring(0, 35); }
         }
 
         public virtual AgentType AgentType { get; set; }

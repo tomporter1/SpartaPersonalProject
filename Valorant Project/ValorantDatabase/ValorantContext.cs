@@ -42,6 +42,10 @@ namespace ValorantDatabase
                     .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false);
+                
+                entity.Property(e => e.ImagePath)
+                    .HasMaxLength(35)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Agents>(entity =>
@@ -76,6 +80,10 @@ namespace ValorantDatabase
 
                 entity.Property(e => e.Bio)
                     .HasMaxLength(700)
+                    .IsUnicode(false);
+                
+                entity.Property(e => e.ImagePath)
+                    .HasMaxLength(35)
                     .IsUnicode(false);
 
                 entity.Property(e => e.SignatureAbilityDiscription)
@@ -138,6 +146,14 @@ namespace ValorantDatabase
                 entity.Property(e => e.MapName)
                     .IsRequired()
                     .HasMaxLength(20)
+                    .IsUnicode(false);
+                
+                entity.Property(e => e.ImagePath)
+                    .HasMaxLength(35)
+                    .IsUnicode(false);
+                
+                entity.Property(e => e.LayoutImagePath)
+                    .HasMaxLength(35)
                     .IsUnicode(false);
             });
 

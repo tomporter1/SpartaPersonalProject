@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace ValorantGUI
 {
@@ -73,6 +74,9 @@ namespace ValorantGUI
 
                 MapLabel.Content = $"Map: {GameManager.GetGameData(GamesListBox.SelectedItem, GameLogManager.Fields.Map)}";
                 AgentLabel.Content = $"Agent: {GameManager.GetGameData(GamesListBox.SelectedItem, GameLogManager.Fields.Agent)}";
+
+                MapImage.Source = new BitmapImage(new Uri(new MapManager().GetMapsData(GameManager.GetGameMap(GamesListBox.SelectedItem), MapManager.Fields.ImagePath), UriKind.Relative));
+                AgentImage.Source = new BitmapImage(new Uri(new AgentManager().GetAgentData(GameManager.GetGameAgent(GamesListBox.SelectedItem), AgentManager.Fields.ImagePath), UriKind.Relative));
             }
         }
 

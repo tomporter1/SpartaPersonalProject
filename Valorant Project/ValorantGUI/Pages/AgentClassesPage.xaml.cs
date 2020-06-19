@@ -1,6 +1,8 @@
 ﻿using BussinessLayer;
+using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace ValorantGUI
 {
@@ -62,6 +64,9 @@ namespace ValorantGUI
             {
                 NameTextBox.Text = AgentTypeManager.GetTypeData(TypesListBox.SelectedItem, AgentTypeManager.Fields.Name);
                 NameTextBox.IsEnabled = true;
+
+                string path = AgentTypeManager.GetTypeData(TypesListBox.SelectedItem, AgentTypeManager.Fields.ImagePath);
+                TypeImage.Source = new BitmapImage(new Uri(path, UriKind.Relative));
             }
         }
 

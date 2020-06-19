@@ -8,7 +8,8 @@ namespace BussinessLayer
     {
         public enum Fields
         {
-            Name
+            Name,
+            ImagePath
         }
 
         public override List<object> GetAllEntries()
@@ -57,7 +58,9 @@ namespace BussinessLayer
             switch (field)
             {
                 case Fields.Name:
-                    return type.TypeName;
+                    return db.AgentType.Where(t => t.TypeId == type.TypeId).Select(t => t.TypeName).FirstOrDefault();
+                case Fields.ImagePath:
+                    return db.AgentType.Where(t => t.TypeId == type.TypeId).Select(t => t.ImagePath).FirstOrDefault();
                 default:
                     return "";
             }
