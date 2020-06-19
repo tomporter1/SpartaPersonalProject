@@ -33,16 +33,27 @@ The completed project is committed to GitHub that implements all the user storie
 
 * Sprint 3
   * **Goal:** To make the game logging and stat tracking section of this application that allows a user to store details about games they have just played and view statistics about their past games.
-  * **Sprint Outputs:** 
-  * **Tasks completed:** 
+  * **Sprint Outputs:** A GameManager class to provide CRUD operations and to calculate stats based on historic game data.
+  * **Tasks completed:** 14, 15, 16, 17, 18
   * **Sprint retrospective**  
-    * **Went well:** 
-    * **Problems:**  
+    * **Went well:** Adding in the new manager to work with the Entity Framework based on the GameLog table in the database went well because the basic operations were very similar to the past managers that had already been implemented.
+    * **Problems:**  Making the more complex statistics was challenging due to me not having to had used LINQ in a while. Therefore, going forward, I will go over it again so if it comes up in the future it won’t be as much of a challenge.
 
 | Keban board before sprint 3 | Kaban board after sprint 3 |
 | -------------------------- | -------------------------- |
 | <img src = "ReadMeImages/Sprint3Before.png" width = 650 height = 365.625>|<img src = "ReadMeImages/Sprint3After.png" width = 650 height = 365.625>|
 
+* Sprint 4
+  * **Goal:** The aims of this sprint are to mainly put finishing touches onto the project. This includes adding a consistent colour scheme to all of the pages and windows as well as adding data validation to the UI elements that support it.
+  * **Sprint Outputs:** A application with a good colour scheme that looks more professional and a more robust code model for the middle layer of the programme.
+  * **Tasks completed:** 19, 20, 21
+  * **Sprint retrospective**  
+    * **Went well:** Picking the colour scheme went well as I leaned on the scheme that was set by the game itself so it will look as if it is an extension of the game.
+    * **Problems:**  Even though it worked in the end, adding in abstract classes and inheritance at this stage of the project was probably a bad idea ad it required me to change a lot of the method calls of the manager classes. In future projects I will add in this from the start.
+
+| Keban board before sprint 4 | Kaban board after sprint 4 |
+| -------------------------- | -------------------------- |
+| <img src = "ReadMeImages/Sprint4Before.png" width = 650 height = 365.625>|<img src = "ReadMeImages/Sprint4After.png" width = 650 height = 365.625>|
 
 
 
