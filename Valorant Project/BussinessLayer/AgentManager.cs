@@ -136,7 +136,7 @@ namespace BussinessLayer
                 case Fields.Name:
                     return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AgentName).FirstOrDefault();
                 case Fields.Type:
-                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AgentTypeId).FirstOrDefault().ToString();
+                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Include(a=>a.AgentType).Select(a => a.AgentType).FirstOrDefault().ToString();
                 case Fields.SignatureAbilityName:
                     return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.SignatureAbilityName).FirstOrDefault();
                 case Fields.SignatureAbilityDiscription:

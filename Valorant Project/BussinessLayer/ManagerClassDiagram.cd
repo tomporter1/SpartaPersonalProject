@@ -13,19 +13,19 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAABQBAAAAAAECAAQAAAAAAAAAABAAAAABAAA=</HashCode>
+      <HashCode>ABAAAAAAABQBAAAAAAACAAQAAAAAAAAQABAAAAAAAAA=</HashCode>
       <FileName>AgentManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BussinessLayer.AgentManagerArgs">
-    <Position X="10.5" Y="3" Width="4" />
+    <Position X="7" Y="9.75" Width="4" />
     <TypeIdentifier>
       <HashCode>AIAAAAAAAAAAAAAECAIAAAQAIAAQAUAgAAAAAAAAAAI=</HashCode>
       <FileName>AgentManagerArgs.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BussinessLayer.AgentTypeManager">
-    <Position X="16.5" Y="3" Width="4.5" />
+    <Position X="9.75" Y="3" Width="4.5" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -42,7 +42,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="BussinessLayer.MapManager">
-    <Position X="21.75" Y="3" Width="3.5" />
+    <Position X="15" Y="3" Width="3.5" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -78,8 +78,36 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>BBAIBQAAAAEAAAAAgAAAgAQAAAAAABQAABAAAAAIAAA=</HashCode>
+      <HashCode>BBAABQAAAAEAAAAAgAAAAAQAAAAAABQQABAAAAAIAAA=</HashCode>
       <FileName>GameLogManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLayer.SuperArgs">
+    <Position X="8.25" Y="8.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SuperArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLayer.GameLogArgs">
+    <Position X="3" Y="9.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAASAIQACAAAAAABCAAAAAAgAAIAAAAAAAA=</HashCode>
+      <FileName>GameLogArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLayer.AgentTypeArgs">
+    <Position X="11.75" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AgentTypeArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLayer.MapArgs">
+    <Position X="14.5" Y="9.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MapArgs.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

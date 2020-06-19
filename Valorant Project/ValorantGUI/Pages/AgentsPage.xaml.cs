@@ -53,6 +53,7 @@ namespace ValorantGUI
         {
             BioTextBox.Text = "";
             AbilityDiscriptionTextBox.Text = "";
+            AgentClassLabel.Content = "Agent Class: -";
         }
 
         private void OnAgentSelected(object sender, SelectionChangedEventArgs e)
@@ -64,6 +65,7 @@ namespace ValorantGUI
 
                 ClearTextBoxes();
                 BioTextBox.Text = AgentManager.GetAgentData(AgentNameListBox.SelectedItem, AgentManager.Fields.Bio);
+                AgentClassLabel.Content = $"Agent Class: {AgentManager.GetAgentData(AgentNameListBox.SelectedItem,AgentManager.Fields.Type)}";
             }
         }
 

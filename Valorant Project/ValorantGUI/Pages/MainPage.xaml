@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainPage">
-    <Grid ShowGridLines="False">
+    <Grid ShowGridLines="False" Background="#FF1C252E">
         <Grid.RowDefinitions>
             <RowDefinition Height="70*"/>
             <RowDefinition Height="246*"/>
@@ -19,19 +19,18 @@
             <ColumnDefinition Width="33*"/>
             <ColumnDefinition Width="596*"/>
         </Grid.ColumnDefinitions>
-
-        <Image x:Name="image" Grid.Column="3" HorizontalAlignment="Center" Height="294" VerticalAlignment="Center" Width="528" Source="/Pages/Images/ValorantLogo.png" Grid.Row="1"/>
-        <Grid Grid.Column="1" HorizontalAlignment="Center" Height="273" Grid.Row="1" VerticalAlignment="Center" Width="134">
+        <Grid ShowGridLines="False" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Button x:Name="AgentsButton" Content="Agents" Margin="0,5,0,5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Click="AgentsButton_Click" Grid.Row="0"/>
-            <Button x:Name="ClassesButton" Content="Classes" Margin="0,5,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="ClassesButton_Click" Grid.Row="1"/>
-            <Button x:Name="MapsButton" Content="Maps" Margin="0,5,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="MapsButton_Click" Grid.Row="2"/>
-            <Button x:Name="GameLogButton" Content="Game History" Margin="0,5,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="GameLogButton_Click" Grid.Row="3"/>
+            <Button x:Name="AgentsButton" Content="Agents" Margin="0,5,0,5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Click="AgentsButton_Click" Grid.Row="0" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="19"/>
+            <Button x:Name="ClassesButton" Content="Classes" Margin="0,5,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="ClassesButton_Click" Grid.Row="1" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold" FontSize="19"/>
+            <Button x:Name="MapsButton" Content="Maps" Margin="0,5,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="MapsButton_Click" Grid.Row="2" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold" FontSize="19"/>
+            <Button x:Name="GameLogButton" Content="Game History" Margin="0,5,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="GameLogButton_Click" Grid.Row="3" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold" FontSize="19"/>
         </Grid>
+        <Image x:Name="image" Grid.Column="3" Margin="0,0,20,0" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Source="/Pages/ValorantLogo.png"/>
     </Grid>
 </Page>

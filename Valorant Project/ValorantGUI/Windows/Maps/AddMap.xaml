@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:ValorantGUI"
         mc:Ignorable="d"
         Title="Add Map" Height="163" Width="267">
-    <Grid>
-        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Height="62" Margin="10,53,0,0" VerticalAlignment="Top" Width="233" Click="SaveButton_Click"/>
-        <Label x:Name="NameLabel" Content="Map name:" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="108"/>
-        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Margin="123,22,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="26"/>
+    <Grid Background="#FF1C252E">
+        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Height="62" Margin="10,53,0,0" VerticalAlignment="Top" Width="233" Click="SaveButton_Click" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold"/>
+        <Label x:Name="NameLabel" Content="Map name:" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="108" Foreground="#FFECE8E1"/>
+        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Margin="123,22,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="26" Background="#FF2F3F4F" BorderBrush="#FF121213" Foreground="#FFECE8E1"/>
 
     </Grid>
 </Window>
