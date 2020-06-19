@@ -142,7 +142,7 @@
   <Class Name="ValorantGUI.AddGameLogWindow">
     <Position X="21.75" Y="8.25" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>BAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>BAAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Windows\GameLogs\AddGameLog.xaml.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -153,7 +153,7 @@
   <Class Name="ValorantGUI.EditGameLog">
     <Position X="17.5" Y="8.25" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>BAAAAAAAABAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <HashCode>BAAAAAAAABAAAAAAAAAIAAEAAAAAAAAAAAAAAAAAAAQ=</HashCode>
       <FileName>Windows\GameLogs\EditGameLog.xaml.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -183,6 +183,30 @@
         <TypeIdentifier />
       </Class>
     </NestedTypes>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="BussinessLayer.SuperManager">
+    <Position X="12.5" Y="19.75" Width="3.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="BussinessLayer.SuperArgs">
+    <Position X="29.75" Y="13.5" Width="3" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="BussinessLayer.MapArgs">
+    <Position X="26.75" Y="15.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="BussinessLayer.AgentTypeArgs">
+    <Position X="29.5" Y="15.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="BussinessLayer.AgentManagerArgs">
+    <Position X="32" Y="15.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="BussinessLayer.GameLogArgs">
+    <Position X="34.5" Y="15.5" Width="3" />
     <TypeIdentifier />
   </Class>
   <Font Name="Segoe UI" Size="9" />
