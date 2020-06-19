@@ -6,7 +6,7 @@ using ValorantDatabase;
 
 namespace BussinessLayer
 {
-    public class GameLogManager
+    public class GameLogManager: SuperManager
     {
         public enum Fields
         {
@@ -24,10 +24,18 @@ namespace BussinessLayer
             DateLogged
         }
 
-        public List<GameLogs> GetAllGames()
+        public override List<object> GetAllEntries()
         {
             using ValorantContext db = new ValorantContext();
-            return db.GameLogs.OrderByDescending(gl => gl.DateLogged).ToList();
+            return db.GameLogs.OrderByDescending(gl => gl.DateLogged).ToList<object>();
+        }
+
+        public override void RemoveEntry(object selectedGame)
+        {
+            using ValorantContext db = new ValorantContext();
+            GameLogs gameToRemove = (GameLogs)selectedGame;
+            db.GameLogs.Remove(gameToRemove);
+            db.SaveChanges();
         }
 
         public void AddNewGame(GameLogArgs args)
@@ -62,9 +70,9 @@ namespace BussinessLayer
                         (agent, games) => new
                         {
                             AgentId = agent,
-                            GamesWon = games.Count()
+                            GamesPlayed = games.Count()
                         })
-                    .OrderByDescending(m => m.GamesWon)
+                    .OrderByDescending(m => m.GamesPlayed)
                     .FirstOrDefault().AgentId;
 
             return db.Agents.Where(m => m.AgentId == favAgentID).FirstOrDefault();
@@ -180,15 +188,7 @@ namespace BussinessLayer
             using ValorantContext db = new ValorantContext();
             GameLogs game = (GameLogs)selectedGame;
             return db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Agent).Select(gl => gl.Agent).FirstOrDefault();
-        }
-
-        public void RemoveGame(object selectedGame)
-        {
-            using ValorantContext db = new ValorantContext();
-            GameLogs gameToRemove = (GameLogs)selectedGame;
-            db.GameLogs.Remove(gameToRemove);
-            db.SaveChanges();
-        }
+        }        
 
         public void UpdateGame(object selectedGame, GameLogArgs args)
         {

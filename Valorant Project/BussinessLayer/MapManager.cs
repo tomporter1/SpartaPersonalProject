@@ -4,17 +4,25 @@ using ValorantDatabase;
 
 namespace BussinessLayer
 {
-    public class MapManager
+    public class MapManager: SuperManager
     {
         public enum Fields
         {
             Name
         }
 
-        public List<Maps> GetAllMaps()
+        public override List<object> GetAllEntries()
         {
             using ValorantContext db = new ValorantContext();
-            return db.Maps.ToList();
+            return db.Maps.ToList<object>();
+        }
+
+        public override void RemoveEntry(object selectedMap)
+        {
+            using ValorantContext db = new ValorantContext();
+            Maps mapToRemove = (Maps)selectedMap;
+            db.Maps.Remove(mapToRemove);
+            db.SaveChanges();
         }
 
         public void AddNewMap(string name)
@@ -26,15 +34,7 @@ namespace BussinessLayer
             };
             db.Maps.Add(newMap);
             db.SaveChanges();
-        }
-
-        public void RemoveMap(object selectedMap)
-        {
-            using ValorantContext db = new ValorantContext();
-            Maps mapToRemove = (Maps)selectedMap;
-            db.Maps.Remove(mapToRemove);
-            db.SaveChanges();
-        }
+        }        
 
         public void UpdateMap(object selectedMap, string newName)
         {

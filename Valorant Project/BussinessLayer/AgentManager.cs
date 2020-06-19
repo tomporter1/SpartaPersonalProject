@@ -5,7 +5,7 @@ using ValorantDatabase;
 
 namespace BussinessLayer
 {
-    public class AgentManager
+    public class AgentManager : SuperManager
     {
         public enum Fields
         {
@@ -23,10 +23,18 @@ namespace BussinessLayer
             Type
         }
 
-        public List<Agents> GetAllAgents()
+        public override List<object> GetAllEntries()
         {
             using ValorantContext db = new ValorantContext();
-            return db.Agents.OrderBy(a => a.AgentName).ToList();
+            return db.Agents.OrderBy(a => a.AgentName).ToList<object>();
+        }
+
+        public override void RemoveEntry(object selectedAgent)
+        {
+            using ValorantContext db = new ValorantContext();
+            Agents agentToRemove = (Agents)selectedAgent;
+            db.Agents.Remove(agentToRemove);
+            db.SaveChanges();
         }
 
         public void AddNewAgent(AgentManagerArgs args)
@@ -88,15 +96,7 @@ namespace BussinessLayer
             if (agent.AbilityTwoName == abilityName)
                 return GetAgentData(selectedAgent, Fields.AbilityTwoDiscription);
             return "";
-        }
-
-        public void RemoveAgent(object selectedAgent)
-        {
-            using ValorantContext db = new ValorantContext();
-            Agents agentToRemove = (Agents)selectedAgent;
-            db.Agents.Remove(agentToRemove);
-            db.SaveChanges();
-        }
+        }        
 
         public void UpdateAgent(object selectedAgent, AgentManagerArgs args)
         {

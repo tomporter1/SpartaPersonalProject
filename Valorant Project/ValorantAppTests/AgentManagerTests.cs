@@ -19,8 +19,8 @@ namespace ValorantAppTests
         public void GetAllAgentsTest()
         {
             AgentManager manager = new AgentManager();
-            var result = manager.GetAllAgents();
-            Assert.AreEqual(result.GetType(), typeof(List<Agents>));
+            var result = manager.GetAllEntries();
+            Assert.AreEqual(result.GetType(), typeof(List<object>));
         }
 
         [Test]
@@ -93,7 +93,7 @@ namespace ValorantAppTests
             }
 
             //Test method call
-            manager.RemoveAgent(addedAgent);
+            manager.RemoveEntry(addedAgent);
 
             //Assersion 
             using (ValorantContext db = new ValorantContext())

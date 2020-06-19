@@ -22,7 +22,7 @@ namespace ValorantGUI
         {
             AgentTypesComboBox.ItemsSource = null;
             AgentTypesComboBox.SelectedIndex = -1;
-            AgentTypesComboBox.ItemsSource = new AgentTypeManager().GetAllTypes();
+            AgentTypesComboBox.ItemsSource = new AgentTypeManager().GetAllEntries();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)

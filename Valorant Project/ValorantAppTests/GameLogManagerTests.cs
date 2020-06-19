@@ -18,8 +18,8 @@ namespace ValorantAppTests
         public void GetAllGamesTest()
         {
             GameLogManager manager = new GameLogManager();
-            var result = manager.GetAllGames();
-            Assert.AreEqual(result.GetType(), typeof(List<GameLogs>));
+            var result = manager.GetAllEntries();
+            Assert.AreEqual(result.GetType(), typeof(List<object>));
         }
 
 
@@ -105,7 +105,7 @@ namespace ValorantAppTests
             }
 
             //Test method call            
-            logManager.RemoveGame(addedGame);
+            logManager.RemoveEntry(addedGame);
 
             //Assersion 
             using (ValorantContext db = new ValorantContext())

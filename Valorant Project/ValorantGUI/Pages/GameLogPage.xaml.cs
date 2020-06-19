@@ -25,7 +25,7 @@ namespace ValorantGUI
         {
             ClearAllUi();
 
-            GamesListBox.ItemsSource = GameManager.GetAllGames();
+            GamesListBox.ItemsSource = GameManager.GetAllEntries();
             TotalKDStatLabel.Content = Math.Round(GameManager.GetTotalKD(), 3).ToString();
             TotalWinLossStatLabel.Content = Math.Round(GameManager.GetTotalWinLoss(), 3).ToString();
             TotalKillsLossStatLabel.Content = GameManager.GetTotals(GameLogManager.Fields.Kills).ToString();
@@ -102,7 +102,7 @@ namespace ValorantGUI
                 MessageBoxResult messageBoxResult = MessageBox.Show($"Are you sure out want to delete {GamesListBox.SelectedItem}?", "Delete Confirmation", MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
-                    GameManager.RemoveGame(GamesListBox.SelectedItem);
+                    GameManager.RemoveEntry(GamesListBox.SelectedItem);
                     PopulateGames();
                 }
             }

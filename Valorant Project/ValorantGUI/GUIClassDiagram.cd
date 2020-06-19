@@ -3,7 +3,7 @@
   <Class Name="ValorantGUI.AddAgent" BaseTypeListCollapsed="true">
     <Position X="12.5" Y="8.25" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>BAAAAAEAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <HashCode>BAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>Windows\Agents\AddAgent.xaml.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -128,7 +128,7 @@
     <TypeIdentifier />
   </Class>
   <Class Name="BussinessLayer.AgentTypeManager">
-    <Position X="16" Y="13.75" Width="4.75" />
+    <Position X="15.25" Y="13.75" Width="4.75" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>

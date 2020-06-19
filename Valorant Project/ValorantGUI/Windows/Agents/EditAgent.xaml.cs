@@ -39,7 +39,7 @@ namespace ValorantGUI
             }
 
             AgentTypeManager typeManager = new AgentTypeManager();
-            AgentTypesComboBox.ItemsSource = typeManager.GetAllTypes();
+            AgentTypesComboBox.ItemsSource = typeManager.GetAllEntries();
             object agentType = _agentsPage.AgentManager.GetAgentTypeObj(_selectedAgent);
 
             foreach (var item in AgentTypesComboBox.ItemsSource)

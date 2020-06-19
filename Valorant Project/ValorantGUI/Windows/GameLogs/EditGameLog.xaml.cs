@@ -29,7 +29,7 @@ namespace ValorantGUI
             _oldTime = _gameLogPage.GameManager.GetDatePlayed(selectedGame);
             DatePlayedPicker.SelectedDate = _oldTime;
 
-            MapComboBox.ItemsSource = new MapManager().GetAllMaps();
+            MapComboBox.ItemsSource = new MapManager().GetAllEntries();
             object gameMap = _gameLogPage.GameManager.GetGameMap(selectedGame);
             foreach (var item in MapComboBox.ItemsSource)
             {
@@ -39,7 +39,7 @@ namespace ValorantGUI
                 }
             }
 
-            AgentComboBox.ItemsSource = new AgentManager().GetAllAgents();
+            AgentComboBox.ItemsSource = new AgentManager().GetAllEntries();
             object gameAgent = _gameLogPage.GameManager.GetGameAgent(selectedGame);
             foreach (object item in AgentComboBox.ItemsSource)
             {

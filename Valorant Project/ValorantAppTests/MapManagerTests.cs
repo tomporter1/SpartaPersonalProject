@@ -18,8 +18,8 @@ namespace ValorantAppTests
         public void GetAllMapsTest()
         {
             MapManager manager = new MapManager();
-            var result = manager.GetAllMaps();
-            Assert.AreEqual(result.GetType(), typeof(List<Maps>));
+            var result = manager.GetAllEntries();
+            Assert.AreEqual(result.GetType(), typeof(List<object>));
         }
 
         [Test]
@@ -76,7 +76,7 @@ namespace ValorantAppTests
             }
 
             //Test method call
-            manager.RemoveMap(addedAgent);
+            manager.RemoveEntry(addedAgent);
 
             //Assersion 
             using (ValorantContext db = new ValorantContext())

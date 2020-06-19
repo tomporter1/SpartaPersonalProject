@@ -4,17 +4,25 @@ using ValorantDatabase;
 
 namespace BussinessLayer
 {
-    public class AgentTypeManager
+    public class AgentTypeManager : SuperManager
     {
         public enum Fields
         {
             Name
         }
 
-        public List<AgentType> GetAllTypes()
+        public override List<object> GetAllEntries()
         {
             using ValorantContext db = new ValorantContext();
-            return db.AgentType.ToList();
+            return db.AgentType.ToList<object>();
+        }
+
+        public override void RemoveEntry(object selectedType)
+        {
+            using ValorantContext db = new ValorantContext();
+            AgentType agentToRemove = (AgentType)selectedType;
+            db.AgentType.Remove(agentToRemove);
+            db.SaveChanges();
         }
 
         public void AddNewAgentType(string name)
@@ -28,15 +36,7 @@ namespace BussinessLayer
             db.SaveChanges();
         }
 
-        public void RemoveAgentType(object selectedType)
-        {
-            using ValorantContext db = new ValorantContext();
-            AgentType agentToRemove = (AgentType)selectedType;
-            db.AgentType.Remove(agentToRemove);
-            db.SaveChanges();
-        }
-
-        public void UpdateAgentType(object SelectedType,string newName)
+        public void UpdateAgentType(object SelectedType, string newName)
         {
             using ValorantContext db = new ValorantContext();
             AgentType typeToUpdate = db.AgentType.Where(a => a.TypeId == ((AgentType)SelectedType).TypeId).FirstOrDefault();

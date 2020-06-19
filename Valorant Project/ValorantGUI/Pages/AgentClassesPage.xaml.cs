@@ -26,7 +26,7 @@ namespace ValorantGUI
                 MessageBoxResult messageBoxResult = MessageBox.Show($"Are you sure out want to delete {TypesListBox.SelectedItem}?", "Delete Confirmation", MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
-                    AgentTypeManager.RemoveAgentType(TypesListBox.SelectedItem);
+                    AgentTypeManager.RemoveEntry(TypesListBox.SelectedItem);
                     PopulateTypes();
                 }
             }
@@ -41,7 +41,7 @@ namespace ValorantGUI
             TypesListBox.ItemsSource = null;
             TypesListBox.SelectedIndex = -1;
             NameTextBox.Text = "";
-            TypesListBox.ItemsSource = AgentTypeManager.GetAllTypes();
+            TypesListBox.ItemsSource = AgentTypeManager.GetAllEntries();
             NameTextBox.IsEnabled = false;
         }
 

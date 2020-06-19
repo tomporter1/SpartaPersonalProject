@@ -16,8 +16,8 @@ namespace ValorantGUI
             InitializeComponent();
             _gameLogPage = gameLogPage;
 
-            MapComboBox.ItemsSource = new MapManager().GetAllMaps();
-            AgentComboBox.ItemsSource = new AgentManager().GetAllAgents();
+            MapComboBox.ItemsSource = new MapManager().GetAllEntries();
+            AgentComboBox.ItemsSource = new AgentManager().GetAllEntries();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)

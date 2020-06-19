@@ -31,7 +31,7 @@ namespace ValorantGUI
         internal void PopulateAgents()
         {
             ClearAllUi();
-            List<Agents> allAgents = AgentManager.GetAllAgents();
+            List<object> allAgents = AgentManager.GetAllEntries();
             if (allAgents.Count != 0)
             {
                 AgentNameListBox.ItemsSource = allAgents;
@@ -107,7 +107,7 @@ namespace ValorantGUI
                 MessageBoxResult messageBoxResult = MessageBox.Show($"Are you sure out want to delete {AgentNameListBox.SelectedItem}?", "Delete Confirmation", MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
-                    AgentManager.RemoveAgent(AgentNameListBox.SelectedItem);
+                    AgentManager.RemoveEntry(AgentNameListBox.SelectedItem);
                     PopulateAgents();
                 }
             }

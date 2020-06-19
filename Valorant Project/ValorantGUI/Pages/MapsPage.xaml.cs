@@ -36,7 +36,7 @@ namespace ValorantGUI
             MapsListBox.ItemsSource = null;
             MapsListBox.SelectedIndex = -1;
             NameTextBox.Text = "";
-            MapsListBox.ItemsSource = MapManager.GetAllMaps();
+            MapsListBox.ItemsSource = MapManager.GetAllEntries();
             NameTextBox.IsEnabled = false;
         }
 
@@ -66,7 +66,7 @@ namespace ValorantGUI
                 MessageBoxResult messageBoxResult = MessageBox.Show($"Are you sure out want to delete {MapsListBox.SelectedItem}?", "Delete Confirmation", MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
-                    MapManager.RemoveMap(MapsListBox.SelectedItem);
+                    MapManager.RemoveEntry(MapsListBox.SelectedItem);
                     PopulateMaps();
                 }
             }
