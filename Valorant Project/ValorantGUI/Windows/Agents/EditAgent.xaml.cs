@@ -1,7 +1,10 @@
 ﻿using BussinessLayer;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace ValorantGUI
 {
@@ -53,22 +56,34 @@ namespace ValorantGUI
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            AgentArgs args = new AgentArgs(
-                NameTextBox.Text.Trim(),
-                AgentTypesComboBox.SelectedItem,
-                SigTextBox.Text.Trim(),
-                SigDiscTextBox.Text.Trim(),
-                UltTextBox.Text.Trim(), 
-                UltDiscTextBox.Text.Trim(), 
-                Normal1NameTextBox.Text.Trim(), 
-                Normal1DiscTextBox.Text.Trim(), 
-                Normal2NameTextBox.Text.Trim(), 
-                Normal2DiscTextBox.Text.Trim(), 
-                BioTextBox.Text.Trim());
+            if (NameTextBox.Text.Trim() != "" && AgentTypesComboBox.SelectedIndex >= 0)
+            {
+                AgentArgs args = new AgentArgs(
+                    NameTextBox.Text.Trim(),
+                    AgentTypesComboBox.SelectedItem,
+                    SigTextBox.Text.Trim(),
+                    SigDiscTextBox.Text.Trim(),
+                    UltTextBox.Text.Trim(),
+                    UltDiscTextBox.Text.Trim(),
+                    Normal1NameTextBox.Text.Trim(),
+                    Normal1DiscTextBox.Text.Trim(),
+                    Normal2NameTextBox.Text.Trim(),
+                    Normal2DiscTextBox.Text.Trim(),
+                    BioTextBox.Text.Trim());
 
-            _agentsPage.AgentManager.UpdateEntry(_selectedAgent, args);
-            _agentsPage.PopulateAgents();
-            this.Close();
+                _agentsPage.AgentManager.UpdateEntry(_selectedAgent, args);
+                _agentsPage.PopulateAgents();
+                this.Close();
+            }
+            else
+            {
+                if (NameTextBox.Text.Trim() == "")
+                    nameLabel.Foreground = Brushes.Red;
+                if (AgentTypesComboBox.SelectedIndex < 0)
+                    TypesLabel.Foreground = Brushes.Red;
+
+                MessageBox.Show("Please fill in the required fields");
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ namespace ValorantGUI
     public partial class GameLogPage : Page
     {
         internal GameLogManager GameManager { get; private set; }
-        MainWindow _window;
+        private MainWindow _window;
 
         public GameLogPage(MainWindow window)
         {
@@ -50,6 +50,7 @@ namespace ValorantGUI
             DeathsLabel.Content = "Deaths: -";
             AssistsLabel.Content = "Assists: -";
             AdrLabel.Content = "ADR: -";
+            KDLabel.Content = "K/D: -";
             MapLabel.Content = "Map: -";
             AgentLabel.Content = "Agent: -";
 
@@ -75,8 +76,17 @@ namespace ValorantGUI
                 MapLabel.Content = $"Map: {GameManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Map)}";
                 AgentLabel.Content = $"Agent: {GameManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Agent)}";
 
-                MapImage.Source = new BitmapImage(new Uri(new MapManager().GetMapsDataStr(GameManager.GetGameMapObj(GamesListBox.SelectedItem), MapManager.Fields.ImagePath), UriKind.Relative));
-                AgentImage.Source = new BitmapImage(new Uri(new AgentManager().GetAgentDataStr(GameManager.GetGameAgentObj(GamesListBox.SelectedItem), AgentManager.Fields.ImagePath), UriKind.Relative));
+                string mapImagePath = new MapManager().GetMapsDataStr(GameManager.GetGameMapObj(GamesListBox.SelectedItem), MapManager.Fields.ImagePath);
+                if (mapImagePath != null && mapImagePath != "")
+                    MapImage.Source = new BitmapImage(new Uri(mapImagePath, UriKind.Relative));
+                else
+                    MapImage.Source = null;
+
+                string agentImagePath = new AgentManager().GetAgentDataStr(GameManager.GetGameAgentObj(GamesListBox.SelectedItem), AgentManager.Fields.ImagePath);
+                if (agentImagePath != null && agentImagePath != "")
+                    AgentImage.Source = new BitmapImage(new Uri(agentImagePath, UriKind.Relative));
+                else
+                    AgentImage.Source = null;
             }
         }
 
@@ -103,7 +113,7 @@ namespace ValorantGUI
         {
             if (GamesListBox.SelectedIndex >= 0)
             {
-                MessageBoxResult messageBoxResult = MessageBox.Show($"Are you sure out want to delete {GamesListBox.SelectedItem}?", "Delete Confirmation", MessageBoxButton.YesNo);
+                MessageBoxResult messageBoxResult = MessageBox.Show($"Are you sure out want to delete \"{GamesListBox.SelectedItem}\"?", "Delete Confirmation", MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
                     GameManager.RemoveEntry(GamesListBox.SelectedItem);

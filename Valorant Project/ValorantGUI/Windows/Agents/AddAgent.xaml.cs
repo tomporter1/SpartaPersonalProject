@@ -1,5 +1,6 @@
 ﻿using BussinessLayer;
 using System.Windows;
+using System.Windows.Media;
 
 namespace ValorantGUI
 {
@@ -27,12 +28,8 @@ namespace ValorantGUI
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (AgentTypesComboBox.SelectedIndex < 0)
-            {
-                MessageBox.Show("Please select a Class for this agent");
-            }
-            else
-            {
+            if (NameTextBox.Text.Trim() != "" && AgentTypesComboBox.SelectedIndex >= 0)
+            {                
                 AgentArgs args = new AgentArgs
                     (
                         NameTextBox.Text.Trim(),
@@ -50,6 +47,15 @@ namespace ValorantGUI
                 _agentsPage.AgentManager.AddNewEntry(args);
                 _agentsPage.PopulateAgents();
                 this.Close();
+            }
+            else
+            {
+                if (NameTextBox.Text.Trim() == "")
+                    nameLabel.Foreground = Brushes.Red;
+                if (AgentTypesComboBox.SelectedIndex < 0)
+                    TypesLabel.Foreground = Brushes.Red;
+
+                MessageBox.Show("Please fill in the required fields");
             }
         }
     }

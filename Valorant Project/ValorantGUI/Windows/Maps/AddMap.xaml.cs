@@ -1,5 +1,6 @@
 ﻿using BussinessLayer;
 using System.Windows;
+using System.Windows.Media;
 
 namespace ValorantGUI
 {
@@ -17,9 +18,18 @@ namespace ValorantGUI
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            _mapPage.MapManager.AddNewEntry(new MapArgs(NameTextBox.Text.Trim()));
-            _mapPage.PopulateMaps();
-            this.Close();
+            if (NameTextBox.Text.Trim() != "")
+            {
+                _mapPage.MapManager.AddNewEntry(new MapArgs(NameTextBox.Text.Trim()));
+                _mapPage.PopulateMaps();
+                this.Close();
+            }
+            else
+            {
+                NameLabel.Foreground = Brushes.Red;
+
+                MessageBox.Show("Please fill in the required fields");
+            }
         }
     }
 }

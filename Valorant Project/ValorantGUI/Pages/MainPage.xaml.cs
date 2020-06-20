@@ -8,7 +8,7 @@ namespace ValorantGUI
     /// </summary>
     public partial class MainPage : Page
     {
-        MainWindow _window;
+        private MainWindow _window;
 
         public MainPage(MainWindow mainWindow)
         {
@@ -33,7 +33,7 @@ namespace ValorantGUI
             AgentClassesPage classesPage = new AgentClassesPage(_window);
             _window.Content = classesPage;
         }
-        
+
         private void GameLogButton_Click(object sender, RoutedEventArgs e)
         {
             GameLogPage gamessPage = new GameLogPage(_window);

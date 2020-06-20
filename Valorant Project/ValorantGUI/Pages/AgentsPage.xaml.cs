@@ -3,9 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using ValorantDatabase;
 
 namespace ValorantGUI
 {
@@ -14,7 +12,7 @@ namespace ValorantGUI
     /// </summary>
     public partial class AgentsPage : Page
     {
-        MainWindow _window;
+        private MainWindow _window;
         internal AgentManager AgentManager { get; private set; }
 
         public AgentsPage(MainWindow window)
@@ -70,7 +68,11 @@ namespace ValorantGUI
                 BioTextBox.Text = AgentManager.GetAgentDataStr(AgentNameListBox.SelectedItem, AgentManager.Fields.Bio);
                 AgentClassLabel.Content = $"Agent Class: {AgentManager.GetAgentDataStr(AgentNameListBox.SelectedItem, AgentManager.Fields.Type)}";
 
-                AgentImage.Source = new BitmapImage(new Uri(AgentManager.GetAgentDataStr(AgentNameListBox.SelectedItem, AgentManager.Fields.ImagePath), UriKind.Relative));
+                string imagePath = AgentManager.GetAgentDataStr(AgentNameListBox.SelectedItem, AgentManager.Fields.ImagePath);
+                if (imagePath != null && imagePath != "")
+                    AgentImage.Source = new BitmapImage(new Uri(imagePath, UriKind.Relative));
+                else
+                    AgentImage.Source = null;
             }
         }
 

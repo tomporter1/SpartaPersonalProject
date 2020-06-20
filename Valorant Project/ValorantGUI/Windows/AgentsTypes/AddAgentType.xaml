@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="Add Agent Class" Height="163" Width="267" ResizeMode="NoResize">
     <Grid Background="#FF1C252E">
-        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Height="62" Margin="10,53,0,0" VerticalAlignment="Top" Width="233" Click="SaveButton_Click" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold"/>
-        <Label x:Name="NameLabel" Content="Agent type name:" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="108" Foreground="#FFECE8E1"/>
-        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Margin="123,22,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="26" Background="#FF2F3F4F" BorderBrush="#FF121213" Foreground="#FFECE8E1"/>
+        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Height="62" Margin="10,53,0,0" VerticalAlignment="Top" Width="238" Click="SaveButton_Click" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold"/>
+        <Label x:Name="NameLabel" Content="Agent Class Name *" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="115" Foreground="#FFECE8E1"/>
+        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Margin="129,22,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="26" Background="#FF2F3F4F" BorderBrush="#FF121213" Foreground="#FFECE8E1"/>
 
     </Grid>
 </Window>

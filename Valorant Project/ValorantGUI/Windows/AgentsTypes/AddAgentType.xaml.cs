@@ -1,5 +1,6 @@
 ﻿using BussinessLayer;
 using System.Windows;
+using System.Windows.Media;
 
 namespace ValorantGUI
 {
@@ -8,8 +9,8 @@ namespace ValorantGUI
     /// </summary>
     public partial class AddAgentType : Window
     {
-        AddAgent _addAgent;
-        AgentClassesPage _agentClasses;
+        private AddAgent _addAgent;
+        private AgentClassesPage _agentClasses;
 
         public AddAgentType(AddAgent addAgent)
         {
@@ -25,17 +26,26 @@ namespace ValorantGUI
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            new AgentTypeManager().AddNewEntry(new AgentTypeArgs(NameTextBox.Text.Trim()));
+            if (NameTextBox.Text.Trim() != "")
+            {
+                new AgentTypeManager().AddNewEntry(new AgentTypeArgs(NameTextBox.Text.Trim()));
 
-            if (_addAgent != null)
-            {
-                _addAgent.PopulateTypes();
+                if (_addAgent != null)
+                {
+                    _addAgent.PopulateTypes();
+                }
+                else if (_agentClasses != null)
+                {
+                    _agentClasses.PopulateTypes();
+                }
+                this.Close();
             }
-            else if (_agentClasses != null)
+            else
             {
-                _agentClasses.PopulateTypes();
+                NameLabel.Foreground = Brushes.Red;
+
+                MessageBox.Show("Please fill in the required fields");
             }
-            this.Close();
         }
     }
 }

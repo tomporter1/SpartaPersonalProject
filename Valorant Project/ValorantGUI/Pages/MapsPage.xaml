@@ -17,7 +17,7 @@
             <ColumnDefinition Width="13*"/>
             <ColumnDefinition Width="37*"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="label" Content="Maps:"  Margin="5,5,5,5" Grid.Column="0" Grid.Row="0" VerticalContentAlignment="Bottom" Foreground="#FFECE8E1"/>
+        <Label x:Name="label" Content="Maps"  Margin="5,5,5,5" Grid.Column="0" Grid.Row="0" VerticalContentAlignment="Bottom" Foreground="#FFECE8E1" FontSize="20" FontWeight="Bold"/>
         <ListBox x:Name="MapsListBox" Margin="5,5,5,5" SelectionChanged="OnSelectionChanged" Grid.Column="0" Grid.Row="1" Background="#FF2F3F4F" Foreground="#FFECE8E1" BorderBrush="#FF121213"/>
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -39,7 +39,7 @@
                     <RowDefinition Height="94*"/>
                     <RowDefinition Height="94*"/>
                 </Grid.RowDefinitions>
-                <Label x:Name="label1" Content="Map Name:" Margin="5,5,5,5" Grid.Column="0" Grid.Row="0" Foreground="#FFECE8E1"/>
+                <Label x:Name="label1" Content="Map Name" Margin="5,5,5,5" Grid.Column="0" Grid.Row="0" Foreground="#FFECE8E1"/>
                 <TextBox x:Name="NameTextBox" Margin="10,10,10,10" Text="" TextWrapping="Wrap" Grid.Column="0" Grid.Row="1" Background="#FF2F3F4F" Foreground="#FFECE8E1" BorderBrush="#FF121213"/>
                 <Button x:Name="RemoveButton" Margin="10,10,10,10" Click="RemoveButton_Click" Grid.Column="0" Grid.Row="2" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold">
                     <TextBlock x:Name="textBlock" Text="Remove Selected Map" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Width="155" TextAlignment="Center"/>

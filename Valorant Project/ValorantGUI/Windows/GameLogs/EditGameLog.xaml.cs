@@ -3,6 +3,7 @@ using System;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace ValorantGUI
 {
@@ -54,7 +55,9 @@ namespace ValorantGUI
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            GameLogArgs args = new GameLogArgs(
+            if (TeamScoreTextBox.Text.Trim() != "" && OpponentScoreTextBox.Text.Trim() != "" && MapComboBox.SelectedIndex >= 0 && AgentComboBox.SelectedIndex >= 0)
+            {
+                GameLogArgs args = new GameLogArgs(
                 MapComboBox.SelectedItem,
                 AgentComboBox.SelectedItem,
                 int.Parse(TeamScoreTextBox.Text.Trim()),
@@ -67,6 +70,20 @@ namespace ValorantGUI
             _gameLogPage.GameManager.UpdateEntry(_selectedGame, args);
             _gameLogPage.PopulateGames();
             this.Close();
+            }
+            else
+            {
+                if (TeamScoreTextBox.Text.Trim() == "")
+                    teamScoreLabel.Foreground = Brushes.Red;
+                if (OpponentScoreTextBox.Text.Trim() == "")
+                    opponentScoreLabel.Foreground = Brushes.Red;
+                if (MapComboBox.SelectedIndex < 0)
+                    MapLabel.Foreground = Brushes.Red;
+                if (AgentComboBox.SelectedIndex < 0)
+                    AgentLabel.Foreground = Brushes.Red;
+
+                MessageBox.Show("Please fill in the required fields");
+            }
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
