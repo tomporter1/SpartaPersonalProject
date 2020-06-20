@@ -76,10 +76,10 @@ namespace BussinessLayer
 
             return new List<string>
             {
-                db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.SignatureAbilityName).FirstOrDefault(),
-                db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.UltamateAbilityName).FirstOrDefault(),
-                db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AbilityOneName).FirstOrDefault(),
-                db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AbilityTwoName).FirstOrDefault()
+               db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.SignatureAbilityName).FirstOrDefault(),
+               db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.UltamateAbilityName).FirstOrDefault(),
+               db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AbilityOneName).FirstOrDefault(),
+               db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AbilityTwoName).FirstOrDefault()
             };
         }
 
@@ -138,7 +138,7 @@ namespace BussinessLayer
                 case Fields.Name:
                     return agentQuery.Select(a => a.AgentName).FirstOrDefault();
                 case Fields.Type:
-                    return agentQuery.Include(a=>a.AgentType).Select(a => a.AgentType).FirstOrDefault().ToString();
+                    return agentQuery.Include(a => a.AgentType).Select(a => a.AgentType).FirstOrDefault().ToString();
                 case Fields.SignatureAbilityName:
                     return agentQuery.Select(a => a.SignatureAbilityName).FirstOrDefault();
                 case Fields.SignatureAbilityDiscription:
