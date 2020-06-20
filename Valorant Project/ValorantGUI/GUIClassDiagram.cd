@@ -109,31 +109,31 @@
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
     <NestedTypes>
-      <Class Name="BussinessLayer.AgentManager.Fields" Collapsed="true">
+      <Class Name="BussinessLayer.AgentManager.Fields">
         <TypeIdentifier />
       </Class>
     </NestedTypes>
     <TypeIdentifier />
   </Class>
   <Class Name="BussinessLayer.MapManager">
-    <Position X="4" Y="13.75" Width="3.75" />
+    <Position X="3.75" Y="16.25" Width="3.75" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
     <NestedTypes>
-      <Class Name="BussinessLayer.MapManager.Fields" Collapsed="true">
+      <Class Name="BussinessLayer.MapManager.Fields">
         <TypeIdentifier />
       </Class>
     </NestedTypes>
     <TypeIdentifier />
   </Class>
   <Class Name="BussinessLayer.AgentTypeManager">
-    <Position X="15.25" Y="13.75" Width="4.75" />
+    <Position X="15.25" Y="16.5" Width="4.75" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
     <NestedTypes>
-      <Class Name="BussinessLayer.AgentTypeManager.Fields" Collapsed="true">
+      <Class Name="BussinessLayer.AgentTypeManager.Fields">
         <TypeIdentifier />
       </Class>
     </NestedTypes>
@@ -174,39 +174,39 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="BussinessLayer.GameLogManager">
-    <Position X="21.25" Y="13.75" Width="4.25" />
+    <Position X="21.25" Y="13" Width="4.25" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
     <NestedTypes>
-      <Class Name="BussinessLayer.GameLogManager.Fields" Collapsed="true">
+      <Class Name="BussinessLayer.GameLogManager.Fields">
         <TypeIdentifier />
       </Class>
     </NestedTypes>
     <TypeIdentifier />
   </Class>
   <Class Name="BussinessLayer.SuperManager">
-    <Position X="12.5" Y="19.75" Width="3.75" />
+    <Position X="12.5" Y="22.75" Width="3.75" />
     <TypeIdentifier />
   </Class>
   <Class Name="BussinessLayer.SuperArgs">
-    <Position X="29.75" Y="13.5" Width="3" />
+    <Position X="30.25" Y="0.75" Width="3" />
     <TypeIdentifier />
   </Class>
   <Class Name="BussinessLayer.MapArgs">
-    <Position X="26.75" Y="15.5" Width="1.75" />
+    <Position X="27.25" Y="2.75" Width="1.75" />
     <TypeIdentifier />
   </Class>
   <Class Name="BussinessLayer.AgentTypeArgs">
-    <Position X="29.5" Y="15.5" Width="2" />
+    <Position X="30" Y="2.75" Width="2" />
     <TypeIdentifier />
   </Class>
   <Class Name="BussinessLayer.AgentManagerArgs">
-    <Position X="32" Y="15.5" Width="2.25" />
+    <Position X="32.75" Y="2.75" Width="2.25" />
     <TypeIdentifier />
   </Class>
   <Class Name="BussinessLayer.GameLogArgs">
-    <Position X="34.5" Y="15.5" Width="3" />
+    <Position X="35.75" Y="2.75" Width="3" />
     <TypeIdentifier />
   </Class>
   <Font Name="Segoe UI" Size="9" />

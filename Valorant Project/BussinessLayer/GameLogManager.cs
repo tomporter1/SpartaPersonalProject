@@ -86,6 +86,59 @@ namespace BussinessLayer
             }
         }
 
+        public string GetGameDataStr(object selectedGame, Fields field)
+        {
+            using ValorantContext db = new ValorantContext();
+            GameLogs game = (GameLogs)selectedGame;
+
+            IQueryable<GameLogs> logQuery = db.GameLogs.Where(gl => gl.GameId == game.GameId);
+
+            switch (field)
+            {
+                case Fields.GameID:
+                    return logQuery.Select(gl => gl.GameId).FirstOrDefault().ToString();
+                case Fields.AgentID:
+                    return logQuery.Select(gl => gl.AgentId).FirstOrDefault().ToString();
+                case Fields.Agent:
+                    return logQuery.Include(gl => gl.Agent).Select(gl => gl.Agent).FirstOrDefault().ToString();
+                case Fields.MapId:
+                    return logQuery.Select(gl => gl.MapId).FirstOrDefault().ToString();
+                case Fields.Map:
+                    return logQuery.Include(gl => gl.Map).Select(gl => gl.Map).FirstOrDefault().ToString();
+                case Fields.TeamScore:
+                    return logQuery.Select(gl => gl.TeamScore).FirstOrDefault().ToString();
+                case Fields.OpponentScore:
+                    return logQuery.Select(gl => gl.OpponentScore).FirstOrDefault().ToString();
+                case Fields.Kills:
+                    return logQuery.Select(gl => gl.Kills).FirstOrDefault().ToString();
+                case Fields.Deaths:
+                    return logQuery.Select(gl => gl.Deaths).FirstOrDefault().ToString();
+                case Fields.Assists:
+                    return logQuery.Select(gl => gl.Assits).FirstOrDefault().ToString();
+                case Fields.ADR:
+                    return logQuery.Select(gl => gl.Adr).FirstOrDefault().ToString();
+                case Fields.DateLogged:
+                    return logQuery.Select(gl => gl.DateLogged).FirstOrDefault().ToString();
+                default:
+                    return "";
+            }
+        }
+
+        public object GetGameMapObj(object selectedGame)
+        {
+            using ValorantContext db = new ValorantContext();
+            GameLogs game = (GameLogs)selectedGame;
+            return db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Map).Select(gl => gl.Map).FirstOrDefault();
+        }
+
+        public object GetGameAgentObj(object selectedGame)
+        {
+            using ValorantContext db = new ValorantContext();
+            GameLogs game = (GameLogs)selectedGame;
+            return db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Agent).Select(gl => gl.Agent).FirstOrDefault();
+        }
+
+        #region GameStatMethods
         public object GetMostPlayedAgent()
         {
             using ValorantContext db = new ValorantContext();
@@ -104,7 +157,7 @@ namespace BussinessLayer
             return db.Agents.Where(m => m.AgentId == favAgentID).FirstOrDefault();
         }
 
-        public object GetBestMap()
+        public object GetMapWithMostWins()
         {
             using ValorantContext db = new ValorantContext();
             int bestMapID = db.GameLogs
@@ -166,56 +219,6 @@ namespace BussinessLayer
                 return totalWins;
             return totalWins / totalLosses;
         }
-
-        public string GetGameData(object selectedGame, Fields field)
-        {
-            using ValorantContext db = new ValorantContext();
-            GameLogs game = (GameLogs)selectedGame;
-            switch (field)
-            {
-                case Fields.GameID:
-                    return db.GameLogs.Where(gl => gl.GameId == game.GameId).Select(gl => gl.GameId).FirstOrDefault().ToString();
-                case Fields.AgentID:
-                    return db.GameLogs.Where(gl => gl.GameId == game.GameId).Select(gl => gl.AgentId).FirstOrDefault().ToString();
-                case Fields.Agent:
-                    return db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Agent).Select(gl => gl.Agent).FirstOrDefault().ToString();
-                case Fields.MapId:
-                    return db.GameLogs.Where(gl => gl.GameId == game.GameId).Select(gl => gl.MapId).FirstOrDefault().ToString();
-                case Fields.Map:
-                    return db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Map).Select(gl => gl.Map).FirstOrDefault().ToString();
-                case Fields.TeamScore:
-                    return db.GameLogs.Where(gl => gl.GameId == game.GameId).Select(gl => gl.TeamScore).FirstOrDefault().ToString();
-                case Fields.OpponentScore:
-                    return db.GameLogs.Where(gl => gl.GameId == game.GameId).Select(gl => gl.OpponentScore).FirstOrDefault().ToString();
-                case Fields.Kills:
-                    return db.GameLogs.Where(gl => gl.GameId == game.GameId).Select(gl => gl.Kills).FirstOrDefault().ToString();
-                case Fields.Deaths:
-                    return db.GameLogs.Where(gl => gl.GameId == game.GameId).Select(gl => gl.Deaths).FirstOrDefault().ToString();
-                case Fields.Assists:
-                    return db.GameLogs.Where(gl => gl.GameId == game.GameId).Select(gl => gl.Assits).FirstOrDefault().ToString();
-                case Fields.ADR:
-                    return db.GameLogs.Where(gl => gl.GameId == game.GameId).Select(gl => gl.Adr).FirstOrDefault().ToString();
-                case Fields.DateLogged:
-                    return db.GameLogs.Where(gl => gl.GameId == game.GameId).Select(gl => gl.DateLogged).FirstOrDefault().ToString();
-                default:
-                    return "";
-            }
-        }
-
-        public object GetGameMap(object selectedGame)
-        {
-            using ValorantContext db = new ValorantContext();
-            GameLogs game = (GameLogs)selectedGame;
-            return db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Map).Select(gl => gl.Map).FirstOrDefault();
-        }
-
-        public object GetGameAgent(object selectedGame)
-        {
-            using ValorantContext db = new ValorantContext();
-            GameLogs game = (GameLogs)selectedGame;
-            return db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Agent).Select(gl => gl.Agent).FirstOrDefault();
-        }        
-
-        
+        #endregion       
     }
 }

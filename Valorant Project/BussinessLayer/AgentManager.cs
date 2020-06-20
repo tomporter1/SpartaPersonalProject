@@ -41,7 +41,7 @@ namespace BussinessLayer
         public override void AddNewEntry(SuperArgs args)
         {
             using ValorantContext db = new ValorantContext();
-            AgentManagerArgs agentArgs = (AgentManagerArgs)args;
+            AgentArgs agentArgs = (AgentArgs)args;
             AgentType type = db.AgentType.Where(t => t.TypeId == agentArgs.TypeID).FirstOrDefault();
             Agents newAgent = new Agents()
             {
@@ -90,20 +90,20 @@ namespace BussinessLayer
             using ValorantContext db = new ValorantContext();
 
             if (agent.SignatureAbilityName == abilityName)
-                return GetAgentData(selectedAgent, Fields.SignatureAbilityDiscription);
+                return GetAgentDataStr(selectedAgent, Fields.SignatureAbilityDiscription);
             if (agent.UltamateAbilityName == abilityName)
-                return GetAgentData(selectedAgent, Fields.UltamateAbilityDiscription);
+                return GetAgentDataStr(selectedAgent, Fields.UltamateAbilityDiscription);
             if (agent.AbilityOneName == abilityName)
-                return GetAgentData(selectedAgent, Fields.AbilityOneDiscription);
+                return GetAgentDataStr(selectedAgent, Fields.AbilityOneDiscription);
             if (agent.AbilityTwoName == abilityName)
-                return GetAgentData(selectedAgent, Fields.AbilityTwoDiscription);
+                return GetAgentDataStr(selectedAgent, Fields.AbilityTwoDiscription);
             return "";
         }
 
         public override void UpdateEntry(object selectedAgent, SuperArgs args)
         {
             using ValorantContext db = new ValorantContext();
-            AgentManagerArgs agentArgs = (AgentManagerArgs)args;
+            AgentArgs agentArgs = (AgentArgs)args;
             Agents agentToUpdate = db.Agents
                 .Where(a => a.AgentId == ((Agents)selectedAgent).AgentId)
                 .FirstOrDefault();
@@ -126,38 +126,39 @@ namespace BussinessLayer
             }
         }
 
-        public string GetAgentData(object selectedAgent, Fields field)
+        public string GetAgentDataStr(object selectedAgent, Fields field)
         {
             using ValorantContext db = new ValorantContext();
             Agents agent = (Agents)selectedAgent;
+            IQueryable<Agents> agentQuery = db.Agents.Where(a => a.AgentId == agent.AgentId);
             switch (field)
             {
                 case Fields.ID:
-                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AgentId).ToString();
+                    return agentQuery.Select(a => a.AgentId).ToString();
                 case Fields.Name:
-                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AgentName).FirstOrDefault();
+                    return agentQuery.Select(a => a.AgentName).FirstOrDefault();
                 case Fields.Type:
-                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Include(a=>a.AgentType).Select(a => a.AgentType).FirstOrDefault().ToString();
+                    return agentQuery.Include(a=>a.AgentType).Select(a => a.AgentType).FirstOrDefault().ToString();
                 case Fields.SignatureAbilityName:
-                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.SignatureAbilityName).FirstOrDefault();
+                    return agentQuery.Select(a => a.SignatureAbilityName).FirstOrDefault();
                 case Fields.SignatureAbilityDiscription:
-                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.SignatureAbilityDiscription).FirstOrDefault();
+                    return agentQuery.Select(a => a.SignatureAbilityDiscription).FirstOrDefault();
                 case Fields.UltamateAbilityName:
-                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.UltamateAbilityName).FirstOrDefault();
+                    return agentQuery.Select(a => a.UltamateAbilityName).FirstOrDefault();
                 case Fields.UltamateAbilityDiscription:
-                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.UltamateAbilityDiscription).FirstOrDefault();
+                    return agentQuery.Select(a => a.UltamateAbilityDiscription).FirstOrDefault();
                 case Fields.AbilityOneName:
-                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AbilityOneName).FirstOrDefault();
+                    return agentQuery.Select(a => a.AbilityOneName).FirstOrDefault();
                 case Fields.AbilityOneDiscription:
-                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AbilityOneDiscription).FirstOrDefault();
+                    return agentQuery.Select(a => a.AbilityOneDiscription).FirstOrDefault();
                 case Fields.AbilityTwoName:
-                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AbilityTwoName).FirstOrDefault();
+                    return agentQuery.Select(a => a.AbilityTwoName).FirstOrDefault();
                 case Fields.AbilityTwoDiscription:
-                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.AbilityTwoDiscription).FirstOrDefault();
+                    return agentQuery.Select(a => a.AbilityTwoDiscription).FirstOrDefault();
                 case Fields.Bio:
-                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.Bio).FirstOrDefault();
+                    return agentQuery.Select(a => a.Bio).FirstOrDefault();
                 case Fields.ImagePath:
-                    return db.Agents.Where(a => a.AgentId == agent.AgentId).Select(a => a.ImagePath).FirstOrDefault();
+                    return agentQuery.Select(a => a.ImagePath).FirstOrDefault();
                 default:
                     return "";
             }

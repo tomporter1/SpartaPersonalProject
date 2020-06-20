@@ -142,7 +142,7 @@ namespace ValorantAppTests
             }
 
             //Test
-            string result = manager.GetMapsData(addedMap, field);
+            string result = manager.GetMapsDataStr(addedMap, field);
 
             //Assertion
             Assert.AreEqual(result, expectedResult);

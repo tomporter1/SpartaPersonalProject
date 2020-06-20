@@ -14,7 +14,7 @@ namespace ValorantAppTests
         [Test]
         public void CreateArgsClass()
         {
-            AgentManagerArgs agentArgs = new AgentManagerArgs(
+            AgentArgs agentArgs = new AgentArgs(
                 "Reyna",
                 1,
                 "Leer",

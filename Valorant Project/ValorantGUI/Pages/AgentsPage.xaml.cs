@@ -67,10 +67,10 @@ namespace ValorantGUI
                 AbilitiesListBox.ItemsSource = AgentManager.GetAgentsAbilities(AgentNameListBox.SelectedItem);
 
                 ClearTextBoxes();
-                BioTextBox.Text = AgentManager.GetAgentData(AgentNameListBox.SelectedItem, AgentManager.Fields.Bio);
-                AgentClassLabel.Content = $"Agent Class: {AgentManager.GetAgentData(AgentNameListBox.SelectedItem, AgentManager.Fields.Type)}";
+                BioTextBox.Text = AgentManager.GetAgentDataStr(AgentNameListBox.SelectedItem, AgentManager.Fields.Bio);
+                AgentClassLabel.Content = $"Agent Class: {AgentManager.GetAgentDataStr(AgentNameListBox.SelectedItem, AgentManager.Fields.Type)}";
 
-                AgentImage.Source = new BitmapImage(new Uri(AgentManager.GetAgentData(AgentNameListBox.SelectedItem, AgentManager.Fields.ImagePath), UriKind.Relative));
+                AgentImage.Source = new BitmapImage(new Uri(AgentManager.GetAgentDataStr(AgentNameListBox.SelectedItem, AgentManager.Fields.ImagePath), UriKind.Relative));
             }
         }
 

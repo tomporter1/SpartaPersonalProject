@@ -10,6 +10,6 @@ namespace BussinessLayer
 
         public abstract void AddNewEntry(SuperArgs args);
 
-        public abstract void UpdateEntry(object selectedEntry, SuperArgs args);
+        public abstract void UpdateEntry(object selectedEntry, SuperArgs args);       
     }
 }

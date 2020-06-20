@@ -11,13 +11,12 @@ namespace BussinessLayer
             Name,
             ImagePath,
             LayoutImagePath
-
         }
 
         public override List<object> GetAllEntries()
         {
             using ValorantContext db = new ValorantContext();
-            return db.Maps.ToList<object>();
+            return db.Maps.OrderBy(m=>m.MapName).ToList<object>();
         }
 
         public override void RemoveEntry(object selectedMap)
@@ -53,18 +52,21 @@ namespace BussinessLayer
             }
         }
 
-        public string GetMapsData(object selectedMap, Fields field)
+        public string GetMapsDataStr(object selectedMap, Fields field)
         {
             using ValorantContext db = new ValorantContext();
             Maps map = (Maps)selectedMap;
+
+            IQueryable<Maps> mapQuery = db.Maps.Where(m => m.MapId == map.MapId);
+
             switch (field)
             {
                 case Fields.Name:
                     return map.MapName;
                 case Fields.ImagePath:
-                    return db.Maps.Where(m => m.MapId == map.MapId).Select(a => a.ImagePath).FirstOrDefault();
+                    return mapQuery.Select(a => a.ImagePath).FirstOrDefault();
                 case Fields.LayoutImagePath:
-                    return db.Maps.Where(m => m.MapId == map.MapId).Select(a => a.LayoutImagePath).FirstOrDefault();
+                    return mapQuery.Select(a => a.LayoutImagePath).FirstOrDefault();
                 default:
                     return "";
             }

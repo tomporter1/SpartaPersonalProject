@@ -33,7 +33,7 @@ namespace ValorantGUI
             }
             else
             {
-                AgentManagerArgs args = new AgentManagerArgs
+                AgentArgs args = new AgentArgs
                     (
                         NameTextBox.Text.Trim(),
                         AgentTypesComboBox.SelectedItem,

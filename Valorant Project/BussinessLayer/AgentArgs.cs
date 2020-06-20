@@ -3,7 +3,7 @@ using ValorantDatabase;
 
 namespace BussinessLayer
 {
-    public class AgentManagerArgs : SuperArgs
+    public class AgentArgs : SuperArgs
     {
         public string Name { get; private set; }
         public int TypeID { get; private set; }
@@ -17,7 +17,7 @@ namespace BussinessLayer
         public string AbilityTwoDiscription { get; private set; }
         public string Bio { get; private set; }
 
-        public AgentManagerArgs(string name, int typeID, string signatureAbilityName, string signatureAbilityDiscription, string ultamateAbilityName, string ultamateAbilityDiscription, string abilityOneName, string abilityOneDiscription, string abilityTwoName, string abilityTwoDiscription, string bio)
+        public AgentArgs(string name, int typeID, string signatureAbilityName, string signatureAbilityDiscription, string ultamateAbilityName, string ultamateAbilityDiscription, string abilityOneName, string abilityOneDiscription, string abilityTwoName, string abilityTwoDiscription, string bio)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
             TypeID = typeID;
@@ -32,7 +32,7 @@ namespace BussinessLayer
             Bio = bio;
         }
 
-        public AgentManagerArgs(string name, object typeObj, string signatureAbilityName, string signatureAbilityDiscription, string ultamateAbilityName, string ultamateAbilityDiscription, string abilityOneName, string abilityOneDiscription, string abilityTwoName, string abilityTwoDiscription, string bio)
+        public AgentArgs(string name, object typeObj, string signatureAbilityName, string signatureAbilityDiscription, string ultamateAbilityName, string ultamateAbilityDiscription, string abilityOneName, string abilityOneDiscription, string abilityTwoName, string abilityTwoDiscription, string bio)
         {
             AgentType type = (AgentType)typeObj;
 

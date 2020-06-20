@@ -15,7 +15,7 @@ namespace BussinessLayer
         public override List<object> GetAllEntries()
         {
             using ValorantContext db = new ValorantContext();
-            return db.AgentType.ToList<object>();
+            return db.AgentType.OrderBy(a=>a.TypeName).ToList<object>();
         }
 
         public override void RemoveEntry(object selectedType)
@@ -51,16 +51,19 @@ namespace BussinessLayer
             }
         }
 
-        public string GetTypeData(object selectedType, Fields field)
+        public string GetTypeDataStr(object selectedType, Fields field)
         {
             using ValorantContext db = new ValorantContext();
             AgentType type = (AgentType)selectedType;
+
+            IQueryable<AgentType> typeQuery = db.AgentType.Where(t => t.TypeId == type.TypeId);
+
             switch (field)
             {
                 case Fields.Name:
-                    return db.AgentType.Where(t => t.TypeId == type.TypeId).Select(t => t.TypeName).FirstOrDefault();
+                    return typeQuery.Select(t => t.TypeName).FirstOrDefault();
                 case Fields.ImagePath:
-                    return db.AgentType.Where(t => t.TypeId == type.TypeId).Select(t => t.ImagePath).FirstOrDefault();
+                    return typeQuery.Select(t => t.ImagePath).FirstOrDefault();
                 default:
                     return "";
             }

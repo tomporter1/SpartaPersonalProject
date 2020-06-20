@@ -37,7 +37,7 @@ namespace ValorantAppTests
                 db.Maps.Add(new Maps() { MapName = "New Map" });
                 db.SaveChanges();
 
-                AgentManagerArgs agentArgs = new AgentManagerArgs("Name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
+                AgentArgs agentArgs = new AgentArgs("Name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
 
                 new AgentManager().AddNewEntry(agentArgs);
                 beforeCount = db.GameLogs.ToList().Count;
@@ -94,7 +94,7 @@ namespace ValorantAppTests
                 db.Maps.Add(new Maps() { MapName = "New Map" });
                 db.SaveChanges();
 
-                AgentManagerArgs agentArgs = new AgentManagerArgs("Name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
+                AgentArgs agentArgs = new AgentArgs("Name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
 
                 new AgentManager().AddNewEntry(agentArgs);
 
@@ -151,7 +151,7 @@ namespace ValorantAppTests
                 db.Maps.Add(new Maps() { MapName = "New Map" });
                 db.SaveChanges();
 
-                AgentManagerArgs agentArgs = new AgentManagerArgs("Name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
+                AgentArgs agentArgs = new AgentArgs("Name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
 
                 new AgentManager().AddNewEntry(agentArgs);
 

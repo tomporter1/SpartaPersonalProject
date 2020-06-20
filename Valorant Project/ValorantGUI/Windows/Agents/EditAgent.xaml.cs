@@ -35,7 +35,7 @@ namespace ValorantGUI
 
             for (int i = 0; i < textBoxes.Count; i++)
             {
-                textBoxes[i].Text = _agentsPage.AgentManager.GetAgentData(_selectedAgent, (AgentManager.Fields)i);
+                textBoxes[i].Text = _agentsPage.AgentManager.GetAgentDataStr(_selectedAgent, (AgentManager.Fields)i);
             }
 
             AgentTypeManager typeManager = new AgentTypeManager();
@@ -53,7 +53,7 @@ namespace ValorantGUI
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            AgentManagerArgs args = new AgentManagerArgs(
+            AgentArgs args = new AgentArgs(
                 NameTextBox.Text.Trim(),
                 AgentTypesComboBox.SelectedItem,
                 SigTextBox.Text.Trim(),

@@ -31,7 +31,7 @@ namespace ValorantGUI
             TotalWinLossStatLabel.Content = Math.Round(GameManager.GetTotalWinLoss(), 3).ToString();
             TotalKillsLossStatLabel.Content = GameManager.GetTotals(GameLogManager.Fields.Kills).ToString();
             TotalDeathsLossStatLabel.Content = GameManager.GetTotals(GameLogManager.Fields.Deaths).ToString();
-            BestMapStatLabel.Content = GameManager.GetBestMap().ToString();
+            BestMapStatLabel.Content = GameManager.GetMapWithMostWins().ToString();
             FavAgentStatLabel.Content = GameManager.GetMostPlayedAgent().ToString();
         }
 
@@ -59,24 +59,24 @@ namespace ValorantGUI
         {
             if (GamesListBox.SelectedIndex >= 0)
             {
-                int teamScore = int.Parse(GameManager.GetGameData(GamesListBox.SelectedItem, GameLogManager.Fields.TeamScore));
-                int opponentScore = int.Parse(GameManager.GetGameData(GamesListBox.SelectedItem, GameLogManager.Fields.OpponentScore));
-                int kills = int.Parse(GameManager.GetGameData(GamesListBox.SelectedItem, GameLogManager.Fields.Kills));
-                int deaths = int.Parse(GameManager.GetGameData(GamesListBox.SelectedItem, GameLogManager.Fields.Deaths));
+                int teamScore = int.Parse(GameManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.TeamScore));
+                int opponentScore = int.Parse(GameManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.OpponentScore));
+                int kills = int.Parse(GameManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Kills));
+                int deaths = int.Parse(GameManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Deaths));
 
                 ResultLabel.Content = $"Result: {(teamScore > opponentScore ? "Win" : "Loss")}";
                 ScoreLabel.Content = $"Score: {teamScore}:{opponentScore}";
                 KillsLabel.Content = $"Kills: {kills}";
                 DeathsLabel.Content = $"Deaths: {deaths}";
-                AssistsLabel.Content = $"Assists: {GameManager.GetGameData(GamesListBox.SelectedItem, GameLogManager.Fields.Assists)}";
-                AdrLabel.Content = $"ADR: {GameManager.GetGameData(GamesListBox.SelectedItem, GameLogManager.Fields.ADR)}";
+                AssistsLabel.Content = $"Assists: {GameManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Assists)}";
+                AdrLabel.Content = $"ADR: {GameManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.ADR)}";
                 KDLabel.Content = $"K/D: {Math.Round((float)kills / (float)deaths, 3)}";
 
-                MapLabel.Content = $"Map: {GameManager.GetGameData(GamesListBox.SelectedItem, GameLogManager.Fields.Map)}";
-                AgentLabel.Content = $"Agent: {GameManager.GetGameData(GamesListBox.SelectedItem, GameLogManager.Fields.Agent)}";
+                MapLabel.Content = $"Map: {GameManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Map)}";
+                AgentLabel.Content = $"Agent: {GameManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Agent)}";
 
-                MapImage.Source = new BitmapImage(new Uri(new MapManager().GetMapsData(GameManager.GetGameMap(GamesListBox.SelectedItem), MapManager.Fields.ImagePath), UriKind.Relative));
-                AgentImage.Source = new BitmapImage(new Uri(new AgentManager().GetAgentData(GameManager.GetGameAgent(GamesListBox.SelectedItem), AgentManager.Fields.ImagePath), UriKind.Relative));
+                MapImage.Source = new BitmapImage(new Uri(new MapManager().GetMapsDataStr(GameManager.GetGameMapObj(GamesListBox.SelectedItem), MapManager.Fields.ImagePath), UriKind.Relative));
+                AgentImage.Source = new BitmapImage(new Uri(new AgentManager().GetAgentDataStr(GameManager.GetGameAgentObj(GamesListBox.SelectedItem), AgentManager.Fields.ImagePath), UriKind.Relative));
             }
         }
 

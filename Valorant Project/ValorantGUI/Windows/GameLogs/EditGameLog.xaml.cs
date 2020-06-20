@@ -21,18 +21,18 @@ namespace ValorantGUI
             _gameLogPage = gameLogPage;
             _selectedGame = selectedGame;
 
-            TeamScoreTextBox.Text = _gameLogPage.GameManager.GetGameData(selectedGame, GameLogManager.Fields.TeamScore);
-            OpponentScoreTextBox.Text = _gameLogPage.GameManager.GetGameData(selectedGame, GameLogManager.Fields.OpponentScore);
-            KillsTextBox.Text = _gameLogPage.GameManager.GetGameData(selectedGame, GameLogManager.Fields.Kills);
-            AssistsTextBox.Text = _gameLogPage.GameManager.GetGameData(selectedGame, GameLogManager.Fields.Assists);
-            DeathsTextBox.Text = _gameLogPage.GameManager.GetGameData(selectedGame, GameLogManager.Fields.Deaths);
-            ADRTextBox.Text = _gameLogPage.GameManager.GetGameData(selectedGame, GameLogManager.Fields.ADR);
+            TeamScoreTextBox.Text = _gameLogPage.GameManager.GetGameDataStr(selectedGame, GameLogManager.Fields.TeamScore);
+            OpponentScoreTextBox.Text = _gameLogPage.GameManager.GetGameDataStr(selectedGame, GameLogManager.Fields.OpponentScore);
+            KillsTextBox.Text = _gameLogPage.GameManager.GetGameDataStr(selectedGame, GameLogManager.Fields.Kills);
+            AssistsTextBox.Text = _gameLogPage.GameManager.GetGameDataStr(selectedGame, GameLogManager.Fields.Assists);
+            DeathsTextBox.Text = _gameLogPage.GameManager.GetGameDataStr(selectedGame, GameLogManager.Fields.Deaths);
+            ADRTextBox.Text = _gameLogPage.GameManager.GetGameDataStr(selectedGame, GameLogManager.Fields.ADR);
 
             _oldTime = _gameLogPage.GameManager.GetDatePlayed(selectedGame);
             DatePlayedPicker.SelectedDate = _oldTime;
 
             MapComboBox.ItemsSource = new MapManager().GetAllEntries();
-            object gameMap = _gameLogPage.GameManager.GetGameMap(selectedGame);
+            object gameMap = _gameLogPage.GameManager.GetGameMapObj(selectedGame);
             foreach (var item in MapComboBox.ItemsSource)
             {
                 if (item.Equals(gameMap))
@@ -42,7 +42,7 @@ namespace ValorantGUI
             }
 
             AgentComboBox.ItemsSource = new AgentManager().GetAllEntries();
-            object gameAgent = _gameLogPage.GameManager.GetGameAgent(selectedGame);
+            object gameAgent = _gameLogPage.GameManager.GetGameAgentObj(selectedGame);
             foreach (object item in AgentComboBox.ItemsSource)
             {
                 if (item.Equals(gameAgent))
