@@ -48,7 +48,11 @@ namespace ValorantGUI
             {
                 NameTextBox.IsEnabled = true;
                 NameTextBox.Text = MapManager.GetMapsDataStr(MapsListBox.SelectedItem, MapManager.Fields.Name);
-                MapImage.Source = new BitmapImage(new Uri(MapManager.GetMapsDataStr(MapsListBox.SelectedItem, MapManager.Fields.LayoutImagePath), UriKind.Relative));
+                string path = MapManager.GetMapsDataStr(MapsListBox.SelectedItem, MapManager.Fields.LayoutImagePath);
+                if (path != null && path != "")
+                    MapImage.Source = new BitmapImage(new Uri(path, UriKind.Relative));
+                else
+                    MapImage.Source = null;
             }
         }
 

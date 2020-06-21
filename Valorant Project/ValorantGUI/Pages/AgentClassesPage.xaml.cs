@@ -66,7 +66,10 @@ namespace ValorantGUI
                 NameTextBox.IsEnabled = true;
 
                 string path = AgentTypeManager.GetTypeDataStr(TypesListBox.SelectedItem, AgentTypeManager.Fields.ImagePath);
-                TypeImage.Source = new BitmapImage(new Uri(path, UriKind.Relative));
+                if (path != null && path != "")
+                    TypeImage.Source = new BitmapImage(new Uri(path, UriKind.Relative));
+                else
+                    TypeImage.Source = null;
             }
         }
 
