@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
   <Class Name="ValorantGUI.AddAgent" BaseTypeListCollapsed="true">
-    <Position X="12.5" Y="8.25" Width="3.5" />
+    <Position X="7.75" Y="15.75" Width="3.5" />
     <TypeIdentifier>
       <HashCode>BAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>Windows\Agents\AddAgent.xaml.cs</FileName>
@@ -12,7 +12,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ValorantGUI.AddAgentType" BaseTypeListCollapsed="true">
-    <Position X="13.25" Y="11.25" Width="2.75" />
+    <Position X="6.5" Y="18.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>BAAAAAAAAAAAAAAAAEAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Windows\AgentsTypes\AddAgentType.xaml.cs</FileName>
@@ -24,7 +24,13 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ValorantGUI.AddMap" BaseTypeListCollapsed="true">
-    <Position X="4" Y="8.25" Width="2.75" />
+    <Position X="0.75" Y="15" Width="2.75" />
+    <AssociationLine Name="_mapPage" Type="ValorantGUI.MapsPage" FixedToPoint="true">
+      <Path>
+        <Point X="3.125" Y="15" />
+        <Point X="3.125" Y="13.387" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>BAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Windows\Maps\AddMap.xaml.cs</FileName>
@@ -35,7 +41,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ValorantGUI.EditAgent" BaseTypeListCollapsed="true">
-    <Position X="7.75" Y="8.25" Width="3.75" />
+    <Position X="12.25" Y="15.75" Width="3.75" />
     <TypeIdentifier>
       <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>Windows\Agents\EditAgent.xaml.cs</FileName>
@@ -43,10 +49,19 @@
     <ShowAsAssociation>
       <Field Name="_agentsPage" />
     </ShowAsAssociation>
-    <Lollipop Position="0.2" />
+    <Lollipop Position="1.332" />
   </Class>
   <Class Name="ValorantGUI.MainWindow" BaseTypeListCollapsed="true">
-    <Position X="11" Y="0.5" Width="3.75" />
+    <Position X="7.25" Y="20.75" Width="3.75" />
+    <AssociationLine Name="_mainPage" Type="ValorantGUI.MainPage" FixedFromPoint="true">
+      <Path>
+        <Point X="8.938" Y="22.175" />
+        <Point X="8.938" Y="24" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.06" Y="0.499" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAgAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Windows\MainWindow.xaml.cs</FileName>
@@ -57,7 +72,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ValorantGUI.AgentClassesPage" BaseTypeListCollapsed="true">
-    <Position X="13.75" Y="4" Width="3.75" />
+    <Position X="5.25" Y="11" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAwAIAAAAABAAAAAAAAAAACgAAAAAACACAAA=</HashCode>
       <FileName>Pages\AgentClassesPage.xaml.cs</FileName>
@@ -69,7 +84,14 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ValorantGUI.AgentsPage" BaseTypeListCollapsed="true">
-    <Position X="9.5" Y="4" Width="3.75" />
+    <Position X="10.25" Y="11" Width="3.75" />
+    <AssociationLine Name="_window" Type="ValorantGUI.MainWindow" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.875" Y="14.156" />
+        <Point X="11.875" Y="21" />
+        <Point X="11" Y="21" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>CIAgAAAIAgABAAEAAAAAACAAAAAAAAAAgAAEACABAAA=</HashCode>
       <FileName>Pages\AgentsPage.xaml.cs</FileName>
@@ -81,7 +103,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ValorantGUI.MainPage" BaseTypeListCollapsed="true">
-    <Position X="19.5" Y="0.5" Width="3.75" />
+    <Position X="7.25" Y="24" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAgAIAAAEAAAAAAAAAAgAAAAEAAAAAAAAAAA=</HashCode>
       <FileName>Pages\MainPage.xaml.cs</FileName>
@@ -92,7 +114,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ValorantGUI.MapsPage" BaseTypeListCollapsed="true">
-    <Position X="5.25" Y="4" Width="3.5" />
+    <Position X="0.5" Y="11" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAwABAAAAABAAAAAAAAAAADAAAAAAACACAAA=</HashCode>
       <FileName>Pages\MapsPage.xaml.cs</FileName>
@@ -104,7 +126,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="BussinessLayer.AgentManager">
-    <Position X="10" Y="13.75" Width="3.75" />
+    <Position X="10" Y="3.25" Width="3.75" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -116,7 +138,7 @@
     <TypeIdentifier />
   </Class>
   <Class Name="BussinessLayer.MapManager">
-    <Position X="3.75" Y="16.25" Width="3.75" />
+    <Position X="0.5" Y="3.25" Width="3.75" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -128,7 +150,7 @@
     <TypeIdentifier />
   </Class>
   <Class Name="BussinessLayer.AgentTypeManager">
-    <Position X="15.25" Y="16.5" Width="4.75" />
+    <Position X="4.75" Y="3.25" Width="4.75" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -140,7 +162,7 @@
     <TypeIdentifier />
   </Class>
   <Class Name="ValorantGUI.AddGameLogWindow">
-    <Position X="21.75" Y="8.25" Width="3.25" />
+    <Position X="17.5" Y="20.5" Width="3.25" />
     <TypeIdentifier>
       <HashCode>BAAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Windows\GameLogs\AddGameLog.xaml.cs</FileName>
@@ -148,10 +170,10 @@
     <ShowAsAssociation>
       <Field Name="_gameLogPage" />
     </ShowAsAssociation>
-    <Lollipop Position="0.2" />
+    <Lollipop Position="0.834" />
   </Class>
   <Class Name="ValorantGUI.EditGameLog">
-    <Position X="17.5" Y="8.25" Width="3.5" />
+    <Position X="18" Y="16.5" Width="3.5" />
     <TypeIdentifier>
       <HashCode>BAAAAAAAABAAAAAAAAAIAAEAAAAAAAAAAAAAAAAAAAQ=</HashCode>
       <FileName>Windows\GameLogs\EditGameLog.xaml.cs</FileName>
@@ -159,10 +181,19 @@
     <ShowAsAssociation>
       <Field Name="_gameLogPage" />
     </ShowAsAssociation>
-    <Lollipop Position="0.2" />
+    <Lollipop Position="1.051" />
   </Class>
   <Class Name="ValorantGUI.GameLogPage">
-    <Position X="18.25" Y="4" Width="4.25" />
+    <Position X="15.5" Y="11" Width="4.25" />
+    <AssociationLine Name="_window" Type="ValorantGUI.MainWindow" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="16.938" Y="13.579" />
+        <Point X="16.938" Y="13.658" />
+        <Point X="16.934" Y="13.658" />
+        <Point X="16.934" Y="21.562" />
+        <Point X="11" Y="21.562" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAkAIAgAAAAAAAAAAAAAAAAAAEAAAACAAACBCAAA=</HashCode>
       <FileName>Pages\GameLogPage.xaml.cs</FileName>
@@ -171,10 +202,10 @@
       <Field Name="_window" />
       <Property Name="GameManager" />
     </ShowAsAssociation>
-    <Lollipop Position="0.2" />
+    <Lollipop Position="2.347" />
   </Class>
   <Class Name="BussinessLayer.GameLogManager">
-    <Position X="21.25" Y="13" Width="4.25" />
+    <Position X="15.5" Y="3.25" Width="4.25" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -186,27 +217,27 @@
     <TypeIdentifier />
   </Class>
   <Class Name="BussinessLayer.SuperManager">
-    <Position X="12.5" Y="22.75" Width="3.75" />
+    <Position X="7.5" Y="0.5" Width="3.75" />
     <TypeIdentifier />
   </Class>
   <Class Name="BussinessLayer.SuperArgs">
-    <Position X="30.25" Y="0.75" Width="3" />
+    <Position X="23.75" Y="0.75" Width="3" />
     <TypeIdentifier />
   </Class>
   <Class Name="BussinessLayer.MapArgs">
-    <Position X="27.25" Y="2.75" Width="1.75" />
+    <Position X="20.75" Y="3.25" Width="1.75" />
     <TypeIdentifier />
   </Class>
   <Class Name="BussinessLayer.AgentTypeArgs">
-    <Position X="30" Y="2.75" Width="2" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="BussinessLayer.AgentManagerArgs">
-    <Position X="32.75" Y="2.75" Width="2.25" />
+    <Position X="23.5" Y="3.25" Width="2" />
     <TypeIdentifier />
   </Class>
   <Class Name="BussinessLayer.GameLogArgs">
-    <Position X="35.75" Y="2.75" Width="3" />
+    <Position X="29.5" Y="3.25" Width="3" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="BussinessLayer.AgentArgs">
+    <Position X="26.25" Y="3.25" Width="2.75" />
     <TypeIdentifier />
   </Class>
   <Font Name="Segoe UI" Size="9" />
