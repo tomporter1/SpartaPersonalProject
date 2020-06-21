@@ -53,7 +53,7 @@ The completed project is committed to GitHub that implements all the user storie
   * **Sprint retrospective**  
     * **Went well:** Picking the colour scheme went well as I leaned on the scheme that was set by the game itself so it will look as if it is an extension of the game.
     * **Problems:**  Even though it worked in the end, adding in abstract classes and inheritance at this stage of the project was probably a bad idea ad it required me to change a lot of the method calls of the manager classes.
-    * **Plan:**If I need to add any more classes to this project that will benefit from abstraction and inheritance, I will build them like this from the start. This should save a lot of work in the later stages of the project.
+    * **Plan:** If I need to add any more classes to this project that will benefit from abstraction and inheritance, I will build them like this from the start. This should save a lot of work in the later stages of the project.
 
 | Keban board before sprint 4 | Kaban board after sprint 4 |
 | -------------------------- | -------------------------- |
