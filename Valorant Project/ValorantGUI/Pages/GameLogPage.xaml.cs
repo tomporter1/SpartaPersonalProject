@@ -33,6 +33,7 @@ namespace ValorantGUI
             TotalDeathsLossStatLabel.Content = GameManager.GetTotals(GameLogManager.Fields.Deaths).ToString();
             BestMapStatLabel.Content = GameManager.GetMapWithMostWins().ToString();
             FavAgentStatLabel.Content = GameManager.GetMostPlayedAgent().ToString();
+            FavTypeStatLabel.Content = GameManager.GetMostPlayedClass().ToString();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

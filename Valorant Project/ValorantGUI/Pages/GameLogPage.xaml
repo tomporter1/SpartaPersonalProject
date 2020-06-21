@@ -64,6 +64,7 @@
                     <RowDefinition Height="59.6*" />
                     <RowDefinition Height="59.6*" />
                     <RowDefinition Height="59.6*" />
+                    <RowDefinition Height="59.6*" />
                 </Grid.RowDefinitions>
                 <Label x:Name="LifetimeStatsLabel" Content="Lifetime Stats" Margin="5,5,5,5" FontWeight="Bold" Grid.Row="0" Grid.Column="0" VerticalContentAlignment="Top" Grid.ColumnSpan="2" Foreground="#FFECE8E1"/>
 
@@ -73,6 +74,7 @@
                 <Label x:Name="TotalDeathsLossLabel" Content="Total number of deaths:" Margin="5,5,5,5" Grid.Row="4" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
                 <Label x:Name="BestMapLossLabel" Content="Best map:" Margin="5,5,5,5" Grid.Row="5" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
                 <Label x:Name="FavAgentLossLabel" Content="Favourite agent:" Margin="5,5,5,5" Grid.Row="6" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
+                <Label x:Name="FavTypeLossLabel" Content="Favourite class:" Margin="5,5,5,5" Grid.Row="7" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
 
                 <Label x:Name="TotalKDStatLabel" Content="" Margin="5,5,5,5" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1"/>
                 <Label x:Name="TotalWinLossStatLabel" Content="" Margin="5,5,5,5" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1"/>
@@ -80,6 +82,7 @@
                 <Label x:Name="TotalDeathsLossStatLabel" Content="" Margin="5,5,5,5" Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1"/>
                 <Label x:Name="BestMapStatLabel" Content="" Margin="5,5,5,5" Grid.Row="5" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1"/>
                 <Label x:Name="FavAgentStatLabel" Content="" Margin="5,5,5,5" Grid.Row="6" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1"/>
+                <Label x:Name="FavTypeStatLabel" Content="" Margin="5,5,5,5" Grid.Row="7" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1"/>
             </Grid>
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>

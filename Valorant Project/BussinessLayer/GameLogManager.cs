@@ -6,7 +6,7 @@ using ValorantDatabase;
 
 namespace BussinessLayer
 {
-    public class GameLogManager: SuperManager
+    public class GameLogManager : SuperManager
     {
         public enum Fields
         {
@@ -155,6 +155,13 @@ namespace BussinessLayer
                     .FirstOrDefault().AgentId;
 
             return db.Agents.Where(m => m.AgentId == favAgentID).FirstOrDefault();
+        }
+
+        public object GetMostPlayedClass()
+        {
+            Agents faveAgent = (Agents)GetMostPlayedAgent();
+            using ValorantContext db = new ValorantContext();
+            return db.AgentType.Where(t => t.TypeId == faveAgent.AgentTypeId).FirstOrDefault();
         }
 
         public object GetMapWithMostWins()
