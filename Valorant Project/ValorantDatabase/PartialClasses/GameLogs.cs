@@ -7,6 +7,17 @@ namespace ValorantDatabase
 {
     public partial class GameLogs : IEquatable<GameLogs>
     {
+        private int _gameId;
+        private int _mapId;
+        private int _agentId;
+        private int _teamScore;
+        private int _opponentScore;
+        private int? _kills;
+        private int? _deaths;
+        private int? _assits;
+        private float? _adr;
+        private DateTime _dateLogged; 
+
         public override bool Equals(object obj)
         {
             return Equals(obj as GameLogs);

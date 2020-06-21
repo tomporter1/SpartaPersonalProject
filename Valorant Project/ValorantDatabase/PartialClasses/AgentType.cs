@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ValorantDatabase
 {
     public partial class AgentType : IEquatable<AgentType>
     {
+        private int _typeId;
+        private string _typeName;
+        private string _imagePath;
+
         public override bool Equals(object obj)
         {
             return Equals(obj as AgentType);

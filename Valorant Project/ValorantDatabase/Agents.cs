@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace ValorantDatabase
 {
@@ -12,19 +8,6 @@ namespace ValorantDatabase
         {
             GameLogs = new HashSet<GameLogs>();
         }
-        private int _agentId;
-        private string _agentName;
-        private int _agentTypeId;
-        private string _signatureAbilityName;
-        private string _signatureAbilityDiscription;
-        private string _ultamateAbilityName;
-        private string _ultamateAbilityDiscription;
-        private string _abilityOneName;
-        private string _abilityOneDiscription;
-        private string _abilityTwoName;
-        private string _abilityTwoDiscription;
-        private string _bio;
-        private string _imagePath;
 
 
         public int AgentId { get { return _agentId; } set { _agentId = value; } }

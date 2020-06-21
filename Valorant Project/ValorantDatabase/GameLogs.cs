@@ -4,16 +4,56 @@ namespace ValorantDatabase
 {
     public partial class GameLogs
     {
-        public int GameId { get; set; }
-        public int MapId { get; set; }
-        public int AgentId { get; set; }
-        public int TeamScore { get; set; }
-        public int OpponentScore { get; set; }
-        public int? Kills { get; set; }
-        public int? Deaths { get; set; }
-        public int? Assits { get; set; }
-        public float? Adr { get; set; }
-        public DateTime DateLogged { get; set; }
+        public int GameId
+        {
+            get => _gameId;
+            set => _gameId = value;
+        }
+        public int MapId
+        {
+            get => _mapId;
+            set => _mapId = value;
+        }
+        public int AgentId
+        {
+            get => _agentId;
+            set => _agentId = value;
+        }
+        public int TeamScore
+        {
+            get => _teamScore;
+            set => _teamScore = value < 0 ? 0 : value;
+        }
+        public int OpponentScore
+        {
+            get => _opponentScore;
+            set => _opponentScore = value < 0 ? 0 : value;
+        }
+        public int? Kills
+        {
+            get => _kills;
+            set => _kills = value < 0 ? 0 : value;
+        }
+        public int? Deaths
+        {
+            get => _deaths;
+            set => _deaths = value < 0 ? 0 : value;
+        }
+        public int? Assits
+        {
+            get => _assits;
+            set => _assits = value < 0 ? 0 : value;
+        }
+        public float? Adr
+        {
+            get => _adr;
+            set => _adr = value < 0 ? 0 : value;
+        }
+        public DateTime DateLogged
+        {
+            get => _dateLogged;
+            set => _dateLogged = value;
+        }
 
         public virtual Agents Agent { get; set; }
         public virtual Maps Map { get; set; }

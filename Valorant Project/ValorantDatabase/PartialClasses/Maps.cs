@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ValorantDatabase
 {
     public partial class Maps : IEquatable<Maps>
     {
+        private int _mapId;
+        private string _mapName;
+        private string _imagePath;
+        private string _layoutImagePath;
+
         public override bool Equals(object obj)
         {
             return Equals(obj as Maps);

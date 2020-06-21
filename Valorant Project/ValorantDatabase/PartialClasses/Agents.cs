@@ -1,11 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ValorantDatabase
 {
     public partial class Agents : IEquatable<Agents>
     {
+        private int _agentId;
+        private string _agentName;
+        private int _agentTypeId;
+        private string _signatureAbilityName;
+        private string _signatureAbilityDiscription;
+        private string _ultamateAbilityName;
+        private string _ultamateAbilityDiscription;
+        private string _abilityOneName;
+        private string _abilityOneDiscription;
+        private string _abilityTwoName;
+        private string _abilityTwoDiscription;
+        private string _bio;
+        private string _imagePath;
+
         public override bool Equals(object obj)
         {
             return Equals(obj as Agents);
