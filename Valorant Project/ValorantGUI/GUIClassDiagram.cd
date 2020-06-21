@@ -28,7 +28,7 @@
     <AssociationLine Name="_mapPage" Type="ValorantGUI.MapsPage" FixedToPoint="true">
       <Path>
         <Point X="3.125" Y="15" />
-        <Point X="3.125" Y="13.387" />
+        <Point X="3.125" Y="13.637" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -52,11 +52,11 @@
     <Lollipop Position="1.332" />
   </Class>
   <Class Name="ValorantGUI.MainWindow" BaseTypeListCollapsed="true">
-    <Position X="7.25" Y="20.75" Width="3.75" />
+    <Position X="7.25" Y="20.5" Width="3.75" />
     <AssociationLine Name="_mainPage" Type="ValorantGUI.MainPage" FixedFromPoint="true">
       <Path>
-        <Point X="8.938" Y="22.175" />
-        <Point X="8.938" Y="24" />
+        <Point X="8.938" Y="21.925" />
+        <Point X="8.938" Y="23.25" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.06" Y="0.499" />
@@ -72,7 +72,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ValorantGUI.AgentClassesPage" BaseTypeListCollapsed="true">
-    <Position X="5.25" Y="11" Width="3.75" />
+    <Position X="5.25" Y="11.25" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAwAIAAAAABAAAAAAAAAAACgAAAAAACACAAA=</HashCode>
       <FileName>Pages\AgentClassesPage.xaml.cs</FileName>
@@ -84,12 +84,12 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ValorantGUI.AgentsPage" BaseTypeListCollapsed="true">
-    <Position X="10.25" Y="11" Width="3.75" />
+    <Position X="10.25" Y="11.25" Width="3.75" />
     <AssociationLine Name="_window" Type="ValorantGUI.MainWindow" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="11.875" Y="14.156" />
-        <Point X="11.875" Y="21" />
-        <Point X="11" Y="21" />
+        <Point X="11.875" Y="14.406" />
+        <Point X="11.875" Y="20.75" />
+        <Point X="11" Y="20.75" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -103,7 +103,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ValorantGUI.MainPage" BaseTypeListCollapsed="true">
-    <Position X="7.25" Y="24" Width="3.75" />
+    <Position X="7.25" Y="23.25" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAgAIAAAEAAAAAAAAAAgAAAAEAAAAAAAAAAA=</HashCode>
       <FileName>Pages\MainPage.xaml.cs</FileName>
@@ -114,7 +114,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ValorantGUI.MapsPage" BaseTypeListCollapsed="true">
-    <Position X="0.5" Y="11" Width="3.75" />
+    <Position X="0.5" Y="11.25" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAwABAAAAABAAAAAAAAAAADAAAAAAACACAAA=</HashCode>
       <FileName>Pages\MapsPage.xaml.cs</FileName>
@@ -184,14 +184,14 @@
     <Lollipop Position="1.051" />
   </Class>
   <Class Name="ValorantGUI.GameLogPage">
-    <Position X="15.5" Y="11" Width="4.25" />
+    <Position X="15.5" Y="11.25" Width="4.25" />
     <AssociationLine Name="_window" Type="ValorantGUI.MainWindow" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="16.938" Y="13.579" />
+        <Point X="16.938" Y="13.829" />
         <Point X="16.938" Y="13.658" />
         <Point X="16.934" Y="13.658" />
-        <Point X="16.934" Y="21.562" />
-        <Point X="11" Y="21.562" />
+        <Point X="16.934" Y="21.312" />
+        <Point X="11" Y="21.312" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>

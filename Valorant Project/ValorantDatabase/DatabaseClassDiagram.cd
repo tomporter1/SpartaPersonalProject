@@ -17,7 +17,7 @@
   <Class Name="ValorantDatabase.AgentType" BaseTypeListCollapsed="true">
     <Position X="0.5" Y="1" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEgAEAAIAAAAAAAJAgAAAAAAAAAiA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAFgAEAAIAIAAAAQJAgAAAAAAAAAiA=</HashCode>
       <FileName>PartialClasses\AgentType.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -28,7 +28,7 @@
   <Class Name="ValorantDatabase.GameLogs">
     <Position X="10" Y="1" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAABASAAQEiAEAAAABCAAAAIAgAAIAAAAAAiA=</HashCode>
+      <HashCode>EAIAACAAABISgAQEiIEAAAEBCBAAAIAgAAICABAAQiA=</HashCode>
       <FileName>PartialClasses\GameLogs.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -38,15 +38,15 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ValorantDatabase.Maps">
-    <Position X="10" Y="5.75" Width="2.25" />
+    <Position X="14.75" Y="1" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAICAAAEgAAAAIAAABAAAIAAAAAAAAAEAiA=</HashCode>
+      <HashCode>AAAAACAAAAICAAAEgAAAAIAIABAAAMAAAAACAAAEAiA=</HashCode>
       <FileName>PartialClasses\Maps.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="GameLogs" />
     </ShowAsCollectionAssociation>
-    <Lollipop Position="2.05" />
+    <Lollipop Position="0.279" />
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
