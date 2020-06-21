@@ -5,6 +5,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>icons8_valorant_48.ico</ApplicationIcon>
+    <AssemblyName>Valorant Companion</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

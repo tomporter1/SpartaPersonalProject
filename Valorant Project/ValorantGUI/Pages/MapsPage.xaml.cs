@@ -65,7 +65,7 @@ namespace ValorantGUI
             }
             else
             {
-                MessageBox.Show("Select a class to remove first.");
+                MessageBox.Show("Select a map to remove first.");
             }
         }
 
@@ -78,7 +78,7 @@ namespace ValorantGUI
             }
             else
             {
-                MessageBox.Show("Select a class to edit first.");
+                MessageBox.Show("Select a map to edit first.");
             }
         }
     }
