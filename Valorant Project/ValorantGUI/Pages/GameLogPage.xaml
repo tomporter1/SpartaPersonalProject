@@ -10,15 +10,17 @@
 
     <Grid Background="#FF1C252E">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="177*"/>
-            <ColumnDefinition Width="223*"/>
+            <ColumnDefinition Width="241*"/>
+            <ColumnDefinition Width="559*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="17*"/>
             <RowDefinition Height="133*"/>
         </Grid.RowDefinitions>
-        <Label x:Name="label" Content="Past Games" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" VerticalContentAlignment="Bottom" FontSize="20" Foreground="#FFECE8E1" FontWeight="Bold"/>
-        <ListBox x:Name="GamesListBox" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" SelectionChanged="OnSelectionChanged" Grid.Column="0" Grid.Row="1" Background="#FF2F3F4F" Foreground="#FFECE8E1" BorderBrush="#FF121213"/>
+        <Label x:Name="label" Content="Past Games" Margin="5,5,5,5" VerticalContentAlignment="Bottom" FontSize="20" Foreground="#FFECE8E1" FontWeight="Bold"/>
+        <ListBox x:Name="GamesListBox" Margin="5,5,5,5" SelectionChanged="OnSelectionChanged" Grid.Column="0" Grid.Row="1" Background="#FF2F3F4F" Foreground="#FFECE8E1" BorderBrush="#FF121213"/>
+        <Image x:Name="MapImage" Margin="5,5,5,5" Grid.Column="1" Grid.Row="1"/>
+
         <Grid Grid.Column="1" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50*"/>
@@ -27,7 +29,7 @@
             </Grid.ColumnDefinitions>
             <Rectangle Margin="5,5,5,5" Stroke="Black" Grid.Row="0" Grid.Column="0"/>
             <Rectangle Margin="5,5,5,5" Stroke="Black" Grid.Row="0" Grid.Column="1"/>
-            <Grid>
+            <Grid Background="#7F1C252E">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -51,7 +53,7 @@
                 <Label x:Name="AgentLabel" Content="Agent: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="8" Grid.Column="0" Foreground="#FFECE8E1"/>
                 <Label x:Name="MapLabel" Content="Map: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="9" Grid.Column="0" Foreground="#FFECE8E1"/>
             </Grid>
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="1" Background="#7F1C252E">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="207*"/>
                     <ColumnDefinition Width="101*"/>
@@ -84,14 +86,8 @@
                 <Label x:Name="FavAgentStatLabel" Content="" Margin="5,5,5,5" Grid.Row="6" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1"/>
                 <Label x:Name="FavTypeStatLabel" Content="" Margin="5,5,5,5" Grid.Row="7" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1"/>
             </Grid>
-            <Grid Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="92*"/>
-                    <RowDefinition Height="41*"/>
-                </Grid.RowDefinitions>
-                <Image x:Name="AgentImage" Margin="5,5,5,5" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                <Image x:Name="MapImage" Margin="5,5,5,5" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-            </Grid>
+
+            <Image x:Name="AgentImage" Margin="5,5,5,5" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
