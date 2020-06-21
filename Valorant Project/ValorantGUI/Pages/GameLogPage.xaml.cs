@@ -55,6 +55,8 @@ namespace ValorantGUI
             MapLabel.Content = "Map: -";
             AgentLabel.Content = "Agent: -";
 
+            AgentImage.Source = null;
+            MapImage.Source = null;
         }
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
