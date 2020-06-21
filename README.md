@@ -1,7 +1,7 @@
-# Valorant tracker
+# Valorant Companion App
 
 ## Project goal
-To make a stat tracker for the game Valorant that will also contain wiki information about elements of the game.
+To make a stat tracker for the game Valorant that will also contain wiki information about core elements of the game.
 
 ## Definition of Done
 The completed project is committed to GitHub that implements all the user stories. All the accompanying documentation has also been completed.
@@ -12,8 +12,9 @@ The completed project is committed to GitHub that implements all the user storie
     * **Sprint Outputs:** The database and the DdContext have been created. Three manager classes that contain CRUD operations on the databases. Each manager has a full set of unit tests.
     * **Tasks completed:** 1, 2, 3, 4, 5, 6, 7, 8, 9
     * **Sprint retrospective** 
-      * **Went well:** Making the bulk of the database via an SQL query was a good idea because it was what I was most familiar with so it went quicker. Due to the previous practice these operations were easy to implement as it was the same method that was used in other projects before.
-      * **Problems:** There were some issues with getting the correct NuGet packages installed but this was resolved and shouldn't need to be done again in this project. Also, to write the unit tests for the managers I chose not to spend ages learning about mocks as that would take up too much time. I instead decided to undo any changes that a test did to the database at the end of the test.
+      * **Went well:** Initially creating the database via an SQL query was a good idea because it was what I was most familiar with, so it went quicker. Due to the previous practice these operations were easy to implement as it was the same method that was used in other projects before.
+      * **Problems:** There were some issues with getting the correct NuGet packages installed but this was resolved and should not need to be done again in this project. Also, to write the unit tests for the managers I chose not to spend a long time learning about Moq as that would take up too much time. I instead decided to undo any changes that a test did to the database at the end of the test.
+      * **Plan:** Going forward I will only make changes to the database via the migrations because, now that the tables are set up, this will be the most efficient way of making the entity Framework line up with database.
 
 | Keban board before sprint 1 | Kaban board after sprint 1 |
 | ------------------------- | ------------------------- |
@@ -24,8 +25,9 @@ The completed project is committed to GitHub that implements all the user storie
   * **Sprint Outputs:** A GUI that allows the user to view the agents, agent types and the maps that are currently stored in the database. It also allows for updating, adding and removing of entries for these tables.
   * **Tasks completed:** 10, 11, 12, 13
   * **Sprint retrospective**  
-    * **Went well:** Once one of the GUI sections was completed it was quite easy to adapt that code to work for the different sections of the database.
-    * **Problems:**  The biggest problem was making a UI that is at intuitive as it could be so I will probably go back over the way that the different elements are laid out on the page.
+    * **Went well:** To save some time on this sprint I spent a while on the agent GUI (as this was the most complex page) and then adapted it to work for the other sections of the database.
+    * **Problems:**  The biggest problem was making a GUI that is at intuitive as it could be along with looking appealing.
+    * **Plan:** When design the GUI for the rest of the application I will keep in mind how it will be for an end-user who is unfamiliar with the application will think when they are using it.
 
 | Keban board before sprint 2 | Kaban board after sprint 2 |
 | -------------------------- | -------------------------- |
@@ -36,8 +38,9 @@ The completed project is committed to GitHub that implements all the user storie
   * **Sprint Outputs:** A GameManager class to provide CRUD operations and to calculate stats based on historic game data.
   * **Tasks completed:** 14, 15, 16, 17, 18
   * **Sprint retrospective**  
-    * **Went well:** Adding in the new manager to work with the Entity Framework based on the GameLog table in the database went well because the basic operations were very similar to the past managers that had already been implemented.
-    * **Problems:**  Making the more complex statistics was challenging due to me not having to had used LINQ in a while. Therefore, going forward, I will go over it again so if it comes up in the future it won’t be as much of a challenge.
+    * **Went well:** Adding in the new manager to work with the Entity Framework based on the GameLog table in the database went well because the basic operations were very similar to the past managers that had already been implemented so some of the code was adapted to suit this manager.
+    * **Problems:**  Making the more complex statistics was challenging due to me not having to had used LINQ in a while. 
+    * **Plan:** Going forward, I will go over LINQ again so if it is needed in the future it will not be as much of a challenge.
 
 | Keban board before sprint 3 | Kaban board after sprint 3 |
 | -------------------------- | -------------------------- |
@@ -49,19 +52,28 @@ The completed project is committed to GitHub that implements all the user storie
   * **Tasks completed:** 19, 20, 21
   * **Sprint retrospective**  
     * **Went well:** Picking the colour scheme went well as I leaned on the scheme that was set by the game itself so it will look as if it is an extension of the game.
-    * **Problems:**  Even though it worked in the end, adding in abstract classes and inheritance at this stage of the project was probably a bad idea ad it required me to change a lot of the method calls of the manager classes. In future projects I will add in this from the start.
+    * **Problems:**  Even though it worked in the end, adding in abstract classes and inheritance at this stage of the project was probably a bad idea ad it required me to change a lot of the method calls of the manager classes.
+    * **Plan:**If I need to add any more classes to this project that will benefit from abstraction and inheritance, I will build them like this from the start. This should save a lot of work in the later stages of the project.
 
 | Keban board before sprint 4 | Kaban board after sprint 4 |
 | -------------------------- | -------------------------- |
 | <img src = "ReadMeImages/Sprint4Before.png" width = 650 height = 365.625>|<img src = "ReadMeImages/Sprint4After.png" width = 650 height = 365.625>|
 
 
-
 ## Class Diagrams
-Diagram of the four tables that are used to represent the database that is used in this programme.
+#### Entity Framework
+*Diagram of the four tables that are used to represent the database that is used in this programme.*
 <img src = "ReadMeImages/DatabaseClassDiagram.png" width = 650 height = 365.625>
 
-Diagram of how the middle layer (referred to as managers) interacts with the WPF project. Note the manager classes are the only classes that can interact with the Entity Framework project.
+#### WPF and Business layer
+*Diagram of how the middle layer (referred to as managers) interacts with the WPF project. Note the manager classes are the only classes that can interact with the Entity Framework project.*
 <img src = "ReadMeImages/ProgrammeClassDiagram.png">
 
 ## Project Retrospective
+ * **Things learned from the project:**
+   * How valuable Entity Framework and database Migrations are when having to use a large database in a programme
+   * How putting some colour and images can help to sell the product to people who are not as familiar with it
+ * **Things to do differently next time:**
+   * I would work with someone who is more skilled in graphic design for some assets and input on how the GUI layout should be
+ * **Future work:**
+   * Integrate this application further with Valorent itself by making it automatically get data about the users games from an API
