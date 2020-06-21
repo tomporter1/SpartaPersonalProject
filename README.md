@@ -57,4 +57,11 @@ The completed project is committed to GitHub that implements all the user storie
 
 
 
+## Class Diagrams
+Diagram of the four tables that are used to represent the database that is used in this programme.
+<img src = "ReadMeImages/DatabaseClassDiagram.png" width = 650 height = 365.625>
+
+Diagram of how the middle layer (referred to as managers) interacts with the WPF project. Note the manager classes are the only classes that can interact with the Entity Framework project.
+<img src = "ReadMeImages/ProgrammeClassDiagram.png">
+
 ## Project Retrospective
