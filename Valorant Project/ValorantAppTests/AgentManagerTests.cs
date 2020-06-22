@@ -9,10 +9,11 @@ namespace ValorantAppTests
 {
     public class AgentManagerTests
     {
-
+        AgentManager _agentManager;
         [SetUp]
         public void Setup()
         {
+            _agentManager = new AgentManager();
         }
 
         [Test]
@@ -28,7 +29,7 @@ namespace ValorantAppTests
         {
             //setup
             bool testPassed = false;
-            AgentManager manager = new AgentManager();
+            
             AgentArgs args = null;
             int beforeCount = -1;
             AgentType type = new AgentType() { TypeName = "New Type" };
@@ -43,7 +44,7 @@ namespace ValorantAppTests
             }
 
             //Test method call            
-            manager.AddNewEntry(args);
+            _agentManager.AddNewEntry(args);
 
             //Assersion 
             using (ValorantContext db = new ValorantContext())
@@ -78,7 +79,6 @@ namespace ValorantAppTests
             //setup
             bool testPassed = false;
             int beforeCount = -1;
-            AgentManager manager = new AgentManager();
             object addedAgent = null;
             using (ValorantContext db = new ValorantContext())
             {
@@ -87,13 +87,13 @@ namespace ValorantAppTests
 
                 AgentArgs args = new AgentArgs("Reyna", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
 
-                manager.AddNewEntry(args);
+                _agentManager.AddNewEntry(args);
                 beforeCount = db.Agents.ToList().Count;
                 addedAgent = db.Agents.ToList().Last();
             }
 
             //Test method call
-            manager.RemoveEntry(addedAgent);
+            _agentManager.RemoveEntry(addedAgent);
 
             //Assersion 
             using (ValorantContext db = new ValorantContext())
@@ -126,7 +126,6 @@ namespace ValorantAppTests
         public void UpdateAgentTest()
         {
             //setup
-            AgentManager manager = new AgentManager();
             object addedAgent = null;
             AgentType type = new AgentType() { TypeName = "New Type" };
             AgentArgs updatedArgs = null;
@@ -138,12 +137,12 @@ namespace ValorantAppTests
 
                 AgentArgs args = new AgentArgs("Reyna", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
                 updatedArgs = new AgentArgs("Bob", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
-                manager.AddNewEntry(args);
+                _agentManager.AddNewEntry(args);
                 addedAgent = db.Agents.ToList().Last();
             }
 
             //Test
-            manager.UpdateEntry(addedAgent, updatedArgs);
+            _agentManager.UpdateEntry(addedAgent, updatedArgs);
 
             //assertion and removing the new entry from the database
             using (ValorantContext db = new ValorantContext())
@@ -167,7 +166,6 @@ namespace ValorantAppTests
         public void GetAgentDataTest(string expectedResult, AgentManager.Fields field)
         {
             //setup
-            AgentManager manager = new AgentManager();
             object addedAgent = null;
 
             using (ValorantContext db = new ValorantContext())
@@ -175,13 +173,13 @@ namespace ValorantAppTests
                 db.AgentType.Add(new AgentType() { TypeName = "New Type" });
                 db.SaveChanges();
                 AgentArgs args = new AgentArgs("Reyna", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
-                manager.AddNewEntry(args);
+                _agentManager.AddNewEntry(args);
 
                 addedAgent = db.Agents.ToList().Last();
             }
 
             //Test
-            string result = manager.GetAgentDataStr(addedAgent, field);
+            string result = _agentManager.GetAgentDataStr(addedAgent, field);
 
             //Assertion
             Assert.AreEqual(result, expectedResult);
@@ -201,7 +199,6 @@ namespace ValorantAppTests
         public void GetAgentTypeTest()
         {
             //Setup
-            AgentManager agentManager = new AgentManager();
             AgentType newAgentType = new AgentType() { TypeName = "New Type" };
             object selectedAgent = null;
             using (ValorantContext db = new ValorantContext())
@@ -211,13 +208,13 @@ namespace ValorantAppTests
 
                 AgentArgs args = new AgentArgs("name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "UltDisc", "Normal1Name", "Normal1Disc", "Normal2Name", "Normal2Disc", "bio");
 
-                agentManager.AddNewEntry(args);
+                _agentManager.AddNewEntry(args);
 
                 selectedAgent = db.Agents.ToList().Last();
             }
 
             //Test
-            var result = agentManager.GetAgentTypeObj(selectedAgent);
+            var result = _agentManager.GetAgentTypeObj(selectedAgent);
 
             //Assertion
             Assert.IsTrue(newAgentType.Equals(result));
@@ -240,7 +237,6 @@ namespace ValorantAppTests
         public void GetAgentAbilityDiscriptionTest(string expectedResult, object abilityName)
         {
             //Setup
-            AgentManager agentManager = new AgentManager();
             AgentType newAgentType = new AgentType() { TypeName = "New Type" };
             object selectedAgent = null;
             using (ValorantContext db = new ValorantContext())
@@ -250,13 +246,13 @@ namespace ValorantAppTests
 
                 AgentArgs args = new AgentArgs("name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
 
-                agentManager.AddNewEntry(args);
+                _agentManager.AddNewEntry(args);
 
                 selectedAgent = db.Agents.ToList().Last();
             }
 
             //Test
-            var result = agentManager.GetAbilityDiscription(selectedAgent, abilityName);
+            var result = _agentManager.GetAbilityDiscription(selectedAgent, abilityName);
 
             //Assertion
             Assert.AreEqual(expectedResult, result);
@@ -276,7 +272,6 @@ namespace ValorantAppTests
         public void GetAgentAbilitiesTest()
         {
             //Setup
-            AgentManager agentManager = new AgentManager();
             AgentType newAgentType = new AgentType() { TypeName = "New Type" };
             List<string> expectedResult = new List<string>()
             {
@@ -293,13 +288,13 @@ namespace ValorantAppTests
 
                 AgentArgs args = new AgentArgs("name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
 
-                agentManager.AddNewEntry(args);
+                _agentManager.AddNewEntry(args);
 
                 selectedAgent = db.Agents.ToList().Last();
             }
 
             //Test
-            var result = agentManager.GetAgentsAbilities(selectedAgent);
+            var result = _agentManager.GetAgentsAbilities(selectedAgent);
 
             //Assertion
             Assert.AreEqual(expectedResult, result);
