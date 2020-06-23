@@ -10,6 +10,7 @@ namespace ValorantAppTests
     public class AgentManagerTests
     {
         AgentManager _agentManager;
+
         [SetUp]
         public void Setup()
         {
@@ -19,8 +20,7 @@ namespace ValorantAppTests
         [Test]
         public void GetAllAgentsTest()
         {
-            AgentManager manager = new AgentManager();
-            var result = manager.GetAllEntries();
+            var result = _agentManager.GetAllEntries();
             Assert.AreEqual(result.GetType(), typeof(List<object>));
         }
 
