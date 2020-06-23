@@ -2,7 +2,8 @@
 
 namespace BussinessLayer
 {
-    public abstract class SuperManager
+
+    public abstract class SuperManager: IBasicManager
     {
         public abstract List<object> GetAllEntries();
 
