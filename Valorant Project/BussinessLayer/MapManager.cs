@@ -4,8 +4,15 @@ using ValorantDatabase;
 
 namespace BussinessLayer
 {
-    public class MapManager: SuperManager
+    public class MapManager : SuperManager
     {
+        private ValorantContext _context;
+
+        public MapManager(ValorantContext context = null)
+        {
+            _context = context;
+        }        
+
         public enum Fields
         {
             Name,
@@ -15,21 +22,31 @@ namespace BussinessLayer
 
         public override List<object> GetAllEntries()
         {
-            using ValorantContext db = new ValorantContext();
-            return db.Maps.OrderBy(m=>m.MapName).ToList<object>();
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            
+            List<object> output = db.Maps.OrderBy(m => m.MapName).ToList<object>();
+            
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+            return output;
         }
 
         public override void RemoveEntry(object selectedMap)
         {
-            using ValorantContext db = new ValorantContext();
+            ValorantContext db = _context == null ? new ValorantContext() : _context;
             Maps mapToRemove = (Maps)selectedMap;
             db.Maps.Remove(mapToRemove);
             db.SaveChanges();
+            
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
         }
 
         public override void AddNewEntry(SuperArgs args)
         {
-            using ValorantContext db = new ValorantContext();
+            ValorantContext db = _context == null ? new ValorantContext() : _context;
             MapArgs mapArgs = (MapArgs)args;
             Maps newMap = new Maps()
             {
@@ -37,39 +54,56 @@ namespace BussinessLayer
             };
             db.Maps.Add(newMap);
             db.SaveChanges();
-        }        
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+        }
 
         public override void UpdateEntry(object selectedEntry, SuperArgs args)
         {
-            using ValorantContext db = new ValorantContext();
+            ValorantContext db = _context == null ? new ValorantContext() : _context;
             MapArgs mapArgs = (MapArgs)args;
             Maps mapToUpdate = db.Maps.Where(m => m.MapId == ((Maps)selectedEntry).MapId).FirstOrDefault();
             if (mapToUpdate != null)
             {
                 mapToUpdate.MapName = mapArgs.Name;
 
-                db.SaveChanges();
+                db.SaveChanges();                
             }
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
         }
 
         public string GetMapsDataStr(object selectedMap, Fields field)
         {
-            using ValorantContext db = new ValorantContext();
+            ValorantContext db = _context == null ? new ValorantContext() : _context;
             Maps map = (Maps)selectedMap;
 
             IQueryable<Maps> mapQuery = db.Maps.Where(m => m.MapId == map.MapId);
 
+            string output = "";
             switch (field)
             {
                 case Fields.Name:
-                    return map.MapName;
+                    output= map.MapName;
+                    break;
                 case Fields.ImagePath:
-                    return mapQuery.Select(a => a.ImagePath).FirstOrDefault();
+                    output = mapQuery.Select(a => a.ImagePath).FirstOrDefault();
+                    break;
                 case Fields.LayoutImagePath:
-                    return mapQuery.Select(a => a.LayoutImagePath).FirstOrDefault();
+                    output = mapQuery.Select(a => a.LayoutImagePath).FirstOrDefault();
+                    break;
                 default:
-                    return "";
+                    output = "";
+                    break;
             }
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+            return output;
         }
     }
 }
