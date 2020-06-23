@@ -50,7 +50,6 @@ namespace ValorantAppTests
         [Test]
         public void AddMapTest()
         {
-
             //Test method call
             _manager.AddNewEntry(new MapArgs("new map"));
             object addedMap = _context.Maps.ToList().Last();
@@ -58,12 +57,10 @@ namespace ValorantAppTests
             //Assersion 
             Assert.That(_context.Maps.ToList(), Contains.Item(addedMap));
 
-
             //Undo database changes done by the test
             if (_context.Maps.ToList().Contains(addedMap))
             {
                 Maps mapToremove = _context.Maps.ToList().Last();
-
                 _context.Maps.Remove(mapToremove);
                 _context.SaveChanges();
             }
@@ -73,7 +70,6 @@ namespace ValorantAppTests
         public void RemoveMapTest()
         {
             _manager.AddNewEntry(new MapArgs("New Map"));
-
             object addedMap = _context.Maps.ToList().Last();
 
             //Test method call
@@ -98,14 +94,17 @@ namespace ValorantAppTests
         public void UpdateMapTest()
         {
             //setup
-            object addedMap = _context.Maps.ToList().First();
+            object map = _context.Maps.ToList().First();
 
             string newMapName = "better map";
 
-            _manager.UpdateEntry(addedMap, new MapArgs(newMapName));
+            _manager.UpdateEntry(map, new MapArgs(newMapName));
 
             Maps firstMapInDB = _context.Maps.ToList().First();
             Assert.AreEqual(newMapName, firstMapInDB.MapName);
+
+            firstMapInDB.MapName = "Spit";
+            _context.SaveChanges();
         }
     }
 }

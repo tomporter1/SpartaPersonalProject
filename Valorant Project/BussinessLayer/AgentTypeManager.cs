@@ -12,15 +12,29 @@ namespace BussinessLayer
             ImagePath
         }
 
+        private ValorantContext _context;
+
+        public AgentTypeManager(ValorantContext context = null)
+        {
+            _context = context;
+        }
+
         public override List<object> GetAllEntries()
         {
-            using ValorantContext db = new ValorantContext();
-            return db.AgentType.OrderBy(a=>a.TypeName).ToList<object>();
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+           
+            List<object> output = db.AgentType.OrderBy(a=>a.TypeName).ToList<object>();
+           
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return output;
         }
 
         public override void RemoveEntry(object selectedType)
         {
-            using ValorantContext db = new ValorantContext();
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
             AgentType agentToRemove = (AgentType)selectedType;
             db.AgentType.Remove(agentToRemove);
             db.SaveChanges();
@@ -28,7 +42,7 @@ namespace BussinessLayer
 
         public override void AddNewEntry(SuperArgs args)
         {
-            using ValorantContext db = new ValorantContext();
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
             AgentTypeArgs typeArgs = (AgentTypeArgs)args;
             AgentType newAgentType = new AgentType()
             {
@@ -36,11 +50,15 @@ namespace BussinessLayer
             };
             db.AgentType.Add(newAgentType);
             db.SaveChanges();
+            
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
         }
 
         public override void UpdateEntry(object selectedEntry, SuperArgs args)
         {
-            using ValorantContext db = new ValorantContext();
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
             AgentTypeArgs typeArgs = (AgentTypeArgs)args;
             AgentType typeToUpdate = db.AgentType.Where(a => a.TypeId == ((AgentType)selectedEntry).TypeId).FirstOrDefault();
             if (typeToUpdate != null)
@@ -49,6 +67,10 @@ namespace BussinessLayer
 
                 db.SaveChanges();
             }
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
         }
 
         public string GetTypeDataStr(object selectedType, Fields field)
@@ -58,15 +80,25 @@ namespace BussinessLayer
 
             IQueryable<AgentType> typeQuery = db.AgentType.Where(t => t.TypeId == type.TypeId);
 
+            string output = "";
             switch (field)
             {
                 case Fields.Name:
-                    return typeQuery.Select(t => t.TypeName).FirstOrDefault();
+                    output = typeQuery.Select(t => t.TypeName).FirstOrDefault();
+                    break;
                 case Fields.ImagePath:
-                    return typeQuery.Select(t => t.ImagePath).FirstOrDefault();
+                    output = typeQuery.Select(t => t.ImagePath).FirstOrDefault();
+                    break;
                 default:
-                    return "";
+                    output = "";
+                    break;
             }
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return output;
         }
     }
 }
