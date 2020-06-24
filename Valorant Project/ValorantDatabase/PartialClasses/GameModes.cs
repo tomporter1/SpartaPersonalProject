@@ -26,6 +26,8 @@ namespace ValorantDatabase
             return HashCode.Combine(_modeID);
         }
 
+        public override string ToString() => _modeName;
+
         public static bool operator ==(GameModes left, GameModes right)
         {
             return EqualityComparer<GameModes>.Default.Equals(left, right);

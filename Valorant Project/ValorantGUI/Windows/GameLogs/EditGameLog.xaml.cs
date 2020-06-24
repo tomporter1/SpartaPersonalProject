@@ -51,25 +51,36 @@ namespace ValorantGUI
                     AgentComboBox.SelectedItem = item;
                 }
             }
+
+            ModeComboBox.ItemsSource = new GameModesManager().GetAllEntries();
+            object gameMode = _gameLogPage.GameManager.GetGameMode(selectedGame);
+            foreach (object item in ModeComboBox.ItemsSource)
+            {
+                if (item.Equals(gameMode))
+                {
+                    ModeComboBox.SelectedItem = item;
+                }
+            }
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (TeamScoreTextBox.Text.Trim() != "" && OpponentScoreTextBox.Text.Trim() != "" && MapComboBox.SelectedIndex >= 0 && AgentComboBox.SelectedIndex >= 0)
+            if (TeamScoreTextBox.Text.Trim() != "" && OpponentScoreTextBox.Text.Trim() != "" && MapComboBox.SelectedIndex >= 0 && AgentComboBox.SelectedIndex >= 0 && ModeComboBox.SelectedIndex >=0)
             {
                 GameLogArgs args = new GameLogArgs(
-                MapComboBox.SelectedItem,
-                AgentComboBox.SelectedItem,
-                int.Parse(TeamScoreTextBox.Text.Trim()),
-                int.Parse(OpponentScoreTextBox.Text.Trim()),
-                int.Parse(KillsTextBox.Text.Trim()),
-                int.Parse(DeathsTextBox.Text.Trim()),
-                int.Parse(AssistsTextBox.Text.Trim()),
-                float.Parse(ADRTextBox.Text.Trim()),
-                ((DateTime)DatePlayedPicker.SelectedDate).AddHours(_oldTime.Hour).AddMinutes(_oldTime.Minute).AddSeconds(_oldTime.Second));
-            _gameLogPage.GameManager.UpdateEntry(_selectedGame, args);
-            _gameLogPage.PopulateGames();
-            this.Close();
+                    ModeComboBox.SelectedItem,
+                    MapComboBox.SelectedItem,
+                    AgentComboBox.SelectedItem,
+                    int.Parse(TeamScoreTextBox.Text.Trim()),
+                    int.Parse(OpponentScoreTextBox.Text.Trim()),
+                    int.Parse(KillsTextBox.Text.Trim()),
+                    int.Parse(DeathsTextBox.Text.Trim()),
+                    int.Parse(AssistsTextBox.Text.Trim()),
+                    float.Parse(ADRTextBox.Text.Trim()),
+                    ((DateTime)DatePlayedPicker.SelectedDate).AddHours(_oldTime.Hour).AddMinutes(_oldTime.Minute).AddSeconds(_oldTime.Second));
+                _gameLogPage.GameManager.UpdateEntry(_selectedGame, args);
+                _gameLogPage.PopulateGames();
+                this.Close();
             }
             else
             {
@@ -81,6 +92,8 @@ namespace ValorantGUI
                     MapLabel.Foreground = Brushes.Red;
                 if (AgentComboBox.SelectedIndex < 0)
                     AgentLabel.Foreground = Brushes.Red;
+                if (ModeComboBox.SelectedIndex < 0)
+                    ModeLabel.Foreground = Brushes.Red;
 
                 MessageBox.Show("Please fill in the required fields");
             }

@@ -19,6 +19,9 @@ namespace ValorantGUI
             InitializeComponent();
             GameManager = new GameLogManager();
             _window = window;
+
+            GameModeComboBox.ItemsSource = new GameModesManager().GetAllEntries();
+            GameModeComboBox.SelectedIndex = 2;
             PopulateGames();
         }
 
@@ -26,14 +29,20 @@ namespace ValorantGUI
         {
             ClearAllUi();
 
-            GamesListBox.ItemsSource = GameManager.GetAllEntries();
-            TotalKDStatLabel.Content = Math.Round(GameManager.GetTotalKD(), 3).ToString();
-            TotalWinLossStatLabel.Content = Math.Round(GameManager.GetTotalWinLoss(), 3).ToString();
-            TotalKillsLossStatLabel.Content = GameManager.GetTotals(GameLogManager.Fields.Kills).ToString();
-            TotalDeathsLossStatLabel.Content = GameManager.GetTotals(GameLogManager.Fields.Deaths).ToString();
-            BestMapStatLabel.Content = GameManager.GetMapWithMostWins().ToString();
-            FavAgentStatLabel.Content = GameManager.GetMostPlayedAgent().ToString();
-            FavTypeStatLabel.Content = GameManager.GetMostPlayedClass().ToString();
+            GamesListBox.ItemsSource = GameManager.GetGamesForGameMode(GameModeComboBox.SelectedItem);
+            TotalKDStatLabel.Content = Math.Round(GameManager.GetTotalKD(GameModeComboBox.SelectedItem), 3).ToString();
+            TotalWinLossStatLabel.Content = Math.Round(GameManager.GetTotalWinLoss(GameModeComboBox.SelectedItem), 3).ToString();
+            TotalKillsLossStatLabel.Content = GameManager.GetTotals(GameLogManager.Fields.Kills, GameModeComboBox.SelectedItem).ToString();
+            TotalDeathsLossStatLabel.Content = GameManager.GetTotals(GameLogManager.Fields.Deaths, GameModeComboBox.SelectedItem).ToString();
+
+            object mapMostWins = GameManager.GetMapWithMostWins(GameModeComboBox.SelectedItem);
+            BestMapStatLabel.Content = mapMostWins == null ? "-" : mapMostWins.ToString();
+
+            object MostPlayedAgent = GameManager.GetMostPlayedAgent(GameModeComboBox.SelectedItem);
+            FavAgentStatLabel.Content = MostPlayedAgent == null ? "-" : MostPlayedAgent.ToString();
+
+            object mostPlayedClass = GameManager.GetMostPlayedClass(GameModeComboBox.SelectedItem);
+            FavTypeStatLabel.Content = mostPlayedClass == null ? "-" : mostPlayedClass.ToString();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -127,6 +136,11 @@ namespace ValorantGUI
             {
                 MessageBox.Show("You need to select an game to remove first");
             }
+        }
+
+        private void OnGameModeSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            PopulateGames();
         }
     }
 }

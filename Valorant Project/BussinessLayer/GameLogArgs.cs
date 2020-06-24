@@ -5,6 +5,7 @@ namespace BussinessLayer
 {
     public class GameLogArgs : SuperArgs
     {
+        public int ModeID { get; private set; }
         public int MapId { get; private set; }
         public int AgentId { get; private set; }
         public int TeamScore { get; private set; }
@@ -15,8 +16,9 @@ namespace BussinessLayer
         public float ADR { get; private set; }
         public DateTime DateLogged { get; private set; }
 
-        public GameLogArgs(object mapObj, object agentObj, int teamScore, int opponentScore, int kills, int deaths, int assists, float aDR, DateTime dateLogged)
+        public GameLogArgs(object gameModeObj, object mapObj, object agentObj, int teamScore, int opponentScore, int kills, int deaths, int assists, float aDR, DateTime dateLogged)
         {
+            ModeID = ((GameModes)gameModeObj).ModeID;
             MapId = ((Maps)mapObj).MapId;
             AgentId = ((Agents)agentObj).AgentId;
             TeamScore = teamScore;
@@ -28,8 +30,9 @@ namespace BussinessLayer
             DateLogged = dateLogged;
         }
 
-        public GameLogArgs(int mapId, int agentId, int teamScore, int opponentScore, int kills, int deaths, int assists, float aDR, DateTime dateLogged)
+        public GameLogArgs(int gameModeId, int mapId, int agentId, int teamScore, int opponentScore, int kills, int deaths, int assists, float aDR, DateTime dateLogged)
         {
+            ModeID = gameModeId;
             MapId = mapId;
             AgentId = agentId;
             TeamScore = teamScore;

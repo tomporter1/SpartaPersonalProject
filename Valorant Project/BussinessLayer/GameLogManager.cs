@@ -49,7 +49,7 @@ namespace BussinessLayer
             GameLogs gameToRemove = (GameLogs)selectedGame;
             db.GameLogs.Remove(gameToRemove);
             db.SaveChanges();
-          
+
             //Disposes of the db context if it is not running off a set context
             if (_context == null)
                 db.Dispose();
@@ -82,6 +82,19 @@ namespace BussinessLayer
                 db.Dispose();
         }
 
+        public object GetGameMode(object selectedGame)
+        {
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            GameLogs game = (GameLogs)selectedGame;
+            object output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.GameMode).Select(gl => gl.GameMode).FirstOrDefault();
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return output;
+        }
+
         public override void UpdateEntry(object selectedGame, SuperArgs args)
         {
             ValorantContext db = (_context == null ? new ValorantContext() : _context);
@@ -109,6 +122,18 @@ namespace BussinessLayer
             //Disposes of the db context if it is not running off a set context
             if (_context == null)
                 db.Dispose();
+        }
+
+        public List<object> GetGamesForGameMode(object selectedGameMode)
+        {
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            List<object> output = db.GameLogs.Where(gl => gl.ModeID == ((GameModes)selectedGameMode).ModeID).OrderByDescending(gl => gl.DateLogged).ToList<object>();
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return output;
         }
 
         public string GetGameDataStr(object selectedGame, Fields field)
@@ -195,10 +220,13 @@ namespace BussinessLayer
         }
 
         #region GameStatMethods
-        public object GetMostPlayedAgent()
+        public object GetMostPlayedAgent(object selectedGameMode)
         {
             ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            if (db.GameLogs.Where(gl => gl.ModeID == ((GameModes)selectedGameMode).ModeID).ToList().Count == 0)
+                return null;
             int favAgentID = db.GameLogs
+                    .Where(gl => gl.ModeID == ((GameModes)selectedGameMode).ModeID)
                     .GroupBy(
                         gl => gl.AgentId,
                         gl => gl,
@@ -219,10 +247,14 @@ namespace BussinessLayer
             return output;
         }
 
-        public object GetMostPlayedClass()
+        public object GetMostPlayedClass(object selectedGameMode)
         {
-            Agents faveAgent = (Agents)GetMostPlayedAgent();
+            Agents faveAgent = (Agents)GetMostPlayedAgent(selectedGameMode);
             ValorantContext db = (_context == null ? new ValorantContext() : _context);
+
+            if (faveAgent == null)
+                return null;
+
             object output = db.AgentType.Where(t => t.TypeId == faveAgent.AgentTypeId).FirstOrDefault();
 
             //Disposes of the db context if it is not running off a set context
@@ -232,11 +264,14 @@ namespace BussinessLayer
             return output;
         }
 
-        public object GetMapWithMostWins()
+        public object GetMapWithMostWins(object selectedGameMode)
         {
             ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            if (db.GameLogs.Where(gl => gl.ModeID == ((GameModes)selectedGameMode).ModeID).ToList().Count == 0)
+                return null;
+
             int bestMapID = db.GameLogs
-                    .Where(gl => gl.TeamScore > gl.OpponentScore)
+                    .Where(gl => gl.TeamScore > gl.OpponentScore && gl.ModeID == ((GameModes)selectedGameMode).ModeID)
                     .GroupBy(
                         gl => gl.MapId,
                         gl => gl,
@@ -281,6 +316,30 @@ namespace BussinessLayer
             return output;
         }
 
+        public int GetTotals(Fields field, object selectedGameMode)
+        {
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            int output = 0;
+            switch (field)
+            {
+                case Fields.Kills:
+                    output = (int)db.GameLogs.Where(gl => gl.ModeID == ((GameModes)selectedGameMode).ModeID).Select(gl => gl.Kills).Sum();
+                    break;
+                case Fields.Deaths:
+                    output = (int)db.GameLogs.Where(gl => gl.ModeID == ((GameModes)selectedGameMode).ModeID).Select(gl => gl.Deaths).Sum();
+                    break;
+                default:
+                    output = 0;
+                    break;
+            }
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return output;
+        }
+
         public DateTime GetDatePlayed(object selectedGame)
         {
             GameLogs game = (GameLogs)selectedGame;
@@ -294,11 +353,11 @@ namespace BussinessLayer
             return output;
         }
 
-        public float GetTotalKD()
+        public float GetTotalKD(object selectedGameMode)
         {
             ValorantContext db = (_context == null ? new ValorantContext() : _context);
-            float totalKills = GetTotals(Fields.Kills);
-            float totalDeaths = GetTotals(Fields.Deaths);
+            float totalKills = GetTotals(Fields.Kills, selectedGameMode);
+            float totalDeaths = GetTotals(Fields.Deaths, selectedGameMode);
 
             float output;
             if (totalDeaths == 0)
@@ -317,12 +376,12 @@ namespace BussinessLayer
             return output;
         }
 
-        public float GetTotalWinLoss()
+        public float GetTotalWinLoss(object selectedGameMode)
         {
             ValorantContext db = (_context == null ? new ValorantContext() : _context);
-            float totalWins = db.GameLogs.Where(gl => gl.TeamScore > gl.OpponentScore).Count();
-            float totalLosses = db.GameLogs.Where(gl => gl.TeamScore < gl.OpponentScore).Count();
-            
+            float totalWins = db.GameLogs.Where(gl => gl.TeamScore > gl.OpponentScore && gl.ModeID == ((GameModes)selectedGameMode).ModeID).Count();
+            float totalLosses = db.GameLogs.Where(gl => gl.TeamScore < gl.OpponentScore && gl.ModeID == ((GameModes)selectedGameMode).ModeID).Count();
+
             float output;
             if (totalLosses == 0)
             {

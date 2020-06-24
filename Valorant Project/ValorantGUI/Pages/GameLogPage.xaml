@@ -97,6 +97,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+            <ComboBox x:Name="GameModeComboBox" Grid.Column="0" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" SelectionChanged="OnGameModeSelectionChanged"/>
             <Button x:Name="RemoveGameButton" HorizontalAlignment="Stretch" Margin="1,5,1,5" VerticalAlignment="Stretch" Click="RemoveGameButton_Click" Grid.Row="0" Grid.Column="1" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold">
                 <TextBlock Text="Remove Selected Game" TextWrapping="Wrap" TextAlignment="Center" Width="82"/>
             </Button>

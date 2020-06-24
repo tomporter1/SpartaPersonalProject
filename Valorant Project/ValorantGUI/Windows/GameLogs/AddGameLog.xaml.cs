@@ -19,15 +19,17 @@ namespace ValorantGUI
             InitializeComponent();
             _gameLogPage = gameLogPage;
 
+            ModeComboBox.ItemsSource = new GameModesManager().GetAllEntries();
             MapComboBox.ItemsSource = new MapManager().GetAllEntries();
             AgentComboBox.ItemsSource = new AgentManager().GetAllEntries();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (TeamScoreTextBox.Text.Trim() != "" && OpponentScoreTextBox.Text.Trim() != "" && MapComboBox.SelectedIndex >= 0 && AgentComboBox.SelectedIndex >= 0)
+            if (TeamScoreTextBox.Text.Trim() != "" && OpponentScoreTextBox.Text.Trim() != "" && MapComboBox.SelectedIndex >= 0 && AgentComboBox.SelectedIndex >= 0 && ModeComboBox.SelectedIndex >= 0)
             {
                 GameLogArgs args = new GameLogArgs(
+                    ModeComboBox.SelectedItem,
                     MapComboBox.SelectedItem,
                     AgentComboBox.SelectedItem,
                     int.Parse(TeamScoreTextBox.Text.Trim()),
@@ -53,6 +55,8 @@ namespace ValorantGUI
                     MapLabel.Foreground = Brushes.Red;
                 if (AgentComboBox.SelectedIndex < 0)
                     AgentLabel.Foreground = Brushes.Red;
+                if (ModeComboBox.SelectedIndex < 0)
+                    ModeLabel.Foreground = Brushes.Red;
 
                 MessageBox.Show("Please fill in the required fields");
             }
