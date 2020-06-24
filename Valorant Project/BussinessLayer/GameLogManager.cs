@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using ValorantDatabase;
 
@@ -24,23 +25,39 @@ namespace BussinessLayer
             DateLogged
         }
 
+        private ValorantContext _context;
+
+        public GameLogManager(ValorantContext context = null)
+        {
+            _context = context;
+        }
+
         public override List<object> GetAllEntries()
         {
-            using ValorantContext db = new ValorantContext();
-            return db.GameLogs.OrderByDescending(gl => gl.DateLogged).ToList<object>();
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            List<object> output = db.GameLogs.OrderByDescending(gl => gl.DateLogged).ToList<object>();
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+            return output;
         }
 
         public override void RemoveEntry(object selectedGame)
         {
-            using ValorantContext db = new ValorantContext();
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
             GameLogs gameToRemove = (GameLogs)selectedGame;
             db.GameLogs.Remove(gameToRemove);
             db.SaveChanges();
+          
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
         }
 
         public override void AddNewEntry(SuperArgs args)
         {
-            using ValorantContext db = new ValorantContext();
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
             GameLogArgs logArgs = (GameLogArgs)args;
             Agents agent = db.Agents.Where(a => a.AgentId == logArgs.AgentId).FirstOrDefault();
             Maps map = db.Maps.Where(m => m.MapId == logArgs.MapId).FirstOrDefault();
@@ -59,11 +76,15 @@ namespace BussinessLayer
 
             db.GameLogs.Add(game);
             db.SaveChanges();
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
         }
 
         public override void UpdateEntry(object selectedGame, SuperArgs args)
         {
-            using ValorantContext db = new ValorantContext();
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
             GameLogArgs logArgs = (GameLogArgs)args;
 
             GameLogs gameToUpdate = db.GameLogs
@@ -84,64 +105,99 @@ namespace BussinessLayer
 
                 db.SaveChanges();
             }
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
         }
 
         public string GetGameDataStr(object selectedGame, Fields field)
         {
-            using ValorantContext db = new ValorantContext();
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
             GameLogs game = (GameLogs)selectedGame;
 
             IQueryable<GameLogs> logQuery = db.GameLogs.Where(gl => gl.GameId == game.GameId);
-
+            string output = "";
             switch (field)
             {
                 case Fields.GameID:
-                    return logQuery.Select(gl => gl.GameId).FirstOrDefault().ToString();
+                    output = logQuery.Select(gl => gl.GameId).FirstOrDefault().ToString();
+                    break;
                 case Fields.AgentID:
-                    return logQuery.Select(gl => gl.AgentId).FirstOrDefault().ToString();
+                    output = logQuery.Select(gl => gl.AgentId).FirstOrDefault().ToString();
+                    break;
                 case Fields.Agent:
-                    return logQuery.Include(gl => gl.Agent).Select(gl => gl.Agent).FirstOrDefault().ToString();
+                    output = logQuery.Include(gl => gl.Agent).Select(gl => gl.Agent).FirstOrDefault().ToString();
+                    break;
                 case Fields.MapId:
-                    return logQuery.Select(gl => gl.MapId).FirstOrDefault().ToString();
+                    output = logQuery.Select(gl => gl.MapId).FirstOrDefault().ToString();
+                    break;
                 case Fields.Map:
-                    return logQuery.Include(gl => gl.Map).Select(gl => gl.Map).FirstOrDefault().ToString();
+                    output = logQuery.Include(gl => gl.Map).Select(gl => gl.Map).FirstOrDefault().ToString();
+                    break;
                 case Fields.TeamScore:
-                    return logQuery.Select(gl => gl.TeamScore).FirstOrDefault().ToString();
+                    output = logQuery.Select(gl => gl.TeamScore).FirstOrDefault().ToString();
+                    break;
                 case Fields.OpponentScore:
-                    return logQuery.Select(gl => gl.OpponentScore).FirstOrDefault().ToString();
+                    output = logQuery.Select(gl => gl.OpponentScore).FirstOrDefault().ToString();
+                    break;
                 case Fields.Kills:
-                    return logQuery.Select(gl => gl.Kills).FirstOrDefault().ToString();
+                    output = logQuery.Select(gl => gl.Kills).FirstOrDefault().ToString();
+                    break;
                 case Fields.Deaths:
-                    return logQuery.Select(gl => gl.Deaths).FirstOrDefault().ToString();
+                    output = logQuery.Select(gl => gl.Deaths).FirstOrDefault().ToString();
+                    break;
                 case Fields.Assists:
-                    return logQuery.Select(gl => gl.Assits).FirstOrDefault().ToString();
+                    output = logQuery.Select(gl => gl.Assits).FirstOrDefault().ToString();
+                    break;
                 case Fields.ADR:
-                    return logQuery.Select(gl => gl.Adr).FirstOrDefault().ToString();
+                    output = logQuery.Select(gl => gl.Adr).FirstOrDefault().ToString();
+                    break;
                 case Fields.DateLogged:
-                    return logQuery.Select(gl => gl.DateLogged).FirstOrDefault().ToString();
+                    output = logQuery.Select(gl => gl.DateLogged).FirstOrDefault().ToString();
+                    break;
                 default:
-                    return "";
+                    output = "";
+                    break;
             }
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return output;
         }
 
         public object GetGameMapObj(object selectedGame)
         {
-            using ValorantContext db = new ValorantContext();
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
             GameLogs game = (GameLogs)selectedGame;
-            return db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Map).Select(gl => gl.Map).FirstOrDefault();
+            object output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Map).Select(gl => gl.Map).FirstOrDefault();
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return output;
         }
 
         public object GetGameAgentObj(object selectedGame)
         {
-            using ValorantContext db = new ValorantContext();
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
             GameLogs game = (GameLogs)selectedGame;
-            return db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Agent).Select(gl => gl.Agent).FirstOrDefault();
+            object output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Agent).Select(gl => gl.Agent).FirstOrDefault();
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return output;
         }
 
         #region GameStatMethods
         public object GetMostPlayedAgent()
         {
-            using ValorantContext db = new ValorantContext();
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
             int favAgentID = db.GameLogs
                     .GroupBy(
                         gl => gl.AgentId,
@@ -154,19 +210,31 @@ namespace BussinessLayer
                     .OrderByDescending(m => m.GamesPlayed)
                     .FirstOrDefault().AgentId;
 
-            return db.Agents.Where(m => m.AgentId == favAgentID).FirstOrDefault();
+            object output = db.Agents.Where(m => m.AgentId == favAgentID).FirstOrDefault();
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return output;
         }
 
         public object GetMostPlayedClass()
         {
             Agents faveAgent = (Agents)GetMostPlayedAgent();
-            using ValorantContext db = new ValorantContext();
-            return db.AgentType.Where(t => t.TypeId == faveAgent.AgentTypeId).FirstOrDefault();
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            object output = db.AgentType.Where(t => t.TypeId == faveAgent.AgentTypeId).FirstOrDefault();
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return output;
         }
 
         public object GetMapWithMostWins()
         {
-            using ValorantContext db = new ValorantContext();
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
             int bestMapID = db.GameLogs
                     .Where(gl => gl.TeamScore > gl.OpponentScore)
                     .GroupBy(
@@ -180,51 +248,96 @@ namespace BussinessLayer
                     .OrderByDescending(m => m.GamesWon)
                     .FirstOrDefault().MapID;
 
-            return db.Maps.Where(m => m.MapId == bestMapID).FirstOrDefault();
+            object output = db.Maps.Where(m => m.MapId == bestMapID).FirstOrDefault();
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return output;
         }
 
         public int GetTotals(Fields field)
         {
-            using ValorantContext db = new ValorantContext();
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            int output = 0;
             switch (field)
             {
                 case Fields.Kills:
-                    return (int)db.GameLogs.Select(gl => gl.Kills).Sum();
+                    output = (int)db.GameLogs.Select(gl => gl.Kills).Sum();
+                    break;
                 case Fields.Deaths:
-                    return (int)db.GameLogs.Select(gl => gl.Deaths).Sum();
+                    output = (int)db.GameLogs.Select(gl => gl.Deaths).Sum();
+                    break;
                 default:
-                    return 0;
+                    output = 0;
+                    break;
             }
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return output;
         }
 
         public DateTime GetDatePlayed(object selectedGame)
         {
             GameLogs game = (GameLogs)selectedGame;
-            using ValorantContext db = new ValorantContext();
-            return db.GameLogs.Where(gl => gl.GameId == game.GameId).Select(gl => gl.DateLogged).FirstOrDefault();
-            throw new NotImplementedException();
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            DateTime output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Select(gl => gl.DateLogged).FirstOrDefault();
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return output;
         }
 
         public float GetTotalKD()
         {
-            using ValorantContext db = new ValorantContext();
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
             float totalKills = GetTotals(Fields.Kills);
             float totalDeaths = GetTotals(Fields.Deaths);
 
+            float output;
             if (totalDeaths == 0)
-                return totalKills;
-            return totalKills / totalDeaths;
+            {
+                output = totalKills;
+            }
+            else
+            {
+                output = totalKills / totalDeaths;
+            }
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return output;
         }
 
         public float GetTotalWinLoss()
         {
-            using ValorantContext db = new ValorantContext();
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
             float totalWins = db.GameLogs.Where(gl => gl.TeamScore > gl.OpponentScore).Count();
             float totalLosses = db.GameLogs.Where(gl => gl.TeamScore < gl.OpponentScore).Count();
-
+            
+            float output;
             if (totalLosses == 0)
-                return totalWins;
-            return totalWins / totalLosses;
+            {
+                output = totalWins;
+            }
+            else
+            {
+                output = totalWins / totalLosses;
+            }
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return output;
         }
         #endregion       
     }

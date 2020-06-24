@@ -1,4 +1,5 @@
 using BussinessLayer;
+using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 using System.Collections.Generic;
@@ -10,155 +11,85 @@ namespace ValorantAppTests
     public class AgentManagerTests
     {
         AgentManager _agentManager;
+        ValorantContext _context;
 
         [SetUp]
         public void Setup()
         {
-            _agentManager = new AgentManager();
+            DbContextOptions<ValorantContext> options = new DbContextOptionsBuilder<ValorantContext>()
+               .UseInMemoryDatabase(databaseName: "AgentTestDb")
+               .Options;
+            _context = new ValorantContext(options);
+            _context.AgentType.AddRange(new List<AgentType>()
+            {
+                new AgentType() { TypeName = "Duelist", ImagePath = "/image1.png" },
+                new AgentType() { TypeName = "Controller", ImagePath = "/image2.png" },
+                new AgentType() { TypeName = "Initiator", ImagePath = "/image3.png" }
+            });
+            _context.SaveChanges();
+            _context.Agents.AddRange(new List<Agents>()
+            {
+                new Agents() { AgentName = "Reyna", AgentType= _context.AgentType.ToList()[0], SignatureAbilityName = "sigName", SignatureAbilityDiscription = "signatureDisc", UltamateAbilityName = "ultName", UltamateAbilityDiscription = "ultDisc", AbilityOneName = "normal1Name", AbilityOneDiscription = "normal1Disc", AbilityTwoName = "normal2Name", AbilityTwoDiscription = "normal2Disc", Bio = "bio" },
+                new Agents() { AgentName = "Jett", AgentType= _context.AgentType.ToList()[1], SignatureAbilityName = "sigName", SignatureAbilityDiscription = "signatureDisc", UltamateAbilityName = "ultName", UltamateAbilityDiscription = "ultDisc", AbilityOneName = "normal1Name", AbilityOneDiscription = "normal1Disc", AbilityTwoName = "normal2Name", AbilityTwoDiscription = "normal2Disc", Bio = "bio" },
+                new Agents() { AgentName = "Cypher", AgentType= _context.AgentType.ToList()[2], SignatureAbilityName = "sigName", SignatureAbilityDiscription = "signatureDisc", UltamateAbilityName = "ultName", UltamateAbilityDiscription = "ultDisc", AbilityOneName = "normal1Name", AbilityOneDiscription = "normal1Disc", AbilityTwoName = "normal2Name", AbilityTwoDiscription = "normal2Disc", Bio = "bio" }
+            });
+            _context.SaveChanges();
+
+            _agentManager = new AgentManager(_context);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _context.Agents.RemoveRange(_context.Agents);
+            _context.AgentType.RemoveRange(_context.AgentType);
+            _context.SaveChanges();
         }
 
         [Test]
         public void GetAllAgentsTest()
         {
             var result = _agentManager.GetAllEntries();
-            Assert.AreEqual(result.GetType(), typeof(List<object>));
+            Assert.That(result.GetType(), Is.EqualTo(typeof(List<object>)));
+            Assert.That(result.Count, Is.EqualTo(3));
         }
 
         [Test]
         public void AddAgentTest()
         {
-            //setup
-            bool testPassed = false;
-            
-            AgentArgs args = null;
-            int beforeCount = -1;
-            AgentType type = new AgentType() { TypeName = "New Type" };
-            using (ValorantContext db = new ValorantContext())
-            {
-                db.AgentType.Add(type);
-                db.SaveChanges();
-
-                args = new AgentArgs("Reyna", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
-
-                beforeCount = db.Agents.ToList().Count;
-            }
-
             //Test method call            
-            _agentManager.AddNewEntry(args);
+            _agentManager.AddNewEntry(new AgentArgs("New Boi", _context.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio"));
+            object addedAgent = _context.Agents.ToList()[3];
 
-            //Assersion 
-            using (ValorantContext db = new ValorantContext())
-            {
-                int afterCount = db.Agents.ToList().Count;
-
-                testPassed = afterCount == beforeCount + 1;
-                Assert.IsTrue(testPassed);
-            }
-
-            //Undo database changes done by the test
-            if (testPassed)
-            {
-                using (ValorantContext db = new ValorantContext())
-                {
-                    Agents agentToRemove = db.Agents.ToList().Last();
-                    db.Agents.Remove(agentToRemove);                    
-                    db.SaveChanges();
-                }
-            }
-            using (ValorantContext db = new ValorantContext())
-            {               
-                AgentType lastTypeInDB = db.AgentType.ToList().Last();
-                db.AgentType.Remove(lastTypeInDB);
-                db.SaveChanges();
-            }
+            //Assersion  
+            Assert.That(_context.Agents.ToList(), Contains.Item(addedAgent));
         }
 
         [Test]
         public void RemoveAgentTest()
         {
-            //setup
-            bool testPassed = false;
-            int beforeCount = -1;
-            object addedAgent = null;
-            using (ValorantContext db = new ValorantContext())
-            {
-                db.AgentType.Add(new AgentType() { TypeName = "New Type" });
-                db.SaveChanges();
-
-                AgentArgs args = new AgentArgs("Reyna", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
-
-                _agentManager.AddNewEntry(args);
-                beforeCount = db.Agents.ToList().Count;
-                addedAgent = db.Agents.ToList().Last();
-            }
-
+            object AgentToRemove = _context.Agents.ToList().Last();
             //Test method call
-            _agentManager.RemoveEntry(addedAgent);
+            _agentManager.RemoveEntry(AgentToRemove);
 
-            //Assersion 
-            using (ValorantContext db = new ValorantContext())
-            {
-                int afterCount = db.Agents.ToList().Count;
-
-                testPassed = afterCount == beforeCount - 1;
-                Assert.IsTrue(testPassed);
-            }
-
-            //Undo database changes done by the test
-            if (!testPassed)
-            {
-                using (ValorantContext db = new ValorantContext())
-                {
-                    Agents agentToRemove = db.Agents.ToList().Last();
-                    db.Agents.Remove(agentToRemove);
-                    db.SaveChanges();
-                }
-            }
-            using (ValorantContext db = new ValorantContext())
-            {
-                AgentType lastTypeInDB = db.AgentType.ToList().Last();
-                db.AgentType.Remove(lastTypeInDB);
-                db.SaveChanges();
-            }
+            //Assersion             
+            Assert.That(_context.Agents.ToList(), !Contains.Item(AgentToRemove));
         }
 
         [Test]
         public void UpdateAgentTest()
         {
-            //setup
-            object addedAgent = null;
-            AgentType type = new AgentType() { TypeName = "New Type" };
-            AgentArgs updatedArgs = null;
-
-            using (ValorantContext db = new ValorantContext())
-            {
-                db.AgentType.Add(type);
-                db.SaveChanges();
-
-                AgentArgs args = new AgentArgs("Reyna", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
-                updatedArgs = new AgentArgs("Bob", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
-                _agentManager.AddNewEntry(args);
-                addedAgent = db.Agents.ToList().Last();
-            }
+            AgentArgs updatedArgs = new AgentArgs("Bob", _context.AgentType.ToList().First(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
+            object agentToUpdate = _context.Agents.ToList().Last();
 
             //Test
-            _agentManager.UpdateEntry(addedAgent, updatedArgs);
+            _agentManager.UpdateEntry(agentToUpdate, updatedArgs);
 
-            //assertion and removing the new entry from the database
-            using (ValorantContext db = new ValorantContext())
-            {
-                Agents lastAgentInDB = db.Agents.ToList().Last();
-
-                Assert.AreEqual(updatedArgs.Name, lastAgentInDB.AgentName);
-
-                db.Agents.Remove(lastAgentInDB);
-                AgentType lastTypeInDB = db.AgentType.ToList().Last();
-                db.AgentType.Remove(lastTypeInDB);
-                db.SaveChanges();
-            }
+            //assertion and removing the new entry from the database            
+            Assert.That(updatedArgs.Name, Is.EqualTo("Bob"));
         }
 
-        [TestCase("Reyna", AgentManager.Fields.Name)]
+        [TestCase("Cypher", AgentManager.Fields.Name)]
         [TestCase("sigName", AgentManager.Fields.SignatureAbilityName)]
         [TestCase("ultName", AgentManager.Fields.UltamateAbilityName)]
         [TestCase("normal1Name", AgentManager.Fields.AbilityOneName)]
@@ -166,68 +97,26 @@ namespace ValorantAppTests
         public void GetAgentDataTest(string expectedResult, AgentManager.Fields field)
         {
             //setup
-            object addedAgent = null;
-
-            using (ValorantContext db = new ValorantContext())
-            {
-                db.AgentType.Add(new AgentType() { TypeName = "New Type" });
-                db.SaveChanges();
-                AgentArgs args = new AgentArgs("Reyna", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
-                _agentManager.AddNewEntry(args);
-
-                addedAgent = db.Agents.ToList().Last();
-            }
+            object addedAgent = _context.Agents.ToList().Last();
 
             //Test
             string result = _agentManager.GetAgentDataStr(addedAgent, field);
 
             //Assertion
-            Assert.AreEqual(result, expectedResult);
-
-            //Undo database changes done by the test
-            using (ValorantContext db = new ValorantContext())
-            {
-                Agents lastAgentInDB = db.Agents.ToList().Last();
-                db.Agents.Remove(lastAgentInDB);
-                AgentType lastTypeInDB = db.AgentType.ToList().Last();
-                db.AgentType.Remove(lastTypeInDB);
-                db.SaveChanges();
-            }
+            Assert.That(result, Is.EqualTo(expectedResult));
         }
 
         [Test]
         public void GetAgentTypeTest()
         {
             //Setup
-            AgentType newAgentType = new AgentType() { TypeName = "New Type" };
-            object selectedAgent = null;
-            using (ValorantContext db = new ValorantContext())
-            {
-                db.AgentType.Add(newAgentType);
-                db.SaveChanges();
-
-                AgentArgs args = new AgentArgs("name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "UltDisc", "Normal1Name", "Normal1Disc", "Normal2Name", "Normal2Disc", "bio");
-
-                _agentManager.AddNewEntry(args);
-
-                selectedAgent = db.Agents.ToList().Last();
-            }
+            object selectedAgent = _context.Agents.ToList().Last();
 
             //Test
             var result = _agentManager.GetAgentTypeObj(selectedAgent);
-
+            AgentType type = _context.AgentType.Where(t => t.TypeId == ((Agents)selectedAgent).AgentTypeId).FirstOrDefault();
             //Assertion
-            Assert.IsTrue(newAgentType.Equals(result));
-
-            //Undo database changes done by the test
-            using (ValorantContext db = new ValorantContext())
-            {
-                Agents lastAgentInDB = db.Agents.ToList().Last();
-                db.Agents.Remove(lastAgentInDB);
-                AgentType lastTypeInDB = db.AgentType.ToList().Last();
-                db.AgentType.Remove(lastTypeInDB);
-                db.SaveChanges();
-            }
+            Assert.That(type, Is.EqualTo(result));
         }
 
         [TestCase("signatureDisc", "sigName")]
@@ -237,42 +126,19 @@ namespace ValorantAppTests
         public void GetAgentAbilityDiscriptionTest(string expectedResult, object abilityName)
         {
             //Setup
-            AgentType newAgentType = new AgentType() { TypeName = "New Type" };
-            object selectedAgent = null;
-            using (ValorantContext db = new ValorantContext())
-            {
-                db.AgentType.Add(newAgentType);
-                db.SaveChanges();
-
-                AgentArgs args = new AgentArgs("name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
-
-                _agentManager.AddNewEntry(args);
-
-                selectedAgent = db.Agents.ToList().Last();
-            }
+            object selectedAgent = _context.Agents.ToList().Last();
 
             //Test
             var result = _agentManager.GetAbilityDiscription(selectedAgent, abilityName);
 
             //Assertion
-            Assert.AreEqual(expectedResult, result);
-
-            //Undo database changes done by the test
-            using (ValorantContext db = new ValorantContext())
-            {
-                Agents lastAgentInDB = db.Agents.ToList().Last();
-                db.Agents.Remove(lastAgentInDB);
-                AgentType lastTypeInDB = db.AgentType.ToList().Last();
-                db.AgentType.Remove(lastTypeInDB);
-                db.SaveChanges();
-            }
+            Assert.That(expectedResult, Is.EqualTo(result));
         }
 
         [Test]
         public void GetAgentAbilitiesTest()
         {
             //Setup
-            AgentType newAgentType = new AgentType() { TypeName = "New Type" };
             List<string> expectedResult = new List<string>()
             {
                 "sigName",
@@ -280,34 +146,13 @@ namespace ValorantAppTests
                 "normal1Name",
                 "normal2Name"
             };
-            object selectedAgent = null;
-            using (ValorantContext db = new ValorantContext())
-            {
-                db.AgentType.Add(newAgentType);
-                db.SaveChanges();
-
-                AgentArgs args = new AgentArgs("name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
-
-                _agentManager.AddNewEntry(args);
-
-                selectedAgent = db.Agents.ToList().Last();
-            }
+            object selectedAgent = _context.Agents.ToList().Last();
 
             //Test
             var result = _agentManager.GetAgentsAbilities(selectedAgent);
 
             //Assertion
             Assert.AreEqual(expectedResult, result);
-
-            //Undo database changes done by the test
-            using (ValorantContext db = new ValorantContext())
-            {
-                Agents lastAgentInDB = db.Agents.ToList().Last();
-                db.Agents.Remove(lastAgentInDB);
-                AgentType lastTypeInDB = db.AgentType.ToList().Last();
-                db.AgentType.Remove(lastTypeInDB);
-                db.SaveChanges();
-            }
         }
     }
 }

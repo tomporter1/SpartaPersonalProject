@@ -1,4 +1,5 @@
 ﻿using BussinessLayer;
+using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -7,183 +8,110 @@ using ValorantDatabase;
 
 namespace ValorantAppTests
 {
+
+
     public class GameLogManagerTests
     {
+        ValorantContext _context;
+        GameLogManager _manager;
+
         [SetUp]
         public void Setup()
         {
+            DbContextOptions<ValorantContext> options = new DbContextOptionsBuilder<ValorantContext>()
+              .UseInMemoryDatabase(databaseName: "AgentTestDb")
+              .Options;
+            _context = new ValorantContext(options);
+            _context.Maps.AddRange(new List<Maps>()
+            {
+                new Maps() { MapName = "Spit", ImagePath = "/image1.png", LayoutImagePath="/image1.png" },
+                new Maps() { MapName = "Bind", ImagePath = "/image2.png", LayoutImagePath="/image2.png" },
+                new Maps() { MapName = "Haven", ImagePath = "/image3.png", LayoutImagePath="/image3.png" }
+            });
+            _context.SaveChanges();
+            _context.AgentType.AddRange(new List<AgentType>()
+            {
+                new AgentType() { TypeName = "Duelist", ImagePath = "/image1.png" },
+                new AgentType() { TypeName = "Controller", ImagePath = "/image2.png" },
+                new AgentType() { TypeName = "Initiator", ImagePath = "/image3.png" }
+            });
+            _context.SaveChanges();
+            _context.Agents.AddRange(new List<Agents>()
+            {
+                new Agents() { AgentName = "Reyna", AgentType= _context.AgentType.ToList()[0], SignatureAbilityName = "sigName", SignatureAbilityDiscription = "signatureDisc", UltamateAbilityName = "ultName", UltamateAbilityDiscription = "ultDisc", AbilityOneName = "normal1Name", AbilityOneDiscription = "normal1Disc", AbilityTwoName = "normal2Name", AbilityTwoDiscription = "normal2Disc", Bio = "bio" },
+                new Agents() { AgentName = "Jett", AgentType= _context.AgentType.ToList()[1], SignatureAbilityName = "sigName", SignatureAbilityDiscription = "signatureDisc", UltamateAbilityName = "ultName", UltamateAbilityDiscription = "ultDisc", AbilityOneName = "normal1Name", AbilityOneDiscription = "normal1Disc", AbilityTwoName = "normal2Name", AbilityTwoDiscription = "normal2Disc", Bio = "bio" },
+                new Agents() { AgentName = "Cypher", AgentType= _context.AgentType.ToList()[2], SignatureAbilityName = "sigName", SignatureAbilityDiscription = "signatureDisc", UltamateAbilityName = "ultName", UltamateAbilityDiscription = "ultDisc", AbilityOneName = "normal1Name", AbilityOneDiscription = "normal1Disc", AbilityTwoName = "normal2Name", AbilityTwoDiscription = "normal2Disc", Bio = "bio" }
+            });
+            _context.SaveChanges();
+            _context.GameLogs.AddRange(new List<GameLogs>() {
+                new GameLogs() { Map = _context.Maps.ToList()[0], Agent = _context.Agents.ToList()[0], TeamScore = 13, OpponentScore = 12, Kills = 20, Deaths = 12, Assits = 4, Adr = 150, DateLogged = DateTime.Now },
+                new GameLogs() { Map = _context.Maps.ToList()[1], Agent = _context.Agents.ToList()[1], TeamScore = 13, OpponentScore = 12, Kills = 20, Deaths = 12, Assits = 4, Adr = 150, DateLogged = DateTime.Now },
+                new GameLogs() { Map = _context.Maps.ToList()[2], Agent = _context.Agents.ToList()[2], TeamScore = 13, OpponentScore = 12, Kills = 20, Deaths = 12, Assits = 4, Adr = 150, DateLogged = DateTime.Now }
+            });
+            _context.SaveChanges();
+            _manager = new GameLogManager(_context);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _context.GameLogs.RemoveRange(_context.GameLogs);
+            _context.Agents.RemoveRange(_context.Agents);
+            _context.AgentType.RemoveRange(_context.AgentType);
+            _context.Maps.RemoveRange(_context.Maps);
+            _context.SaveChanges();
         }
 
         [Test]
         public void GetAllGamesTest()
         {
-            GameLogManager manager = new GameLogManager();
-            var result = manager.GetAllEntries();
-            Assert.AreEqual(result.GetType(), typeof(List<object>));
+            var result = _manager.GetAllEntries();
+            Assert.That(result.GetType(), Is.EqualTo(typeof(List<object>)));
+            Assert.That(result.Count, Is.EqualTo(3));
         }
-
 
         [Test]
         public void AddGameLogTest()
         {
             //setup
-            bool testPassed = false;
-            GameLogManager logManager = new GameLogManager();
-            int beforeCount = -1;
-            GameLogArgs args = null;
-            using (ValorantContext db = new ValorantContext())
-            {
-                db.AgentType.Add(new AgentType() { TypeName = "New Type" });
-                db.Maps.Add(new Maps() { MapName = "New Map" });
-                db.SaveChanges();
-
-                AgentArgs agentArgs = new AgentArgs("Name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
-
-                new AgentManager().AddNewEntry(agentArgs);
-                beforeCount = db.GameLogs.ToList().Count;
-
-                args = new GameLogArgs(db.Maps.ToList().Last(), db.Agents.ToList().Last(), 13, 12, 20, 12, 4, 150, DateTime.Now);
-            }
+            GameLogArgs args = new GameLogArgs(_context.Maps.ToList().Last(), _context.Agents.ToList().Last(), 13, 12, 20, 12, 4, 150, DateTime.Now);
 
             //Test method call            
-            logManager.AddNewEntry(args);
-
+            _manager.AddNewEntry(args);
+            GameLogs newLog = _context.GameLogs.ToList()[3];
             //Assersion 
-            using (ValorantContext db = new ValorantContext())
-            {
-                int afterCount = db.GameLogs.ToList().Count;
-
-                testPassed = afterCount == beforeCount + 1;
-                Assert.IsTrue(testPassed);
-            }
-
-            //Undo database changes done by the test
-            if (testPassed)
-            {
-                using (ValorantContext db = new ValorantContext())
-                {
-                    GameLogs addedGame = db.GameLogs.ToList().Last();
-                    db.Remove(addedGame);
-                    db.SaveChanges();
-                }
-            }
-            using (ValorantContext db = new ValorantContext())
-            {
-                Agents agentToRemove = db.Agents.ToList().Last();
-                db.Agents.Remove(agentToRemove);
-                AgentType lastTypeInDB = db.AgentType.ToList().Last();
-                db.AgentType.Remove(lastTypeInDB);
-                Maps lastMapInDb = db.Maps.ToList().Last();
-                db.Maps.Remove(lastMapInDb);
-                db.SaveChanges();
-            }
+            Assert.That(_context.GameLogs.ToList(), Contains.Item(newLog));
         }
 
         [Test]
         public void RemoveGameLogTest()
         {
-            //setup
-            bool testPassed = false;
-            GameLogManager logManager = new GameLogManager();
-            int beforeCount = -1;
-            GameLogArgs args = null;
-            object addedGame = null;
-            using (ValorantContext db = new ValorantContext())
-            {
-                db.AgentType.Add(new AgentType() { TypeName = "New Type" });
-                db.Maps.Add(new Maps() { MapName = "New Map" });
-                db.SaveChanges();
-
-                AgentArgs agentArgs = new AgentArgs("Name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
-
-                new AgentManager().AddNewEntry(agentArgs);
-
-                args = new GameLogArgs(db.Maps.ToList().Last(), db.Agents.ToList().Last(), 13, 12, 20, 12, 4, 150, DateTime.Now);
-                logManager.AddNewEntry(args);
-                beforeCount = db.GameLogs.ToList().Count;
-                addedGame = db.GameLogs.ToList().Last();
-            }
+            //setup   
+            object logToRemove = _context.GameLogs.ToList().Last();
 
             //Test method call            
-            logManager.RemoveEntry(addedGame);
+            _manager.RemoveEntry(logToRemove);
 
-            //Assersion 
-            using (ValorantContext db = new ValorantContext())
-            {
-                int afterCount = db.GameLogs.ToList().Count;
-
-                testPassed = afterCount == beforeCount - 1;
-                Assert.IsTrue(testPassed);
-            }
-
-            //Undo database changes done by the test
-            if (!testPassed)
-            {
-                using (ValorantContext db = new ValorantContext())
-                {
-                    GameLogs gameToRemove = db.GameLogs.ToList().Last();
-                    db.Remove(gameToRemove);
-                    db.SaveChanges();
-                }
-            }
-            using (ValorantContext db = new ValorantContext())
-            {
-                Agents agentToRemove = db.Agents.ToList().Last();
-                db.Agents.Remove(agentToRemove);
-                AgentType lastTypeInDB = db.AgentType.ToList().Last();
-                db.AgentType.Remove(lastTypeInDB);
-                Maps lastMapInDb = db.Maps.ToList().Last();
-                db.Maps.Remove(lastMapInDb);
-                db.SaveChanges();
-            }
+            //Assersion            
+            Assert.That(_context.GameLogs.ToList(), !Contains.Item(logToRemove));
         }
 
         [Test]
         public void UpdateGameLogTest()
         {
             //setup
-            GameLogManager logManager = new GameLogManager();
-            GameLogArgs updatedArgs = null;
-            object addedGame = null;
-            using (ValorantContext db = new ValorantContext())
-            {
-                db.AgentType.Add(new AgentType() { TypeName = "New Type" });
-                db.Maps.Add(new Maps() { MapName = "New Map" });
-                db.SaveChanges();
+            GameLogArgs updatedArgs = new GameLogArgs(_context.Maps.ToList().First(), _context.Agents.ToList().First(), 13, 12, 30, 45, 0, 150, DateTime.Now);
 
-                AgentArgs agentArgs = new AgentArgs("Name", db.AgentType.ToList().Last(), "sigName", "signatureDisc", "ultName", "ultDisc", "normal1Name", "normal1Disc", "normal2Name", "normal2Disc", "bio");
-
-                new AgentManager().AddNewEntry(agentArgs);
-
-                GameLogArgs args = new GameLogArgs(db.Maps.ToList().Last(), db.Agents.ToList().Last(), 13, 12, 20, 12, 4, 150, DateTime.Now);
-                updatedArgs = new GameLogArgs(db.Maps.ToList().Last(), db.Agents.ToList().Last(), 13, 12, 30, 45, 0, 150, DateTime.Now);
-                
-                logManager.AddNewEntry(args);
-                
-                addedGame = db.GameLogs.ToList().Last();
-            }
+            object logToUpdate = _context.GameLogs.ToList().Last();
 
             //Test method call            
-            logManager.UpdateEntry(addedGame, updatedArgs);
+            _manager.UpdateEntry(logToUpdate, updatedArgs);
 
             //Assersion 
-            using (ValorantContext db = new ValorantContext())
-            {
-                GameLogs lastGameInDb = db.GameLogs.ToList().Last();
-
-                Assert.AreEqual(updatedArgs.Kills, lastGameInDb.Kills);
-                Assert.AreEqual(updatedArgs.Deaths, lastGameInDb.Deaths);
-                Assert.AreEqual(updatedArgs.Assists, lastGameInDb.Assits);
-            
-                db.Remove(lastGameInDb);
-                Agents agentToRemove = db.Agents.ToList().Last();
-                db.Agents.Remove(agentToRemove);
-                AgentType lastTypeInDB = db.AgentType.ToList().Last();
-                db.AgentType.Remove(lastTypeInDB);
-                Maps lastMapInDb = db.Maps.ToList().Last();
-                db.Maps.Remove(lastMapInDb);
-                db.SaveChanges();
-            }
+            GameLogs lastGameInDb = (GameLogs)logToUpdate;
+            Assert.AreEqual(updatedArgs.Kills, lastGameInDb.Kills);
+            Assert.AreEqual(updatedArgs.Deaths, lastGameInDb.Deaths);
+            Assert.AreEqual(updatedArgs.Assists, lastGameInDb.Assits);
         }
     }
 }

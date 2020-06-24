@@ -13,7 +13,7 @@ namespace ValorantAppTests
         MapManager _manager;
         ValorantContext _context;
 
-        [OneTimeSetUp]
+        [SetUp]
         public void Setup()
         {
             DbContextOptions<ValorantContext> options = new DbContextOptionsBuilder<ValorantContext>()
@@ -30,21 +30,29 @@ namespace ValorantAppTests
             _manager = new MapManager(_context);
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            _context.Maps.RemoveRange(_context.Maps);
+            _context.SaveChanges();
+        }
+
         [Test]
         public void GetAllMapsTest()
         {
-            Assert.That(_manager.GetAllEntries().GetType(), Is.EqualTo(typeof(List<object>)));
-            Assert.That(_manager.GetAllEntries().Count, Is.EqualTo(3));
+            var result = _manager.GetAllEntries();
+            Assert.That(result.GetType(), Is.EqualTo(typeof(List<object>)));
+            Assert.That(result.Count, Is.EqualTo(3));
         }
 
-        [TestCase("Spit", MapManager.Fields.Name)]
-        public void GetMapDataTest(string expectedResult, MapManager.Fields field)
+        [Test]
+        public void GetMapDataTest()
         {
             //setup
             object mapObj = _context.Maps.ToList().First();
-
+            string name = ((Maps)mapObj).MapName;
             //Assertion
-            Assert.That(_manager.GetMapsDataStr(mapObj, field), Is.EqualTo(expectedResult));
+            Assert.That(_manager.GetMapsDataStr(mapObj, MapManager.Fields.Name), Is.EqualTo(name));
         }
 
         [Test]
@@ -56,38 +64,18 @@ namespace ValorantAppTests
 
             //Assersion 
             Assert.That(_context.Maps.ToList(), Contains.Item(addedMap));
-
-            //Undo database changes done by the test
-            if (_context.Maps.ToList().Contains(addedMap))
-            {
-                Maps mapToremove = _context.Maps.ToList().Last();
-                _context.Maps.Remove(mapToremove);
-                _context.SaveChanges();
-            }
         }
 
         [Test]
         public void RemoveMapTest()
         {
-            _manager.AddNewEntry(new MapArgs("New Map"));
-            object addedMap = _context.Maps.ToList().Last();
+            object lastMap = _context.Maps.ToList().Last();
 
             //Test method call
-            _manager.RemoveEntry(addedMap);
+            _manager.RemoveEntry(lastMap);
 
             //Assersion 
-
-            //assersion 
-            Assert.That(_context.Maps.ToList(), !Contains.Item(addedMap));
-
-
-            //Undo database changes done by the test
-            if (_context.Maps.ToList().Contains(addedMap))
-            {
-                Maps mapToRemove = _context.Maps.ToList().Last();
-                _context.Maps.Remove(mapToRemove);
-                _context.SaveChanges();
-            }
+            Assert.That(_context.Maps.ToList(), !Contains.Item(lastMap));
         }
 
         [Test]
@@ -100,11 +88,7 @@ namespace ValorantAppTests
 
             _manager.UpdateEntry(map, new MapArgs(newMapName));
 
-            Maps firstMapInDB = _context.Maps.ToList().First();
-            Assert.AreEqual(newMapName, firstMapInDB.MapName);
-
-            firstMapInDB.MapName = "Spit";
-            _context.SaveChanges();
+            Assert.AreEqual(newMapName, _context.Maps.ToList().First().MapName);
         }
     }
 }

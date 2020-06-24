@@ -75,7 +75,7 @@ namespace BussinessLayer
 
         public string GetTypeDataStr(object selectedType, Fields field)
         {
-            using ValorantContext db = new ValorantContext();
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
             AgentType type = (AgentType)selectedType;
 
             IQueryable<AgentType> typeQuery = db.AgentType.Where(t => t.TypeId == type.TypeId);

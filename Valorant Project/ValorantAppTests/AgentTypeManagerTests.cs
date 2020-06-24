@@ -12,7 +12,7 @@ namespace ValorantAppTests
         AgentTypeManager _manager;
         ValorantContext _context;
 
-        [OneTimeSetUp]
+        [SetUp]
         public void Setup()
         {
             DbContextOptions<ValorantContext> options = new DbContextOptionsBuilder<ValorantContext>()
@@ -29,23 +29,29 @@ namespace ValorantAppTests
             _manager = new AgentTypeManager(_context);
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            _context.AgentType.RemoveRange(_context.AgentType);
+            _context.SaveChanges();
+        }
+
         [Test]
         public void GetAllAgentsTest()
         {
-            Assert.That(_manager.GetAllEntries().GetType(), Is.EqualTo(typeof(List<object>)));
-            Assert.That(_manager.GetAllEntries().Count, Is.EqualTo(3));
+            var result = _manager.GetAllEntries();
+            Assert.That(result.GetType(), Is.EqualTo(typeof(List<object>)));
+            Assert.That(result.Count, Is.EqualTo(3));
         }
 
-        [TestCase("Duelist", AgentTypeManager.Fields.Name)]
-        public void GetMapDataTest(string expectedResult, AgentTypeManager.Fields field)
+        [Test]
+        public void GetMapDataTest()
         {
-            _manager.AddNewEntry(new AgentTypeArgs(expectedResult));
-
             //setup
             object typeObj = _context.AgentType.ToList().First();
-
+            string name = ((AgentType)typeObj).TypeName;
             //Assertion
-            Assert.That(_manager.GetTypeDataStr(typeObj, field), Is.EqualTo(expectedResult));
+            Assert.That(_manager.GetTypeDataStr(typeObj, AgentTypeManager.Fields.Name), Is.EqualTo(name));
         }
 
         [Test]
@@ -53,25 +59,16 @@ namespace ValorantAppTests
         {
             //Test method call
             _manager.AddNewEntry(new AgentTypeArgs("new type"));
-            object addedType = _context.AgentType.ToList().Last();
+            object addedType = _context.AgentType.ToList()[3];
 
             //Assersion 
             Assert.That(_context.AgentType.ToList(), Contains.Item(addedType));
-
-            //Undo database changes done by the test
-            if (_context.AgentType.ToList().Contains(addedType))
-            {
-                AgentType typeToremove = _context.AgentType.ToList().Last();
-                _context.AgentType.Remove(typeToremove);
-                _context.SaveChanges();
-            }
         }
 
         [Test]
         public void RemoveAgentTypeTest()
         {
             //setup
-            _manager.AddNewEntry(new AgentTypeArgs("New Type"));
             object addedType = _context.AgentType.ToList().Last();
 
             //Test method call
@@ -79,14 +76,6 @@ namespace ValorantAppTests
 
             //Assersion 
             Assert.That(_context.AgentType.ToList(), !Contains.Item(addedType));
-
-            //Undo database changes done by the test
-            if (_context.AgentType.ToList().Contains(addedType))
-            {
-                AgentType agentTypeToRemove = _context.AgentType.ToList().Last();
-                _context.AgentType.Remove(agentTypeToRemove);
-                _context.SaveChanges();
-            }
         }
 
         [Test]
@@ -99,12 +88,7 @@ namespace ValorantAppTests
 
             _manager.UpdateEntry(type, new AgentTypeArgs(newTypeName));
 
-
-            AgentType lastTypeInDB = _context.AgentType.ToList().Last();
-            Assert.AreEqual(newTypeName, lastTypeInDB.TypeName);
-
-            lastTypeInDB.TypeName = "Duelist";
-            _context.SaveChanges();
+            Assert.That(newTypeName, Is.EqualTo(_context.AgentType.ToList().Last().TypeName));
         }
     }
 }
