@@ -19,6 +19,11 @@ namespace ValorantDatabase
             get => _agentId;
             set => _agentId = value;
         }
+        public int ModeID
+        {
+            get => _modeId;
+            set => _modeId = value;
+        }
         public int TeamScore
         {
             get => _teamScore;
@@ -57,5 +62,6 @@ namespace ValorantDatabase
 
         public virtual Agents Agent { get; set; }
         public virtual Maps Map { get; set; }
+        public virtual GameModes GameMode { get; set; }
     }
 }

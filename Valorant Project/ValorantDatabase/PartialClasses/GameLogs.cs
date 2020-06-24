@@ -10,6 +10,7 @@ namespace ValorantDatabase
         private int _gameId;
         private int _mapId;
         private int _agentId;
+        private int _modeId;
         private int _teamScore;
         private int _opponentScore;
         private int? _kills;

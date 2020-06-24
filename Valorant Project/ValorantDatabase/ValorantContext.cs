@@ -19,6 +19,7 @@ namespace ValorantDatabase
         public virtual DbSet<Agents> Agents { get; set; }
         public virtual DbSet<GameLogs> GameLogs { get; set; }
         public virtual DbSet<Maps> Maps { get; set; }
+        public virtual DbSet<GameModes> GameModes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -128,6 +129,12 @@ namespace ValorantDatabase
                     .HasForeignKey(d => d.AgentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Agent");
+                
+                entity.HasOne(d => d.GameMode)
+                    .WithMany(p => p.GameLogs)
+                    .HasForeignKey(d => d.ModeID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_GameMode");
 
                 entity.HasOne(d => d.Map)
                     .WithMany(p => p.GameLogs)
@@ -154,6 +161,23 @@ namespace ValorantDatabase
                 
                 entity.Property(e => e.LayoutImagePath)
                     .HasMaxLength(35)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<GameModes>(entity =>
+            {
+                entity.HasKey(e => e.ModeID)
+                    .HasName("PK_ModeID");
+
+                entity.Property(e => e.ModeID).HasColumnName("ModeID");
+
+                entity.Property(e => e.ModeName)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ModeDiscription)
+                    .HasMaxLength(200)
                     .IsUnicode(false);
             });
 
