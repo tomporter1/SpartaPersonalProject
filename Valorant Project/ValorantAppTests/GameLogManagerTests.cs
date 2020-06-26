@@ -22,6 +22,11 @@ namespace ValorantAppTests
               .UseInMemoryDatabase(databaseName: "AgentTestDb")
               .Options;
             _context = new ValorantContext(options);
+            _context.GameModes.AddRange(new List<GameModes>()
+            {
+                new GameModes() { ModeName = "Ranked", ModeDiscription = "" },
+                new GameModes() { ModeName = "Unranked", ModeDiscription = "" }
+            });
             _context.Maps.AddRange(new List<Maps>()
             {
                 new Maps() { MapName = "Spit", ImagePath = "/image1.png", LayoutImagePath="/image1.png" },
@@ -44,9 +49,9 @@ namespace ValorantAppTests
             });
             _context.SaveChanges();
             _context.GameLogs.AddRange(new List<GameLogs>() {
-                new GameLogs() { Map = _context.Maps.ToList()[0], Agent = _context.Agents.ToList()[0], TeamScore = 13, OpponentScore = 12, Kills = 20, Deaths = 12, Assits = 4, Adr = 150, DateLogged = DateTime.Now },
-                new GameLogs() { Map = _context.Maps.ToList()[1], Agent = _context.Agents.ToList()[1], TeamScore = 13, OpponentScore = 12, Kills = 20, Deaths = 12, Assits = 4, Adr = 150, DateLogged = DateTime.Now },
-                new GameLogs() { Map = _context.Maps.ToList()[2], Agent = _context.Agents.ToList()[2], TeamScore = 13, OpponentScore = 12, Kills = 20, Deaths = 12, Assits = 4, Adr = 150, DateLogged = DateTime.Now }
+                new GameLogs() { GameMode = _context.GameModes.ToList()[0], Map = _context.Maps.ToList()[0], Agent = _context.Agents.ToList()[0], TeamScore = 13, OpponentScore = 12, Kills = 20, Deaths = 12, Assits = 4, Adr = 150, DateLogged = DateTime.Now },
+                new GameLogs() { GameMode = _context.GameModes.ToList()[0], Map = _context.Maps.ToList()[1], Agent = _context.Agents.ToList()[1], TeamScore = 13, OpponentScore = 12, Kills = 20, Deaths = 12, Assits = 4, Adr = 150, DateLogged = DateTime.Now },
+                new GameLogs() { GameMode = _context.GameModes.ToList()[0], Map = _context.Maps.ToList()[2], Agent = _context.Agents.ToList()[2], TeamScore = 13, OpponentScore = 12, Kills = 20, Deaths = 12, Assits = 4, Adr = 150, DateLogged = DateTime.Now }
             });
             _context.SaveChanges();
             _manager = new GameLogManager(_context);
@@ -74,7 +79,7 @@ namespace ValorantAppTests
         public void AddGameLogTest()
         {
             //setup
-            GameLogArgs args = new GameLogArgs(_context.Maps.ToList().Last(), _context.Agents.ToList().Last(), 13, 12, 20, 12, 4, 150, DateTime.Now);
+            GameLogArgs args = new GameLogArgs(_context.GameModes.ToList().First(), _context.Maps.ToList().Last(), _context.Agents.ToList().Last(), 13, 12, 20, 12, 4, 150, DateTime.Now);
 
             //Test method call            
             _manager.AddNewEntry(args);
@@ -100,7 +105,7 @@ namespace ValorantAppTests
         public void UpdateGameLogTest()
         {
             //setup
-            GameLogArgs updatedArgs = new GameLogArgs(_context.Maps.ToList().First(), _context.Agents.ToList().First(), 13, 12, 30, 45, 0, 150, DateTime.Now);
+            GameLogArgs updatedArgs = new GameLogArgs(_context.GameModes.ToList().First(), _context.Maps.ToList().First(), _context.Agents.ToList().First(), 13, 12, 30, 45, 0, 150, DateTime.Now);
 
             object logToUpdate = _context.GameLogs.ToList().Last();
 

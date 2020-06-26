@@ -61,6 +61,7 @@ namespace BussinessLayer
             GameLogArgs logArgs = (GameLogArgs)args;
             Agents agent = db.Agents.Where(a => a.AgentId == logArgs.AgentId).FirstOrDefault();
             Maps map = db.Maps.Where(m => m.MapId == logArgs.MapId).FirstOrDefault();
+            GameModes mode = db.GameModes.Where(gm => gm.ModeID == logArgs.ModeID).FirstOrDefault();
             GameLogs game = new GameLogs()
             {
                 TeamScore = logArgs.TeamScore,
@@ -71,7 +72,8 @@ namespace BussinessLayer
                 Adr = logArgs.ADR,
                 DateLogged = logArgs.DateLogged,
                 Map = map,
-                Agent = agent
+                Agent = agent,
+                GameMode = mode
             };
 
             db.GameLogs.Add(game);
@@ -110,6 +112,7 @@ namespace BussinessLayer
                 gameToUpdate.OpponentScore = logArgs.OpponentScore;
                 gameToUpdate.MapId = logArgs.MapId;
                 gameToUpdate.AgentId = logArgs.AgentId;
+                gameToUpdate.ModeID = logArgs.ModeID;
                 gameToUpdate.Kills = logArgs.Kills;
                 gameToUpdate.Assits = logArgs.Assists;
                 gameToUpdate.Deaths = logArgs.Deaths;
