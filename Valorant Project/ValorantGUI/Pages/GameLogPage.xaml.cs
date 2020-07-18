@@ -14,14 +14,20 @@ namespace ValorantGUI
         internal GameLogManager GameManager { get; private set; }
         private MainWindow _window;
 
-        public GameLogPage(MainWindow window)
+        public GameLogPage(MainWindow window, IBasicManager gameLogManager = null, IBasicManager modeManager = null)
         {
             InitializeComponent();
-            GameManager = new GameLogManager();
+            if (gameLogManager == null)
+                GameManager = new GameLogManager();
+            else
+                GameManager = (GameLogManager)gameLogManager;
             _window = window;
 
-            GameModeComboBox.ItemsSource = new GameModesManager().GetAllEntries();
-            GameModeComboBox.SelectedIndex = 2;
+            if (modeManager == null)
+                GameModeComboBox.ItemsSource = new GameModesManager().GetAllEntries();
+            else
+                GameModeComboBox.ItemsSource = ((GameModesManager)modeManager).GetAllEntries();
+            GameModeComboBox.SelectedIndex = 0;
             PopulateGames();
         }
 

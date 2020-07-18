@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BussinessLayer\BussinessLayer.csproj" />
+    <ProjectReference Include="..\ValorantGUI\ValorantGUI.csproj" />
   </ItemGroup>
 
 </Project>
