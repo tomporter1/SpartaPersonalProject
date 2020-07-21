@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BussinessLayer", "Bussiness
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValorantGUI", "ValorantGUI\ValorantGUI.csproj", "{185A1683-D1D9-4A2F-A852-962BE0E5A451}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValorantAppTests", "ValorantAppTests\ValorantAppTests.csproj", "{3E7A80C7-581A-48F3-88DB-A34995B81549}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValorantAppTests", "ValorantAppTests\ValorantAppTests.csproj", "{3E7A80C7-581A-48F3-88DB-A34995B81549}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

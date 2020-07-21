@@ -17,7 +17,7 @@ namespace ValorantDatabase
         private int? _deaths;
         private int? _assits;
         private float? _adr;
-        private DateTime _dateLogged; 
+        private DateTime _dateLogged;
 
         public override bool Equals(object obj)
         {
@@ -41,7 +41,7 @@ namespace ValorantDatabase
             Maps map = db.GameLogs.Where(gl => gl.GameId == this.GameId).Include(gl => gl.Map).Select(gl => gl.Map).FirstOrDefault();
             Agents agent = db.GameLogs.Where(gl => gl.GameId == this.GameId).Include(gl => gl.Agent).Select(gl => gl.Agent).FirstOrDefault();
 
-            return $"{(this.TeamScore > this.OpponentScore ? "Victory" : "Defeat")} on {map} as {agent} - Played on: {DateLogged}";
+            return $"{(TeamScore > OpponentScore ? "Victory" : (TeamScore < OpponentScore ? "Defeat" : "Draw"))} on {map} as {agent}";
         }
 
         public static bool operator ==(GameLogs left, GameLogs right)

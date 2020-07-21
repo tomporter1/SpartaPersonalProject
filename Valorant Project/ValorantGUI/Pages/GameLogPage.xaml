@@ -41,6 +41,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Label x:Name="GameStatsLabel" Content="Game Stats" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" FontWeight="Bold" Foreground="#FFECE8E1"/>
                 <Label x:Name="ResultLabel" Content="Result: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Foreground="#FFECE8E1"/>
@@ -52,6 +53,7 @@
                 <Label x:Name="KDLabel" Content="K/D: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="7" Grid.Column="0" Foreground="#FFECE8E1"/>
                 <Label x:Name="AgentLabel" Content="Agent: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="8" Grid.Column="0" Foreground="#FFECE8E1"/>
                 <Label x:Name="MapLabel" Content="Map: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="9" Grid.Column="0" Foreground="#FFECE8E1"/>
+                <Label x:Name="DateLabel" Content="Date Logged: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="10" Grid.Column="0" Foreground="#FFECE8E1"/>
             </Grid>
             <Grid Grid.Column="1" Background="#7F1C252E">
                 <Grid.ColumnDefinitions>

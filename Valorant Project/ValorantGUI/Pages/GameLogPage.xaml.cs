@@ -69,6 +69,7 @@ namespace ValorantGUI
             KDLabel.Content = "K/D: -";
             MapLabel.Content = "Map: -";
             AgentLabel.Content = "Agent: -";
+            DateLabel.Content = "Date Logged: -";
 
             AgentImage.Source = null;
             MapImage.Source = null;
@@ -83,7 +84,7 @@ namespace ValorantGUI
                 int kills = int.Parse(GameManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Kills));
                 int deaths = int.Parse(GameManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Deaths));
 
-                ResultLabel.Content = $"Result: {(teamScore > opponentScore ? "Win" : "Loss")}";
+                ResultLabel.Content = $"Result: {(teamScore > opponentScore ? "Win" : (teamScore < opponentScore ? "Loss" : "Draw"))}";
                 ScoreLabel.Content = $"Score: {teamScore}:{opponentScore}";
                 KillsLabel.Content = $"Kills: {kills}";
                 DeathsLabel.Content = $"Deaths: {deaths}";
@@ -94,6 +95,7 @@ namespace ValorantGUI
                 MapLabel.Content = $"Map: {GameManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Map)}";
                 AgentLabel.Content = $"Agent: {GameManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Agent)}";
 
+                DateLabel.Content = $"Date Logged: {GameManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.DateLogged)}";
                 string mapImagePath = new MapManager().GetMapsDataStr(GameManager.GetGameMapObj(GamesListBox.SelectedItem), MapManager.Fields.ImagePath);
                 if (mapImagePath != null && mapImagePath != "")
                     MapImage.Source = new BitmapImage(new Uri(mapImagePath, UriKind.Relative));
