@@ -42,7 +42,7 @@ namespace ValorantDatabase
             Maps map = db.GameLogs.Where(gl => gl.GameId == this.GameId).Include(gl => gl.Map).Select(gl => gl.Map).FirstOrDefault();
             Agents agent = db.GameLogs.Where(gl => gl.GameId == this.GameId).Include(gl => gl.Agent).Select(gl => gl.Agent).FirstOrDefault();
 
-            return $"{(TeamScore > OpponentScore ? "Victory" : (TeamScore < OpponentScore ? "Defeat" : "Draw"))} on {map} as {agent}";
+            return $"{(TeamScore > OpponentScore ? "Victory" : (TeamScore < OpponentScore ? "Defeat" : "Draw"))} on {map} as {agent} - Season: {Season}";
         }
 
         public static bool operator ==(GameLogs left, GameLogs right)

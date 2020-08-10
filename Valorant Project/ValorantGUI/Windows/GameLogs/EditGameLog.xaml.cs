@@ -77,7 +77,8 @@ namespace ValorantGUI
                     int.Parse(DeathsTextBox.Text.Trim()),
                     int.Parse(AssistsTextBox.Text.Trim()),
                     float.Parse(ADRTextBox.Text.Trim()),
-                    ((DateTime)DatePlayedPicker.SelectedDate).AddHours(_oldTime.Hour).AddMinutes(_oldTime.Minute).AddSeconds(_oldTime.Second));
+                    ((DateTime)DatePlayedPicker.SelectedDate).AddHours(_oldTime.Hour).AddMinutes(_oldTime.Minute).AddSeconds(_oldTime.Second),
+                    _gameLogPage.GetCurrentSeason());
                 _gameLogPage.GameManager.UpdateEntry(_selectedGame, args);
                 _gameLogPage.PopulateGames();
                 this.Close();

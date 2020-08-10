@@ -38,7 +38,8 @@ namespace ValorantGUI
                     DeathsTextBox.Text.Trim() == "" ? 0 : int.Parse(DeathsTextBox.Text.Trim()),
                     AssistsTextBox.Text.Trim() == "" ? 0 : int.Parse(AssistsTextBox.Text.Trim()),
                     ADRTextBox.Text.Trim() == "" ? 0 : int.Parse(ADRTextBox.Text.Trim()),
-                    DateTime.Now);
+                    DateTime.Now,
+                    _gameLogPage.GetCurrentSeason());
 
                 _gameLogPage.GameManager.AddNewEntry(args);
 

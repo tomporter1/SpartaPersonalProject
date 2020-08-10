@@ -15,8 +15,9 @@ namespace BussinessLayer
         public int Assists { get; private set; }
         public float ADR { get; private set; }
         public DateTime DateLogged { get; private set; }
+        public int Season { get; private set; }
 
-        public GameLogArgs(object gameModeObj, object mapObj, object agentObj, int teamScore, int opponentScore, int kills, int deaths, int assists, float aDR, DateTime dateLogged)
+        public GameLogArgs(object gameModeObj, object mapObj, object agentObj, int teamScore, int opponentScore, int kills, int deaths, int assists, float aDR, DateTime dateLogged, int seasonNum)
         {
             ModeID = ((GameModes)gameModeObj).ModeID;
             MapId = ((Maps)mapObj).MapId;
@@ -28,9 +29,10 @@ namespace BussinessLayer
             Assists = assists;
             ADR = aDR;
             DateLogged = dateLogged;
+            Season = seasonNum;
         }
 
-        public GameLogArgs(int gameModeId, int mapId, int agentId, int teamScore, int opponentScore, int kills, int deaths, int assists, float aDR, DateTime dateLogged)
+        public GameLogArgs(int gameModeId, int mapId, int agentId, int teamScore, int opponentScore, int kills, int deaths, int assists, float aDR, DateTime dateLogged, int seasonNum)
         {
             ModeID = gameModeId;
             MapId = mapId;
@@ -42,6 +44,7 @@ namespace BussinessLayer
             Assists = assists;
             ADR = aDR;
             DateLogged = dateLogged;
+            Season = seasonNum;
         }
     }
 }

@@ -36,6 +36,7 @@ namespace ValorantGUI
             ClearAllUi();
 
             GamesListBox.ItemsSource = GameManager.GetGamesForGameMode(GameModeComboBox.SelectedItem);
+
             TotalKDStatLabel.Content = Math.Round(GameManager.GetTotalKD(GameModeComboBox.SelectedItem), 3).ToString();
             TotalWinLossStatLabel.Content = Math.Round(GameManager.GetTotalWinLoss(GameModeComboBox.SelectedItem), 3).ToString();
             TotalKillsLossStatLabel.Content = GameManager.GetTotals(GameLogManager.Fields.Kills, GameModeComboBox.SelectedItem).ToString();
@@ -50,6 +51,8 @@ namespace ValorantGUI
             object mostPlayedClass = GameManager.GetMostPlayedClass(GameModeComboBox.SelectedItem);
             FavTypeStatLabel.Content = mostPlayedClass == null ? "-" : mostPlayedClass.ToString();
         }
+
+        internal int GetCurrentSeason() => GameManager._currentSeasonNum;
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {

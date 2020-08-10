@@ -9,6 +9,7 @@ namespace BussinessLayer
 {
     public class GameLogManager : SuperManager
     {
+        public int _currentSeasonNum { get; private set; }
         public enum Fields
         {
             GameID,
@@ -22,7 +23,8 @@ namespace BussinessLayer
             Deaths,
             Assists,
             ADR,
-            DateLogged
+            DateLogged,
+            SeasonNum
         }
 
         private ValorantContext _context;
@@ -30,6 +32,14 @@ namespace BussinessLayer
         public GameLogManager(ValorantContext context = null)
         {
             _context = context;
+
+            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+
+            int? foundSeasonNum = db.GameLogs.Max(gl => gl.Season).GetValueOrDefault();
+            _currentSeasonNum = (foundSeasonNum == null ? 1 : (int)foundSeasonNum);
+
+            //Disposes of the db context if it is not running off a set context
+            db.Dispose();
         }
 
         public override List<object> GetAllEntries()
@@ -73,7 +83,8 @@ namespace BussinessLayer
                 DateLogged = logArgs.DateLogged,
                 Map = map,
                 Agent = agent,
-                GameMode = mode
+                GameMode = mode,
+                Season = _currentSeasonNum
             };
 
             db.GameLogs.Add(game);
@@ -118,6 +129,7 @@ namespace BussinessLayer
                 gameToUpdate.Deaths = logArgs.Deaths;
                 gameToUpdate.Adr = logArgs.ADR;
                 gameToUpdate.DateLogged = logArgs.DateLogged;
+                gameToUpdate.Season = logArgs.Season;
 
                 db.SaveChanges();
             }
@@ -183,6 +195,9 @@ namespace BussinessLayer
                     break;
                 case Fields.DateLogged:
                     output = logQuery.Select(gl => gl.DateLogged).FirstOrDefault().ToString();
+                    break;
+                case Fields.SeasonNum:
+                    output = logQuery.Select(gl => gl.Season).FirstOrDefault().ToString();
                     break;
                 default:
                     output = "";
@@ -273,8 +288,12 @@ namespace BussinessLayer
             if (db.GameLogs.Where(gl => gl.ModeID == ((GameModes)selectedGameMode).ModeID).ToList().Count == 0)
                 return null;
 
-            int bestMapID = db.GameLogs
-                    .Where(gl => gl.TeamScore > gl.OpponentScore && gl.ModeID == ((GameModes)selectedGameMode).ModeID)
+            var MapsWithWinsQuery = db.GameLogs.Where(gl => gl.TeamScore > gl.OpponentScore && gl.ModeID == ((GameModes)selectedGameMode).ModeID);
+
+            if (MapsWithWinsQuery.ToList().Count == 0)
+                return null;
+
+            int bestMapID = MapsWithWinsQuery
                     .GroupBy(
                         gl => gl.MapId,
                         gl => gl,
@@ -401,6 +420,6 @@ namespace BussinessLayer
 
             return output;
         }
-        #endregion       
+        #endregion
     }
 }

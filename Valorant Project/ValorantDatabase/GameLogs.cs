@@ -62,7 +62,7 @@ namespace ValorantDatabase
         public int? Season
         {
             get => _season;
-            set => _season = value > 0 ? 1 : value;
+            set => _season = value <= 0 ? 1 : value;
         }
 
         public virtual Agents Agent { get; set; }
