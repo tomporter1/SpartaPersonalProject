@@ -59,6 +59,11 @@ namespace ValorantDatabase
             get => _dateLogged;
             set => _dateLogged = value;
         }
+        public int? Season
+        {
+            get => _season;
+            set => _season = value > 0 ? 1 : value;
+        }
 
         public virtual Agents Agent { get; set; }
         public virtual Maps Map { get; set; }

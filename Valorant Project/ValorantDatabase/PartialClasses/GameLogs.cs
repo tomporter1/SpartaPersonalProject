@@ -18,6 +18,7 @@ namespace ValorantDatabase
         private int? _assits;
         private float? _adr;
         private DateTime _dateLogged;
+        private int? _season;
 
         public override bool Equals(object obj)
         {
