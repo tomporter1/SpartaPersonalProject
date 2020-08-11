@@ -22,6 +22,7 @@
     <None Remove="Pages\Images\HavenLayout.png" />
     <None Remove="Pages\Images\Initiator.png" />
     <None Remove="Pages\Images\Jett.png" />
+    <None Remove="Pages\Images\Killjoy.png" />
     <None Remove="Pages\Images\Omen.png" />
     <None Remove="Pages\Images\Phoenix.png" />
     <None Remove="Pages\Images\Raze.png" />
@@ -82,6 +83,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Pages\Images\Jett.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Killjoy.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Pages\Images\Omen.png">
