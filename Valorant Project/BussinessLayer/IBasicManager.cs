@@ -5,6 +5,7 @@ namespace BussinessLayer
     public interface IBasicManager
     {
         List<object> GetAllEntries();
+
         void RemoveEntry(object selectedMap);
 
         void AddNewEntry(SuperArgs args);

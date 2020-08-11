@@ -80,7 +80,7 @@ namespace ValorantGUI
                     ((DateTime)DatePlayedPicker.SelectedDate).AddHours(_oldTime.Hour).AddMinutes(_oldTime.Minute).AddSeconds(_oldTime.Second),
                     _gameLogPage.GetCurrentSeason());
                 _gameLogPage.GameManager.UpdateEntry(_selectedGame, args);
-                _gameLogPage.PopulateGames();
+                _gameLogPage.PopulateGames(_gameLogPage.SeasonComboBox.SelectedItem.ToString());
                 this.Close();
             }
             else

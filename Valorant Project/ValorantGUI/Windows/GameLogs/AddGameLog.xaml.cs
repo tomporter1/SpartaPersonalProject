@@ -43,7 +43,7 @@ namespace ValorantGUI
 
                 _gameLogPage.GameManager.AddNewEntry(args);
 
-                _gameLogPage.PopulateGames();
+                _gameLogPage.PopulateGames(_gameLogPage.SeasonComboBox.SelectedItem.ToString());
                 this.Close();
             }
             else

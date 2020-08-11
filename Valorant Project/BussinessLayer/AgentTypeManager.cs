@@ -22,9 +22,9 @@ namespace BussinessLayer
         public override List<object> GetAllEntries()
         {
             ValorantContext db = (_context == null ? new ValorantContext() : _context);
-           
-            List<object> output = db.AgentType.OrderBy(a=>a.TypeName).ToList<object>();
-           
+
+            List<object> output = db.AgentType.OrderBy(a => a.TypeName).ToList<object>();
+
             //Disposes of the db context if it is not running off a set context
             if (_context == null)
                 db.Dispose();
@@ -50,7 +50,7 @@ namespace BussinessLayer
             };
             db.AgentType.Add(newAgentType);
             db.SaveChanges();
-            
+
             //Disposes of the db context if it is not running off a set context
             if (_context == null)
                 db.Dispose();
@@ -86,9 +86,11 @@ namespace BussinessLayer
                 case Fields.Name:
                     output = typeQuery.Select(t => t.TypeName).FirstOrDefault();
                     break;
+
                 case Fields.ImagePath:
                     output = typeQuery.Select(t => t.ImagePath).FirstOrDefault();
                     break;
+
                 default:
                     output = "";
                     break;

@@ -170,44 +170,57 @@ namespace BussinessLayer
             switch (field)
             {
                 case Fields.ID:
-                    output= agentQuery.Select(a => a.AgentId).ToString();
+                    output = agentQuery.Select(a => a.AgentId).ToString();
                     break;
+
                 case Fields.Name:
                     output = agentQuery.Select(a => a.AgentName).FirstOrDefault();
                     break;
+
                 case Fields.Type:
                     output = agentQuery.Include(a => a.AgentType).Select(a => a.AgentType).FirstOrDefault().ToString();
                     break;
+
                 case Fields.SignatureAbilityName:
                     output = agentQuery.Select(a => a.SignatureAbilityName).FirstOrDefault();
                     break;
+
                 case Fields.SignatureAbilityDiscription:
                     output = agentQuery.Select(a => a.SignatureAbilityDiscription).FirstOrDefault();
                     break;
+
                 case Fields.UltamateAbilityName:
                     output = agentQuery.Select(a => a.UltamateAbilityName).FirstOrDefault();
                     break;
+
                 case Fields.UltamateAbilityDiscription:
                     output = agentQuery.Select(a => a.UltamateAbilityDiscription).FirstOrDefault();
                     break;
+
                 case Fields.AbilityOneName:
                     output = agentQuery.Select(a => a.AbilityOneName).FirstOrDefault();
                     break;
+
                 case Fields.AbilityOneDiscription:
                     output = agentQuery.Select(a => a.AbilityOneDiscription).FirstOrDefault();
                     break;
+
                 case Fields.AbilityTwoName:
                     output = agentQuery.Select(a => a.AbilityTwoName).FirstOrDefault();
                     break;
+
                 case Fields.AbilityTwoDiscription:
                     output = agentQuery.Select(a => a.AbilityTwoDiscription).FirstOrDefault();
                     break;
+
                 case Fields.Bio:
                     output = agentQuery.Select(a => a.Bio).FirstOrDefault();
                     break;
+
                 case Fields.ImagePath:
                     output = agentQuery.Select(a => a.ImagePath).FirstOrDefault();
                     break;
+
                 default:
                     output = "";
                     break;

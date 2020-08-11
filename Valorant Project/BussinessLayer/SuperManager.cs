@@ -2,8 +2,7 @@
 
 namespace BussinessLayer
 {
-
-    public abstract class SuperManager: IBasicManager
+    public abstract class SuperManager : IBasicManager
     {
         public abstract List<object> GetAllEntries();
 
@@ -11,6 +10,6 @@ namespace BussinessLayer
 
         public abstract void AddNewEntry(SuperArgs args);
 
-        public abstract void UpdateEntry(object selectedEntry, SuperArgs args);       
+        public abstract void UpdateEntry(object selectedEntry, SuperArgs args);
     }
 }

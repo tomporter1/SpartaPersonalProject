@@ -11,7 +11,7 @@ namespace BussinessLayer
         public MapManager(ValorantContext context = null)
         {
             _context = context;
-        }        
+        }
 
         public enum Fields
         {
@@ -23,9 +23,9 @@ namespace BussinessLayer
         public override List<object> GetAllEntries()
         {
             ValorantContext db = (_context == null ? new ValorantContext() : _context);
-            
+
             List<object> output = db.Maps.OrderBy(m => m.MapName).ToList<object>();
-            
+
             //Disposes of the db context if it is not running off a set context
             if (_context == null)
                 db.Dispose();
@@ -38,7 +38,7 @@ namespace BussinessLayer
             Maps mapToRemove = (Maps)selectedMap;
             db.Maps.Remove(mapToRemove);
             db.SaveChanges();
-            
+
             //Disposes of the db context if it is not running off a set context
             if (_context == null)
                 db.Dispose();
@@ -69,7 +69,7 @@ namespace BussinessLayer
             {
                 mapToUpdate.MapName = mapArgs.Name;
 
-                db.SaveChanges();                
+                db.SaveChanges();
             }
             //Disposes of the db context if it is not running off a set context
             if (_context == null)
@@ -87,14 +87,17 @@ namespace BussinessLayer
             switch (field)
             {
                 case Fields.Name:
-                    output= map.MapName;
+                    output = map.MapName;
                     break;
+
                 case Fields.ImagePath:
                     output = mapQuery.Select(a => a.ImagePath).FirstOrDefault();
                     break;
+
                 case Fields.LayoutImagePath:
                     output = mapQuery.Select(a => a.LayoutImagePath).FirstOrDefault();
                     break;
+
                 default:
                     output = "";
                     break;

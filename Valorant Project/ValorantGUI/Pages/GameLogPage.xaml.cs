@@ -1,5 +1,6 @@
 ﻿using BussinessLayer;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -28,27 +29,37 @@ namespace ValorantGUI
             else
                 GameModeComboBox.ItemsSource = ((GameModesManager)modeManager).GetAllEntries();
             GameModeComboBox.SelectedIndex = 0;
-            PopulateGames();
+
+            List<string> seasonSelections = new List<string>();
+            seasonSelections.Add("All");
+            for (int i = 1; i <= GetCurrentSeason(); i++)
+            {
+                seasonSelections.Add(i.ToString());
+            }
+            SeasonComboBox.ItemsSource = seasonSelections;
+            SeasonComboBox.SelectedIndex = 0;
+
+            PopulateGames(SeasonComboBox.SelectedItem.ToString());
         }
 
-        internal void PopulateGames()
+        internal void PopulateGames(string season)
         {
             ClearAllUi();
 
-            GamesListBox.ItemsSource = GameManager.GetGamesForGameMode(GameModeComboBox.SelectedItem);
+            GamesListBox.ItemsSource = GameManager.GetGamesForGameMode(GameModeComboBox.SelectedItem, season);
 
-            TotalKDStatLabel.Content = Math.Round(GameManager.GetTotalKD(GameModeComboBox.SelectedItem), 3).ToString();
-            TotalWinLossStatLabel.Content = Math.Round(GameManager.GetTotalWinLoss(GameModeComboBox.SelectedItem), 3).ToString();
-            TotalKillsLossStatLabel.Content = GameManager.GetTotals(GameLogManager.Fields.Kills, GameModeComboBox.SelectedItem).ToString();
-            TotalDeathsLossStatLabel.Content = GameManager.GetTotals(GameLogManager.Fields.Deaths, GameModeComboBox.SelectedItem).ToString();
+            TotalKDStatLabel.Content = Math.Round(GameManager.GetTotalKD(GameModeComboBox.SelectedItem, season), 3).ToString();
+            TotalWinLossStatLabel.Content = Math.Round(GameManager.GetTotalWinLoss(GameModeComboBox.SelectedItem, season), 3).ToString();
+            TotalKillsLossStatLabel.Content = GameManager.GetTotals(GameLogManager.Fields.Kills, GameModeComboBox.SelectedItem, season).ToString();
+            TotalDeathsLossStatLabel.Content = GameManager.GetTotals(GameLogManager.Fields.Deaths, GameModeComboBox.SelectedItem, season).ToString();
 
-            object mapMostWins = GameManager.GetMapWithMostWins(GameModeComboBox.SelectedItem);
+            object mapMostWins = GameManager.GetMapWithMostWins(GameModeComboBox.SelectedItem, season);
             BestMapStatLabel.Content = mapMostWins == null ? "-" : mapMostWins.ToString();
 
-            object MostPlayedAgent = GameManager.GetMostPlayedAgent(GameModeComboBox.SelectedItem);
+            object MostPlayedAgent = GameManager.GetMostPlayedAgent(GameModeComboBox.SelectedItem, season);
             FavAgentStatLabel.Content = MostPlayedAgent == null ? "-" : MostPlayedAgent.ToString();
 
-            object mostPlayedClass = GameManager.GetMostPlayedClass(GameModeComboBox.SelectedItem);
+            object mostPlayedClass = GameManager.GetMostPlayedClass(GameModeComboBox.SelectedItem, season);
             FavTypeStatLabel.Content = mostPlayedClass == null ? "-" : mostPlayedClass.ToString();
         }
 
@@ -140,7 +151,7 @@ namespace ValorantGUI
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
                     GameManager.RemoveEntry(GamesListBox.SelectedItem);
-                    PopulateGames();
+                    PopulateGames(SeasonComboBox.SelectedItem.ToString());
                 }
             }
             else
@@ -151,7 +162,14 @@ namespace ValorantGUI
 
         private void OnGameModeSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            PopulateGames();
+            if (SeasonComboBox.SelectedIndex >= 0)
+                PopulateGames(SeasonComboBox.SelectedItem.ToString());
+        }
+
+        private void OnSeasonSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SeasonComboBox.SelectedIndex >= 0)
+                PopulateGames(SeasonComboBox.SelectedItem.ToString());
         }
     }
 }

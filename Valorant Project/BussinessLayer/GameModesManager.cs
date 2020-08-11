@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using ValorantDatabase;
 
 namespace BussinessLayer
@@ -18,7 +16,7 @@ namespace BussinessLayer
         public enum Fields
         {
             Name,
-            Discription            
+            Discription
         }
 
         public override void AddNewEntry(SuperArgs args)
@@ -67,7 +65,7 @@ namespace BussinessLayer
             ValorantContext db = _context == null ? new ValorantContext() : _context;
             GameModeArgs modeArgs = (GameModeArgs)args;
             GameModes gameModeToUpdate = db.GameModes.Where(m => m.ModeID == ((GameModes)selectedEntry).ModeID).FirstOrDefault();
-            
+
             if (gameModeToUpdate != null)
             {
                 gameModeToUpdate.ModeName = modeArgs.Name;
