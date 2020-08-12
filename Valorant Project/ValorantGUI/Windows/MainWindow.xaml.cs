@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace ValorantGUI
 {
@@ -8,6 +9,7 @@ namespace ValorantGUI
     public partial class MainWindow : Window
     {
         private MainPage _mainPage;
+        private Cursor PreviousCursor;
 
         public MainWindow()
         {
@@ -26,6 +28,17 @@ namespace ValorantGUI
             {
                 Content = _mainPage;
             }
+        }
+
+        internal void WaitMouse()
+        {
+            PreviousCursor = Mouse.OverrideCursor;
+            Mouse.OverrideCursor = Cursors.Wait;
+        }
+
+        internal void EndWaitMouse()
+        {
+            Mouse.OverrideCursor = PreviousCursor;
         }
     }
 }

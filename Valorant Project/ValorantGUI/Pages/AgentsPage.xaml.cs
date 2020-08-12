@@ -21,7 +21,7 @@ namespace ValorantGUI
             _window = window;
             AgentManager = new AgentManager();
 
-            PopulateAgents();
+            PopulateAgents();            
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
