@@ -139,13 +139,7 @@ namespace BussinessLayer
             if (_context == null)
                 db.Dispose();
         }
-        private bool SeasonChecker(GameLogs gl, string season)
-        {
-            if (int.TryParse(season, out int seasonNum))
-                return gl.Season == seasonNum;
-            else
-                return true;
-        }
+        private bool SeasonChecker(GameLogs gl, string season) => int.TryParse(season, out int seasonNum) ? gl.Season == seasonNum : true;
 
         public List<object> GetGamesForGameMode(object selectedGameMode, string season)
         {
