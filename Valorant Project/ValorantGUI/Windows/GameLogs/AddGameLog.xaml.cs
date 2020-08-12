@@ -12,7 +12,7 @@ namespace ValorantGUI
     /// </summary>
     public partial class AddGameLogWindow : Window
     {
-        GameLogPage _gameLogPage;
+        private GameLogPage _gameLogPage;
 
         public AddGameLogWindow(GameLogPage gameLogPage)
         {

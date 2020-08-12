@@ -1,77 +1,77 @@
 ﻿<Page x:Class="ValorantGUI.GameLogPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:ValorantGUI"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Game History">
 
     <Grid Background="#FF1C252E">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="241*"/>
-            <ColumnDefinition Width="559*"/>
+            <ColumnDefinition Width="241*" />
+            <ColumnDefinition Width="559*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="17*"/>
-            <RowDefinition Height="133*"/>
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="17*" />
+            <RowDefinition Height="133*" />
         </Grid.RowDefinitions>
         <Menu x:Name="menu" Grid.ColumnSpan="2" Background="#FF0C1D2E">
             <MenuItem Header="Season tools" Foreground="White">
-                <MenuItem Header="Next season" Click="NextSeason_Click" Foreground="Black"/>
-                <MenuItem Header="Set season number" Click="SetSeason_Click" Foreground="Black"/>
+                <MenuItem Header="Next season" Click="NextSeason_Click" Foreground="Black" />
+                <MenuItem Header="Set season number" Click="SetSeason_Click" Foreground="Black" />
             </MenuItem>
             <MenuItem Header="Stats" Foreground="White">
-                <MenuItem Header="Find game with most kills" Click="FindMostKillsGamme_Click" Foreground="Black"/>
+                <MenuItem Header="Find game with most kills" Click="FindMostKillsGamme_Click" Foreground="Black" />
             </MenuItem>
         </Menu>
-        
-        <Label x:Name="label" Content="Past Games" Margin="5,5,5,5" VerticalContentAlignment="Bottom" FontSize="20" Foreground="#FFECE8E1" FontWeight="Bold" Grid.Row="1"/>
-        <ListBox x:Name="GamesListBox" Margin="5,5,5,5" SelectionChanged="OnSelectionChanged" Grid.Column="0" Grid.Row="2" Background="#FF2F3F4F" Foreground="#FFECE8E1" BorderBrush="#FF121213"/>
-        <Image x:Name="MapImage" Margin="5,5,5,5" Grid.Column="1" Grid.Row="1"/>
+
+        <Label x:Name="label" Content="Past Games" Margin="5,5,5,5" VerticalContentAlignment="Bottom" FontSize="20" Foreground="#FFECE8E1" FontWeight="Bold" Grid.Row="1" />
+        <ListBox x:Name="GamesListBox" Margin="5,5,5,5" SelectionChanged="OnSelectionChanged" Grid.Column="0" Grid.Row="2" Background="#FF2F3F4F" Foreground="#FFECE8E1" BorderBrush="#FF121213" />
+        <Image x:Name="MapImage" Margin="5,5,5,5" Grid.Column="1" Grid.Row="1" />
         <Grid Grid.Column="1" Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50*"/>
-                <ColumnDefinition Width="89*"/>
-                <ColumnDefinition Width="84*"/>
+                <ColumnDefinition Width="50*" />
+                <ColumnDefinition Width="89*" />
+                <ColumnDefinition Width="84*" />
             </Grid.ColumnDefinitions>
-            <Rectangle Margin="5,5,5,5" Stroke="Black" Grid.Row="0" Grid.Column="0"/>
-            <Rectangle Margin="5,5,5,5" Stroke="Black" Grid.Row="0" Grid.Column="1"/>
+            <Rectangle Margin="5,5,5,5" Stroke="Black" Grid.Row="0" Grid.Column="0" />
+            <Rectangle Margin="5,5,5,5" Stroke="Black" Grid.Row="0" Grid.Column="1" />
             <Grid Background="#7F1C252E">
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
-                <Label x:Name="GameStatsLabel" Content="Game Stats" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" FontWeight="Bold" Foreground="#FFECE8E1"/>
-                <Label x:Name="ResultLabel" Content="Result: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Foreground="#FFECE8E1"/>
-                <Label x:Name="ScoreLabel" Content="Score: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="0" Foreground="#FFECE8E1"/>
-                <Label x:Name="KillsLabel" Content="Kills: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="3" Grid.Column="0" Foreground="#FFECE8E1"/>
-                <Label x:Name="DeathsLabel" Content="Deaths: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="4" Grid.Column="0" Foreground="#FFECE8E1"/>
-                <Label x:Name="AssistsLabel" Content="Assists: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="5" Grid.Column="0" Foreground="#FFECE8E1"/>
-                <Label x:Name="AdrLabel" Content="ADR: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="6" Grid.Column="0" Foreground="#FFECE8E1"/>
-                <Label x:Name="KDLabel" Content="K/D: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="7" Grid.Column="0" Foreground="#FFECE8E1"/>
-                <Label x:Name="AgentLabel" Content="Agent: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="8" Grid.Column="0" Foreground="#FFECE8E1"/>
-                <Label x:Name="MapLabel" Content="Map: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="9" Grid.Column="0" Foreground="#FFECE8E1"/>
-                <Label x:Name="DateLabel" Content="Date Logged: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="10" Grid.Column="0" Foreground="#FFECE8E1"/>
+                <Label x:Name="GameStatsLabel" Content="Game Stats" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" FontWeight="Bold" Foreground="#FFECE8E1" />
+                <Label x:Name="ResultLabel" Content="Result: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Foreground="#FFECE8E1" />
+                <Label x:Name="ScoreLabel" Content="Score: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="0" Foreground="#FFECE8E1" />
+                <Label x:Name="KillsLabel" Content="Kills: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="3" Grid.Column="0" Foreground="#FFECE8E1" />
+                <Label x:Name="DeathsLabel" Content="Deaths: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="4" Grid.Column="0" Foreground="#FFECE8E1" />
+                <Label x:Name="AssistsLabel" Content="Assists: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="5" Grid.Column="0" Foreground="#FFECE8E1" />
+                <Label x:Name="AdrLabel" Content="ADR: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="6" Grid.Column="0" Foreground="#FFECE8E1" />
+                <Label x:Name="KDLabel" Content="K/D: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="7" Grid.Column="0" Foreground="#FFECE8E1" />
+                <Label x:Name="AgentLabel" Content="Agent: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="8" Grid.Column="0" Foreground="#FFECE8E1" />
+                <Label x:Name="MapLabel" Content="Map: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="9" Grid.Column="0" Foreground="#FFECE8E1" />
+                <Label x:Name="DateLabel" Content="Date Logged: -" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Stretch" Grid.Row="10" Grid.Column="0" Foreground="#FFECE8E1" />
             </Grid>
             <Grid Grid.Column="1" Background="#7F1C252E">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="207*"/>
-                    <ColumnDefinition Width="101*"/>
+                    <ColumnDefinition Width="207*" />
+                    <ColumnDefinition Width="101*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="41*"/>
+                    <RowDefinition Height="41*" />
                     <RowDefinition Height="59.6*" />
                     <RowDefinition Height="59.6*" />
                     <RowDefinition Height="59.6*" />
@@ -80,62 +80,62 @@
                     <RowDefinition Height="59.6*" />
                     <RowDefinition Height="59.6*" />
                 </Grid.RowDefinitions>
-                <Label x:Name="LifetimeStatsLabel" Content="Lifetime Stats" Margin="5,5,5,5" FontWeight="Bold" Grid.Row="0" Grid.Column="0" VerticalContentAlignment="Top" Grid.ColumnSpan="2" Foreground="#FFECE8E1"/>
+                <Label x:Name="LifetimeStatsLabel" Content="Lifetime Stats" Margin="5,5,5,5" FontWeight="Bold" Grid.Row="0" Grid.Column="0" VerticalContentAlignment="Top" Grid.ColumnSpan="2" Foreground="#FFECE8E1" />
 
-                <Label x:Name="TotalKDLabel" Content="Overall K/D:" Margin="5,5,5,5" Grid.Row="1" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
-                <Label x:Name="TotalWinLossLabel" Content="Overall Win Loss:" Margin="5,5,5,5" Grid.Row="2" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
-                <Label x:Name="TotalKillsLossLabel" Content="Total number of kills:" Margin="5,5,5,5" Grid.Row="3" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
-                <Label x:Name="TotalDeathsLossLabel" Content="Total number of deaths:" Margin="5,5,5,5" Grid.Row="4" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
-                <Label x:Name="BestMapLossLabel" Content="Best map:" Margin="5,5,5,5" Grid.Row="5" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
-                <Label x:Name="FavAgentLossLabel" Content="Favourite agent:" Margin="5,5,5,5" Grid.Row="6" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
-                <Label x:Name="FavTypeLossLabel" Content="Favourite class:" Margin="5,5,5,5" Grid.Row="7" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
+                <Label x:Name="TotalKDLabel" Content="Overall K/D:" Margin="5,5,5,5" Grid.Row="1" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="#FFECE8E1" />
+                <Label x:Name="TotalWinLossLabel" Content="Overall Win Loss:" Margin="5,5,5,5" Grid.Row="2" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="#FFECE8E1" />
+                <Label x:Name="TotalKillsLossLabel" Content="Total number of kills:" Margin="5,5,5,5" Grid.Row="3" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="#FFECE8E1" />
+                <Label x:Name="TotalDeathsLossLabel" Content="Total number of deaths:" Margin="5,5,5,5" Grid.Row="4" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="#FFECE8E1" />
+                <Label x:Name="BestMapLossLabel" Content="Best map:" Margin="5,5,5,5" Grid.Row="5" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="#FFECE8E1" />
+                <Label x:Name="FavAgentLossLabel" Content="Favourite agent:" Margin="5,5,5,5" Grid.Row="6" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="#FFECE8E1" />
+                <Label x:Name="FavTypeLossLabel" Content="Favourite class:" Margin="5,5,5,5" Grid.Row="7" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="#FFECE8E1" />
 
-                <Label x:Name="TotalKDStatLabel" Content="" Margin="5,5,5,5" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1"/>
-                <Label x:Name="TotalWinLossStatLabel" Content="" Margin="5,5,5,5" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1"/>
-                <Label x:Name="TotalKillsLossStatLabel" Content="" Margin="5,5,5,5" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1"/>
-                <Label x:Name="TotalDeathsLossStatLabel" Content="" Margin="5,5,5,5" Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1"/>
-                <Label x:Name="BestMapStatLabel" Content="" Margin="5,5,5,5" Grid.Row="5" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1"/>
-                <Label x:Name="FavAgentStatLabel" Content="" Margin="5,5,5,5" Grid.Row="6" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1"/>
-                <Label x:Name="FavTypeStatLabel" Content="" Margin="5,5,5,5" Grid.Row="7" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1"/>
+                <Label x:Name="TotalKDStatLabel" Content="" Margin="5,5,5,5" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1" />
+                <Label x:Name="TotalWinLossStatLabel" Content="" Margin="5,5,5,5" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1" />
+                <Label x:Name="TotalKillsLossStatLabel" Content="" Margin="5,5,5,5" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1" />
+                <Label x:Name="TotalDeathsLossStatLabel" Content="" Margin="5,5,5,5" Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1" />
+                <Label x:Name="BestMapStatLabel" Content="" Margin="5,5,5,5" Grid.Row="5" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1" />
+                <Label x:Name="FavAgentStatLabel" Content="" Margin="5,5,5,5" Grid.Row="6" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1" />
+                <Label x:Name="FavTypeStatLabel" Content="" Margin="5,5,5,5" Grid.Row="7" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFECE8E1" />
             </Grid>
 
-            <Image x:Name="AgentImage" Margin="5,5,5,5" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <Image x:Name="AgentImage" Margin="5,5,5,5" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         </Grid>
         <Grid Grid.Column="1" Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
-                <Label x:Name="label2" Content="Game Mode" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Foreground="White"/>
-                <ComboBox x:Name="GameModeComboBox" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" SelectionChanged="OnGameModeSelectionChanged"/>
+                <Label x:Name="label2" Content="Game Mode" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Foreground="White" />
+                <ComboBox x:Name="GameModeComboBox" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" SelectionChanged="OnGameModeSelectionChanged" />
             </Grid>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
-                <Label x:Name="label1" Content="Season" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Foreground="White"/>
-                <ComboBox x:Name="SeasonComboBox" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" SelectionChanged="OnSeasonSelectionChanged"/>
+                <Label x:Name="label1" Content="Season" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Foreground="White" />
+                <ComboBox x:Name="SeasonComboBox" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" SelectionChanged="OnSeasonSelectionChanged" />
             </Grid>
             <Button x:Name="RemoveGameButton" HorizontalAlignment="Stretch" Margin="1,2,1,2" VerticalAlignment="Stretch" Click="RemoveGameButton_Click" Grid.Row="0" Grid.Column="2" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold">
-                <TextBlock Text="Remove Selected Game" TextWrapping="Wrap" TextAlignment="Center" Width="82"/>
+                <TextBlock Text="Remove Selected Game" TextWrapping="Wrap" TextAlignment="Center" Width="82" />
             </Button>
             <Button x:Name="EditGameButton"  HorizontalAlignment="Stretch" Margin="1,2,1,2" VerticalAlignment="Stretch" Click="EditGameButton_Click" Grid.Row="0" Grid.Column="3" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold">
-                <TextBlock Text="Edit Selected Game" TextWrapping="Wrap" TextAlignment="Center" Width="82"/>
+                <TextBlock Text="Edit Selected Game" TextWrapping="Wrap" TextAlignment="Center" Width="82" />
             </Button>
             <Button x:Name="LogGameButton" HorizontalAlignment="Stretch" Margin="1,2,1,2" VerticalAlignment="Stretch" Click="LogGameButton_Click" Grid.Row="0" Grid.Column="4" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold">
-                <TextBlock Text="Log Game" TextWrapping="Wrap" TextAlignment="Center" Width="82"/>
+                <TextBlock Text="Log Game" TextWrapping="Wrap" TextAlignment="Center" Width="82" />
             </Button>
-            <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Stretch" Margin="1,2,1,2" VerticalAlignment="Stretch" Click="BackButton_Click" Grid.Row="0" Grid.Column="5" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold"/>
+            <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Stretch" Margin="1,2,1,2" VerticalAlignment="Stretch" Click="BackButton_Click" Grid.Row="0" Grid.Column="5" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold" />
         </Grid>
     </Grid>
 </Page>

@@ -11,8 +11,9 @@ namespace ValorantGUI
     /// </summary>
     public partial class AgentClassesPage : Page
     {
-        MainWindow _window;
+        private MainWindow _window;
         internal AgentTypeManager AgentTypeManager { get; private set; }
+
         public AgentClassesPage(MainWindow window)
         {
             InitializeComponent();

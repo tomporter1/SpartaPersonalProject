@@ -1,58 +1,57 @@
 ﻿<Page x:Class="ValorantGUI.MapsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:ValorantGUI"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MapsPage">
 
     <Grid Background="#FF1C252E">
         <Grid.RowDefinitions>
-            <RowDefinition Height="41*"/>
-            <RowDefinition Height="256*"/>
+            <RowDefinition Height="41*" />
+            <RowDefinition Height="256*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="13*"/>
-            <ColumnDefinition Width="37*"/>
+            <ColumnDefinition Width="13*" />
+            <ColumnDefinition Width="37*" />
         </Grid.ColumnDefinitions>
-        <Label x:Name="label" Content="Maps"  Margin="5,5,5,5" Grid.Column="0" Grid.Row="0" VerticalContentAlignment="Bottom" Foreground="#FFECE8E1" FontSize="20" FontWeight="Bold"/>
-        <ListBox x:Name="MapsListBox" Margin="5,5,5,5" SelectionChanged="OnSelectionChanged" Grid.Column="0" Grid.Row="1" Background="#FF2F3F4F" Foreground="#FFECE8E1" BorderBrush="#FF121213"/>
+        <Label x:Name="label" Content="Maps"  Margin="5,5,5,5" Grid.Column="0" Grid.Row="0" VerticalContentAlignment="Bottom" Foreground="#FFECE8E1" FontSize="20" FontWeight="Bold" />
+        <ListBox x:Name="MapsListBox" Margin="5,5,5,5" SelectionChanged="OnSelectionChanged" Grid.Column="0" Grid.Row="1" Background="#FF2F3F4F" Foreground="#FFECE8E1" BorderBrush="#FF121213" />
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="128*"/>
-                <ColumnDefinition Width="61*"/>
+                <ColumnDefinition Width="128*" />
+                <ColumnDefinition Width="61*" />
             </Grid.ColumnDefinitions>
-            <Button x:Name="BackButton" Content="Back" Margin="5,5,5,5" Click="BackButton_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="0" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold"/>
+            <Button x:Name="BackButton" Content="Back" Margin="5,5,5,5" Click="BackButton_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="0" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold" />
         </Grid>
         <Grid Grid.Column="1" Margin="0,62,0,0" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="193*"/>
-                <ColumnDefinition Width="280*"/>
+                <ColumnDefinition Width="193*" />
+                <ColumnDefinition Width="280*" />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Grid.Row="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="39*"/>
-                    <RowDefinition Height="66*"/>
-                    <RowDefinition Height="94*"/>
-                    <RowDefinition Height="94*"/>
-                    <RowDefinition Height="94*"/>
+                    <RowDefinition Height="39*" />
+                    <RowDefinition Height="66*" />
+                    <RowDefinition Height="94*" />
+                    <RowDefinition Height="94*" />
+                    <RowDefinition Height="94*" />
                 </Grid.RowDefinitions>
-                <Label x:Name="label1" Content="Map Name" Margin="5,5,5,5" Grid.Column="0" Grid.Row="0" Foreground="#FFECE8E1"/>
-                <TextBox x:Name="NameTextBox" Margin="10,10,10,10" Text="" TextWrapping="Wrap" Grid.Column="0" Grid.Row="1" Background="#FF2F3F4F" Foreground="#FFECE8E1" BorderBrush="#FF121213"/>
+                <Label x:Name="label1" Content="Map Name" Margin="5,5,5,5" Grid.Column="0" Grid.Row="0" Foreground="#FFECE8E1" />
+                <TextBox x:Name="NameTextBox" Margin="10,10,10,10" Text="" TextWrapping="Wrap" Grid.Column="0" Grid.Row="1" Background="#FF2F3F4F" Foreground="#FFECE8E1" BorderBrush="#FF121213" />
                 <Button x:Name="RemoveButton" Margin="10,10,10,10" Click="RemoveButton_Click" Grid.Column="0" Grid.Row="2" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold">
-                    <TextBlock x:Name="textBlock" Text="Remove Selected Map" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Width="155" TextAlignment="Center"/>
+                    <TextBlock x:Name="textBlock" Text="Remove Selected Map" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Width="155" TextAlignment="Center" />
                 </Button>
                 <Button x:Name="AddButton" Margin="10,10,10,10" Click="AddButton_Click" Grid.Column="0" Grid.Row="3" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold">
-                    <TextBlock x:Name="textBlock2" Text="Add a New Map" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Width="141" TextAlignment="Center"/>
+                    <TextBlock x:Name="textBlock2" Text="Add a New Map" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Width="141" TextAlignment="Center" />
                 </Button>
                 <Button x:Name="SaveChangesButton" Margin="10,10,10,10" Click="SaveChangesButton_Click" Grid.Row="4" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold">
-                    <TextBlock x:Name="textBlock3" Text="Save changes to Map" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Width="137" TextAlignment="Center"/>
+                    <TextBlock x:Name="textBlock3" Text="Save changes to Map" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Width="137" TextAlignment="Center" />
                 </Button>
             </Grid>
-            <Image x:Name="MapImage" Grid.Column="1" Margin="5,5,5,5"/>
+            <Image x:Name="MapImage" Grid.Column="1" Margin="5,5,5,5" />
         </Grid>
-
     </Grid>
 </Page>

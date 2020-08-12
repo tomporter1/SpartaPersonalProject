@@ -1,7 +1,5 @@
 ﻿using BussinessLayer;
-using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -13,8 +11,8 @@ namespace ValorantGUI
     /// </summary>
     public partial class EditAgent : Window
     {
-        object _selectedAgent;
-        AgentsPage _agentsPage;
+        private object _selectedAgent;
+        private AgentsPage _agentsPage;
 
         public EditAgent(object selectedAgent, AgentsPage agentsPage)
         {

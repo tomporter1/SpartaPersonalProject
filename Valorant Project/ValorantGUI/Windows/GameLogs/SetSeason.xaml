@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Set Season Number" Height="146" Width="269" ResizeMode="NoResize">
     <Grid Background="#FF1C252E">
-        <TextBox x:Name="numberInputTextbox" HorizontalAlignment="Center" Margin="0,27,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" PreviewTextInput="NumberValidationTextBox" Height="29"/>
-        <Button x:Name="submitButton" Content="Submit" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top" Width="248" Height="33" Click="submitButton_Click"/>
+        <TextBox x:Name="numberInputTextbox" HorizontalAlignment="Center" Margin="0,27,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" PreviewTextInput="NumberValidationTextBox" Height="29" />
+        <Button x:Name="submitButton" Content="Submit" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top" Width="248" Height="33" Click="submitButton_Click" />
     </Grid>
 </Window>

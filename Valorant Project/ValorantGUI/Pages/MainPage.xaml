@@ -1,23 +1,23 @@
 ﻿<Page x:Class="ValorantGUI.MainPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:ValorantGUI"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainPage">
     <Grid ShowGridLines="False" Background="#FF1C252E">
         <Grid.RowDefinitions>
-            <RowDefinition Height="70*"/>
-            <RowDefinition Height="246*"/>
-            <RowDefinition Height="70*"/>
+            <RowDefinition Height="70*" />
+            <RowDefinition Height="246*" />
+            <RowDefinition Height="70*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="37*"/>
-            <ColumnDefinition Width="134*"/>
-            <ColumnDefinition Width="33*"/>
-            <ColumnDefinition Width="596*"/>
+            <ColumnDefinition Width="37*" />
+            <ColumnDefinition Width="134*" />
+            <ColumnDefinition Width="33*" />
+            <ColumnDefinition Width="596*" />
         </Grid.ColumnDefinitions>
         <Grid ShowGridLines="False" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch">
             <Grid.RowDefinitions>
@@ -26,11 +26,11 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Button x:Name="AgentsButton" Content="Agents" Margin="0,5,0,5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Click="AgentsButton_Click" Grid.Row="0" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="19"/>
-            <Button x:Name="ClassesButton" Content="Classes" Margin="0,5,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="ClassesButton_Click" Grid.Row="1" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold" FontSize="19"/>
-            <Button x:Name="MapsButton" Content="Maps" Margin="0,5,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="MapsButton_Click" Grid.Row="2" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold" FontSize="19"/>
-            <Button x:Name="GameLogButton" Content="Game History" Margin="0,5,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="GameLogButton_Click" Grid.Row="3" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold" FontSize="19"/>
+            <Button x:Name="AgentsButton" Content="Agents" Margin="0,5,0,5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Click="AgentsButton_Click" Grid.Row="0" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="19" />
+            <Button x:Name="ClassesButton" Content="Classes" Margin="0,5,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="ClassesButton_Click" Grid.Row="1" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold" FontSize="19" />
+            <Button x:Name="MapsButton" Content="Maps" Margin="0,5,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="MapsButton_Click" Grid.Row="2" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold" FontSize="19" />
+            <Button x:Name="GameLogButton" Content="Game History" Margin="0,5,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="GameLogButton_Click" Grid.Row="3" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold" FontSize="19" />
         </Grid>
-        <Image x:Name="image" Grid.Column="3" Margin="0,0,20,0" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Source="/Pages/ValorantLogo.png"/>
+        <Image x:Name="image" Grid.Column="3" Margin="0,0,20,0" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Source="/Pages/ValorantLogo.png" />
     </Grid>
 </Page>

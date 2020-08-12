@@ -7,29 +7,29 @@
         mc:Ignorable="d"
         Title="Edit Agent" Height="613" Width="674" ResizeMode="NoResize">
     <Grid Background="#FF1C252E">
-        <Button x:Name="SaveButton" Content="Save Changes" HorizontalAlignment="Center" Height="29" Margin="0,534,0,0" VerticalAlignment="Top" Width="644" Click="SaveButton_Click" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold"/>
+        <Button x:Name="SaveButton" Content="Save Changes" HorizontalAlignment="Center" Height="29" Margin="0,534,0,0" VerticalAlignment="Top" Width="644" Click="SaveButton_Click" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold" />
 
-        <Label x:Name="nameLabel" Content="Name" HorizontalAlignment="Left" Height="29" Margin="32,24,0,0" VerticalAlignment="Top" Width="98" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
-        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="29" Margin="136,22,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="514" Foreground="#FFECE8E1" BorderBrush="#FF121213" Background="#FF2F3F4F"/>
-        <Label x:Name="UltLabel" Content="Ultamate Name" HorizontalAlignment="Left" Height="29" Margin="32,53,0,0" VerticalAlignment="Top" Width="98" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
-        <TextBox x:Name="UltTextBox" HorizontalAlignment="Left" Height="29" Margin="136,56,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" Foreground="#FFECE8E1" BorderBrush="#FF121213" Background="#FF2F3F4F"/>
-        <Label x:Name="UltDiscLabel" Content="Ultimate Discription" HorizontalAlignment="Left" Height="29" Margin="8,90,0,0" VerticalAlignment="Top" Width="122" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
-        <TextBox x:Name="UltDiscTextBox" HorizontalAlignment="Left" Height="120" Margin="136,90,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" Foreground="#FFECE8E1" BorderBrush="#FF121213" Background="#FF2F3F4F"/>
-        <Label x:Name="SigLabel" Content="Signiture Name" HorizontalAlignment="Left" Height="29" Margin="364,56,0,0" VerticalAlignment="Top" Width="98" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
-        <TextBox x:Name="SigTextBox" HorizontalAlignment="Left" Height="29" Margin="466,56,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Foreground="#FFECE8E1" BorderBrush="#FF121213" Background="#FF2F3F4F"/>
-        <TextBox x:Name="SigDiscTextBox" HorizontalAlignment="Left" Height="120" Margin="466,90,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Foreground="#FFECE8E1" BorderBrush="#FF121213" Background="#FF2F3F4F"/>
-        <Label x:Name="SigDiscLabel" Content="Signature Discription" HorizontalAlignment="Left" Height="29" Margin="318,90,0,0" VerticalAlignment="Top" Width="144" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
-        <Label x:Name="Normal1NameLabel" Content="Normal 1 Name" HorizontalAlignment="Left" Height="29" Margin="32,212,0,0" VerticalAlignment="Top" Width="98" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
-        <TextBox x:Name="Normal1NameTextBox" HorizontalAlignment="Left" Height="29" Margin="136,215,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" Foreground="#FFECE8E1" BorderBrush="#FF121213" Background="#FF2F3F4F"/>
-        <Label x:Name="Normal1DiscLabel" Content="Normal 1 Discription" HorizontalAlignment="Left" Height="29" Margin="8,249,0,0" VerticalAlignment="Top" Width="122" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
-        <TextBox x:Name="Normal1DiscTextBox" HorizontalAlignment="Left" Height="120" Margin="136,249,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" Foreground="#FFECE8E1" BorderBrush="#FF121213" Background="#FF2F3F4F"/>
-        <Label x:Name="Normal2NameLabel" Content="Normal 2 Name" HorizontalAlignment="Left" Height="29" Margin="364,212,0,0" VerticalAlignment="Top" Width="98" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
-        <TextBox x:Name="Normal2NameTextBox" HorizontalAlignment="Left" Height="29" Margin="466,215,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Foreground="#FFECE8E1" BorderBrush="#FF121213" Background="#FF2F3F4F"/>
-        <Label x:Name="Normal2DiscLabel" Content="Normal 2 Discription" HorizontalAlignment="Left" Height="29" Margin="338,249,0,0" VerticalAlignment="Top" Width="124" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
-        <TextBox x:Name="Normal2DiscTextBox" HorizontalAlignment="Left" Height="120" Margin="466,249,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Foreground="#FFECE8E1" BorderBrush="#FF121213" Background="#FF2F3F4F"/>
-        <Label x:Name="BioLabel" Content="Bio" HorizontalAlignment="Left" Height="29" Margin="17,409,0,0" VerticalAlignment="Top" Width="113" HorizontalContentAlignment="Right" Foreground="#FFECE8E1"/>
-        <TextBox x:Name="BioTextBox" HorizontalAlignment="Left" Height="120" Margin="135,409,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="516" Foreground="#FFECE8E1" BorderBrush="#FF121213" Background="#FF2F3F4F"/>
-        <ComboBox x:Name="AgentTypesComboBox" HorizontalAlignment="Left" Height="30" Margin="136,374,0,0" VerticalAlignment="Top" Width="514"/>
-        <Label x:Name="TypesLabel" Content="Agent Class" HorizontalAlignment="Left" Height="30" Margin="15,374,0,0" VerticalAlignment="Top" Width="113" Foreground="#FFECE8E1" HorizontalContentAlignment="Right"/>
+        <Label x:Name="nameLabel" Content="Name" HorizontalAlignment="Left" Height="29" Margin="32,24,0,0" VerticalAlignment="Top" Width="98" HorizontalContentAlignment="Right" Foreground="#FFECE8E1" />
+        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="29" Margin="136,22,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="514" Foreground="#FFECE8E1" BorderBrush="#FF121213" Background="#FF2F3F4F" />
+        <Label x:Name="UltLabel" Content="Ultamate Name" HorizontalAlignment="Left" Height="29" Margin="32,53,0,0" VerticalAlignment="Top" Width="98" HorizontalContentAlignment="Right" Foreground="#FFECE8E1" />
+        <TextBox x:Name="UltTextBox" HorizontalAlignment="Left" Height="29" Margin="136,56,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" Foreground="#FFECE8E1" BorderBrush="#FF121213" Background="#FF2F3F4F" />
+        <Label x:Name="UltDiscLabel" Content="Ultimate Discription" HorizontalAlignment="Left" Height="29" Margin="8,90,0,0" VerticalAlignment="Top" Width="122" HorizontalContentAlignment="Right" Foreground="#FFECE8E1" />
+        <TextBox x:Name="UltDiscTextBox" HorizontalAlignment="Left" Height="120" Margin="136,90,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" Foreground="#FFECE8E1" BorderBrush="#FF121213" Background="#FF2F3F4F" />
+        <Label x:Name="SigLabel" Content="Signiture Name" HorizontalAlignment="Left" Height="29" Margin="364,56,0,0" VerticalAlignment="Top" Width="98" HorizontalContentAlignment="Right" Foreground="#FFECE8E1" />
+        <TextBox x:Name="SigTextBox" HorizontalAlignment="Left" Height="29" Margin="466,56,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Foreground="#FFECE8E1" BorderBrush="#FF121213" Background="#FF2F3F4F" />
+        <TextBox x:Name="SigDiscTextBox" HorizontalAlignment="Left" Height="120" Margin="466,90,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Foreground="#FFECE8E1" BorderBrush="#FF121213" Background="#FF2F3F4F" />
+        <Label x:Name="SigDiscLabel" Content="Signature Discription" HorizontalAlignment="Left" Height="29" Margin="318,90,0,0" VerticalAlignment="Top" Width="144" HorizontalContentAlignment="Right" Foreground="#FFECE8E1" />
+        <Label x:Name="Normal1NameLabel" Content="Normal 1 Name" HorizontalAlignment="Left" Height="29" Margin="32,212,0,0" VerticalAlignment="Top" Width="98" HorizontalContentAlignment="Right" Foreground="#FFECE8E1" />
+        <TextBox x:Name="Normal1NameTextBox" HorizontalAlignment="Left" Height="29" Margin="136,215,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" Foreground="#FFECE8E1" BorderBrush="#FF121213" Background="#FF2F3F4F" />
+        <Label x:Name="Normal1DiscLabel" Content="Normal 1 Discription" HorizontalAlignment="Left" Height="29" Margin="8,249,0,0" VerticalAlignment="Top" Width="122" HorizontalContentAlignment="Right" Foreground="#FFECE8E1" />
+        <TextBox x:Name="Normal1DiscTextBox" HorizontalAlignment="Left" Height="120" Margin="136,249,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" Foreground="#FFECE8E1" BorderBrush="#FF121213" Background="#FF2F3F4F" />
+        <Label x:Name="Normal2NameLabel" Content="Normal 2 Name" HorizontalAlignment="Left" Height="29" Margin="364,212,0,0" VerticalAlignment="Top" Width="98" HorizontalContentAlignment="Right" Foreground="#FFECE8E1" />
+        <TextBox x:Name="Normal2NameTextBox" HorizontalAlignment="Left" Height="29" Margin="466,215,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Foreground="#FFECE8E1" BorderBrush="#FF121213" Background="#FF2F3F4F" />
+        <Label x:Name="Normal2DiscLabel" Content="Normal 2 Discription" HorizontalAlignment="Left" Height="29" Margin="338,249,0,0" VerticalAlignment="Top" Width="124" HorizontalContentAlignment="Right" Foreground="#FFECE8E1" />
+        <TextBox x:Name="Normal2DiscTextBox" HorizontalAlignment="Left" Height="120" Margin="466,249,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Foreground="#FFECE8E1" BorderBrush="#FF121213" Background="#FF2F3F4F" />
+        <Label x:Name="BioLabel" Content="Bio" HorizontalAlignment="Left" Height="29" Margin="17,409,0,0" VerticalAlignment="Top" Width="113" HorizontalContentAlignment="Right" Foreground="#FFECE8E1" />
+        <TextBox x:Name="BioTextBox" HorizontalAlignment="Left" Height="120" Margin="135,409,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="516" Foreground="#FFECE8E1" BorderBrush="#FF121213" Background="#FF2F3F4F" />
+        <ComboBox x:Name="AgentTypesComboBox" HorizontalAlignment="Left" Height="30" Margin="136,374,0,0" VerticalAlignment="Top" Width="514" />
+        <Label x:Name="TypesLabel" Content="Agent Class" HorizontalAlignment="Left" Height="30" Margin="15,374,0,0" VerticalAlignment="Top" Width="113" Foreground="#FFECE8E1" HorizontalContentAlignment="Right" />
     </Grid>
 </Window>

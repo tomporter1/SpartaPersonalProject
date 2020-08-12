@@ -9,7 +9,8 @@ namespace ValorantGUI
     /// </summary>
     public partial class AddMap : Window
     {
-        MapsPage _mapPage;
+        private MapsPage _mapPage;
+
         public AddMap(MapsPage mapPage)
         {
             InitializeComponent();

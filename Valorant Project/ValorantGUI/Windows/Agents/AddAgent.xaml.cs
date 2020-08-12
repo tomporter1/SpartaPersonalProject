@@ -9,7 +9,7 @@ namespace ValorantGUI
     /// </summary>
     public partial class AddAgent : Window
     {
-        AgentsPage _agentsPage;
+        private AgentsPage _agentsPage;
 
         public AddAgent(AgentsPage agentsPage)
         {
@@ -29,7 +29,7 @@ namespace ValorantGUI
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             if (NameTextBox.Text.Trim() != "" && AgentTypesComboBox.SelectedIndex >= 0)
-            {                
+            {
                 AgentArgs args = new AgentArgs
                     (
                         NameTextBox.Text.Trim(),

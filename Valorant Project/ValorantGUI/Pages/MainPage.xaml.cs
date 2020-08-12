@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace ValorantGUI
 {
@@ -25,12 +24,12 @@ namespace ValorantGUI
             _window.Content = agentsPage;
 
             _window.EndWaitMouse();
-        }       
+        }
 
         private void MapsButton_Click(object sender, RoutedEventArgs e)
         {
             _window.WaitMouse();
-       
+
             MapsPage mapsPage = new MapsPage(_window);
             _window.Content = mapsPage;
 
@@ -40,7 +39,7 @@ namespace ValorantGUI
         private void ClassesButton_Click(object sender, RoutedEventArgs e)
         {
             _window.WaitMouse();
-     
+
             AgentClassesPage classesPage = new AgentClassesPage(_window);
             _window.Content = classesPage;
 
@@ -50,7 +49,7 @@ namespace ValorantGUI
         private void GameLogButton_Click(object sender, RoutedEventArgs e)
         {
             _window.WaitMouse();
-        
+
             GameLogPage gamesPage = new GameLogPage(_window);
             _window.Content = gamesPage;
 

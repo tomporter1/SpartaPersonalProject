@@ -42,7 +42,9 @@ namespace ValorantGUI
 
             PopulateGames(SeasonComboBox.SelectedItem.ToString());
         }
+
         internal void SetNewSeasonNum(int newSeasonNum) => GameManager.CurrentSeasonNum = newSeasonNum;
+
         internal int GetCurrentSeason() => GameManager.CurrentSeasonNum;
 
         internal void PopulateGames(string season)
@@ -65,7 +67,6 @@ namespace ValorantGUI
             object mostPlayedClass = GameManager.GetMostPlayedClass(GameModeComboBox.SelectedItem, season);
             FavTypeStatLabel.Content = mostPlayedClass == null ? "-" : mostPlayedClass.ToString();
         }
-
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
@@ -188,7 +189,6 @@ namespace ValorantGUI
 
         private void FindMostKillsGamme_Click(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }

@@ -11,7 +11,7 @@ namespace ValorantGUI
     /// </summary>
     public partial class MapsPage : Page
     {
-        MainWindow _window;
+        private MainWindow _window;
         internal MapManager MapManager { get; private set; }
 
         public MapsPage(MainWindow window)
@@ -42,6 +42,7 @@ namespace ValorantGUI
         {
             _window.SetHomePage();
         }
+
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (MapsListBox.SelectedIndex >= 0)

@@ -65,7 +65,7 @@ namespace ValorantGUI
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (TeamScoreTextBox.Text.Trim() != "" && OpponentScoreTextBox.Text.Trim() != "" && MapComboBox.SelectedIndex >= 0 && AgentComboBox.SelectedIndex >= 0 && ModeComboBox.SelectedIndex >=0)
+            if (TeamScoreTextBox.Text.Trim() != "" && OpponentScoreTextBox.Text.Trim() != "" && MapComboBox.SelectedIndex >= 0 && AgentComboBox.SelectedIndex >= 0 && ModeComboBox.SelectedIndex >= 0)
             {
                 GameLogArgs args = new GameLogArgs(
                     ModeComboBox.SelectedItem,
