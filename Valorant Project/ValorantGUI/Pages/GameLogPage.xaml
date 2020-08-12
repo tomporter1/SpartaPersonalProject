@@ -20,11 +20,11 @@
         </Grid.RowDefinitions>
         <Menu x:Name="menu" Grid.ColumnSpan="2" Background="#FF0C1D2E">
             <MenuItem Header="Season tools" Foreground="White">
-                <MenuItem Header="Next season" Click="NextSeason_Click"/>
-                <MenuItem Header="Set season number" Click="SetSeason_Click"/>
+                <MenuItem Header="Next season" Click="NextSeason_Click" Foreground="Black"/>
+                <MenuItem Header="Set season number" Click="SetSeason_Click" Foreground="Black"/>
             </MenuItem>
             <MenuItem Header="Stats" Foreground="White">
-                <MenuItem Header="Find game with most kills" Click="FindMostKillsGamme_Click"/>
+                <MenuItem Header="Find game with most kills" Click="FindMostKillsGamme_Click" Foreground="Black"/>
             </MenuItem>
         </Menu>
         
