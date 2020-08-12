@@ -9,7 +9,8 @@ namespace BussinessLayer
 {
     public class GameLogManager : SuperManager
     {
-        public int _currentSeasonNum { get; private set; }
+        private int _currentSeasonNum;
+        public int CurrentSeasonNum { get => _currentSeasonNum; set => _currentSeasonNum = value > 0 ? value : 1; }
 
         public enum Fields
         {
@@ -37,7 +38,7 @@ namespace BussinessLayer
             ValorantContext db = (_context == null ? new ValorantContext() : _context);
 
             int? foundSeasonNum = db.GameLogs.Max(gl => gl.Season).GetValueOrDefault();
-            _currentSeasonNum = (foundSeasonNum == null ? 1 : (int)foundSeasonNum);
+            CurrentSeasonNum = (foundSeasonNum == null ? 1 : (int)foundSeasonNum);
 
             //Disposes of the db context if it is not running off a set context
             db.Dispose();
@@ -85,7 +86,7 @@ namespace BussinessLayer
                 Map = map,
                 Agent = agent,
                 GameMode = mode,
-                Season = _currentSeasonNum
+                Season = CurrentSeasonNum
             };
 
             db.GameLogs.Add(game);

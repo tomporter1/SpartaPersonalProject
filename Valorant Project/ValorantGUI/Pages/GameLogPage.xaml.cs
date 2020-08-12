@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using ValorantGUI.Windows.GameLogs;
 
 namespace ValorantGUI
 {
@@ -41,6 +42,8 @@ namespace ValorantGUI
 
             PopulateGames(SeasonComboBox.SelectedItem.ToString());
         }
+        internal void SetNewSeasonNum(int newSeasonNum) => GameManager.CurrentSeasonNum = newSeasonNum;
+        internal int GetCurrentSeason() => GameManager.CurrentSeasonNum;
 
         internal void PopulateGames(string season)
         {
@@ -63,7 +66,6 @@ namespace ValorantGUI
             FavTypeStatLabel.Content = mostPlayedClass == null ? "-" : mostPlayedClass.ToString();
         }
 
-        internal int GetCurrentSeason() => GameManager._currentSeasonNum;
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
@@ -170,6 +172,23 @@ namespace ValorantGUI
         {
             if (SeasonComboBox.SelectedIndex >= 0)
                 PopulateGames(SeasonComboBox.SelectedItem.ToString());
+        }
+
+        private void SetSeason_Click(object sender, RoutedEventArgs e)
+        {
+            SetSeason newSeasonWindow = new SetSeason(this);
+            newSeasonWindow.Show();
+        }
+
+        private void NextSeason_Click(object sender, RoutedEventArgs e)
+        {
+            GameManager.CurrentSeasonNum++;
+            MessageBox.Show($"We are now in season {GameManager.CurrentSeasonNum}");
+        }
+
+        private void FindMostKillsGamme_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

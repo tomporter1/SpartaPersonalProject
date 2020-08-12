@@ -1,0 +1,13 @@
+﻿<Window x:Class="ValorantGUI.Windows.GameLogs.SetSeason"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ValorantGUI.Windows.GameLogs"
+        mc:Ignorable="d"
+        Title="Set Season Number" Height="146" Width="269" ResizeMode="NoResize">
+    <Grid Background="#FF1C252E">
+        <TextBox x:Name="numberInputTextbox" HorizontalAlignment="Center" Margin="0,27,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" PreviewTextInput="NumberValidationTextBox" Height="29"/>
+        <Button x:Name="submitButton" Content="Submit" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top" Width="248" Height="33" Click="submitButton_Click"/>
+    </Grid>
+</Window>
