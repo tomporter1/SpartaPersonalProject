@@ -105,7 +105,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Label x:Name="label1" Content="Season" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Foreground="White"/>
+                <Label x:Name="label2" Content="Game Mode" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Foreground="White"/>
                 <ComboBox x:Name="GameModeComboBox" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" SelectionChanged="OnGameModeSelectionChanged"/>
             </Grid>
             <Grid Grid.Column="1">
@@ -113,7 +113,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Label x:Name="label2" Content="Game Mode" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Foreground="White"/>
+                <Label x:Name="label1" Content="Season" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Foreground="White"/>
                 <ComboBox x:Name="SeasonComboBox" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" SelectionChanged="OnSeasonSelectionChanged"/>
             </Grid>
             <Button x:Name="RemoveGameButton" HorizontalAlignment="Stretch" Margin="1,2,1,2" VerticalAlignment="Stretch" Click="RemoveGameButton_Click" Grid.Row="0" Grid.Column="2" Background="#FFFF4655" Foreground="#FF0F1923" BorderBrush="#FF121213" FontWeight="Bold">
