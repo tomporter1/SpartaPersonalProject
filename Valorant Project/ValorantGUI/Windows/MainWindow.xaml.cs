@@ -9,7 +9,7 @@ namespace ValorantGUI
     public partial class MainWindow : Window
     {
         private MainPage _mainPage;
-        private Cursor PreviousCursor;
+        private Cursor _previousCursor;
 
         public MainWindow()
         {
@@ -20,25 +20,20 @@ namespace ValorantGUI
         internal void SetHomePage()
         {
             if (_mainPage == null)
-            {
                 _mainPage = new MainPage(this);
-                Content = _mainPage;
-            }
-            else
-            {
-                Content = _mainPage;
-            }
+
+            Content = _mainPage;
         }
 
         internal void WaitMouse()
         {
-            PreviousCursor = Mouse.OverrideCursor;
+            _previousCursor = Mouse.OverrideCursor;
             Mouse.OverrideCursor = Cursors.Wait;
         }
 
         internal void EndWaitMouse()
         {
-            Mouse.OverrideCursor = PreviousCursor;
+            Mouse.OverrideCursor = _previousCursor;
         }
     }
 }

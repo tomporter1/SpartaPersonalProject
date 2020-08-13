@@ -25,12 +25,13 @@
             </MenuItem>
             <MenuItem Header="Stats" Foreground="White">
                 <MenuItem Header="Find game with most kills" Click="FindMostKillsGamme_Click" Foreground="Black" />
+                <MenuItem Header="Find game with the best K/D" Click="FindMostKDGamme_Click" Foreground="Black" />
             </MenuItem>
         </Menu>
 
         <Label x:Name="label" Content="Past Games" Margin="5,5,5,5" VerticalContentAlignment="Bottom" FontSize="20" Foreground="#FFECE8E1" FontWeight="Bold" Grid.Row="1" />
         <ListBox x:Name="GamesListBox" Margin="5,5,5,5" SelectionChanged="OnSelectionChanged" Grid.Column="0" Grid.Row="2" Background="#FF2F3F4F" Foreground="#FFECE8E1" BorderBrush="#FF121213" />
-        <Image x:Name="MapImage" Margin="5,5,5,5" Grid.Column="1" Grid.Row="1" />
+        <Image x:Name="MapImage" Margin="5,5,5,5" Grid.Column="1" Grid.Row="2" />
         <Grid Grid.Column="1" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50*" />

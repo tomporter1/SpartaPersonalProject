@@ -20,6 +20,10 @@ namespace ValorantDatabase
         private DateTime _dateLogged;
         private int? _season;
 
+        public float KD { get => _kills == null || _deaths == null ? 0 : (float)_kills / (float)_deaths; }
+
+        public bool SeasonChecker(string season) => int.TryParse(season, out int seasonNum) ? Season == seasonNum : true;
+
         public override bool Equals(object obj)
         {
             return Equals(obj as GameLogs);

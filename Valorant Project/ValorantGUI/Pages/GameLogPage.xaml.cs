@@ -189,6 +189,26 @@ namespace ValorantGUI
 
         private void FindMostKillsGamme_Click(object sender, RoutedEventArgs e)
         {
+            object mostKillsGame = GameManager.GetMostKillsGame(SeasonComboBox.SelectedItem.ToString(), GameModeComboBox.SelectedItem);
+            foreach(object game in GamesListBox.Items)
+            {
+                if (mostKillsGame.Equals(game))
+                {
+                    GamesListBox.SelectedItem = game;
+                }
+            }
+        }
+
+        private void FindMostKDGamme_Click(object sender, RoutedEventArgs e)
+        {
+            object mostKDGame = GameManager.GetMostKDGame(SeasonComboBox.SelectedItem.ToString(), GameModeComboBox.SelectedItem);
+            foreach (object game in GamesListBox.Items)
+            {
+                if (mostKDGame.Equals(game))
+                {
+                    GamesListBox.SelectedItem = game;
+                }
+            }
         }
     }
 }
