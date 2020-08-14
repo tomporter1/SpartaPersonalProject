@@ -22,7 +22,7 @@ namespace BussinessLayer
 
         public override List<object> GetAllEntries()
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = _context ?? new ValorantContext();
 
             List<object> output = db.Maps.OrderBy(m => m.MapName).ToList<object>();
 
@@ -34,7 +34,7 @@ namespace BussinessLayer
 
         public override void RemoveEntry(object selectedMap)
         {
-            ValorantContext db = _context == null ? new ValorantContext() : _context;
+            ValorantContext db = _context ?? new ValorantContext();
             Maps mapToRemove = (Maps)selectedMap;
             db.Maps.Remove(mapToRemove);
             db.SaveChanges();
@@ -46,7 +46,7 @@ namespace BussinessLayer
 
         public override void AddNewEntry(SuperArgs args)
         {
-            ValorantContext db = _context == null ? new ValorantContext() : _context;
+            ValorantContext db = _context ?? new ValorantContext();
             MapArgs mapArgs = (MapArgs)args;
             Maps newMap = new Maps()
             {
@@ -62,7 +62,7 @@ namespace BussinessLayer
 
         public override void UpdateEntry(object selectedEntry, SuperArgs args)
         {
-            ValorantContext db = _context == null ? new ValorantContext() : _context;
+            ValorantContext db = _context ?? new ValorantContext();
             MapArgs mapArgs = (MapArgs)args;
             Maps mapToUpdate = db.Maps.Where(m => m.MapId == ((Maps)selectedEntry).MapId).FirstOrDefault();
             if (mapToUpdate != null)
@@ -78,7 +78,7 @@ namespace BussinessLayer
 
         public string GetMapsDataStr(object selectedMap, Fields field)
         {
-            ValorantContext db = _context == null ? new ValorantContext() : _context;
+            ValorantContext db = _context ?? new ValorantContext();
             Maps map = (Maps)selectedMap;
 
             IQueryable<Maps> mapQuery = db.Maps.Where(m => m.MapId == map.MapId);
@@ -89,15 +89,12 @@ namespace BussinessLayer
                 case Fields.Name:
                     output = map.MapName;
                     break;
-
                 case Fields.ImagePath:
                     output = mapQuery.Select(a => a.ImagePath).FirstOrDefault();
                     break;
-
                 case Fields.LayoutImagePath:
                     output = mapQuery.Select(a => a.LayoutImagePath).FirstOrDefault();
                     break;
-
                 default:
                     output = "";
                     break;

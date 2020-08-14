@@ -21,7 +21,7 @@ namespace BussinessLayer
 
         public override List<object> GetAllEntries()
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
 
             List<object> output = db.AgentType.OrderBy(a => a.TypeName).ToList<object>();
 
@@ -34,7 +34,7 @@ namespace BussinessLayer
 
         public override void RemoveEntry(object selectedType)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             AgentType agentToRemove = (AgentType)selectedType;
             db.AgentType.Remove(agentToRemove);
             db.SaveChanges();
@@ -42,7 +42,7 @@ namespace BussinessLayer
 
         public override void AddNewEntry(SuperArgs args)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             AgentTypeArgs typeArgs = (AgentTypeArgs)args;
             AgentType newAgentType = new AgentType()
             {
@@ -58,7 +58,7 @@ namespace BussinessLayer
 
         public override void UpdateEntry(object selectedEntry, SuperArgs args)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             AgentTypeArgs typeArgs = (AgentTypeArgs)args;
             AgentType typeToUpdate = db.AgentType.Where(a => a.TypeId == ((AgentType)selectedEntry).TypeId).FirstOrDefault();
             if (typeToUpdate != null)
@@ -75,7 +75,7 @@ namespace BussinessLayer
 
         public string GetTypeDataStr(object selectedType, Fields field)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             AgentType type = (AgentType)selectedType;
 
             IQueryable<AgentType> typeQuery = db.AgentType.Where(t => t.TypeId == type.TypeId);
@@ -86,11 +86,9 @@ namespace BussinessLayer
                 case Fields.Name:
                     output = typeQuery.Select(t => t.TypeName).FirstOrDefault();
                     break;
-
                 case Fields.ImagePath:
                     output = typeQuery.Select(t => t.ImagePath).FirstOrDefault();
                     break;
-
                 default:
                     output = "";
                     break;

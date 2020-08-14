@@ -21,7 +21,7 @@ namespace BussinessLayer
 
         public override void AddNewEntry(SuperArgs args)
         {
-            ValorantContext db = _context == null ? new ValorantContext() : _context;
+            ValorantContext db = _context ?? new ValorantContext();
             GameModeArgs modeArgs = (GameModeArgs)args;
             GameModes newMode = new GameModes()
             {
@@ -38,7 +38,7 @@ namespace BussinessLayer
 
         public override List<object> GetAllEntries()
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = _context ?? new ValorantContext();
 
             List<object> output = db.GameModes.OrderBy(m => m.ModeName).ToList<object>();
 
@@ -50,7 +50,7 @@ namespace BussinessLayer
 
         public override void RemoveEntry(object selectedMode)
         {
-            ValorantContext db = _context == null ? new ValorantContext() : _context;
+            ValorantContext db = _context ?? new ValorantContext();
             GameModes gameModeToRemove = (GameModes)selectedMode;
             db.GameModes.Remove(gameModeToRemove);
             db.SaveChanges();
@@ -62,7 +62,7 @@ namespace BussinessLayer
 
         public override void UpdateEntry(object selectedEntry, SuperArgs args)
         {
-            ValorantContext db = _context == null ? new ValorantContext() : _context;
+            ValorantContext db = _context ?? new ValorantContext();
             GameModeArgs modeArgs = (GameModeArgs)args;
             GameModes gameModeToUpdate = db.GameModes.Where(m => m.ModeID == ((GameModes)selectedEntry).ModeID).FirstOrDefault();
 

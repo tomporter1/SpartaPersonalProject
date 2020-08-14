@@ -34,7 +34,7 @@ namespace BussinessLayer
         {
             _context = context;
 
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
 
             int? foundSeasonNum = db.GameLogs.Max(gl => gl.Season).GetValueOrDefault();
             CurrentSeasonNum = (foundSeasonNum == null ? 1 : (int)foundSeasonNum);
@@ -45,7 +45,7 @@ namespace BussinessLayer
 
         public override List<object> GetAllEntries()
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             List<object> output = db.GameLogs.OrderByDescending(gl => gl.DateLogged).ToList<object>();
 
             //Disposes of the db context if it is not running off a set context
@@ -56,7 +56,7 @@ namespace BussinessLayer
 
         public override void RemoveEntry(object selectedGame)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             GameLogs gameToRemove = (GameLogs)selectedGame;
             db.GameLogs.Remove(gameToRemove);
             db.SaveChanges();
@@ -68,7 +68,7 @@ namespace BussinessLayer
 
         public override void AddNewEntry(SuperArgs args)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             GameLogArgs logArgs = (GameLogArgs)args;
             Agents agent = db.Agents.Where(a => a.AgentId == logArgs.AgentId).FirstOrDefault();
             Maps map = db.Maps.Where(m => m.MapId == logArgs.MapId).FirstOrDefault();
@@ -98,7 +98,7 @@ namespace BussinessLayer
 
         public object GetGameMode(object selectedGame)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             GameLogs game = (GameLogs)selectedGame;
             object output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.GameMode).Select(gl => gl.GameMode).FirstOrDefault();
 
@@ -111,7 +111,7 @@ namespace BussinessLayer
 
         public override void UpdateEntry(object selectedGame, SuperArgs args)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             GameLogArgs logArgs = (GameLogArgs)args;
 
             GameLogs gameToUpdate = db.GameLogs
@@ -142,12 +142,9 @@ namespace BussinessLayer
 
         public List<object> GetGamesForGameMode(object selectedGameMode, string season)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
 
-            List<object> output = db.GameLogs.AsEnumerable()
-                .Where(gl => gl.ModeID == ((GameModes)selectedGameMode).ModeID && gl.SeasonChecker(season))
-                .OrderByDescending(gl => gl.DateLogged)
-                .ToList<object>();
+            List<object> output = db.GameLogs.AsEnumerable().Where(gl => gl.ModeID == ((GameModes)selectedGameMode).ModeID && gl.SeasonChecker(season)).OrderByDescending(gl => gl.DateLogged).ToList<object>();
 
             //Disposes of the db context if it is not running off a set context
             if (_context == null)
@@ -158,7 +155,7 @@ namespace BussinessLayer
 
         public string GetGameDataStr(object selectedGame, Fields field)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             GameLogs game = (GameLogs)selectedGame;
 
             IQueryable<GameLogs> logQuery = db.GameLogs.Where(gl => gl.GameId == game.GameId);
@@ -191,7 +188,7 @@ namespace BussinessLayer
 
         public object GetGameMapObj(object selectedGame)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             GameLogs game = (GameLogs)selectedGame;
             object output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Map).Select(gl => gl.Map).FirstOrDefault();
 
@@ -204,7 +201,7 @@ namespace BussinessLayer
 
         public object GetGameAgentObj(object selectedGame)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             GameLogs game = (GameLogs)selectedGame;
             object output = db.GameLogs
                 .Where(gl => gl.GameId == game.GameId)
@@ -222,12 +219,9 @@ namespace BussinessLayer
         #region GameStatMethods
         public object GetMostKillsGame(string season, object gameMode)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
 
-            object output = db.GameLogs.AsEnumerable()
-                .Where(gl => gl.SeasonChecker(season) && gl.ModeID == ((GameModes)gameMode).ModeID)
-                .OrderByDescending(gl => gl.Kills)
-                .FirstOrDefault();
+            object output = db.GameLogs.AsEnumerable().Where(gl => gl.SeasonChecker(season) && gl.ModeID == ((GameModes)gameMode).ModeID).OrderByDescending(gl => gl.Kills).FirstOrDefault();
 
             //Disposes of the db context if it is not running off a set context
             if (_context == null)
@@ -238,12 +232,9 @@ namespace BussinessLayer
 
         public object GetMostKDGame(string season, object gameMode)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
 
-            object output = db.GameLogs.AsEnumerable()
-                .Where(gl => gl.SeasonChecker(season) && gl.ModeID == ((GameModes)gameMode).ModeID)
-                .OrderByDescending(gl => gl.KD)
-                .FirstOrDefault();
+            object output = db.GameLogs.AsEnumerable().Where(gl => gl.SeasonChecker(season) && gl.ModeID == ((GameModes)gameMode).ModeID).OrderByDescending(gl => gl.KD).FirstOrDefault();
 
             //Disposes of the db context if it is not running off a set context
             if (_context == null)
@@ -254,14 +245,10 @@ namespace BussinessLayer
 
         public object GetMostPlayedAgent(object selectedGameMode, string season)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
 
             //Makes a base query for all seasons or a specific season
-            IQueryable<GameLogs> ModeQuery = null;
-            if (int.TryParse(season, out int seasonNum))
-                ModeQuery = db.GameLogs.Where(gl => gl.Season == seasonNum && gl.ModeID == ((GameModes)selectedGameMode).ModeID);
-            else
-                ModeQuery = db.GameLogs.Where(gl => gl.ModeID == ((GameModes)selectedGameMode).ModeID);
+            IQueryable<GameLogs> ModeQuery = db.GameLogs.Where(gl => gl.SeasonChecker(season) && gl.ModeID == ((GameModes)selectedGameMode).ModeID);
 
             //if there are no entries in the dbs then it returns null
             if (ModeQuery.ToList().Count == 0)
@@ -291,7 +278,7 @@ namespace BussinessLayer
         public object GetMostPlayedClass(object selectedGameMode, string season)
         {
             Agents faveAgent = (Agents)GetMostPlayedAgent(selectedGameMode, season);
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
 
             if (faveAgent == null)
                 return null;
@@ -307,14 +294,10 @@ namespace BussinessLayer
 
         public object GetMapWithMostWins(object selectedGameMode, string season)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
 
             //Makes a base query for all seasons or a specific season
-            List<GameLogs> MapsWithWinsQuery = db.GameLogs.AsEnumerable()
-                .Where(gl => gl.SeasonChecker(season) && 
-                       gl.TeamScore > gl.OpponentScore && 
-                       gl.ModeID == ((GameModes)selectedGameMode).ModeID)
-                .ToList();
+            List<GameLogs> MapsWithWinsQuery = db.GameLogs.AsEnumerable().Where(gl => gl.SeasonChecker(season) && gl.TeamScore > gl.OpponentScore && gl.ModeID == ((GameModes)selectedGameMode).ModeID).ToList();
 
             //if there are no entries in the dbs then it returns null
             if (MapsWithWinsQuery.Count == 0)
@@ -343,12 +326,10 @@ namespace BussinessLayer
 
         public int GetTotals(Fields field, object selectedGameMode, string season)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             int output = 0;
 
-            IEnumerable<GameLogs> query = db.GameLogs.AsEnumerable()
-                .Where(gl => gl.SeasonChecker(season) && 
-                       gl.ModeID == ((GameModes)selectedGameMode).ModeID);
+            IEnumerable<GameLogs> query = db.GameLogs.AsEnumerable().Where(gl => gl.SeasonChecker(season) && gl.ModeID == ((GameModes)selectedGameMode).ModeID);
 
             switch (field)
             {
@@ -372,11 +353,8 @@ namespace BussinessLayer
 
         public DateTime GetDatePlayed(object selectedGame)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
-            DateTime output = db.GameLogs.AsEnumerable()
-                .Where(gl => gl.GameId == ((GameLogs)selectedGame).GameId)
-                .Select(gl => gl.DateLogged)
-                .FirstOrDefault();
+            ValorantContext db = (_context ?? new ValorantContext());
+            DateTime output = db.GameLogs.AsEnumerable().Where(gl => gl.GameId == ((GameLogs)selectedGame).GameId).Select(gl => gl.DateLogged).FirstOrDefault();
 
             //Disposes of the db context if it is not running off a set context
             if (_context == null)
@@ -387,51 +365,29 @@ namespace BussinessLayer
 
         public float GetTotalKD(object selectedGameMode, string season)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             float totalKills = GetTotals(Fields.Kills, selectedGameMode, season);
             float totalDeaths = GetTotals(Fields.Deaths, selectedGameMode, season);
-
-            float output;
-            if (totalDeaths == 0)
-            {
-                output = totalKills;
-            }
-            else
-            {
-                output = totalKills / totalDeaths;
-            }
 
             //Disposes of the db context if it is not running off a set context
             if (_context == null)
                 db.Dispose();
 
-            return output;
+            return totalDeaths == 0 ? totalKills : totalKills / totalDeaths;
         }
 
         public float GetTotalWinLoss(object selectedGameMode, string season)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
-            float totalWins = 0;
-            float totalLosses = 0;
+            ValorantContext db = (_context ?? new ValorantContext());
 
-            totalWins = db.GameLogs.AsEnumerable().Where(gl => gl.SeasonChecker(season) && gl.TeamScore > gl.OpponentScore && gl.ModeID == ((GameModes)selectedGameMode).ModeID).Count();
-            totalLosses = db.GameLogs.AsEnumerable().Where(gl => gl.SeasonChecker(season) && gl.TeamScore < gl.OpponentScore && gl.ModeID == ((GameModes)selectedGameMode).ModeID).Count();
-
-            float output;
-            if (totalLosses == 0)
-            {
-                output = totalWins;
-            }
-            else
-            {
-                output = totalWins / totalLosses;
-            }
+            float totalWins = db.GameLogs.AsEnumerable().Where(gl => gl.SeasonChecker(season) && gl.TeamScore > gl.OpponentScore && gl.ModeID == ((GameModes)selectedGameMode).ModeID).Count();
+            float totalLosses = db.GameLogs.AsEnumerable().Where(gl => gl.SeasonChecker(season) && gl.TeamScore < gl.OpponentScore && gl.ModeID == ((GameModes)selectedGameMode).ModeID).Count();
 
             //Disposes of the db context if it is not running off a set context
             if (_context == null)
                 db.Dispose();
 
-            return output;
+            return totalLosses == 0 ? totalWins : totalWins / totalLosses;
         }
         #endregion GameStatMethods
     }

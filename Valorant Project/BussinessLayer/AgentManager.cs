@@ -33,7 +33,7 @@ namespace BussinessLayer
 
         public override List<object> GetAllEntries()
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             List<object> output = db.Agents.OrderBy(a => a.AgentName).ToList<object>();
 
             //Disposes of the db context if it is not running off a set context
@@ -44,7 +44,7 @@ namespace BussinessLayer
 
         public override void RemoveEntry(object selectedAgent)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             Agents agentToRemove = (Agents)selectedAgent;
             db.Agents.Remove(agentToRemove);
             db.SaveChanges();
@@ -56,7 +56,7 @@ namespace BussinessLayer
 
         public override void AddNewEntry(SuperArgs args)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             AgentArgs agentArgs = (AgentArgs)args;
             AgentType type = db.AgentType.Where(t => t.TypeId == agentArgs.TypeID).FirstOrDefault();
             Agents newAgent = new Agents()
@@ -84,7 +84,7 @@ namespace BussinessLayer
 
         public object GetAgentTypeObj(object selectedAgent)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             Agents agent = (Agents)selectedAgent;
             object output = db.Agents.Where(a => a.AgentId == agent.AgentId).Include(a => a.AgentType).Select(a => a.AgentType).FirstOrDefault();
 
@@ -97,7 +97,7 @@ namespace BussinessLayer
 
         public List<string> GetAgentsAbilities(object selectedItem)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             Agents agent = (Agents)selectedItem;
 
             List<string> output = new List<string>
@@ -133,7 +133,7 @@ namespace BussinessLayer
 
         public override void UpdateEntry(object selectedAgent, SuperArgs args)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             AgentArgs agentArgs = (AgentArgs)args;
             Agents agentToUpdate = db.Agents
                 .Where(a => a.AgentId == ((Agents)selectedAgent).AgentId)
@@ -163,7 +163,7 @@ namespace BussinessLayer
 
         public string GetAgentDataStr(object selectedAgent, Fields field)
         {
-            ValorantContext db = (_context == null ? new ValorantContext() : _context);
+            ValorantContext db = (_context ?? new ValorantContext());
             Agents agent = (Agents)selectedAgent;
             IQueryable<Agents> agentQuery = db.Agents.Where(a => a.AgentId == agent.AgentId);
             string output = "";
@@ -172,55 +172,42 @@ namespace BussinessLayer
                 case Fields.ID:
                     output = agentQuery.Select(a => a.AgentId).ToString();
                     break;
-
                 case Fields.Name:
                     output = agentQuery.Select(a => a.AgentName).FirstOrDefault();
                     break;
-
                 case Fields.Type:
                     output = agentQuery.Include(a => a.AgentType).Select(a => a.AgentType).FirstOrDefault().ToString();
                     break;
-
                 case Fields.SignatureAbilityName:
                     output = agentQuery.Select(a => a.SignatureAbilityName).FirstOrDefault();
                     break;
-
                 case Fields.SignatureAbilityDiscription:
                     output = agentQuery.Select(a => a.SignatureAbilityDiscription).FirstOrDefault();
                     break;
-
                 case Fields.UltamateAbilityName:
                     output = agentQuery.Select(a => a.UltamateAbilityName).FirstOrDefault();
                     break;
-
                 case Fields.UltamateAbilityDiscription:
                     output = agentQuery.Select(a => a.UltamateAbilityDiscription).FirstOrDefault();
                     break;
-
                 case Fields.AbilityOneName:
                     output = agentQuery.Select(a => a.AbilityOneName).FirstOrDefault();
                     break;
-
                 case Fields.AbilityOneDiscription:
                     output = agentQuery.Select(a => a.AbilityOneDiscription).FirstOrDefault();
                     break;
-
                 case Fields.AbilityTwoName:
                     output = agentQuery.Select(a => a.AbilityTwoName).FirstOrDefault();
                     break;
-
                 case Fields.AbilityTwoDiscription:
                     output = agentQuery.Select(a => a.AbilityTwoDiscription).FirstOrDefault();
                     break;
-
                 case Fields.Bio:
                     output = agentQuery.Select(a => a.Bio).FirstOrDefault();
                     break;
-
                 case Fields.ImagePath:
                     output = agentQuery.Select(a => a.ImagePath).FirstOrDefault();
                     break;
-
                 default:
                     output = "";
                     break;
