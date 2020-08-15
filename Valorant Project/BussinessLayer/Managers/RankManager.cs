@@ -48,5 +48,36 @@ namespace BussinessLayer.Managers
         {
             throw new NotImplementedException();
         }
+
+        public string GetRankDataStr(object selectedRank, Fields field)
+        {
+            ValorantContext db = (_context ?? new ValorantContext());
+            Ranks rank = (Ranks)selectedRank;
+            if(rank == null)
+            {
+                if (_context == null)
+                    db.Dispose();
+
+                return "";
+            }
+
+            IQueryable<Ranks> rankQuery = db.Ranks.Where(r => r.RankID == rank.RankID);
+            string output = "";
+            switch (field)
+            {
+                case Fields.ImagePath:
+                    output = rankQuery.Select(r => r.ImagePath).FirstOrDefault();
+                    break;
+                default:
+                    output = "";
+                    break;
+            }
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return output;
+        }
     }
 }

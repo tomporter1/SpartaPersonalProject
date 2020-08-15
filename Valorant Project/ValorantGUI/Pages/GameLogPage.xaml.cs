@@ -91,6 +91,7 @@ namespace ValorantGUI
 
             AgentImage.Source = null;
             MapImage.Source = null;
+            RankImage.Source = null;
         }
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -125,6 +126,12 @@ namespace ValorantGUI
                     AgentImage.Source = new BitmapImage(new Uri(agentImagePath, UriKind.Relative));
                 else
                     AgentImage.Source = null;
+
+                string rankImagePath = new RankManager().GetRankDataStr(GameManager.GetGameRankObj(GamesListBox.SelectedItem), RankManager.Fields.ImagePath);
+                if (rankImagePath != null && rankImagePath != "")
+                    RankImage.Source = new BitmapImage(new Uri(rankImagePath, UriKind.Relative));
+                else
+                    RankImage.Source = null;
             }
         }
 

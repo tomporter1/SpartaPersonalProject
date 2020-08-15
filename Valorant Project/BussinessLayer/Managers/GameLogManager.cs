@@ -200,6 +200,19 @@ namespace BussinessLayer.Managers
             return output;
         }
 
+        public object GetGameRankObj(object selectedRank)
+        {
+            ValorantContext db = (_context ?? new ValorantContext());
+            GameLogs game = (GameLogs)selectedRank;
+            object output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Rank).Select(gl => gl.Rank).FirstOrDefault();
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return output;
+        }
+
         public object GetGameMapObj(object selectedGame)
         {
             ValorantContext db = (_context ?? new ValorantContext());

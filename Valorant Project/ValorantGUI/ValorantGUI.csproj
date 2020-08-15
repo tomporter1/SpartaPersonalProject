@@ -25,6 +25,28 @@
     <None Remove="Pages\Images\Killjoy.png" />
     <None Remove="Pages\Images\Omen.png" />
     <None Remove="Pages\Images\Phoenix.png" />
+    <None Remove="Pages\Images\Ranks\Bronze1.png" />
+    <None Remove="Pages\Images\Ranks\Bronze2.png" />
+    <None Remove="Pages\Images\Ranks\Bronze3.png" />
+    <None Remove="Pages\Images\Ranks\Diamond1.png" />
+    <None Remove="Pages\Images\Ranks\Diamond2.png" />
+    <None Remove="Pages\Images\Ranks\Diamond3.png" />
+    <None Remove="Pages\Images\Ranks\Gold1.png" />
+    <None Remove="Pages\Images\Ranks\Gold2.png" />
+    <None Remove="Pages\Images\Ranks\Gold3.png" />
+    <None Remove="Pages\Images\Ranks\Immortal1.png" />
+    <None Remove="Pages\Images\Ranks\Immortal2.png" />
+    <None Remove="Pages\Images\Ranks\Immortal3.png" />
+    <None Remove="Pages\Images\Ranks\Iron1.png" />
+    <None Remove="Pages\Images\Ranks\Iron2.png" />
+    <None Remove="Pages\Images\Ranks\Iron3.png" />
+    <None Remove="Pages\Images\Ranks\Plat1.png" />
+    <None Remove="Pages\Images\Ranks\Plat2.png" />
+    <None Remove="Pages\Images\Ranks\Plat3.png" />
+    <None Remove="Pages\Images\Ranks\Radiant.png" />
+    <None Remove="Pages\Images\Ranks\Silver1.png" />
+    <None Remove="Pages\Images\Ranks\Silver2.png" />
+    <None Remove="Pages\Images\Ranks\Silver3.png" />
     <None Remove="Pages\Images\Raze.png" />
     <None Remove="Pages\Images\Reyna.png" />
     <None Remove="Pages\Images\Sage.png" />
@@ -34,6 +56,7 @@
     <None Remove="Pages\Images\SplitLayout.png" />
     <None Remove="Pages\Images\ValorantLogo.png" />
     <None Remove="Pages\Images\Viper.png" />
+    <None Remove="Pages\Iron1.png" />
     <None Remove="Pages\ValorantLogo.png" />
   </ItemGroup>
 
@@ -94,6 +117,72 @@
     <Resource Include="Pages\Images\Phoenix.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Pages\Images\Ranks\Bronze1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Bronze2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Bronze3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Diamond1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Diamond2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Diamond3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Gold1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Gold2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Gold3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Immortal1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Immortal2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Immortal3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Iron1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Iron2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Iron3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Plat1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Plat2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Plat3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Radiant.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Silver1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Silver2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Silver3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Pages\Images\Raze.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -121,6 +210,7 @@
     <Resource Include="Pages\Images\Viper.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Pages\Iron1.png" />
     <Resource Include="Pages\ValorantLogo.png" />
   </ItemGroup>
 
