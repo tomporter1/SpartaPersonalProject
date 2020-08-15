@@ -248,7 +248,7 @@ namespace BussinessLayer
             ValorantContext db = (_context ?? new ValorantContext());
 
             //Makes a base query for all seasons or a specific season
-            IQueryable<GameLogs> ModeQuery = db.GameLogs.Where(gl => gl.SeasonChecker(season) && gl.ModeID == ((GameModes)selectedGameMode).ModeID);
+            IEnumerable<GameLogs> ModeQuery = db.GameLogs.AsEnumerable().Where(gl => gl.SeasonChecker(season) && gl.ModeID == ((GameModes)selectedGameMode).ModeID);
 
             //if there are no entries in the dbs then it returns null
             if (ModeQuery.ToList().Count == 0)
