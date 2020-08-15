@@ -1,4 +1,6 @@
 ﻿using BussinessLayer;
+using BussinessLayer.Args;
+using BussinessLayer.Managers;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -13,15 +15,18 @@ namespace ValorantGUI
     public partial class AddGameLogWindow : Window
     {
         private GameLogPage _gameLogPage;
-
+        private GameModesManager _modesManager = new GameModesManager();
         public AddGameLogWindow(GameLogPage gameLogPage)
         {
             InitializeComponent();
             _gameLogPage = gameLogPage;
 
-            ModeComboBox.ItemsSource = new GameModesManager().GetAllEntries();
+            ModeComboBox.ItemsSource = _modesManager.GetAllEntries();
             MapComboBox.ItemsSource = new MapManager().GetAllEntries();
             AgentComboBox.ItemsSource = new AgentManager().GetAllEntries();
+            RankComboBox.ItemsSource = new RankManager().GetAllEntries();
+            
+            RankComboBox.IsEnabled = false;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -39,7 +44,8 @@ namespace ValorantGUI
                     AssistsTextBox.Text.Trim() == "" ? 0 : int.Parse(AssistsTextBox.Text.Trim()),
                     ADRTextBox.Text.Trim() == "" ? 0 : int.Parse(ADRTextBox.Text.Trim()),
                     DateTime.Now,
-                    _gameLogPage.GetCurrentSeason());
+                    _gameLogPage.GetCurrentSeason(),
+                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? RankComboBox.SelectedItem : null);
 
                 _gameLogPage.GameManager.AddNewEntry(args);
 
@@ -48,6 +54,12 @@ namespace ValorantGUI
             }
             else
             {
+                if (_modesManager.IsRanked(ModeComboBox.SelectedItem) && RankComboBox.SelectedIndex >= 0)
+                {
+                    RankLabel.Foreground = Brushes.Red;
+
+                    MessageBox.Show("Please select a rank for this match");
+                }
                 if (TeamScoreTextBox.Text.Trim() == "")
                     teamScoreLabel.Foreground = Brushes.Red;
                 if (OpponentScoreTextBox.Text.Trim() == "")
@@ -67,6 +79,14 @@ namespace ValorantGUI
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void ModeSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (_modesManager.IsRanked(ModeComboBox.SelectedItem))
+                RankComboBox.IsEnabled = true;
+            else
+                RankComboBox.IsEnabled = false;
         }
     }
 }

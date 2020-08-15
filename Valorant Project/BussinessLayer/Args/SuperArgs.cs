@@ -1,4 +1,4 @@
-﻿namespace BussinessLayer
+﻿namespace BussinessLayer.Args
 {
     public abstract class SuperArgs
     {

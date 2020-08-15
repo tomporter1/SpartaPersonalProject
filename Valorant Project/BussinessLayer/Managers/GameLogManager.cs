@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BussinessLayer.Args;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using ValorantDatabase;
 
-namespace BussinessLayer
+namespace BussinessLayer.Managers
 {
     public class GameLogManager : SuperManager
     {
@@ -109,6 +110,19 @@ namespace BussinessLayer
             return output;
         }
 
+        public object GetRankObj(object selectedGame)
+        {
+            ValorantContext db = (_context ?? new ValorantContext());
+            GameLogs game = (GameLogs)selectedGame;
+            object output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Rank).Select(gl => gl.Rank).FirstOrDefault();
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return output;
+        }
+
         public override void UpdateEntry(object selectedGame, SuperArgs args)
         {
             ValorantContext db = (_context ?? new ValorantContext());
@@ -131,7 +145,7 @@ namespace BussinessLayer
                 gameToUpdate.Adr = logArgs.ADR;
                 gameToUpdate.DateLogged = logArgs.DateLogged;
                 gameToUpdate.Season = logArgs.Season;
-
+                gameToUpdate.RankID = logArgs.RankID;
                 db.SaveChanges();
             }
 

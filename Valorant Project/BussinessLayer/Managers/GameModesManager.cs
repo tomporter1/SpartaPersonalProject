@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using BussinessLayer.Args;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using ValorantDatabase;
 
-namespace BussinessLayer
+namespace BussinessLayer.Managers
 {
     public class GameModesManager : SuperManager
     {
@@ -77,6 +79,19 @@ namespace BussinessLayer
             //Disposes of the db context if it is not running off a set context
             if (_context == null)
                 db.Dispose();
+        }
+
+        public bool IsRanked(object selectedItem)
+        {
+            GameModes mode = (GameModes)selectedItem;
+            ValorantContext db = _context ?? new ValorantContext();
+            GameModes rankedMode = db.GameModes.Where(m => m.ModeName == "Ranked").FirstOrDefault();
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return mode == rankedMode;
         }
     }
 }

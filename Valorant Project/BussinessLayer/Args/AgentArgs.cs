@@ -1,7 +1,7 @@
 ﻿using System;
 using ValorantDatabase;
 
-namespace BussinessLayer
+namespace BussinessLayer.Args
 {
     public class AgentArgs : SuperArgs
     {

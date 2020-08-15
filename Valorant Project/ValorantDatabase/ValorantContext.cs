@@ -20,7 +20,7 @@ namespace ValorantDatabase
         public virtual DbSet<GameLogs> GameLogs { get; set; }
         public virtual DbSet<Maps> Maps { get; set; }
         public virtual DbSet<GameModes> GameModes { get; set; }
-
+        public virtual DbSet<Ranks> Ranks { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -44,6 +44,23 @@ namespace ValorantDatabase
                     .HasMaxLength(20)
                     .IsUnicode(false);
                 
+                entity.Property(e => e.ImagePath)
+                    .HasMaxLength(35)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Ranks>(entity =>
+            {
+                entity.HasKey(e => e.RankID)
+                    .HasName("PK_RankID");
+
+                entity.Property(e => e.RankID).HasColumnName("RankID");
+
+                entity.Property(e => e.RankName)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.ImagePath)
                     .HasMaxLength(35)
                     .IsUnicode(false);
@@ -124,6 +141,8 @@ namespace ValorantDatabase
 
                 entity.Property(e => e.MapId).HasColumnName("MapID");
 
+                entity.Property(e => e.RankID).HasColumnName("RankID");
+
                 entity.HasOne(d => d.Agent)
                     .WithMany(p => p.GameLogs)
                     .HasForeignKey(d => d.AgentId)
@@ -141,6 +160,12 @@ namespace ValorantDatabase
                     .HasForeignKey(d => d.MapId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Map");
+                
+                entity.HasOne(d => d.Rank)
+                    .WithMany(p => p.GameLogs)
+                    .HasForeignKey(d => d.RankID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Rank");
             });
 
             modelBuilder.Entity<Maps>(entity =>

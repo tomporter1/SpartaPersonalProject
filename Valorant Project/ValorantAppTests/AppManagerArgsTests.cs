@@ -1,4 +1,4 @@
-﻿using BussinessLayer;
+﻿using BussinessLayer.Args;
 using NUnit.Framework;
 
 namespace ValorantAppTests

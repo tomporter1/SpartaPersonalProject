@@ -64,9 +64,15 @@ namespace ValorantDatabase
             get => _season;
             set => _season = value <= 0 ? 1 : value;
         }
+        public int? RankID
+        {
+            get => _rankID;
+            set => _rankID = value;
+        }
 
         public virtual Agents Agent { get; set; }
         public virtual Maps Map { get; set; }
         public virtual GameModes GameMode { get; set; }
+        public virtual Ranks Rank { get; set; }
     }
 }

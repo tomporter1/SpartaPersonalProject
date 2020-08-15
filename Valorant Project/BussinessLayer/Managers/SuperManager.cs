@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using BussinessLayer.Args;
+using System.Collections.Generic;
 
-namespace BussinessLayer
+namespace BussinessLayer.Managers
 {
     public abstract class SuperManager : IBasicManager
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BussinessLayer
+namespace BussinessLayer.Args
 {
     public class GameModeArgs : SuperArgs
     {

@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using BussinessLayer.Args;
+using System.Collections.Generic;
 using System.Linq;
 using ValorantDatabase;
 
-namespace BussinessLayer
+namespace BussinessLayer.Managers
 {
     public class AgentTypeManager : SuperManager
     {

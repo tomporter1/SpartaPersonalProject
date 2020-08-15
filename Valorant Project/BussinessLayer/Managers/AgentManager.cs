@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BussinessLayer.Args;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using ValorantDatabase;
 
-namespace BussinessLayer
+namespace BussinessLayer.Managers
 {
     public class AgentManager : SuperManager
     {
