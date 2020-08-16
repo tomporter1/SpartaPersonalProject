@@ -26,7 +26,7 @@ namespace BussinessLayer.Managers
             ImagePath
         }
 
-        private ValorantContext _context;
+        private readonly ValorantContext _context;
 
         public AgentManager(ValorantContext context = null)
         {

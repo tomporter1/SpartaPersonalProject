@@ -8,7 +8,7 @@ namespace BussinessLayer.Managers
 {
     public class MapManager : SuperManager, IMapManager
     {
-        private ValorantContext _context;
+        private readonly ValorantContext _context;
 
         public MapManager(ValorantContext context = null)
         {

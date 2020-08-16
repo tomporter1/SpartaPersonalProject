@@ -7,7 +7,7 @@ namespace BussinessLayer.Managers
 {
     public class StatsManager : IStats
     {
-        private ValorantContext _context;
+        private readonly ValorantContext _context;
 
         public StatsManager(ValorantContext context = null)
         {

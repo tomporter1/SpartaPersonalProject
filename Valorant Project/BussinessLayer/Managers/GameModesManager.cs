@@ -9,7 +9,7 @@ namespace BussinessLayer.Managers
 {
     public class GameModesManager : SuperManager, IModeManager
     {
-        private ValorantContext _context;
+        private readonly ValorantContext _context;
 
         public GameModesManager(ValorantContext context = null)
         {

@@ -12,7 +12,7 @@ namespace BussinessLayer.Managers
     public class GameLogManager : SuperManager, IGameLogManager
     {
         private int _currentSeasonNum;
-        private ValorantContext _context;
+        private readonly ValorantContext _context;
         public int CurrentSeasonNum { get => _currentSeasonNum; set => _currentSeasonNum = value > 0 ? value : 1; }
 
         public enum Fields
@@ -75,6 +75,7 @@ namespace BussinessLayer.Managers
             Agents agent = db.Agents.Where(a => a.AgentId == logArgs.AgentId).FirstOrDefault();
             Maps map = db.Maps.Where(m => m.MapId == logArgs.MapId).FirstOrDefault();
             GameModes mode = db.GameModes.Where(gm => gm.ModeID == logArgs.ModeID).FirstOrDefault();
+            Ranks rank = db.Ranks.Where(r => r.RankID == logArgs.RankID).FirstOrDefault();
             GameLogs game = new GameLogs()
             {
                 TeamScore = logArgs.TeamScore,
@@ -87,7 +88,8 @@ namespace BussinessLayer.Managers
                 Map = map,
                 Agent = agent,
                 GameMode = mode,
-                Season = CurrentSeasonNum
+                Season = CurrentSeasonNum,
+                Rank = rank
             };
 
             db.GameLogs.Add(game);

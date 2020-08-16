@@ -50,7 +50,8 @@ namespace ValorantGUI
                     ADRTextBox.Text.Trim() == "" ? 0 : int.Parse(ADRTextBox.Text.Trim()),
                     DateTime.Now,
                     _logManager.CurrentSeasonNum,
-                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? RankComboBox.SelectedItem : null);
+                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? RankComboBox.SelectedItem : null
+                    );
 
                 _logManager.AddNewEntry(args);
 

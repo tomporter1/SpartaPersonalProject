@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ValorantGUI"
         mc:Ignorable="d"
-        Title="Log Game" Height="475" Width="301" ResizeMode="NoResize">
+        Title="Log Game" Height="493" Width="301" ResizeMode="NoResize">
     <Grid Background="#FF1C252E">
         <Label x:Name="MapLabel" Content="Map *" HorizontalAlignment="Left" Margin="33,179,0,0" VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Height="32" Foreground="#FFECE8E1" />
         <ComboBox x:Name="ModeComboBox" HorizontalAlignment="Left" Margin="148,31,0,0" VerticalAlignment="Top" Width="120" Height="32" SelectionChanged="ModeSelectionChanged" />
