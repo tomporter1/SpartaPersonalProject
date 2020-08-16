@@ -14,10 +14,10 @@ namespace ValorantGUI
     /// </summary>
     public partial class MapsPage : Page, IPage
     {
-        private MainWindow _window;
-        private IMapManager _mapManager;
+        private readonly IWindow _window;
+        private readonly IMapManager _mapManager;
 
-        public MapsPage(MainWindow window, IMapManager mapManager)
+        public MapsPage(IWindow window, IMapManager mapManager)
         {
             InitializeComponent();
             _window = window;

@@ -14,15 +14,15 @@ namespace ValorantGUI
     /// </summary>
     public partial class GameLogPage : Page, IPage
     {
-        private IGameLogManager _gameLogManager;
-        private IModeManager _modeManager;
-        private IAgentManager _agentManager;
-        private IStats _statsManager;
-        private IMapManager _mapManager;
-        private IRanksManger _rankManager;
-        private MainWindow _window;
+        private readonly IGameLogManager _gameLogManager;
+        private readonly IModeManager _modeManager;
+        private readonly IAgentManager _agentManager;
+        private readonly IStats _statsManager;
+        private readonly IMapManager _mapManager;
+        private readonly IRanksManger _rankManager;
+        private readonly IWindow _window;
 
-        public GameLogPage(MainWindow window, IGameLogManager gameLogManager, IAgentManager agentManager, IStats statsManager, IMapManager mapManager, IRanksManger ranksManger, IModeManager modeManager)
+        public GameLogPage(IWindow window, IGameLogManager gameLogManager, IAgentManager agentManager, IStats statsManager, IMapManager mapManager, IRanksManger ranksManger, IModeManager modeManager)
         {
             InitializeComponent();
             _gameLogManager = gameLogManager;
@@ -187,7 +187,7 @@ namespace ValorantGUI
 
         private void SetSeason_Click(object sender, RoutedEventArgs e)
         {
-            SetSeason newSeasonWindow = new SetSeason(this);
+            SetSeason newSeasonWindow = new SetSeason(_gameLogManager);
             newSeasonWindow.Show();
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using BussinessLayer.Interfaces;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 
@@ -9,17 +10,17 @@ namespace ValorantGUI.Windows.GameLogs
     /// </summary>
     public partial class SetSeason : Window
     {
-        private GameLogPage _logPage;
+        private readonly IGameLogManager _logManager;
 
-        public SetSeason(GameLogPage logPage)
+        public SetSeason(IGameLogManager logManager)
         {
-            _logPage = logPage;
+            _logManager = logManager;
             InitializeComponent();
         }
 
         private void submitButton_Click(object sender, RoutedEventArgs e)
         {
-            _logPage.SetNewSeasonNum(int.Parse(numberInputTextbox.Text));
+            _logManager.CurrentSeasonNum = int.Parse(numberInputTextbox.Text);
             Close();
         }
 

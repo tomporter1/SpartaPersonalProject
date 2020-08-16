@@ -6,7 +6,7 @@ namespace ValorantGUI
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IWindow
     {
         private MainPage _mainPage;
         private Cursor _previousCursor;
@@ -17,7 +17,7 @@ namespace ValorantGUI
             SetHomePage();
         }
 
-        internal void SetHomePage()
+        public void SetHomePage()
         {
             if (_mainPage == null)
                 _mainPage = new MainPage(this);
@@ -25,15 +25,17 @@ namespace ValorantGUI
             Content = _mainPage;
         }
 
-        internal void WaitMouse()
+        public void WaitMouse()
         {
             _previousCursor = Mouse.OverrideCursor;
             Mouse.OverrideCursor = Cursors.Wait;
         }
 
-        internal void EndWaitMouse()
+        public void EndWaitMouse()
         {
             Mouse.OverrideCursor = _previousCursor;
         }
+
+        public void SetContent(object newPage) => Content = newPage;
     }
 }

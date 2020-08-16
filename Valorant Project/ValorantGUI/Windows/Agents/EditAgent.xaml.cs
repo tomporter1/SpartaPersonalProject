@@ -14,8 +14,8 @@ namespace ValorantGUI
     public partial class EditAgent : Window
     {
         private object _selectedAgent;
-        private IPage _agentsPage;
-        private IAgentManager _agentManager;
+        private readonly IPage _agentsPage;
+        private readonly IAgentManager _agentManager;
 
         public EditAgent(object selectedAgent, IPage agentsPage, IAgentManager agentManager)
         {

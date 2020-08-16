@@ -9,9 +9,9 @@ namespace ValorantGUI
     /// </summary>
     public partial class MainPage : Page
     {
-        private MainWindow _window;
+        private readonly IWindow _window;
 
-        public MainPage(MainWindow mainWindow)
+        public MainPage(IWindow mainWindow)
         {
             InitializeComponent();
             _window = mainWindow;
@@ -22,7 +22,7 @@ namespace ValorantGUI
             _window.WaitMouse();
 
             AgentsPage agentsPage = new AgentsPage(_window, new AgentManager());
-            _window.Content = agentsPage;
+            _window.SetContent(agentsPage);
 
             _window.EndWaitMouse();
         }
@@ -32,7 +32,7 @@ namespace ValorantGUI
             _window.WaitMouse();
 
             MapsPage mapsPage = new MapsPage(_window, new MapManager());
-            _window.Content = mapsPage;
+            _window.SetContent(mapsPage);
 
             _window.EndWaitMouse();
         }
@@ -42,7 +42,7 @@ namespace ValorantGUI
             _window.WaitMouse();
 
             AgentClassesPage classesPage = new AgentClassesPage(_window, new AgentTypeManager());
-            _window.Content = classesPage;
+            _window.SetContent(classesPage);
 
             _window.EndWaitMouse();
         }
@@ -52,7 +52,7 @@ namespace ValorantGUI
             _window.WaitMouse();
 
             GameLogPage gamesPage = new GameLogPage(_window, new GameLogManager(), new AgentManager(), new StatsManager(), new MapManager(), new RankManager(), new GameModesManager());
-            _window.Content = gamesPage;
+            _window.SetContent(gamesPage);
 
             _window.EndWaitMouse();
         }

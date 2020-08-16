@@ -15,9 +15,9 @@ namespace ValorantGUI
     /// </summary>
     public partial class AddGameLogWindow : Window
     {
-        private IPage _gameLogPage;
-        private IModeManager _modesManager;
-        private IGameLogManager _logManager;
+        private readonly IPage _gameLogPage;
+        private readonly IModeManager _modesManager;
+        private readonly IGameLogManager _logManager;
 
         public AddGameLogWindow(IPage gameLogPage, IGameLogManager logManager, IModeManager modeManager,IMapManager mapManager, IAgentManager agentManager,IRanksManger ranksManger)
         {

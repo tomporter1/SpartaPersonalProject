@@ -10,8 +10,8 @@ namespace ValorantGUI
     /// </summary>
     public partial class AddMap : Window
     {
-        private IPage _mapPage;
-        private IBasicManager _basicMapManager;
+        private readonly IPage _mapPage;
+        private readonly IBasicManager _basicMapManager;
 
         public AddMap(IPage mapPage, IBasicManager basicMapManager)
         {

@@ -11,8 +11,8 @@ namespace ValorantGUI
     /// </summary>
     public partial class AddAgentType : Window
     {
-        private IPage _page;
-        private IBasicManager _typesManager;
+        private readonly IPage _page;
+        private readonly IBasicManager _typesManager;
         public AddAgentType(IPage agentPage, IBasicManager agentTypesManager)
         {
             InitializeComponent();

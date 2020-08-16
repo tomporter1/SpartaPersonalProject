@@ -52,7 +52,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAgAAEAAgAAAAABAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAgAAEAAgAIAAABAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Windows\MainWindow.xaml.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -67,7 +67,6 @@
       <FileName>Pages\AgentClassesPage.xaml.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="_window" />
       <Field Name="_agentTypeManager" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
@@ -79,7 +78,6 @@
       <FileName>Pages\AgentsPage.xaml.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="_window" />
       <Field Name="_agentManager" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
@@ -90,9 +88,6 @@
       <HashCode>AAAAAAAAAgAIAAAEAAAAAAAAAAgAAAAEAAAAAAAAAAA=</HashCode>
       <FileName>Pages\MainPage.xaml.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="_window" />
-    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ValorantGUI.MapsPage" BaseTypeListCollapsed="true">
@@ -102,7 +97,6 @@
       <FileName>Pages\MapsPage.xaml.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="_window" />
       <Field Name="_mapManager" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
@@ -131,18 +125,18 @@
   </Class>
   <Class Name="ValorantGUI.GameLogPage">
     <Position X="6.5" Y="6.75" Width="4.25" />
+    <AssociationLine Name="_gameLogManager" Type="BussinessLayer.Interfaces.IGameLogManager" FixedFromPoint="true">
+      <Path>
+        <Point X="7.938" Y="6.75" />
+        <Point X="7.938" Y="4.191" />
+      </Path>
+    </AssociationLine>
     <AssociationLine Name="_agentManager" Type="BussinessLayer.Interfaces.IAgentManager" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="6.688" Y="6.75" />
         <Point X="6.688" Y="6.375" />
         <Point X="4.156" Y="6.375" />
         <Point X="4.156" Y="4.191" />
-      </Path>
-    </AssociationLine>
-    <AssociationLine Name="_gameLogManager" Type="BussinessLayer.Interfaces.IGameLogManager" FixedFromPoint="true">
-      <Path>
-        <Point X="7.938" Y="6.75" />
-        <Point X="7.938" Y="4.191" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="_mapManager" Type="BussinessLayer.Interfaces.IMapManager" FixedFromPoint="true" FixedToPoint="true">
@@ -166,12 +160,11 @@
       <FileName>Pages\GameLogPage.xaml.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="_window" />
-      <Field Name="_agentManager" />
       <Field Name="_gameLogManager" />
+      <Field Name="_agentManager" />
+      <Field Name="_statsManager" />
       <Field Name="_mapManager" />
       <Field Name="_rankManager" />
-      <Field Name="_statsManager" />
     </ShowAsAssociation>
     <Lollipop Position="2.347" />
   </Class>

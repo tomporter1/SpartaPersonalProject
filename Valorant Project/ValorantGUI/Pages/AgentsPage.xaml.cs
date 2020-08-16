@@ -14,10 +14,10 @@ namespace ValorantGUI
     /// </summary>
     public partial class AgentsPage : Page, IPage
     {
-        private MainWindow _window;
-        private IAgentManager _agentManager;
+        private IWindow _window;
+        private readonly IAgentManager _agentManager;
 
-        public AgentsPage(MainWindow window, IAgentManager agentManager)
+        public AgentsPage(IWindow window, IAgentManager agentManager)
         {
             InitializeComponent();
             _window = window;

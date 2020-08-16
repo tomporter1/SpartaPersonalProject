@@ -14,11 +14,11 @@ namespace ValorantGUI
     /// </summary>
     public partial class EditGameLog : Window
     {
-        private IPage _gameLogPage;
         private object _selectedGame;
         private DateTime _oldTime;
-        private IModeManager _modesManager;
-        private IGameLogManager _logManager;
+        private readonly IModeManager _modesManager;
+        private readonly IGameLogManager _logManager;
+        private readonly IPage _gameLogPage;
 
         public EditGameLog(IPage gameLogPage, object selectedGame, IGameLogManager logManager, IModeManager modeManager)
         {
