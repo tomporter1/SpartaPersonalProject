@@ -1,4 +1,5 @@
 ﻿using BussinessLayer.Args;
+using BussinessLayer.Interfaces;
 using BussinessLayer.Managers;
 using System;
 using System.Windows;
@@ -7,35 +8,36 @@ using System.Windows.Media.Imaging;
 
 namespace ValorantGUI
 {
+
     /// <summary>
     /// Interaction logic for MapsPage.xaml
     /// </summary>
-    public partial class MapsPage : Page
+    public partial class MapsPage : Page, IPage
     {
         private MainWindow _window;
-        internal MapManager MapManager { get; private set; }
+        private IMapManager _mapManager;
 
-        public MapsPage(MainWindow window)
+        public MapsPage(MainWindow window, IMapManager mapManager)
         {
             InitializeComponent();
             _window = window;
-            MapManager = new MapManager();
+            _mapManager = mapManager;
 
-            PopulateMaps();
+            PopulateItems();
         }
 
-        internal void PopulateMaps()
+        public void PopulateItems()
         {
             MapsListBox.ItemsSource = null;
             MapsListBox.SelectedIndex = -1;
             NameTextBox.Text = "";
-            MapsListBox.ItemsSource = MapManager.GetAllEntries();
+            MapsListBox.ItemsSource = _mapManager.GetAllEntries();
             NameTextBox.IsEnabled = false;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            AddMap addMap = new AddMap(this);
+            AddMap addMap = new AddMap(this, _mapManager);
             addMap.Show();
         }
 
@@ -49,8 +51,8 @@ namespace ValorantGUI
             if (MapsListBox.SelectedIndex >= 0)
             {
                 NameTextBox.IsEnabled = true;
-                NameTextBox.Text = MapManager.GetMapsDataStr(MapsListBox.SelectedItem, MapManager.Fields.Name);
-                string path = MapManager.GetMapsDataStr(MapsListBox.SelectedItem, MapManager.Fields.LayoutImagePath);
+                NameTextBox.Text = _mapManager.GetMapsDataStr(MapsListBox.SelectedItem, MapManager.Fields.Name);
+                string path = _mapManager.GetMapsDataStr(MapsListBox.SelectedItem, MapManager.Fields.LayoutImagePath);
                 if (path != null && path != "")
                     MapImage.Source = new BitmapImage(new Uri(path, UriKind.Relative));
                 else
@@ -65,8 +67,8 @@ namespace ValorantGUI
                 MessageBoxResult messageBoxResult = MessageBox.Show($"Are you sure out want to delete {MapsListBox.SelectedItem}?", "Delete Confirmation", MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
-                    MapManager.RemoveEntry(MapsListBox.SelectedItem);
-                    PopulateMaps();
+                    _mapManager.RemoveEntry(MapsListBox.SelectedItem);
+                    PopulateItems();
                 }
             }
             else
@@ -79,8 +81,8 @@ namespace ValorantGUI
         {
             if (MapsListBox.SelectedIndex >= 0)
             {
-                MapManager.UpdateEntry(MapsListBox.SelectedItem, new MapArgs(NameTextBox.Text.Trim()));
-                PopulateMaps();
+                _mapManager.UpdateEntry(MapsListBox.SelectedItem, new MapArgs(NameTextBox.Text.Trim()));
+                PopulateItems();
             }
             else
             {

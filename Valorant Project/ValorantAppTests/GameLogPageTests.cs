@@ -1,9 +1,7 @@
-﻿using Moq;
+﻿using BussinessLayer.Interfaces;
+using Moq;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Text;
-using BussinessLayer;
 using ValorantGUI;
 
 namespace ValorantAppTests

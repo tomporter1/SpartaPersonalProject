@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using BussinessLayer.Managers;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace ValorantGUI
@@ -30,7 +31,7 @@ namespace ValorantGUI
         {
             _window.WaitMouse();
 
-            MapsPage mapsPage = new MapsPage(_window);
+            MapsPage mapsPage = new MapsPage(_window, new MapManager());
             _window.Content = mapsPage;
 
             _window.EndWaitMouse();

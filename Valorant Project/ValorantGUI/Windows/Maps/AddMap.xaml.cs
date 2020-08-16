@@ -1,4 +1,5 @@
 ﻿using BussinessLayer.Args;
+using BussinessLayer.Interfaces;
 using System.Windows;
 using System.Windows.Media;
 
@@ -9,20 +10,22 @@ namespace ValorantGUI
     /// </summary>
     public partial class AddMap : Window
     {
-        private MapsPage _mapPage;
+        private IPage _mapPage;
+        private IBasicManager _basicMapManager;
 
-        public AddMap(MapsPage mapPage)
+        public AddMap(IPage mapPage, IBasicManager basicMapManager)
         {
             InitializeComponent();
             _mapPage = mapPage;
+            _basicMapManager = basicMapManager;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             if (NameTextBox.Text.Trim() != "")
             {
-                _mapPage.MapManager.AddNewEntry(new MapArgs(NameTextBox.Text.Trim()));
-                _mapPage.PopulateMaps();
+                _basicMapManager.AddNewEntry(new MapArgs(NameTextBox.Text.Trim()));
+                _mapPage.PopulateItems();
                 this.Close();
             }
             else

@@ -1,7 +1,7 @@
 ﻿using BussinessLayer.Args;
 using System.Collections.Generic;
 
-namespace BussinessLayer
+namespace BussinessLayer.Interfaces
 {
     public interface IBasicManager
     {

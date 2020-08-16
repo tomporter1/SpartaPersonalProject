@@ -1,11 +1,12 @@
 ﻿using BussinessLayer.Args;
+using BussinessLayer.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using ValorantDatabase;
 
 namespace BussinessLayer.Managers
 {
-    public class MapManager : SuperManager
+    public class MapManager : SuperManager, IMapManager
     {
         private ValorantContext _context;
 
