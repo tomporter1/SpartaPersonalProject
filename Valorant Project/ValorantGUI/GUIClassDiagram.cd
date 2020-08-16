@@ -199,8 +199,8 @@
     <Position X="6.25" Y="5" Width="1.25" />
     <TypeIdentifier />
   </Interface>
-  <Interface Name="ValorantGUI.IPage" Collapsed="true">
-    <Position X="4.75" Y="18" Width="13.25" />
+  <Interface Name="ValorantGUI.IPage">
+    <Position X="4.75" Y="17.75" Width="13.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IPage.cs</FileName>
