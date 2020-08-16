@@ -56,7 +56,6 @@
     <None Remove="Pages\Images\SplitLayout.png" />
     <None Remove="Pages\Images\ValorantLogo.png" />
     <None Remove="Pages\Images\Viper.png" />
-    <None Remove="Pages\Iron1.png" />
     <None Remove="Pages\ValorantLogo.png" />
   </ItemGroup>
 
@@ -210,7 +209,6 @@
     <Resource Include="Pages\Images\Viper.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Pages\Iron1.png" />
     <Resource Include="Pages\ValorantLogo.png" />
   </ItemGroup>
 

@@ -1,4 +1,5 @@
 ﻿using BussinessLayer;
+using BussinessLayer.Interfaces;
 using BussinessLayer.Managers;
 using System;
 using System.Collections.Generic;
@@ -11,18 +12,18 @@ namespace ValorantGUI
     /// <summary>
     /// Interaction logic for AgentsPage.xaml
     /// </summary>
-    public partial class AgentsPage : Page
+    public partial class AgentsPage : Page, IPage
     {
         private MainWindow _window;
-        internal AgentManager AgentManager { get; private set; }
+        private IAgentManager _agentManager;
 
-        public AgentsPage(MainWindow window)
+        public AgentsPage(MainWindow window, IAgentManager agentManager)
         {
             InitializeComponent();
             _window = window;
-            AgentManager = new AgentManager();
+            _agentManager = agentManager;
 
-            PopulateAgents();
+            PopulateItems();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -30,10 +31,10 @@ namespace ValorantGUI
             _window.SetHomePage();
         }
 
-        internal void PopulateAgents()
+        public void PopulateItems()
         {
             ClearAllUi();
-            List<object> allAgents = AgentManager.GetAllEntries();
+            List<object> allAgents = _agentManager.GetAllEntries();
             if (allAgents.Count != 0)
             {
                 AgentNameListBox.ItemsSource = allAgents;
@@ -63,13 +64,13 @@ namespace ValorantGUI
             if (AgentNameListBox.SelectedIndex >= 0)
             {
                 ClearAbilitiesListBox();
-                AbilitiesListBox.ItemsSource = AgentManager.GetAgentsAbilities(AgentNameListBox.SelectedItem);
+                AbilitiesListBox.ItemsSource = _agentManager.GetAgentsAbilities(AgentNameListBox.SelectedItem);
 
                 ClearTextBoxes();
-                BioTextBox.Text = AgentManager.GetAgentDataStr(AgentNameListBox.SelectedItem, AgentManager.Fields.Bio);
-                AgentClassLabel.Content = $"Agent Class: {AgentManager.GetAgentDataStr(AgentNameListBox.SelectedItem, AgentManager.Fields.Type)}";
+                BioTextBox.Text = _agentManager.GetAgentDataStr(AgentNameListBox.SelectedItem, AgentManager.Fields.Bio);
+                AgentClassLabel.Content = $"Agent Class: {_agentManager.GetAgentDataStr(AgentNameListBox.SelectedItem, AgentManager.Fields.Type)}";
 
-                string imagePath = AgentManager.GetAgentDataStr(AgentNameListBox.SelectedItem, AgentManager.Fields.ImagePath);
+                string imagePath = _agentManager.GetAgentDataStr(AgentNameListBox.SelectedItem, AgentManager.Fields.ImagePath);
                 if (imagePath != null && imagePath != "")
                     AgentImage.Source = new BitmapImage(new Uri(imagePath, UriKind.Relative));
                 else
@@ -87,13 +88,13 @@ namespace ValorantGUI
         {
             if (AbilitiesListBox.SelectedIndex >= 0)
             {
-                AbilityDiscriptionTextBox.Text = AgentManager.GetAbilityDiscription(AgentNameListBox.SelectedItem, AbilitiesListBox.SelectedItem);
+                AbilityDiscriptionTextBox.Text = _agentManager.GetAbilityDiscription(AgentNameListBox.SelectedItem, AbilitiesListBox.SelectedItem);
             }
         }
 
         private void AddNewAgent(object sender, RoutedEventArgs e)
         {
-            AddAgent addAgentWindow = new AddAgent(this);
+            AddAgent addAgentWindow = new AddAgent(this, _agentManager);
             addAgentWindow.Show();
         }
 
@@ -101,7 +102,7 @@ namespace ValorantGUI
         {
             if (AgentNameListBox.SelectedIndex >= 0)
             {
-                EditAgent editAgent = new EditAgent(AgentNameListBox.SelectedItem, this);
+                EditAgent editAgent = new EditAgent(AgentNameListBox.SelectedItem, this, _agentManager);
                 editAgent.Show();
             }
             else
@@ -117,8 +118,8 @@ namespace ValorantGUI
                 MessageBoxResult messageBoxResult = MessageBox.Show($"Are you sure out want to delete {AgentNameListBox.SelectedItem}?", "Delete Confirmation", MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
-                    AgentManager.RemoveEntry(AgentNameListBox.SelectedItem);
-                    PopulateAgents();
+                    _agentManager.RemoveEntry(AgentNameListBox.SelectedItem);
+                    PopulateItems();
                 }
             }
             else

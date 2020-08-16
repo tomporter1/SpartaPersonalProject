@@ -1,4 +1,5 @@
 ﻿using BussinessLayer.Args;
+using BussinessLayer.Interfaces;
 using BussinessLayer.Managers;
 using System.Collections.Generic;
 using System.Windows;
@@ -13,13 +14,15 @@ namespace ValorantGUI
     public partial class EditAgent : Window
     {
         private object _selectedAgent;
-        private AgentsPage _agentsPage;
+        private IPage _agentsPage;
+        private IAgentManager _agentManager;
 
-        public EditAgent(object selectedAgent, AgentsPage agentsPage)
+        public EditAgent(object selectedAgent, IPage agentsPage, IAgentManager agentManager)
         {
             InitializeComponent();
             _selectedAgent = selectedAgent;
             _agentsPage = agentsPage;
+            _agentManager = agentManager;
 
             List<TextBox> textBoxes = new List<TextBox>()
             {
@@ -37,12 +40,12 @@ namespace ValorantGUI
 
             for (int i = 0; i < textBoxes.Count; i++)
             {
-                textBoxes[i].Text = _agentsPage.AgentManager.GetAgentDataStr(_selectedAgent, (AgentManager.Fields)i);
+                textBoxes[i].Text = _agentManager.GetAgentDataStr(_selectedAgent, (AgentManager.Fields)i);
             }
 
             AgentTypeManager typeManager = new AgentTypeManager();
             AgentTypesComboBox.ItemsSource = typeManager.GetAllEntries();
-            object agentType = _agentsPage.AgentManager.GetAgentTypeObj(_selectedAgent);
+            object agentType = _agentManager.GetAgentTypeObj(_selectedAgent);
 
             foreach (var item in AgentTypesComboBox.ItemsSource)
             {
@@ -70,8 +73,8 @@ namespace ValorantGUI
                     Normal2DiscTextBox.Text.Trim(),
                     BioTextBox.Text.Trim());
 
-                _agentsPage.AgentManager.UpdateEntry(_selectedAgent, args);
-                _agentsPage.PopulateAgents();
+                _agentManager.UpdateEntry(_selectedAgent, args);
+                _agentsPage.PopulateItems();
                 this.Close();
             }
             else

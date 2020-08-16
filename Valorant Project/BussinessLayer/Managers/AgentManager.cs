@@ -1,4 +1,5 @@
 ﻿using BussinessLayer.Args;
+using BussinessLayer.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using ValorantDatabase;
 
 namespace BussinessLayer.Managers
 {
-    public class AgentManager : SuperManager
+    public class AgentManager : SuperManager, IAgentManager
     {
         public enum Fields
         {

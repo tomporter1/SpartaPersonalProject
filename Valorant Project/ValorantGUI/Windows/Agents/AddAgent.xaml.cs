@@ -1,4 +1,5 @@
 ﻿using BussinessLayer.Args;
+using BussinessLayer.Interfaces;
 using BussinessLayer.Managers;
 using System.Windows;
 using System.Windows.Media;
@@ -10,14 +11,16 @@ namespace ValorantGUI
     /// </summary>
     public partial class AddAgent : Window
     {
-        private AgentsPage _agentsPage;
+        private IPage _agentsPage;
+        private IBasicManager _agentManager;
 
-        public AddAgent(AgentsPage agentsPage)
+        public AddAgent(IPage agentsPage, IBasicManager agentManager)
         {
             InitializeComponent();
 
             PopulateTypes();
             _agentsPage = agentsPage;
+            _agentManager = agentManager;
         }
 
         internal void PopulateTypes()
@@ -45,8 +48,8 @@ namespace ValorantGUI
                         Normal2DiscTextBox.Text.Trim(),
                         BioTextBox.Text.Trim()
                     );
-                _agentsPage.AgentManager.AddNewEntry(args);
-                _agentsPage.PopulateAgents();
+                _agentManager.AddNewEntry(args);
+                _agentsPage.PopulateItems();
                 this.Close();
             }
             else

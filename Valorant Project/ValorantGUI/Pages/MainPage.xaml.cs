@@ -21,7 +21,7 @@ namespace ValorantGUI
         {
             _window.WaitMouse();
 
-            AgentsPage agentsPage = new AgentsPage(_window);
+            AgentsPage agentsPage = new AgentsPage(_window, new AgentManager());
             _window.Content = agentsPage;
 
             _window.EndWaitMouse();
