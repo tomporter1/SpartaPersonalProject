@@ -51,7 +51,7 @@ namespace ValorantGUI
         {
             _window.WaitMouse();
 
-            GameLogPage gamesPage = new GameLogPage(_window);
+            GameLogPage gamesPage = new GameLogPage(_window,new GameLogManager(),new GameModesManager(),new StatsManager());
             _window.Content = gamesPage;
 
             _window.EndWaitMouse();

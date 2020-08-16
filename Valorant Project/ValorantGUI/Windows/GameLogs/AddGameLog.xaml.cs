@@ -1,5 +1,6 @@
 ﻿using BussinessLayer;
 using BussinessLayer.Args;
+using BussinessLayer.Interfaces;
 using BussinessLayer.Managers;
 using System;
 using System.Text.RegularExpressions;
@@ -14,12 +15,15 @@ namespace ValorantGUI
     /// </summary>
     public partial class AddGameLogWindow : Window
     {
-        private GameLogPage _gameLogPage;
+        private IPage _gameLogPage;
         private GameModesManager _modesManager = new GameModesManager();
-        public AddGameLogWindow(GameLogPage gameLogPage)
+        private IGameLogManager _logManager;
+
+        public AddGameLogWindow(IPage gameLogPage, IGameLogManager logManager)
         {
             InitializeComponent();
             _gameLogPage = gameLogPage;
+            _logManager = logManager;
 
             ModeComboBox.ItemsSource = _modesManager.GetAllEntries();
             MapComboBox.ItemsSource = new MapManager().GetAllEntries();
@@ -44,12 +48,12 @@ namespace ValorantGUI
                     AssistsTextBox.Text.Trim() == "" ? 0 : int.Parse(AssistsTextBox.Text.Trim()),
                     ADRTextBox.Text.Trim() == "" ? 0 : int.Parse(ADRTextBox.Text.Trim()),
                     DateTime.Now,
-                    _gameLogPage.GetCurrentSeason(),
+                    _logManager.CurrentSeasonNum,
                     _modesManager.IsRanked(ModeComboBox.SelectedItem) ? RankComboBox.SelectedItem : null);
 
-                _gameLogPage.GameManager.AddNewEntry(args);
+                _logManager.AddNewEntry(args);
 
-                _gameLogPage.PopulateGames(_gameLogPage.SeasonComboBox.SelectedItem.ToString());
+                _gameLogPage.PopulateItems();
                 this.Close();
             }
             else
