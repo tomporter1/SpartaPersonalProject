@@ -41,7 +41,7 @@ namespace ValorantGUI
         {
             _window.WaitMouse();
 
-            AgentClassesPage classesPage = new AgentClassesPage(_window);
+            AgentClassesPage classesPage = new AgentClassesPage(_window, new AgentTypeManager());
             _window.Content = classesPage;
 
             _window.EndWaitMouse();

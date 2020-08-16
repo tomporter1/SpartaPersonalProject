@@ -1,4 +1,5 @@
 ﻿using BussinessLayer.Args;
+using BussinessLayer.Interfaces;
 using BussinessLayer.Managers;
 using System;
 using System.Windows;
@@ -10,17 +11,17 @@ namespace ValorantGUI
     /// <summary>
     /// Interaction logic for AgentClassesPage.xaml
     /// </summary>
-    public partial class AgentClassesPage : Page
+    public partial class AgentClassesPage : Page, IPage
     {
         private MainWindow _window;
-        internal AgentTypeManager AgentTypeManager { get; private set; }
+        private IAgentTypesManager _agentTypeManager;
 
-        public AgentClassesPage(MainWindow window)
+        public AgentClassesPage(MainWindow window, IAgentTypesManager agentTypeManager)
         {
             InitializeComponent();
             _window = window;
-            AgentTypeManager = new AgentTypeManager();
-            PopulateTypes();
+            _agentTypeManager = agentTypeManager;
+            PopulateItems();
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
@@ -30,8 +31,8 @@ namespace ValorantGUI
                 MessageBoxResult messageBoxResult = MessageBox.Show($"Are you sure out want to delete {TypesListBox.SelectedItem}?", "Delete Confirmation", MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
-                    AgentTypeManager.RemoveEntry(TypesListBox.SelectedItem);
-                    PopulateTypes();
+                    _agentTypeManager.RemoveEntry(TypesListBox.SelectedItem);
+                    PopulateItems();
                 }
             }
             else
@@ -40,18 +41,18 @@ namespace ValorantGUI
             }
         }
 
-        internal void PopulateTypes()
+        public void PopulateItems()
         {
             TypesListBox.ItemsSource = null;
             TypesListBox.SelectedIndex = -1;
             NameTextBox.Text = "";
-            TypesListBox.ItemsSource = AgentTypeManager.GetAllEntries();
+            TypesListBox.ItemsSource = _agentTypeManager.GetAllEntries();
             NameTextBox.IsEnabled = false;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            AddAgentType addAgentType = new AddAgentType(this);
+            AddAgentType addAgentType = new AddAgentType(this, _agentTypeManager);
             addAgentType.Show();
         }
 
@@ -64,10 +65,10 @@ namespace ValorantGUI
         {
             if (TypesListBox.SelectedIndex >= 0)
             {
-                NameTextBox.Text = AgentTypeManager.GetTypeDataStr(TypesListBox.SelectedItem, AgentTypeManager.Fields.Name);
+                NameTextBox.Text = _agentTypeManager.GetTypeDataStr(TypesListBox.SelectedItem, AgentTypeManager.Fields.Name);
                 NameTextBox.IsEnabled = true;
 
-                string path = AgentTypeManager.GetTypeDataStr(TypesListBox.SelectedItem, AgentTypeManager.Fields.ImagePath);
+                string path = _agentTypeManager.GetTypeDataStr(TypesListBox.SelectedItem, AgentTypeManager.Fields.ImagePath);
                 if (path != null && path != "")
                     TypeImage.Source = new BitmapImage(new Uri(path, UriKind.Relative));
                 else
@@ -79,8 +80,8 @@ namespace ValorantGUI
         {
             if (TypesListBox.SelectedIndex >= 0)
             {
-                AgentTypeManager.UpdateEntry(TypesListBox.SelectedItem, new AgentTypeArgs(NameTextBox.Text.Trim()));
-                PopulateTypes();
+                _agentTypeManager.UpdateEntry(TypesListBox.SelectedItem, new AgentTypeArgs(NameTextBox.Text.Trim()));
+                PopulateItems();
             }
             else
             {
