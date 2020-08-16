@@ -1,7 +1,7 @@
 # Valorant Companion App
 
 ## Project goal
-To make a stat tracker for the game Valorant that will also contain wiki information about core elements of the game.
+This project formed a part of my Sparta global C# SDET training and its aim is to make a stat tracker for the game Valorant that will also contain wiki information about core elements of the game.
 
 ## Definition of Done
 The completed project is committed to GitHub that implements all the user stories. All the accompanying documentation has also been completed.
@@ -77,3 +77,11 @@ The completed project is committed to GitHub that implements all the user storie
    * I would work with someone who is more skilled in graphic design for some assets and input on how the GUI layout should be
  * **Future work:**
    * Integrate this application further with Valorent itself by making it automatically get data about the users games from an API
+   
+# Work after the project finished
+Since finishing the Sparta Global training course I have worked further on this project to introduce features that will make this application more powerful and useful in generating and tracking long term statistics over the different seasons within Valorant.
+
+These changes include:
+ * Adding a way of tracking changes in the users rank
+ * Supporting multiple seasons of data being stored in the database
+ * Added long term queries into the application such as finding the game with the most kills
