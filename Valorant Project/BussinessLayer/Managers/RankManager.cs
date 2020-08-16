@@ -1,4 +1,5 @@
 ﻿using BussinessLayer.Args;
+using BussinessLayer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using ValorantDatabase;
 
 namespace BussinessLayer.Managers
 {
-    public class RankManager : SuperManager
+    public class RankManager : SuperManager, IRanksManger
     {
         public enum Fields
         {
@@ -53,7 +54,7 @@ namespace BussinessLayer.Managers
         {
             ValorantContext db = (_context ?? new ValorantContext());
             Ranks rank = (Ranks)selectedRank;
-            if(rank == null)
+            if (rank == null)
             {
                 if (_context == null)
                     db.Dispose();

@@ -1,4 +1,5 @@
 ﻿using BussinessLayer.Interfaces;
+using BussinessLayer.Managers;
 using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -14,12 +15,16 @@ namespace ValorantAppTests
         [Test]
         public void ConstructorTest()
         {
-            Mock<IBasicManager> mockGameManager = new Mock<IBasicManager>();
-            Mock<IBasicManager> mockModeManager = new Mock<IBasicManager>();
+            Mock<IGameLogManager> mockGameManager = new Mock<IGameLogManager>();
+            Mock<IModeManager> mockModeManager = new Mock<IModeManager>();
+            Mock<IStats> mockStatsManager = new Mock<IStats>();
+            Mock<IAgentManager> mockAgentManager = new Mock<IAgentManager>();
+            Mock<IMapManager> mockMapManager = new Mock<IMapManager>();
+            Mock<IRanksManger> mockRankManager = new Mock<IRanksManger>();
 
             mockModeManager.Setup(x => x.GetAllEntries()).Returns(new List<object>());
 
-            _gameLogPage = new GameLogPage(new MainWindow(), mockGameManager.Object, mockModeManager.Object);
+            _gameLogPage = new GameLogPage(new MainWindow(), mockGameManager.Object, mockModeManager.Object, mockAgentManager.Object, mockStatsManager.Object, mockMapManager.Object, mockRankManager.Object);
 
             mockGameManager.Verify(x => x.GetAllEntries(), Times.Once);
         }

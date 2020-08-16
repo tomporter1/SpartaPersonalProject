@@ -1,5 +1,4 @@
-﻿using BussinessLayer;
-using BussinessLayer.Interfaces;
+﻿using BussinessLayer.Interfaces;
 using BussinessLayer.Managers;
 using System;
 using System.Collections.Generic;
@@ -16,21 +15,28 @@ namespace ValorantGUI
     public partial class GameLogPage : Page, IPage
     {
         private IGameLogManager _gameLogManager;
+        private IModeManager _modeManager;
+        private IAgentManager _agentManager;
         private IStats _statsManager;
+        private IMapManager _mapManager;
+        private IRanksManger _rankManager;
         private MainWindow _window;
 
-        public GameLogPage(MainWindow window, IGameLogManager gameLogManager, GameModesManager modeManager, IStats statsManager)
+        public GameLogPage(MainWindow window, IGameLogManager gameLogManager, IModeManager modeManager,IAgentManager agentManager, IStats statsManager, IMapManager mapManager, IRanksManger ranksManger)
         {
             InitializeComponent();
             _gameLogManager = gameLogManager;
+            _modeManager = modeManager;
+            _agentManager = agentManager;
             _window = window;
             _statsManager = statsManager;
+            _mapManager = mapManager;
+            _rankManager = ranksManger;
 
             GameModeComboBox.ItemsSource = modeManager.GetAllEntries();
             GameModeComboBox.SelectedIndex = 0;
 
-            List<string> seasonSelections = new List<string>();
-            seasonSelections.Add("All");
+            List<string> seasonSelections = new List<string> { "All" };
             for (int i = 1; i <= _gameLogManager.CurrentSeasonNum; i++)
             {
                 seasonSelections.Add(i.ToString());
@@ -42,8 +48,6 @@ namespace ValorantGUI
         }
 
         internal void SetNewSeasonNum(int newSeasonNum) => _gameLogManager.CurrentSeasonNum = newSeasonNum;
-
-        //internal int GetCurrentSeason() => GameManager.CurrentSeasonNum;
 
         public void PopulateItems()
         {
@@ -113,19 +117,19 @@ namespace ValorantGUI
                 AgentLabel.Content = $"Agent: {_gameLogManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Agent)}";
 
                 DateLabel.Content = $"Date Logged: {_gameLogManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.DateLogged)}";
-                string mapImagePath = new MapManager().GetMapsDataStr(_gameLogManager.GetGameMapObj(GamesListBox.SelectedItem), MapManager.Fields.ImagePath);
+                string mapImagePath = _mapManager.GetMapsDataStr(_gameLogManager.GetGameMapObj(GamesListBox.SelectedItem), MapManager.Fields.ImagePath);
                 if (mapImagePath != null && mapImagePath != "")
                     MapImage.Source = new BitmapImage(new Uri(mapImagePath, UriKind.Relative));
                 else
                     MapImage.Source = null;
 
-                string agentImagePath = new AgentManager().GetAgentDataStr(_gameLogManager.GetGameAgentObj(GamesListBox.SelectedItem), AgentManager.Fields.ImagePath);
+                string agentImagePath = _agentManager.GetAgentDataStr(_gameLogManager.GetGameAgentObj(GamesListBox.SelectedItem), AgentManager.Fields.ImagePath);
                 if (agentImagePath != null && agentImagePath != "")
                     AgentImage.Source = new BitmapImage(new Uri(agentImagePath, UriKind.Relative));
                 else
                     AgentImage.Source = null;
 
-                string rankImagePath = new RankManager().GetRankDataStr(_gameLogManager.GetGameRankObj(GamesListBox.SelectedItem), RankManager.Fields.ImagePath);
+                string rankImagePath = _rankManager.GetRankDataStr(_gameLogManager.GetGameRankObj(GamesListBox.SelectedItem), RankManager.Fields.ImagePath);
                 if (rankImagePath != null && rankImagePath != "")
                     RankImage.Source = new BitmapImage(new Uri(rankImagePath, UriKind.Relative));
                 else
