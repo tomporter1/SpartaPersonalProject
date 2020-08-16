@@ -65,9 +65,13 @@ The completed project is committed to GitHub that implements all the user storie
 *Diagram of the four tables that are used to represent the database that is used in this programme.*
 <img src = "ReadMeImages/DatabaseClassDiagram.png" width = 650 height = 365.625>
 
-#### WPF and Business layer
-*Diagram of how the middle layer (referred to as managers) interacts with the WPF project. Note the manager classes are the only classes that can interact with the Entity Framework project.*
-<img src = "ReadMeImages/ProgrammeClassDiagram.png">
+#### Business layer
+*Diagram of how the middle layer (referred to as managers) implements the interfaces that the GUI will interact with. Note the classes in this layer are the only ones that can interact with the Entity Framework project.*
+<img src = "ReadMeImages/BussinessLayerClassDiagram.png">
+
+#### Frount end
+*Diagram of how the the GUI interacts with the middle layer via interfaces.*
+<img src = "ReadMeImages/GUIClassDiagram.png">
 
 ## Project Retrospective
  * **Things learned from the project:**
