@@ -69,7 +69,7 @@ The completed project is committed to GitHub that implements all the user storie
 *Diagram of how the middle layer (referred to as managers) implements the interfaces that the GUI will interact with. Note the classes in this layer are the only ones that can interact with the Entity Framework project.*
 <img src = "ReadMeImages/BussinessLayerClassDiagram.png">
 
-#### Frount end
+#### Front end
 *Diagram of how the the GUI interacts with the middle layer via interfaces.*
 <img src = "ReadMeImages/GUIClassDiagram.png">
 
