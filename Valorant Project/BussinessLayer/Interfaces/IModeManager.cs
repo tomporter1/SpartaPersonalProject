@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BussinessLayer.Interfaces
+﻿namespace BussinessLayer.Interfaces
 {
     public interface IModeManager : IBasicManager
     {

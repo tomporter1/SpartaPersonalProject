@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="BussinessLayer.Managers.SuperManager">
+    <Position X="6.75" Y="0.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAQAAAAAAAAQABAAAAAAAAA=</HashCode>
+      <FileName>Managers\SuperManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BussinessLayer.Managers.AgentManager">
+    <Position X="0.5" Y="4.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="BussinessLayer.Managers.AgentManager.Fields">
+        <TypeIdentifier>
+          <NewMemberFileName>Managers\AgentManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAABQBBABAAAAAAAQAAAAAAAAQABAAAAAAAAA=</HashCode>
+      <FileName>Managers\AgentManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BussinessLayer.Managers.AgentTypeManager">
+    <Position X="3.25" Y="4.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="BussinessLayer.Managers.AgentTypeManager.Fields">
+        <TypeIdentifier>
+          <NewMemberFileName>Managers\AgentTypeManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAABAAAAAAAAIQAAAAAAAAQABAAAAAAAAA=</HashCode>
+      <FileName>Managers\AgentTypeManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BussinessLayer.Managers.GameLogManager">
+    <Position X="5.75" Y="4.5" Width="3" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="BussinessLayer.Managers.GameLogManager.Fields">
+        <TypeIdentifier>
+          <NewMemberFileName>Managers\GameLogManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ABAAAEAAAAAABAAASAAAAASAAAAAQAQQABCBAAACAAA=</HashCode>
+      <FileName>Managers\GameLogManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BussinessLayer.Managers.GameModesManager">
+    <Position X="9" Y="4.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="BussinessLayer.Managers.GameModesManager.Fields">
+        <TypeIdentifier>
+          <NewMemberFileName>Managers\GameModesManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAABBAAAAAAAAQAAAAAAAAQABAAAAAAAAA=</HashCode>
+      <FileName>Managers\GameModesManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BussinessLayer.Managers.MapManager">
+    <Position X="11.5" Y="4.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="BussinessLayer.Managers.MapManager.Fields">
+        <TypeIdentifier>
+          <NewMemberFileName>Managers\MapManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAABAAAAAAAAAQEAAAAAAAQABAAAAAAAAA=</HashCode>
+      <FileName>Managers\MapManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BussinessLayer.Managers.RankManager">
+    <Position X="14" Y="4.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="BussinessLayer.Managers.RankManager.Fields">
+        <TypeIdentifier>
+          <NewMemberFileName>Managers\RankManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAABAAAAAIAAAQAAAAAAAAQABAAAAAAAAA=</HashCode>
+      <FileName>Managers\RankManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BussinessLayer.Args.AgentArgs">
+    <Position X="0.5" Y="15.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAECAIAAAQAIAAQAUAgAAAAAAAAAAI=</HashCode>
+      <FileName>Args\AgentArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLayer.Args.AgentTypeArgs">
+    <Position X="5.5" Y="15.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Args\AgentTypeArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLayer.Args.GameLogArgs">
+    <Position X="9.5" Y="15.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQASAIQACAAAAAABCAAAAAAgAAIAIAAAABA=</HashCode>
+      <FileName>Args\GameLogArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLayer.Args.GameModeArgs">
+    <Position X="3.25" Y="15.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Args\GameModeArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLayer.Args.MapArgs">
+    <Position X="7.5" Y="15.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Args\MapArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLayer.Args.SuperArgs">
+    <Position X="5.25" Y="13.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Args\SuperArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BussinessLayer.Managers.StatsManager">
+    <Position X="11.25" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>BAAABCBgAEEABAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\StatsManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="BussinessLayer.Interfaces.IAgentManager">
+    <Position X="17.5" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABQBAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IAgentManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLayer.Interfaces.IAgentTypesManager">
+    <Position X="25.25" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IAgentTypesManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLayer.Interfaces.IBasicManager">
+    <Position X="23" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAQAAAAAAAAQABAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IBasicManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLayer.Interfaces.IGameLogManager">
+    <Position X="20" Y="3.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAQAAAAACAAAAAQAQAAACBAAACAAA=</HashCode>
+      <FileName>Interfaces\IGameLogManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLayer.Interfaces.IMapManager">
+    <Position X="27.5" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IMapManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLayer.Interfaces.IModeManager">
+    <Position X="29.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IModeManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLayer.Interfaces.IRanksManger">
+    <Position X="23" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IRanksManger.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BussinessLayer.Interfaces.IStats">
+    <Position X="26.5" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>BAAABCBgAEEAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IStats.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

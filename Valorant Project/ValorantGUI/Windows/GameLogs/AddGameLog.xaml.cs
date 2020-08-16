@@ -16,19 +16,20 @@ namespace ValorantGUI
     public partial class AddGameLogWindow : Window
     {
         private IPage _gameLogPage;
-        private GameModesManager _modesManager = new GameModesManager();
+        private IModeManager _modesManager;
         private IGameLogManager _logManager;
 
-        public AddGameLogWindow(IPage gameLogPage, IGameLogManager logManager)
+        public AddGameLogWindow(IPage gameLogPage, IGameLogManager logManager, IModeManager modeManager,IMapManager mapManager, IAgentManager agentManager,IRanksManger ranksManger)
         {
             InitializeComponent();
             _gameLogPage = gameLogPage;
             _logManager = logManager;
+            _modesManager = modeManager;
 
             ModeComboBox.ItemsSource = _modesManager.GetAllEntries();
-            MapComboBox.ItemsSource = new MapManager().GetAllEntries();
-            AgentComboBox.ItemsSource = new AgentManager().GetAllEntries();
-            RankComboBox.ItemsSource = new RankManager().GetAllEntries();
+            MapComboBox.ItemsSource = mapManager.GetAllEntries();
+            AgentComboBox.ItemsSource = agentManager.GetAllEntries();
+            RankComboBox.ItemsSource = ranksManger.GetAllEntries();
             
             RankComboBox.IsEnabled = false;
         }

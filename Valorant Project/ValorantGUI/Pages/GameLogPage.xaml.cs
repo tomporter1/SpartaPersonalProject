@@ -22,7 +22,7 @@ namespace ValorantGUI
         private IRanksManger _rankManager;
         private MainWindow _window;
 
-        public GameLogPage(MainWindow window, IGameLogManager gameLogManager, IModeManager modeManager,IAgentManager agentManager, IStats statsManager, IMapManager mapManager, IRanksManger ranksManger)
+        public GameLogPage(MainWindow window, IGameLogManager gameLogManager, IAgentManager agentManager, IStats statsManager, IMapManager mapManager, IRanksManger ranksManger, IModeManager modeManager)
         {
             InitializeComponent();
             _gameLogManager = gameLogManager;
@@ -139,7 +139,7 @@ namespace ValorantGUI
 
         private void LogGameButton_Click(object sender, RoutedEventArgs e)
         {
-            AddGameLogWindow addGameWindow = new AddGameLogWindow(this, _gameLogManager);
+            AddGameLogWindow addGameWindow = new AddGameLogWindow(this, _gameLogManager, _modeManager, _mapManager, _agentManager, _rankManager);
             addGameWindow.Show();
         }
 
@@ -147,7 +147,7 @@ namespace ValorantGUI
         {
             if (GamesListBox.SelectedIndex >= 0)
             {
-                EditGameLog editGameLog = new EditGameLog(this, GamesListBox.SelectedItem, _gameLogManager);
+                EditGameLog editGameLog = new EditGameLog(this, GamesListBox.SelectedItem, _gameLogManager, _modeManager);
                 editGameLog.Show();
             }
             else

@@ -17,15 +17,16 @@ namespace ValorantGUI
         private IPage _gameLogPage;
         private object _selectedGame;
         private DateTime _oldTime;
-        private GameModesManager _modesManager = new GameModesManager();
+        private IModeManager _modesManager;
         private IGameLogManager _logManager;
 
-        public EditGameLog(IPage gameLogPage, object selectedGame, IGameLogManager logManager)
+        public EditGameLog(IPage gameLogPage, object selectedGame, IGameLogManager logManager, IModeManager modeManager)
         {
             InitializeComponent();
             _gameLogPage = gameLogPage;
             _selectedGame = selectedGame;
             _logManager = logManager;
+            _modesManager = modeManager;
 
             TeamScoreTextBox.Text = _logManager.GetGameDataStr(selectedGame, GameLogManager.Fields.TeamScore);
             OpponentScoreTextBox.Text = _logManager.GetGameDataStr(selectedGame, GameLogManager.Fields.OpponentScore);

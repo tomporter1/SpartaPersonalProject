@@ -28,12 +28,14 @@
   <Class Name="ValorantDatabase.GameLogs">
     <Position X="10" Y="1" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>EAIAACAAABISgAQEiIEAAAEBCBAAAIAgAAICABAAQiA=</HashCode>
+      <HashCode>EAIBACAACRIyoAQUiIEAAAEBCBAAAIAgAgIGIBAAQjA=</HashCode>
       <FileName>PartialClasses\GameLogs.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Agent" />
       <Property Name="Map" />
+      <Property Name="GameMode" />
+      <Property Name="Rank" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
@@ -47,6 +49,28 @@
       <Property Name="GameLogs" />
     </ShowAsCollectionAssociation>
     <Lollipop Position="0.279" />
+  </Class>
+  <Class Name="ValorantDatabase.GameModes">
+    <Position X="14.75" Y="5.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAoAAAAEoAAAAAAAIAAAAIAAAAEAAAAAAjA=</HashCode>
+      <FileName>PartialClasses\GameModes.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="GameLogs" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ValorantDatabase.Ranks">
+    <Position X="10" Y="10.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAIAAAAUgAAAAIAIAAAAAIAAAAAAMAAAAAA=</HashCode>
+      <FileName>PartialClasses\Ranks.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="GameLogs" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
