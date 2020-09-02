@@ -53,7 +53,7 @@ namespace ValorantDatabase
             Agents agent = db.GameLogs.Where(gl => gl.GameId == this.GameId).Include(gl => gl.Agent).Select(gl => gl.Agent).FirstOrDefault();
             Ranks rank = db.GameLogs.Where(gl => gl.RankID == this.RankID).Include(gl => gl.Rank).Select(gl => gl.Rank).FirstOrDefault();
 
-            return $"{GameResult} on {map} as {agent} - Season: {Season}{(RankID == null ? "" : " " + rank.RankName)}";
+            return $"{GameResult} on {map} as {agent} - Season: {Season}{(RankID == null ? "" : $" {rank}")}";
         }
 
         public static bool operator ==(GameLogs left, GameLogs right)
