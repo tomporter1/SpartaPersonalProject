@@ -22,12 +22,12 @@ namespace ValorantDatabase
         private int? _rankID;
         private int? _rankAdjustmentID;
 
-        public float KD { get => _kills == null || _deaths == null ? 0 : (float)_kills / (float)_deaths; }
+        public double KD { get => _kills == null || _deaths == null ? 0 : Math.Round((float)_kills / (float)_deaths, 3); }
 
         public bool SeasonChecker(string season) => !int.TryParse(season, out int seasonNum) || Season == seasonNum;
 
         public string GameScore { get => $"{_teamScore}:{_opponentScore}"; }
-        
+
         public string GameResult { get => _teamScore > _opponentScore ? "Win" : (_teamScore < _opponentScore ? "Loss" : "Draw"); }
 
         public override bool Equals(object obj)
