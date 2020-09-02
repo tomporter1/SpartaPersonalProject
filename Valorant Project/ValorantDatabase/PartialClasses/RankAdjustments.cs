@@ -34,5 +34,7 @@ namespace ValorantDatabase
         {
             return !(left == right);
         }
+
+        public override string ToString() => _adjustmentName;
     }
 }
