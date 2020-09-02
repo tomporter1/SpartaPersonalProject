@@ -45,7 +45,7 @@
     <Lollipop Position="1.332" />
   </Class>
   <Class Name="ValorantGUI.MainWindow" BaseTypeListCollapsed="true">
-    <Position X="7.75" Y="12.25" Width="3.75" />
+    <Position X="12" Y="11" Width="3.75" />
     <AssociationLine Name="_mainPage" Type="ValorantGUI.MainPage">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.06" Y="0.499" />
@@ -83,7 +83,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ValorantGUI.MainPage" BaseTypeListCollapsed="true">
-    <Position X="7.75" Y="15.25" Width="3.75" />
+    <Position X="12" Y="14.25" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAgAIAAAEAAAAAAAAAAgAAAAEAAAAAAAAAAA=</HashCode>
       <FileName>Pages\MainPage.xaml.cs</FileName>
@@ -156,7 +156,7 @@
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>CEQAAkAIAgAAAQAAABAwAAAAAAAAAAAIACAAAKACEAQ=</HashCode>
+      <HashCode>CEQAAkAIAgAAAQQAABAwAAAAAAAAAAAIACAAAKACEAQ=</HashCode>
       <FileName>Pages\GameLogPage.xaml.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>

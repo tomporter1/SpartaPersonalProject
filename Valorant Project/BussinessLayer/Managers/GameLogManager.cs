@@ -32,6 +32,13 @@ namespace BussinessLayer.Managers
             SeasonNum
         }
 
+        public enum Results
+        {
+            Win,
+            Loss,
+            Draw
+        }
+
         public GameLogManager(ValorantContext context = null)
         {
             _context = context;
@@ -256,6 +263,12 @@ namespace BussinessLayer.Managers
                 db.Dispose();
 
             return output;
+        }
+
+        public Results GetMatchResult(object listItem)
+        {
+            GameLogs game = (GameLogs)listItem;
+            return game.TeamScore > game.OpponentScore ? Results.Win : (game.TeamScore < game.OpponentScore ? Results.Loss : Results.Draw);
         }
     }
 }

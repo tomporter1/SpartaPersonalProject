@@ -30,7 +30,9 @@
         </Menu>
 
         <Label x:Name="label" Content="Past Games" Margin="5,5,5,5" VerticalContentAlignment="Bottom" FontSize="20" Foreground="#FFECE8E1" FontWeight="Bold" Grid.Row="1" />
-        <ListBox x:Name="GamesListBox" Margin="5,5,5,5" SelectionChanged="OnSelectionChanged" Grid.Column="0" Grid.Row="2" Background="#FF2F3F4F" Foreground="#FFECE8E1" BorderBrush="#FF121213" />
+        <ListBox x:Name="GamesListBox" Margin="5,5,5,5" SelectionChanged="OnSelectionChanged" Grid.Column="0" Grid.Row="2" Background="#FF2F3F4F" Foreground="#FFECE8E1" BorderBrush="#FF121213">
+
+        </ListBox>
         <Image x:Name="MapImage" Margin="5,5,5,5" Grid.Column="1" Grid.Row="2" />
 
         <Grid Grid.Column="1" Grid.Row="2">
@@ -112,8 +114,8 @@
                     </Grid.ColumnDefinitions>
                     <Image x:Name="RankImage" Grid.Column="0" Margin="0,0,0,0" />
                 </Grid>
-                
-                <Image x:Name="AgentImage" Margin="5,5,5,5" Grid.RowSpan="2" Grid.Column="0" />                
+
+                <Image x:Name="AgentImage" Margin="5,5,5,5" Grid.RowSpan="2" Grid.Column="0" />
             </Grid>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="1">

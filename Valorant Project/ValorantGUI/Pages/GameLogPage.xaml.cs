@@ -1,9 +1,15 @@
 ﻿using BussinessLayer.Interfaces;
 using BussinessLayer.Managers;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Data;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ValorantGUI.Windows.GameLogs;
 
@@ -69,6 +75,33 @@ namespace ValorantGUI
 
             object mostPlayedClass = _statsManager.GetMostPlayedClass(GameModeComboBox.SelectedItem, season);
             FavTypeStatLabel.Content = mostPlayedClass == null ? "-" : mostPlayedClass.ToString();
+        }
+
+        private void ColourListItems(ListBox lstBox)
+        {
+            Color winCol = new Color() { R = 119, G = 193, B = 172, A = 100 };
+            Color loseCol = new Color() { R = 230, G = 100, B = 95, A = 100 };
+            Color drawCol = new Color() { R = 168, G = 168, B = 169, A = 100 };
+
+            for (int i = 0; i < lstBox.Items.Count; i++)
+            {
+                GameLogManager.Results gameOutcome = _gameLogManager.GetMatchResult(lstBox.Items[i]);
+
+                ListBoxItem item = lstBox.ItemContainerGenerator.ContainerFromItem(lstBox.Items[i]) as ListBoxItem;
+
+                switch (gameOutcome)
+                {
+                    case GameLogManager.Results.Win:
+                        item.Background = new SolidColorBrush(winCol);
+                        break;
+                    case GameLogManager.Results.Loss:
+                        item.Background = new SolidColorBrush(loseCol);
+                        break;
+                    case GameLogManager.Results.Draw:
+                        item.Background = new SolidColorBrush(drawCol);
+                        break;
+                }
+            }
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

@@ -17,5 +17,6 @@ namespace BussinessLayer.Interfaces
         object GetGameMapObj(object selectedGame);
         object GetGameAgentObj(object selectedGame);
         DateTime GetDatePlayed(object selectedGame);
+        GameLogManager.Results GetMatchResult(object listItem);
     }
 }

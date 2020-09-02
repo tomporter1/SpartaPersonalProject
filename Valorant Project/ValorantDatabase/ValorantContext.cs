@@ -21,6 +21,7 @@ namespace ValorantDatabase
         public virtual DbSet<Maps> Maps { get; set; }
         public virtual DbSet<GameModes> GameModes { get; set; }
         public virtual DbSet<Ranks> Ranks { get; set; }
+        public virtual DbSet<RankAdjustments> RankAdjustments { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -57,6 +58,23 @@ namespace ValorantDatabase
                 entity.Property(e => e.RankID).HasColumnName("RankID");
 
                 entity.Property(e => e.RankName)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ImagePath)
+                    .HasMaxLength(35)
+                    .IsUnicode(false);
+            });
+            
+            modelBuilder.Entity<RankAdjustments>(entity =>
+            {
+                entity.HasKey(e => e.AdjustmentID)
+                    .HasName("PK_AdjustmentID");
+
+                entity.Property(e => e.AdjustmentID).HasColumnName("AdjustmentID");
+
+                entity.Property(e => e.AdjustmentName)
                     .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false);
@@ -143,6 +161,8 @@ namespace ValorantDatabase
 
                 entity.Property(e => e.RankID).HasColumnName("RankID");
 
+                entity.Property(e => e.RankAdjustmentID).HasColumnName("RankAdjustmentID");
+
                 entity.HasOne(d => d.Agent)
                     .WithMany(p => p.GameLogs)
                     .HasForeignKey(d => d.AgentId)
@@ -166,6 +186,12 @@ namespace ValorantDatabase
                     .HasForeignKey(d => d.RankID)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Rank");
+                
+                entity.HasOne(d => d.RankAdjustment)
+                    .WithMany(p => p.GameLogs)
+                    .HasForeignKey(d => d.RankAdjustmentID)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_RankAdjustment");
             });
 
             modelBuilder.Entity<Maps>(entity =>

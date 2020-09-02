@@ -20,6 +20,7 @@ namespace ValorantDatabase
         private DateTime _dateLogged;
         private int? _season;
         private int? _rankID;
+        private int? _rankAdjustmentID;
 
         public float KD { get => _kills == null || _deaths == null ? 0 : (float)_kills / (float)_deaths; }
 

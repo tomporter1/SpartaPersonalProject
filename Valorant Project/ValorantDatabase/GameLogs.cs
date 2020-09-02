@@ -68,11 +68,18 @@ namespace ValorantDatabase
         {
             get => _rankID;
             set => _rankID = value;
+        } 
+        
+        public int? RankAdjustmentID
+        {
+            get => _rankAdjustmentID;
+            set => _rankAdjustmentID = value;
         }
 
         public virtual Agents Agent { get; set; }
         public virtual Maps Map { get; set; }
         public virtual GameModes GameMode { get; set; }
         public virtual Ranks Rank { get; set; }
+        public virtual RankAdjustments RankAdjustment { get; set; }
     }
 }
