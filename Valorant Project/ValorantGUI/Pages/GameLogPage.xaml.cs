@@ -1,14 +1,9 @@
 ﻿using BussinessLayer.Interfaces;
 using BussinessLayer.Managers;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ValorantGUI.Windows.GameLogs;
@@ -54,9 +49,7 @@ namespace ValorantGUI
 
             PopulateItems();
         }
-
-        internal void SetNewSeasonNum(int newSeasonNum) => _gameLogManager.CurrentSeasonNum = newSeasonNum;
-
+        
         public void PopulateItems()
         {
             string season = SeasonComboBox.SelectedItem.ToString();
@@ -135,23 +128,22 @@ namespace ValorantGUI
         {
             if (GamesListBox.SelectedIndex >= 0)
             {
-                int teamScore = int.Parse(_gameLogManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.TeamScore));
-                int opponentScore = int.Parse(_gameLogManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.OpponentScore));
-                int kills = int.Parse(_gameLogManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Kills));
-                int deaths = int.Parse(_gameLogManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Deaths));
+                ResultLabel.Content = $"Result: {_gameLogManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Result)}";
+                ScoreLabel.Content = $"Score: {_gameLogManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Score)}";
 
-                ResultLabel.Content = $"Result: {(teamScore > opponentScore ? "Win" : (teamScore < opponentScore ? "Loss" : "Draw"))}";
-                ScoreLabel.Content = $"Score: {teamScore}:{opponentScore}";
-                KillsLabel.Content = $"Kills: {kills}";
-                DeathsLabel.Content = $"Deaths: {deaths}";
+                KillsLabel.Content = $"Kills: {_gameLogManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Kills)}";
+                DeathsLabel.Content = $"Deaths: {_gameLogManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Deaths)}";
+                
                 AssistsLabel.Content = $"Assists: {_gameLogManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Assists)}";
                 AdrLabel.Content = $"ADR: {_gameLogManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.ADR)}";
-                KDLabel.Content = $"K/D: {Math.Round((float)kills / (float)deaths, 3)}";
+               
+                KDLabel.Content = $"K/D: {_gameLogManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.KD)}";
 
                 MapLabel.Content = $"Map: {_gameLogManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Map)}";
                 AgentLabel.Content = $"Agent: {_gameLogManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.Agent)}";
 
                 DateLabel.Content = $"Date Logged: {_gameLogManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.DateLogged)}";
+                
                 string mapImagePath = _mapManager.GetMapsDataStr(_gameLogManager.GetGameMapObj(GamesListBox.SelectedItem), MapManager.Fields.ImagePath);
                 if (mapImagePath != null && mapImagePath != "")
                     MapImage.Source = new BitmapImage(new Uri(mapImagePath, UriKind.Relative));

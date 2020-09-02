@@ -29,7 +29,10 @@ namespace BussinessLayer.Managers
             Assists,
             ADR,
             DateLogged,
-            SeasonNum
+            SeasonNum,
+            Score,
+            Result,
+            KD
         }
 
         public enum Results
@@ -215,6 +218,9 @@ namespace BussinessLayer.Managers
                 Fields.ADR => logQuery.Select(gl => gl.Adr).FirstOrDefault().ToString(),
                 Fields.DateLogged => logQuery.Select(gl => gl.DateLogged).FirstOrDefault().ToString(),
                 Fields.SeasonNum => logQuery.Select(gl => gl.Season).FirstOrDefault().ToString(),
+                Fields.Score => logQuery.FirstOrDefault().GameScore,
+                Fields.Result => logQuery.FirstOrDefault().GameResult,
+                Fields.KD => logQuery.FirstOrDefault().KD.ToString(),
                 _ => "",
             };
 
@@ -237,8 +243,6 @@ namespace BussinessLayer.Managers
 
             return output;
         }
-
-
 
         public object GetGameMapObj(object selectedGame)
         {
