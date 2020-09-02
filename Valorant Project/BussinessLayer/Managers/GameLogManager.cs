@@ -174,6 +174,7 @@ namespace BussinessLayer.Managers
                 gameToUpdate.DateLogged = logArgs.DateLogged;
                 gameToUpdate.Season = logArgs.Season;
                 gameToUpdate.RankID = logArgs.RankID;
+                gameToUpdate.RankAdjustmentID = logArgs.RankAdjustmentID;
                 db.SaveChanges();
             }
 

@@ -122,6 +122,7 @@ namespace ValorantGUI
             AgentImage.Source = null;
             MapImage.Source = null;
             RankImage.Source = null;
+            RankAdjustmentImage.Source = null;
         }
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -145,24 +146,20 @@ namespace ValorantGUI
                 DateLabel.Content = $"Date Logged: {_gameLogManager.GetGameDataStr(GamesListBox.SelectedItem, GameLogManager.Fields.DateLogged)}";
                 
                 string mapImagePath = _mapManager.GetMapsDataStr(_gameLogManager.GetGameMapObj(GamesListBox.SelectedItem), MapManager.Fields.ImagePath);
-                if (mapImagePath != null && mapImagePath != "")
-                    MapImage.Source = new BitmapImage(new Uri(mapImagePath, UriKind.Relative));
-                else
-                    MapImage.Source = null;
+                SetImageSource(MapImage, mapImagePath);                
 
                 string agentImagePath = _agentManager.GetAgentDataStr(_gameLogManager.GetGameAgentObj(GamesListBox.SelectedItem), AgentManager.Fields.ImagePath);
-                if (agentImagePath != null && agentImagePath != "")
-                    AgentImage.Source = new BitmapImage(new Uri(agentImagePath, UriKind.Relative));
-                else
-                    AgentImage.Source = null;
+                SetImageSource(AgentImage, agentImagePath);                
 
                 string rankImagePath = _rankManager.GetRankDataStr(_gameLogManager.GetGameRankObj(GamesListBox.SelectedItem), RankManager.Fields.ImagePath);
-                if (rankImagePath != null && rankImagePath != "")
-                    RankImage.Source = new BitmapImage(new Uri(rankImagePath, UriKind.Relative));
-                else
-                    RankImage.Source = null;
+                SetImageSource(RankImage, rankImagePath);                
+                
+                string rankAdjustmentImagePath = _rankAdjustmentManager.GetRankAdjustmentDataStr(_gameLogManager.GetRankAdjustmentObj(GamesListBox.SelectedItem), RankAdjustmentManager.Fields.ImagePath);
+                SetImageSource(RankAdjustmentImage, rankAdjustmentImagePath);
             }
         }
+
+        private static void SetImageSource(Image image, string path) => image.Source = path != null && path != "" ? new BitmapImage(new Uri(path, UriKind.Relative)) : null;
 
         private void LogGameButton_Click(object sender, RoutedEventArgs e)
         {
