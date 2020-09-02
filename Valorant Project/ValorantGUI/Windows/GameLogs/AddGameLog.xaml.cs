@@ -1,7 +1,5 @@
-﻿using BussinessLayer;
-using BussinessLayer.Args;
+﻿using BussinessLayer.Args;
 using BussinessLayer.Interfaces;
-using BussinessLayer.Managers;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -19,7 +17,7 @@ namespace ValorantGUI
         private readonly IModeManager _modesManager;
         private readonly IGameLogManager _logManager;
 
-        public AddGameLogWindow(IPage gameLogPage, IGameLogManager logManager, IModeManager modeManager,IMapManager mapManager, IAgentManager agentManager,IRanksManger ranksManger)
+        public AddGameLogWindow(IPage gameLogPage, IGameLogManager logManager, IModeManager modeManager, IMapManager mapManager, IAgentManager agentManager, IRanksManger ranksManger, IRankAdjustmentManager rankAdjustmentManager)
         {
             InitializeComponent();
             _gameLogPage = gameLogPage;
@@ -30,8 +28,10 @@ namespace ValorantGUI
             MapComboBox.ItemsSource = mapManager.GetAllEntries();
             AgentComboBox.ItemsSource = agentManager.GetAllEntries();
             RankComboBox.ItemsSource = ranksManger.GetAllEntries();
-            
+            RankAdjustmentComboBox.ItemsSource = rankAdjustmentManager.GetAllEntries();
+
             RankComboBox.IsEnabled = false;
+            RankAdjustmentComboBox.IsEnabled = false;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -50,7 +50,8 @@ namespace ValorantGUI
                     ADRTextBox.Text.Trim() == "" ? 0 : int.Parse(ADRTextBox.Text.Trim()),
                     DateTime.Now,
                     _logManager.CurrentSeasonNum,
-                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? RankComboBox.SelectedItem : null
+                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? RankComboBox.SelectedItem : null,
+                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? RankAdjustmentComboBox.SelectedItem : null
                     );
 
                 _logManager.AddNewEntry(args);
@@ -90,9 +91,15 @@ namespace ValorantGUI
         private void ModeSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (_modesManager.IsRanked(ModeComboBox.SelectedItem))
+            {
                 RankComboBox.IsEnabled = true;
+                RankAdjustmentComboBox.IsEnabled = true;
+            }
             else
+            {
                 RankComboBox.IsEnabled = false;
+                RankAdjustmentComboBox.IsEnabled = false;
+            }
         }
     }
 }

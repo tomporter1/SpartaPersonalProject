@@ -14,6 +14,7 @@ namespace BussinessLayer.Interfaces
         List<object> GetGamesForGameMode(object selectedGameMode, string season);
         string GetGameDataStr(object selectedGame, GameLogManager.Fields field);
         object GetGameRankObj(object selectedRank);
+        object GetRankAdjustmentObj(object selectedGame);
         object GetGameMapObj(object selectedGame);
         object GetGameAgentObj(object selectedGame);
         DateTime GetDatePlayed(object selectedGame);

@@ -20,7 +20,7 @@ namespace ValorantGUI
         private readonly IGameLogManager _logManager;
         private readonly IPage _gameLogPage;
 
-        public EditGameLog(IPage gameLogPage, object selectedGame, IGameLogManager logManager, IModeManager modeManager)
+        public EditGameLog(IPage gameLogPage, object selectedGame, IGameLogManager logManager, IModeManager modeManager, IRanksManger ranksManger, IRankAdjustmentManager adjustmentManager)
         {
             InitializeComponent();
             _gameLogPage = gameLogPage;
@@ -58,7 +58,7 @@ namespace ValorantGUI
                 }
             }
 
-            ModeComboBox.ItemsSource = new GameModesManager().GetAllEntries();
+            ModeComboBox.ItemsSource = modeManager.GetAllEntries();
             object gameMode = _logManager.GetGameMode(selectedGame);
             foreach (object item in ModeComboBox.ItemsSource)
             {
@@ -68,7 +68,8 @@ namespace ValorantGUI
                 }
             }
 
-            RankComboBox.ItemsSource = new RankManager().GetAllEntries();
+            RankComboBox.ItemsSource = ranksManger.GetAllEntries();
+            RankAdjustmentComboBox.ItemsSource = adjustmentManager.GetAllEntries();
             if (_modesManager.IsRanked(ModeComboBox.SelectedItem))
             {
                 object rank = _logManager.GetRankObj(selectedGame);
@@ -79,10 +80,20 @@ namespace ValorantGUI
                         RankComboBox.SelectedItem = item;
                     }
                 }
+
+                object rankAdjustment = _logManager.GetRankAdjustmentObj(selectedGame);
+                foreach (object item in RankAdjustmentComboBox.ItemsSource)
+                {
+                    if (item.Equals(rankAdjustment))
+                    {
+                        RankAdjustmentComboBox.SelectedItem = item;
+                    }
+                }
             }
             else
             {
                 RankComboBox.IsEnabled = false;
+                RankAdjustmentComboBox.IsEnabled = false;
             }
         }
 
@@ -102,7 +113,8 @@ namespace ValorantGUI
                     float.Parse(ADRTextBox.Text.Trim()),
                     ((DateTime)DatePlayedPicker.SelectedDate).AddHours(_oldTime.Hour).AddMinutes(_oldTime.Minute).AddSeconds(_oldTime.Second),
                     _logManager.CurrentSeasonNum,
-                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? RankComboBox.SelectedItem : null);
+                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? RankComboBox.SelectedItem : null,
+                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? RankAdjustmentComboBox.SelectedItem : null);
                 _logManager.UpdateEntry(_selectedGame, args);
                 _gameLogPage.PopulateItems();
                 this.Close();
@@ -140,9 +152,15 @@ namespace ValorantGUI
         private void ModeSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (_modesManager.IsRanked(ModeComboBox.SelectedItem))
+            {
                 RankComboBox.IsEnabled = true;
+                RankAdjustmentComboBox.IsEnabled = true;
+            }
             else
+            {
                 RankComboBox.IsEnabled = false;
+                RankAdjustmentComboBox.IsEnabled = false;
+            }
         }
     }
 }

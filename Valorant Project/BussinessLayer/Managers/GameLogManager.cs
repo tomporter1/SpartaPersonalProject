@@ -83,6 +83,7 @@ namespace BussinessLayer.Managers
             Maps map = db.Maps.Where(m => m.MapId == logArgs.MapId).FirstOrDefault();
             GameModes mode = db.GameModes.Where(gm => gm.ModeID == logArgs.ModeID).FirstOrDefault();
             Ranks rank = db.Ranks.Where(r => r.RankID == logArgs.RankID).FirstOrDefault();
+            RankAdjustments rankAdjustment = db.RankAdjustments.Where(r => r.AdjustmentID == logArgs.RankAdjustmentID).FirstOrDefault();
             GameLogs game = new GameLogs()
             {
                 TeamScore = logArgs.TeamScore,
@@ -96,7 +97,8 @@ namespace BussinessLayer.Managers
                 Agent = agent,
                 GameMode = mode,
                 Season = CurrentSeasonNum,
-                Rank = rank
+                Rank = rank,
+                RankAdjustment = rankAdjustment
             };
 
             db.GameLogs.Add(game);
@@ -125,6 +127,19 @@ namespace BussinessLayer.Managers
             ValorantContext db = (_context ?? new ValorantContext());
             GameLogs game = (GameLogs)selectedGame;
             object output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Rank).Select(gl => gl.Rank).FirstOrDefault();
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return output;
+        }
+
+        public object GetRankAdjustmentObj(object selectedGame)
+        {
+            ValorantContext db = (_context ?? new ValorantContext());
+            GameLogs game = (GameLogs)selectedGame;
+            object output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.RankAdjustment).Select(gl => gl.RankAdjustment).FirstOrDefault();
 
             //Disposes of the db context if it is not running off a set context
             if (_context == null)
@@ -223,6 +238,8 @@ namespace BussinessLayer.Managers
             return output;
         }
 
+
+
         public object GetGameMapObj(object selectedGame)
         {
             ValorantContext db = (_context ?? new ValorantContext());
@@ -269,6 +286,6 @@ namespace BussinessLayer.Managers
         {
             GameLogs game = (GameLogs)listItem;
             return game.TeamScore > game.OpponentScore ? Results.Win : (game.TeamScore < game.OpponentScore ? Results.Loss : Results.Draw);
-        }
+        }        
     }
 }

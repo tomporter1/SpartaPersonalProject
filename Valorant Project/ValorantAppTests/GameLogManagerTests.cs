@@ -80,7 +80,7 @@ namespace ValorantAppTests
         public void AddGameLogTest()
         {
             //setup
-            GameLogArgs args = new GameLogArgs(_context.GameModes.ToList().First(), _context.Maps.ToList().Last(), _context.Agents.ToList().Last(), 13, 12, 20, 12, 4, 150, DateTime.Now, 2, new Ranks() { RankID = 1, RankName = "Wood 1" });
+            GameLogArgs args = new GameLogArgs(_context.GameModes.ToList().First(), _context.Maps.ToList().Last(), _context.Agents.ToList().Last(), 13, 12, 20, 12, 4, 150, DateTime.Now, 2, new Ranks() { RankID = 1, RankName = "Wood 1" }, new RankAdjustments() { AdjustmentID = 1, AdjustmentName = "Really Decreased" });
 
             //Test method call            
             _manager.AddNewEntry(args);
@@ -106,7 +106,7 @@ namespace ValorantAppTests
         public void UpdateGameLogTest()
         {
             //setup
-            GameLogArgs updatedArgs = new GameLogArgs(_context.GameModes.ToList().First(), _context.Maps.ToList().First(), _context.Agents.ToList().First(), 13, 12, 30, 45, 0, 150, DateTime.Now, 2, new Ranks() { RankID = 1, RankName = "Wood 1" });
+            GameLogArgs updatedArgs = new GameLogArgs(_context.GameModes.ToList().First(), _context.Maps.ToList().First(), _context.Agents.ToList().First(), 13, 12, 30, 45, 0, 150, DateTime.Now, 2, new Ranks() { RankID = 1, RankName = "Wood 1" }, new RankAdjustments() { AdjustmentID = 1, AdjustmentName = "Really Decreased" });
 
             object logToUpdate = _context.GameLogs.ToList().Last();
 

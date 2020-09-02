@@ -26,9 +26,10 @@ namespace ValorantGUI
         private readonly IStats _statsManager;
         private readonly IMapManager _mapManager;
         private readonly IRanksManger _rankManager;
+        private readonly IRankAdjustmentManager _rankAdjustmentManager;
         private readonly IWindow _window;
 
-        public GameLogPage(IWindow window, IGameLogManager gameLogManager, IAgentManager agentManager, IStats statsManager, IMapManager mapManager, IRanksManger ranksManger, IModeManager modeManager)
+        public GameLogPage(IWindow window, IGameLogManager gameLogManager, IAgentManager agentManager, IStats statsManager, IMapManager mapManager, IRanksManger ranksManger, IModeManager modeManager, IRankAdjustmentManager adjustmentManager)
         {
             InitializeComponent();
             _gameLogManager = gameLogManager;
@@ -38,6 +39,7 @@ namespace ValorantGUI
             _statsManager = statsManager;
             _mapManager = mapManager;
             _rankManager = ranksManger;
+            _rankAdjustmentManager = adjustmentManager;
 
             GameModeComboBox.ItemsSource = modeManager.GetAllEntries();
             GameModeComboBox.SelectedIndex = 0;
@@ -172,7 +174,7 @@ namespace ValorantGUI
 
         private void LogGameButton_Click(object sender, RoutedEventArgs e)
         {
-            AddGameLogWindow addGameWindow = new AddGameLogWindow(this, _gameLogManager, _modeManager, _mapManager, _agentManager, _rankManager);
+            AddGameLogWindow addGameWindow = new AddGameLogWindow(this, _gameLogManager, _modeManager, _mapManager, _agentManager, _rankManager, _rankAdjustmentManager);
             addGameWindow.Show();
         }
 
@@ -180,7 +182,7 @@ namespace ValorantGUI
         {
             if (GamesListBox.SelectedIndex >= 0)
             {
-                EditGameLog editGameLog = new EditGameLog(this, GamesListBox.SelectedItem, _gameLogManager, _modeManager);
+                EditGameLog editGameLog = new EditGameLog(this, GamesListBox.SelectedItem, _gameLogManager, _modeManager, _rankManager, _rankAdjustmentManager);
                 editGameLog.Show();
             }
             else

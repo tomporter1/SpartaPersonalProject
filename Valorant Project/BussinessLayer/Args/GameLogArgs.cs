@@ -17,8 +17,9 @@ namespace BussinessLayer.Args
         public DateTime DateLogged { get; private set; }
         public int Season { get; private set; }
         public int? RankID { get; private set; }
+        public int? RankAdjustmentID { get; private set; }
 
-        public GameLogArgs(object gameModeObj, object mapObj, object agentObj, int teamScore, int opponentScore, int kills, int deaths, int assists, float aDR, DateTime dateLogged, int seasonNum, object rank)
+        public GameLogArgs(object gameModeObj, object mapObj, object agentObj, int teamScore, int opponentScore, int kills, int deaths, int assists, float aDR, DateTime dateLogged, int seasonNum, object rank, object rankAdjustment)
         {
             ModeID = ((GameModes)gameModeObj).ModeID;
             MapId = ((Maps)mapObj).MapId;
@@ -32,9 +33,10 @@ namespace BussinessLayer.Args
             DateLogged = dateLogged;
             Season = seasonNum;
             RankID = rank == null ? (int?)null : ((Ranks)rank).RankID;
+            RankAdjustmentID = rankAdjustment == null ? (int?)null : ((RankAdjustments)rankAdjustment).AdjustmentID;
         }
 
-        public GameLogArgs(int gameModeId, int mapId, int agentId, int teamScore, int opponentScore, int kills, int deaths, int assists, float aDR, DateTime dateLogged, int seasonNum, object rank)
+        public GameLogArgs(int gameModeId, int mapId, int agentId, int teamScore, int opponentScore, int kills, int deaths, int assists, float aDR, DateTime dateLogged, int seasonNum, object rank, object rankAdjustment)
         {
             ModeID = gameModeId;
             MapId = mapId;
@@ -48,6 +50,7 @@ namespace BussinessLayer.Args
             DateLogged = dateLogged;
             Season = seasonNum;
             RankID = rank == null ? (int?)null : ((Ranks)rank).RankID;
+            RankAdjustmentID = rankAdjustment == null ? (int?)null : ((RankAdjustments)rankAdjustment).AdjustmentID;
         }
     }
 }
