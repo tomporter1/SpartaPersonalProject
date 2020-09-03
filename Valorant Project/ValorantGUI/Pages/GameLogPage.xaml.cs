@@ -159,7 +159,7 @@ namespace ValorantGUI
             }
         }
 
-        private static void SetImageSource(Image image, string path) => image.Source = path != null && path != "" ? new BitmapImage(new Uri(path, UriKind.Relative)) : null;
+        internal static void SetImageSource(Image image, string path) => image.Source = path != null && path != "" ? new BitmapImage(new Uri(path, UriKind.Relative)) : null;
 
         private void LogGameButton_Click(object sender, RoutedEventArgs e)
         {

@@ -1,8 +1,11 @@
 ﻿using BussinessLayer.Args;
 using BussinessLayer.Interfaces;
+using BussinessLayer.Managers;
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -16,6 +19,7 @@ namespace ValorantGUI
         private readonly IPage _gameLogPage;
         private readonly IModeManager _modesManager;
         private readonly IGameLogManager _logManager;
+        private readonly IRankAdjustmentManager _rankAdjustmentManager;
 
         public AddGameLogWindow(IPage gameLogPage, IGameLogManager logManager, IModeManager modeManager, IMapManager mapManager, IAgentManager agentManager, IRanksManger ranksManger, IRankAdjustmentManager rankAdjustmentManager)
         {
@@ -23,16 +27,25 @@ namespace ValorantGUI
             _gameLogPage = gameLogPage;
             _logManager = logManager;
             _modesManager = modeManager;
+            _rankAdjustmentManager = rankAdjustmentManager;
 
             ModeComboBox.ItemsSource = _modesManager.GetAllEntries();
             MapComboBox.ItemsSource = mapManager.GetAllEntries();
             AgentComboBox.ItemsSource = agentManager.GetAllEntries();
-            RankComboBox.ItemsSource = ranksManger.GetAllEntries();
-            RankAdjustmentComboBox.ItemsSource = rankAdjustmentManager.GetAllEntries();
+
+            foreach (object rank in ranksManger.GetAllEntries())
+            {
+                RankComboBox.Items.Add(new CustomItem(rank, ranksManger.GetRankDataStr(rank, RankManager.Fields.ImagePath)));
+            }
+            
+            foreach (object rankAdjust in _rankAdjustmentManager.GetAllEntries())
+            {
+                RankAdjustmentComboBox.Items.Add(new CustomItem(rankAdjust, _rankAdjustmentManager.GetRankAdjustmentDataStr(rankAdjust, RankAdjustmentManager.Fields.ImagePath)));
+            }
 
             RankComboBox.IsEnabled = false;
             RankAdjustmentComboBox.IsEnabled = false;
-        }
+        }       
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -50,8 +63,8 @@ namespace ValorantGUI
                     ADRTextBox.Text.Trim() == "" ? 0 : int.Parse(ADRTextBox.Text.Trim()),
                     DateTime.Now,
                     _logManager.CurrentSeasonNum,
-                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? RankComboBox.SelectedItem : null,
-                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? RankAdjustmentComboBox.SelectedItem : null
+                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? ((CustomItem)RankComboBox.SelectedItem).Obj : null,
+                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? ((CustomItem)RankAdjustmentComboBox.SelectedItem).Obj : null
                     );
 
                 _logManager.AddNewEntry(args);
