@@ -35,12 +35,12 @@ namespace ValorantGUI
 
             foreach (object rank in ranksManger.GetAllEntries())
             {
-                RankComboBox.Items.Add(new CustomItem(rank, ranksManger.GetRankDataStr(rank, RankManager.Fields.ImagePath)));
+                RankComboBox.Items.Add(new CustomImageItem(rank, ranksManger.GetRankDataStr(rank, RankManager.Fields.ImagePath)));
             }
             
             foreach (object rankAdjust in _rankAdjustmentManager.GetAllEntries())
             {
-                RankAdjustmentComboBox.Items.Add(new CustomItem(rankAdjust, _rankAdjustmentManager.GetRankAdjustmentDataStr(rankAdjust, RankAdjustmentManager.Fields.ImagePath)));
+                RankAdjustmentComboBox.Items.Add(new CustomImageItem(rankAdjust, _rankAdjustmentManager.GetRankAdjustmentDataStr(rankAdjust, RankAdjustmentManager.Fields.ImagePath)));
             }
 
             RankComboBox.IsEnabled = false;
@@ -63,8 +63,8 @@ namespace ValorantGUI
                     ADRTextBox.Text.Trim() == "" ? 0 : int.Parse(ADRTextBox.Text.Trim()),
                     DateTime.Now,
                     _logManager.CurrentSeasonNum,
-                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? ((CustomItem)RankComboBox.SelectedItem).Obj : null,
-                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? ((CustomItem)RankAdjustmentComboBox.SelectedItem).Obj : null
+                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? ((CustomImageItem)RankComboBox.SelectedItem).Obj : null,
+                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? ((CustomImageItem)RankAdjustmentComboBox.SelectedItem).Obj : null
                     );
 
                 _logManager.AddNewEntry(args);

@@ -70,12 +70,12 @@ namespace ValorantGUI
 
             foreach (object rank in ranksManger.GetAllEntries())
             {
-                RankComboBox.Items.Add(new CustomItem(rank, ranksManger.GetRankDataStr(rank, RankManager.Fields.ImagePath)));
+                RankComboBox.Items.Add(new CustomImageItem(rank, ranksManger.GetRankDataStr(rank, RankManager.Fields.ImagePath)));
             }
 
             foreach (object rankAdjust in adjustmentManager.GetAllEntries())
             {
-                RankAdjustmentComboBox.Items.Add(new CustomItem(rankAdjust, adjustmentManager.GetRankAdjustmentDataStr(rankAdjust, RankAdjustmentManager.Fields.ImagePath)));
+                RankAdjustmentComboBox.Items.Add(new CustomImageItem(rankAdjust, adjustmentManager.GetRankAdjustmentDataStr(rankAdjust, RankAdjustmentManager.Fields.ImagePath)));
             }
 
             if (_modesManager.IsRanked(ModeComboBox.SelectedItem))
@@ -83,7 +83,7 @@ namespace ValorantGUI
                 object rank = _logManager.GetRankObj(selectedGame);
                 foreach (var item in RankComboBox.Items)
                 {
-                    if (((CustomItem)item).Obj.Equals(rank))
+                    if (((CustomImageItem)item).Obj.Equals(rank))
                     {
                         RankComboBox.SelectedItem = item;
                     }
@@ -92,7 +92,7 @@ namespace ValorantGUI
                 object rankAdjustment = _logManager.GetRankAdjustmentObj(selectedGame);
                 foreach (var item in RankAdjustmentComboBox.Items)
                 {
-                    if (((CustomItem)item).Obj.Equals(rankAdjustment))
+                    if (((CustomImageItem)item).Obj.Equals(rankAdjustment))
                     {
                         RankAdjustmentComboBox.SelectedItem = item;
                     }
@@ -121,8 +121,8 @@ namespace ValorantGUI
                     float.Parse(ADRTextBox.Text.Trim()),
                     ((DateTime)DatePlayedPicker.SelectedDate).AddHours(_oldTime.Hour).AddMinutes(_oldTime.Minute).AddSeconds(_oldTime.Second),
                     _logManager.CurrentSeasonNum,
-                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? ((CustomItem)RankComboBox.SelectedItem).Obj : null,
-                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? ((CustomItem)RankAdjustmentComboBox.SelectedItem).Obj : null);
+                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? ((CustomImageItem)RankComboBox.SelectedItem).Obj : null,
+                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? ((CustomImageItem)RankAdjustmentComboBox.SelectedItem).Obj : null);
                 _logManager.UpdateEntry(_selectedGame, args);
                 _gameLogPage.PopulateItems();
                 this.Close();
