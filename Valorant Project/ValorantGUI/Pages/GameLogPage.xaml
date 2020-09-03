@@ -31,7 +31,13 @@
 
         <Label x:Name="label" Content="Past Games" Margin="5,5,5,5" VerticalContentAlignment="Bottom" FontSize="20" Foreground="#FFECE8E1" FontWeight="Bold" Grid.Row="1" />
         <ListBox x:Name="GamesListBox" Margin="5,5,5,5" SelectionChanged="OnSelectionChanged" Grid.Column="0" Grid.Row="2" Background="#FF2F3F4F" Foreground="#FFECE8E1" BorderBrush="#FF121213">
-
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="{Binding Background}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <TextBlock Text="{Binding Text}" Foreground="Black" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
         <Image x:Name="MapImage" Margin="5,5,5,5" Grid.Column="1" Grid.Row="2" />
 
