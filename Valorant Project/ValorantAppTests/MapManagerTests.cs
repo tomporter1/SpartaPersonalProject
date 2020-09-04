@@ -1,8 +1,7 @@
-﻿using BussinessLayer;
-using BussinessLayer.Args;
+﻿using BussinessLayer.Args;
+using BussinessLayer.Interfaces;
 using BussinessLayer.Managers;
 using Microsoft.EntityFrameworkCore;
-using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,7 +53,7 @@ namespace ValorantAppTests
             object mapObj = _context.Maps.ToList().First();
             string name = ((Maps)mapObj).MapName;
             //Assertion
-            Assert.That(_manager.GetMapsDataStr(mapObj, MapManager.Fields.Name), Is.EqualTo(name));
+            Assert.That(_manager.GetMapsDataStr(mapObj, IMapManager.Fields.Name), Is.EqualTo(name));
         }
 
         [Test]

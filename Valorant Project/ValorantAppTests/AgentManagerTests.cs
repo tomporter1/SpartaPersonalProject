@@ -1,5 +1,5 @@
-using BussinessLayer;
 using BussinessLayer.Args;
+using BussinessLayer.Interfaces;
 using BussinessLayer.Managers;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
@@ -91,12 +91,12 @@ namespace ValorantAppTests
             Assert.That(updatedArgs.Name, Is.EqualTo("Bob"));
         }
 
-        [TestCase("Cypher", AgentManager.Fields.Name)]
-        [TestCase("sigName", AgentManager.Fields.SignatureAbilityName)]
-        [TestCase("ultName", AgentManager.Fields.UltamateAbilityName)]
-        [TestCase("normal1Name", AgentManager.Fields.AbilityOneName)]
-        [TestCase("normal2Name", AgentManager.Fields.AbilityTwoName)]
-        public void GetAgentDataTest(string expectedResult, AgentManager.Fields field)
+        [TestCase("Cypher", IAgentManager.Fields.Name)]
+        [TestCase("sigName", IAgentManager.Fields.SignatureAbilityName)]
+        [TestCase("ultName", IAgentManager.Fields.UltamateAbilityName)]
+        [TestCase("normal1Name", IAgentManager.Fields.AbilityOneName)]
+        [TestCase("normal2Name", IAgentManager.Fields.AbilityTwoName)]
+        public void GetAgentDataTest(string expectedResult, IAgentManager.Fields field)
         {
             //setup
             object addedAgent = _context.Agents.ToList().Last();

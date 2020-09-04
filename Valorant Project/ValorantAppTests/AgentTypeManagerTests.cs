@@ -1,4 +1,5 @@
 ﻿using BussinessLayer.Args;
+using BussinessLayer.Interfaces;
 using BussinessLayer.Managers;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
@@ -52,7 +53,7 @@ namespace ValorantAppTests
             object typeObj = _context.AgentType.ToList().First();
             string name = ((AgentType)typeObj).TypeName;
             //Assertion
-            Assert.That(_manager.GetTypeDataStr(typeObj, AgentTypeManager.Fields.Name), Is.EqualTo(name));
+            Assert.That(_manager.GetTypeDataStr(typeObj, IAgentTypesManager.Fields.Name), Is.EqualTo(name));
         }
 
         [Test]
