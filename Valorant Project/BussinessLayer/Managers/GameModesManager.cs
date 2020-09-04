@@ -1,6 +1,5 @@
 ﻿using BussinessLayer.Args;
 using BussinessLayer.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using ValorantDatabase;
@@ -14,12 +13,6 @@ namespace BussinessLayer.Managers
         public GameModesManager(ValorantContext context = null)
         {
             _context = context;
-        }
-
-        public enum Fields
-        {
-            Name,
-            Discription
         }
 
         public override void AddNewEntry(SuperArgs args)

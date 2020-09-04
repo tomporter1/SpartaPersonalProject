@@ -19,7 +19,7 @@ namespace ValorantAppTests
             Mock<IStats> mockStatsManager = new Mock<IStats>();
             Mock<IAgentManager> mockAgentManager = new Mock<IAgentManager>();
             Mock<IMapManager> mockMapManager = new Mock<IMapManager>();
-            Mock<IRanksManger> mockRankManager = new Mock<IRanksManger>();
+            Mock<IRanksManager> mockRankManager = new Mock<IRanksManager>();
             Mock<IRankAdjustmentManager> mockRankAdjustmentManager = new Mock<IRankAdjustmentManager>();
 
             mockModeManager.Setup(x => x.GetAllEntries()).Returns(new List<object>());

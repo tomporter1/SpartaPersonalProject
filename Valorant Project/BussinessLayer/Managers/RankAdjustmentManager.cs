@@ -3,19 +3,12 @@ using BussinessLayer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using ValorantDatabase;
 
 namespace BussinessLayer.Managers
 {
     public class RankAdjustmentManager : SuperManager, IRankAdjustmentManager
     {
-        public enum Fields
-        {
-            Name,
-            ImagePath
-        }
-
         private readonly ValorantContext _context;
 
         public RankAdjustmentManager(ValorantContext context = null)
@@ -51,7 +44,7 @@ namespace BussinessLayer.Managers
             throw new NotImplementedException();
         }
 
-        public string GetRankAdjustmentDataStr(object selectedRankAdjustment, Fields field)
+        public string GetRankAdjustmentDataStr(object selectedRankAdjustment, IRankAdjustmentManager.Fields field)
         {
             ValorantContext db = (_context ?? new ValorantContext());
             RankAdjustments rankAdjustment = (RankAdjustments)selectedRankAdjustment;
@@ -67,9 +60,10 @@ namespace BussinessLayer.Managers
             string output = "";
             switch (field)
             {
-                case Fields.ImagePath:
+                case IRankAdjustmentManager.Fields.ImagePath:
                     output = rankQuery.Select(r => r.ImagePath).FirstOrDefault();
                     break;
+
                 default:
                     output = "";
                     break;

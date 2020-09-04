@@ -12,7 +12,7 @@ namespace BussinessLayer.Managers
         public StatsManager(ValorantContext context = null)
         {
             _context = context;
-        }        
+        }
 
         public object GetMostKillsGame(string season, object gameMode)
         {
@@ -121,7 +121,7 @@ namespace BussinessLayer.Managers
             return output;
         }
 
-        public int GetTotals(GameLogManager.Fields field, object selectedGameMode, string season)
+        public int GetTotals(IGameLogManager.Fields field, object selectedGameMode, string season)
         {
             ValorantContext db = (_context ?? new ValorantContext());
             int output = 0;
@@ -130,12 +130,14 @@ namespace BussinessLayer.Managers
 
             switch (field)
             {
-                case GameLogManager.Fields.Kills:
+                case IGameLogManager.Fields.Kills:
                     output = (int)query.Select(gl => gl.Kills).Sum();
                     break;
-                case GameLogManager.Fields.Deaths:
+
+                case IGameLogManager.Fields.Deaths:
                     output = (int)query.Select(gl => gl.Deaths).Sum();
                     break;
+
                 default:
                     output = 0;
                     break;
@@ -146,13 +148,13 @@ namespace BussinessLayer.Managers
                 db.Dispose();
 
             return output;
-        }       
+        }
 
         public float GetTotalKD(object selectedGameMode, string season)
         {
             ValorantContext db = (_context ?? new ValorantContext());
-            float totalKills = GetTotals(GameLogManager.Fields.Kills, selectedGameMode, season);
-            float totalDeaths = GetTotals(GameLogManager.Fields.Deaths, selectedGameMode, season);
+            float totalKills = GetTotals(IGameLogManager.Fields.Kills, selectedGameMode, season);
+            float totalDeaths = GetTotals(IGameLogManager.Fields.Deaths, selectedGameMode, season);
 
             //Disposes of the db context if it is not running off a set context
             if (_context == null)

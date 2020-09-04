@@ -1,6 +1,6 @@
 ﻿namespace BussinessLayer.Interfaces
 {
-    public interface IAgentTypesManager : IBasicManager
+    public interface IRanksManager : IBasicManager
     {
         public enum Fields
         {
@@ -8,6 +8,6 @@
             ImagePath
         }
 
-        string GetTypeDataStr(object selectedType, Fields field);
+        string GetRankDataStr(object selectedRank, Fields field);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using BussinessLayer.Interfaces;
-using BussinessLayer.Managers;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -66,10 +65,10 @@ namespace ValorantGUI
                 AbilitiesListBox.ItemsSource = _agentManager.GetAgentsAbilities(AgentNameListBox.SelectedItem);
 
                 ClearTextBoxes();
-                BioTextBox.Text = _agentManager.GetAgentDataStr(AgentNameListBox.SelectedItem, AgentManager.Fields.Bio);
-                AgentClassLabel.Content = $"Agent Class: {_agentManager.GetAgentDataStr(AgentNameListBox.SelectedItem, AgentManager.Fields.Type)}";
+                BioTextBox.Text = _agentManager.GetAgentDataStr(AgentNameListBox.SelectedItem, IAgentManager.Fields.Bio);
+                AgentClassLabel.Content = $"Agent Class: {_agentManager.GetAgentDataStr(AgentNameListBox.SelectedItem, IAgentManager.Fields.Type)}";
 
-                string imagePath = _agentManager.GetAgentDataStr(AgentNameListBox.SelectedItem, AgentManager.Fields.ImagePath);
+                string imagePath = _agentManager.GetAgentDataStr(AgentNameListBox.SelectedItem, IAgentManager.Fields.ImagePath);
                 if (imagePath != null && imagePath != "")
                     AgentImage.Source = new BitmapImage(new Uri(imagePath, UriKind.Relative));
                 else

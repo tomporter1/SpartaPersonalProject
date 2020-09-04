@@ -9,23 +9,6 @@ namespace BussinessLayer.Managers
 {
     public class AgentManager : SuperManager, IAgentManager
     {
-        public enum Fields
-        {
-            Name,
-            SignatureAbilityName,
-            SignatureAbilityDiscription,
-            UltamateAbilityName,
-            UltamateAbilityDiscription,
-            AbilityOneName,
-            AbilityOneDiscription,
-            AbilityTwoName,
-            AbilityTwoDiscription,
-            Bio,
-            ID,
-            Type,
-            ImagePath
-        }
-
         private readonly ValorantContext _context;
 
         public AgentManager(ValorantContext context = null)
@@ -123,13 +106,13 @@ namespace BussinessLayer.Managers
             Agents agent = (Agents)selectedAgent;
 
             if (agent.SignatureAbilityName == abilityName)
-                return GetAgentDataStr(selectedAgent, Fields.SignatureAbilityDiscription);
+                return GetAgentDataStr(selectedAgent, IAgentManager.Fields.SignatureAbilityDiscription);
             if (agent.UltamateAbilityName == abilityName)
-                return GetAgentDataStr(selectedAgent, Fields.UltamateAbilityDiscription);
+                return GetAgentDataStr(selectedAgent, IAgentManager.Fields.UltamateAbilityDiscription);
             if (agent.AbilityOneName == abilityName)
-                return GetAgentDataStr(selectedAgent, Fields.AbilityOneDiscription);
+                return GetAgentDataStr(selectedAgent, IAgentManager.Fields.AbilityOneDiscription);
             if (agent.AbilityTwoName == abilityName)
-                return GetAgentDataStr(selectedAgent, Fields.AbilityTwoDiscription);
+                return GetAgentDataStr(selectedAgent, IAgentManager.Fields.AbilityTwoDiscription);
             return "";
         }
 
@@ -163,7 +146,7 @@ namespace BussinessLayer.Managers
                 db.Dispose();
         }
 
-        public string GetAgentDataStr(object selectedAgent, Fields field)
+        public string GetAgentDataStr(object selectedAgent, IAgentManager.Fields field)
         {
             ValorantContext db = (_context ?? new ValorantContext());
             Agents agent = (Agents)selectedAgent;
@@ -171,45 +154,58 @@ namespace BussinessLayer.Managers
             string output = "";
             switch (field)
             {
-                case Fields.ID:
+                case IAgentManager.Fields.ID:
                     output = agentQuery.Select(a => a.AgentId).ToString();
                     break;
-                case Fields.Name:
+
+                case IAgentManager.Fields.Name:
                     output = agentQuery.Select(a => a.AgentName).FirstOrDefault();
                     break;
-                case Fields.Type:
+
+                case IAgentManager.Fields.Type:
                     output = agentQuery.Include(a => a.AgentType).Select(a => a.AgentType).FirstOrDefault().ToString();
                     break;
-                case Fields.SignatureAbilityName:
+
+                case IAgentManager.Fields.SignatureAbilityName:
                     output = agentQuery.Select(a => a.SignatureAbilityName).FirstOrDefault();
                     break;
-                case Fields.SignatureAbilityDiscription:
+
+                case IAgentManager.Fields.SignatureAbilityDiscription:
                     output = agentQuery.Select(a => a.SignatureAbilityDiscription).FirstOrDefault();
                     break;
-                case Fields.UltamateAbilityName:
+
+                case IAgentManager.Fields.UltamateAbilityName:
                     output = agentQuery.Select(a => a.UltamateAbilityName).FirstOrDefault();
                     break;
-                case Fields.UltamateAbilityDiscription:
+
+                case IAgentManager.Fields.UltamateAbilityDiscription:
                     output = agentQuery.Select(a => a.UltamateAbilityDiscription).FirstOrDefault();
                     break;
-                case Fields.AbilityOneName:
+
+                case IAgentManager.Fields.AbilityOneName:
                     output = agentQuery.Select(a => a.AbilityOneName).FirstOrDefault();
                     break;
-                case Fields.AbilityOneDiscription:
+
+                case IAgentManager.Fields.AbilityOneDiscription:
                     output = agentQuery.Select(a => a.AbilityOneDiscription).FirstOrDefault();
                     break;
-                case Fields.AbilityTwoName:
+
+                case IAgentManager.Fields.AbilityTwoName:
                     output = agentQuery.Select(a => a.AbilityTwoName).FirstOrDefault();
                     break;
-                case Fields.AbilityTwoDiscription:
+
+                case IAgentManager.Fields.AbilityTwoDiscription:
                     output = agentQuery.Select(a => a.AbilityTwoDiscription).FirstOrDefault();
                     break;
-                case Fields.Bio:
+
+                case IAgentManager.Fields.Bio:
                     output = agentQuery.Select(a => a.Bio).FirstOrDefault();
                     break;
-                case Fields.ImagePath:
+
+                case IAgentManager.Fields.ImagePath:
                     output = agentQuery.Select(a => a.ImagePath).FirstOrDefault();
                     break;
+
                 default:
                     output = "";
                     break;

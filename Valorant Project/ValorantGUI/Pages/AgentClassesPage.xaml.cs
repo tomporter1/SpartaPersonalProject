@@ -64,10 +64,10 @@ namespace ValorantGUI
         {
             if (TypesListBox.SelectedIndex >= 0)
             {
-                NameTextBox.Text = _agentTypeManager.GetTypeDataStr(TypesListBox.SelectedItem, AgentTypeManager.Fields.Name);
+                NameTextBox.Text = _agentTypeManager.GetTypeDataStr(TypesListBox.SelectedItem, IAgentTypesManager.Fields.Name);
                 NameTextBox.IsEnabled = true;
 
-                string path = _agentTypeManager.GetTypeDataStr(TypesListBox.SelectedItem, AgentTypeManager.Fields.ImagePath);
+                string path = _agentTypeManager.GetTypeDataStr(TypesListBox.SelectedItem, IAgentTypesManager.Fields.ImagePath);
                 if (path != null && path != "")
                     TypeImage.Source = new BitmapImage(new Uri(path, UriKind.Relative));
                 else

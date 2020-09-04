@@ -1,8 +1,13 @@
-﻿
-namespace BussinessLayer.Interfaces
+﻿namespace BussinessLayer.Interfaces
 {
     public interface IRankAdjustmentManager : IBasicManager
     {
-        string GetRankAdjustmentDataStr(object selectedRankAdjustment, Managers.RankAdjustmentManager.Fields field);
+        public enum Fields
+        {
+            Name,
+            ImagePath
+        }
+
+        string GetRankAdjustmentDataStr(object selectedRankAdjustment, Fields field);
     }
 }

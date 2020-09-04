@@ -1,9 +1,14 @@
-﻿using BussinessLayer.Managers;
-
-namespace BussinessLayer.Interfaces
+﻿namespace BussinessLayer.Interfaces
 {
     public interface IMapManager : IBasicManager
     {
-        string GetMapsDataStr(object selectedMap, MapManager.Fields field);
+        public enum Fields
+        {
+            Name,
+            ImagePath,
+            LayoutImagePath
+        }
+
+        string GetMapsDataStr(object selectedMap, Fields field);
     }
 }

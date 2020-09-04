@@ -15,13 +15,6 @@ namespace BussinessLayer.Managers
             _context = context;
         }
 
-        public enum Fields
-        {
-            Name,
-            ImagePath,
-            LayoutImagePath
-        }
-
         public override List<object> GetAllEntries()
         {
             ValorantContext db = _context ?? new ValorantContext();
@@ -78,7 +71,7 @@ namespace BussinessLayer.Managers
                 db.Dispose();
         }
 
-        public string GetMapsDataStr(object selectedMap, Fields field)
+        public string GetMapsDataStr(object selectedMap, IMapManager.Fields field)
         {
             ValorantContext db = _context ?? new ValorantContext();
             Maps map = (Maps)selectedMap;
@@ -88,15 +81,18 @@ namespace BussinessLayer.Managers
             string output = "";
             switch (field)
             {
-                case Fields.Name:
+                case IMapManager.Fields.Name:
                     output = map.MapName;
                     break;
-                case Fields.ImagePath:
+
+                case IMapManager.Fields.ImagePath:
                     output = mapQuery.Select(a => a.ImagePath).FirstOrDefault();
                     break;
-                case Fields.LayoutImagePath:
+
+                case IMapManager.Fields.LayoutImagePath:
                     output = mapQuery.Select(a => a.LayoutImagePath).FirstOrDefault();
                     break;
+
                 default:
                     output = "";
                     break;

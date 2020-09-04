@@ -8,12 +8,6 @@ namespace BussinessLayer.Managers
 {
     public class AgentTypeManager : SuperManager, IAgentTypesManager
     {
-        public enum Fields
-        {
-            Name,
-            ImagePath
-        }
-
         private readonly ValorantContext _context;
 
         public AgentTypeManager(ValorantContext context = null)
@@ -75,7 +69,7 @@ namespace BussinessLayer.Managers
                 db.Dispose();
         }
 
-        public string GetTypeDataStr(object selectedType, Fields field)
+        public string GetTypeDataStr(object selectedType, IAgentTypesManager.Fields field)
         {
             ValorantContext db = (_context ?? new ValorantContext());
             AgentType type = (AgentType)selectedType;
@@ -85,12 +79,14 @@ namespace BussinessLayer.Managers
             string output = "";
             switch (field)
             {
-                case Fields.Name:
+                case IAgentTypesManager.Fields.Name:
                     output = typeQuery.Select(t => t.TypeName).FirstOrDefault();
                     break;
-                case Fields.ImagePath:
+
+                case IAgentTypesManager.Fields.ImagePath:
                     output = typeQuery.Select(t => t.ImagePath).FirstOrDefault();
                     break;
+
                 default:
                     output = "";
                     break;

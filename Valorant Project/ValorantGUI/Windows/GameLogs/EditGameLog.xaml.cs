@@ -20,7 +20,7 @@ namespace ValorantGUI
         private readonly IGameLogManager _logManager;
         private readonly IPage _gameLogPage;
 
-        public EditGameLog(IPage gameLogPage, object selectedGame, IGameLogManager logManager, IModeManager modeManager, IRanksManger ranksManger, IRankAdjustmentManager adjustmentManager)
+        public EditGameLog(IPage gameLogPage, object selectedGame, IGameLogManager logManager, IModeManager modeManager, IRanksManager ranksManger, IRankAdjustmentManager adjustmentManager)
         {
             InitializeComponent();
             _gameLogPage = gameLogPage;
@@ -28,18 +28,18 @@ namespace ValorantGUI
             _logManager = logManager;
             _modesManager = modeManager;
 
-            TeamScoreTextBox.Text = _logManager.GetGameDataStr(selectedGame, GameLogManager.Fields.TeamScore);
-            OpponentScoreTextBox.Text = _logManager.GetGameDataStr(selectedGame, GameLogManager.Fields.OpponentScore);
-            KillsTextBox.Text = _logManager.GetGameDataStr(selectedGame, GameLogManager.Fields.Kills);
-            AssistsTextBox.Text = _logManager.GetGameDataStr(selectedGame, GameLogManager.Fields.Assists);
-            DeathsTextBox.Text = _logManager.GetGameDataStr(selectedGame, GameLogManager.Fields.Deaths);
-            ADRTextBox.Text = _logManager.GetGameDataStr(selectedGame, GameLogManager.Fields.ADR);
+            TeamScoreTextBox.Text = _logManager.GetGameDataStr(selectedGame, IGameLogManager.Fields.TeamScore);
+            OpponentScoreTextBox.Text = _logManager.GetGameDataStr(selectedGame, IGameLogManager.Fields.OpponentScore);
+            KillsTextBox.Text = _logManager.GetGameDataStr(selectedGame, IGameLogManager.Fields.Kills);
+            AssistsTextBox.Text = _logManager.GetGameDataStr(selectedGame, IGameLogManager.Fields.Assists);
+            DeathsTextBox.Text = _logManager.GetGameDataStr(selectedGame, IGameLogManager.Fields.Deaths);
+            ADRTextBox.Text = _logManager.GetGameDataStr(selectedGame, IGameLogManager.Fields.ADR);
 
             _oldTime = _logManager.GetDatePlayed(selectedGame);
             DatePlayedPicker.SelectedDate = _oldTime;
 
             MapComboBox.ItemsSource = new MapManager().GetAllEntries();
-            object gameMap = _logManager.GetGameLogDataAsObj(selectedGame, GameLogManager.Fields.Map);
+            object gameMap = _logManager.GetGameLogDataAsObj(selectedGame, IGameLogManager.Fields.Map);
             foreach (var item in MapComboBox.ItemsSource)
             {
                 if (item.Equals(gameMap))
@@ -49,7 +49,7 @@ namespace ValorantGUI
             }
 
             AgentComboBox.ItemsSource = new AgentManager().GetAllEntries();
-            object gameAgent = _logManager.GetGameLogDataAsObj(selectedGame, GameLogManager.Fields.Agent);
+            object gameAgent = _logManager.GetGameLogDataAsObj(selectedGame, IGameLogManager.Fields.Agent);
             foreach (object item in AgentComboBox.ItemsSource)
             {
                 if (item.Equals(gameAgent))
@@ -59,7 +59,7 @@ namespace ValorantGUI
             }
 
             ModeComboBox.ItemsSource = modeManager.GetAllEntries();
-            object gameMode = _logManager.GetGameLogDataAsObj(selectedGame, GameLogManager.Fields.Mode);
+            object gameMode = _logManager.GetGameLogDataAsObj(selectedGame, IGameLogManager.Fields.Mode);
             foreach (object item in ModeComboBox.ItemsSource)
             {
                 if (item.Equals(gameMode))
@@ -70,17 +70,17 @@ namespace ValorantGUI
 
             foreach (object rank in ranksManger.GetAllEntries())
             {
-                RankComboBox.Items.Add(new CustomImageItem(rank, ranksManger.GetRankDataStr(rank, RankManager.Fields.ImagePath)));
+                RankComboBox.Items.Add(new CustomImageItem(rank, ranksManger.GetRankDataStr(rank, IRanksManager.Fields.ImagePath)));
             }
 
             foreach (object rankAdjust in adjustmentManager.GetAllEntries())
             {
-                RankAdjustmentComboBox.Items.Add(new CustomImageItem(rankAdjust, adjustmentManager.GetRankAdjustmentDataStr(rankAdjust, RankAdjustmentManager.Fields.ImagePath)));
+                RankAdjustmentComboBox.Items.Add(new CustomImageItem(rankAdjust, adjustmentManager.GetRankAdjustmentDataStr(rankAdjust, IRankAdjustmentManager.Fields.ImagePath)));
             }
 
             if (_modesManager.IsRanked(ModeComboBox.SelectedItem))
             {
-                object rank = _logManager.GetGameLogDataAsObj(selectedGame, GameLogManager.Fields.Rank);
+                object rank = _logManager.GetGameLogDataAsObj(selectedGame, IGameLogManager.Fields.Rank);
                 foreach (var item in RankComboBox.Items)
                 {
                     if (((CustomImageItem)item).Obj.Equals(rank))
@@ -89,7 +89,7 @@ namespace ValorantGUI
                     }
                 }
 
-                object rankAdjustment = _logManager.GetGameLogDataAsObj(selectedGame, GameLogManager.Fields.RankAdjustment);
+                object rankAdjustment = _logManager.GetGameLogDataAsObj(selectedGame, IGameLogManager.Fields.RankAdjustment);
                 foreach (var item in RankAdjustmentComboBox.Items)
                 {
                     if (((CustomImageItem)item).Obj.Equals(rankAdjustment))

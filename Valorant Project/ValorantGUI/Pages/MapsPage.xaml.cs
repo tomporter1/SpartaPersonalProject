@@ -51,8 +51,8 @@ namespace ValorantGUI
             if (MapsListBox.SelectedIndex >= 0)
             {
                 NameTextBox.IsEnabled = true;
-                NameTextBox.Text = _mapManager.GetMapsDataStr(MapsListBox.SelectedItem, MapManager.Fields.Name);
-                string path = _mapManager.GetMapsDataStr(MapsListBox.SelectedItem, MapManager.Fields.LayoutImagePath);
+                NameTextBox.Text = _mapManager.GetMapsDataStr(MapsListBox.SelectedItem, IMapManager.Fields.Name);
+                string path = _mapManager.GetMapsDataStr(MapsListBox.SelectedItem, IMapManager.Fields.LayoutImagePath);
                 if (path != null && path != "")
                     MapImage.Source = new BitmapImage(new Uri(path, UriKind.Relative));
                 else

@@ -15,36 +15,6 @@ namespace BussinessLayer.Managers
         private readonly ValorantContext _context;
         public int CurrentSeasonNum { get => _currentSeasonNum; set => _currentSeasonNum = value > 0 ? value : 1; }
 
-        public enum Fields
-        {
-            GameID,
-            MapId,
-            AgentID,
-            Agent,
-            Map,
-            TeamScore,
-            OpponentScore,
-            Kills,
-            Deaths,
-            Assists,
-            ADR,
-            DateLogged,
-            SeasonNum,
-            Score,
-            Result,
-            KD,
-            Mode,
-            RankAdjustment,
-            Rank
-        }
-
-        public enum Results
-        {
-            Win,
-            Loss,
-            Draw
-        }
-
         public GameLogManager(ValorantContext context = null)
         {
             _context = context;
@@ -115,7 +85,6 @@ namespace BussinessLayer.Managers
                 db.Dispose();
         }
 
-
         public override void UpdateEntry(object selectedGame, SuperArgs args)
         {
             ValorantContext db = (_context ?? new ValorantContext());
@@ -161,7 +130,7 @@ namespace BussinessLayer.Managers
             return output;
         }
 
-        public string GetGameDataStr(object selectedGame, Fields field)
+        public string GetGameDataStr(object selectedGame, IGameLogManager.Fields field)
         {
             ValorantContext db = (_context ?? new ValorantContext());
             GameLogs game = (GameLogs)selectedGame;
@@ -171,22 +140,22 @@ namespace BussinessLayer.Managers
             string output = "";
             output = field switch
             {
-                Fields.GameID => logQuery.Select(gl => gl.GameId).FirstOrDefault().ToString(),
-                Fields.AgentID => logQuery.Select(gl => gl.AgentId).FirstOrDefault().ToString(),
-                Fields.Agent => logQuery.Include(gl => gl.Agent).Select(gl => gl.Agent).FirstOrDefault().ToString(),
-                Fields.MapId => logQuery.Select(gl => gl.MapId).FirstOrDefault().ToString(),
-                Fields.Map => logQuery.Include(gl => gl.Map).Select(gl => gl.Map).FirstOrDefault().ToString(),
-                Fields.TeamScore => logQuery.Select(gl => gl.TeamScore).FirstOrDefault().ToString(),
-                Fields.OpponentScore => logQuery.Select(gl => gl.OpponentScore).FirstOrDefault().ToString(),
-                Fields.Kills => logQuery.Select(gl => gl.Kills).FirstOrDefault().ToString(),
-                Fields.Deaths => logQuery.Select(gl => gl.Deaths).FirstOrDefault().ToString(),
-                Fields.Assists => logQuery.Select(gl => gl.Assits).FirstOrDefault().ToString(),
-                Fields.ADR => logQuery.Select(gl => gl.Adr).FirstOrDefault().ToString(),
-                Fields.DateLogged => logQuery.Select(gl => gl.DateLogged).FirstOrDefault().ToString(),
-                Fields.SeasonNum => logQuery.Select(gl => gl.Season).FirstOrDefault().ToString(),
-                Fields.Score => logQuery.FirstOrDefault().GameScore,
-                Fields.Result => logQuery.FirstOrDefault().GameResult,
-                Fields.KD => logQuery.FirstOrDefault().KD.ToString(),
+                IGameLogManager.Fields.GameID => logQuery.Select(gl => gl.GameId).FirstOrDefault().ToString(),
+                IGameLogManager.Fields.AgentID => logQuery.Select(gl => gl.AgentId).FirstOrDefault().ToString(),
+                IGameLogManager.Fields.Agent => logQuery.Include(gl => gl.Agent).Select(gl => gl.Agent).FirstOrDefault().ToString(),
+                IGameLogManager.Fields.MapId => logQuery.Select(gl => gl.MapId).FirstOrDefault().ToString(),
+                IGameLogManager.Fields.Map => logQuery.Include(gl => gl.Map).Select(gl => gl.Map).FirstOrDefault().ToString(),
+                IGameLogManager.Fields.TeamScore => logQuery.Select(gl => gl.TeamScore).FirstOrDefault().ToString(),
+                IGameLogManager.Fields.OpponentScore => logQuery.Select(gl => gl.OpponentScore).FirstOrDefault().ToString(),
+                IGameLogManager.Fields.Kills => logQuery.Select(gl => gl.Kills).FirstOrDefault().ToString(),
+                IGameLogManager.Fields.Deaths => logQuery.Select(gl => gl.Deaths).FirstOrDefault().ToString(),
+                IGameLogManager.Fields.Assists => logQuery.Select(gl => gl.Assits).FirstOrDefault().ToString(),
+                IGameLogManager.Fields.ADR => logQuery.Select(gl => gl.Adr).FirstOrDefault().ToString(),
+                IGameLogManager.Fields.DateLogged => logQuery.Select(gl => gl.DateLogged).FirstOrDefault().ToString(),
+                IGameLogManager.Fields.SeasonNum => logQuery.Select(gl => gl.Season).FirstOrDefault().ToString(),
+                IGameLogManager.Fields.Score => logQuery.FirstOrDefault().GameScore,
+                IGameLogManager.Fields.Result => logQuery.FirstOrDefault().GameResult,
+                IGameLogManager.Fields.KD => logQuery.FirstOrDefault().KD.ToString(),
                 _ => "",
             };
 
@@ -209,13 +178,13 @@ namespace BussinessLayer.Managers
             return output;
         }
 
-        public Results GetMatchResult(object listItem)
+        public IGameLogManager.Results GetMatchResult(object listItem)
         {
             GameLogs game = (GameLogs)listItem;
-            return game.TeamScore > game.OpponentScore ? Results.Win : (game.TeamScore < game.OpponentScore ? Results.Loss : Results.Draw);
+            return game.TeamScore > game.OpponentScore ? IGameLogManager.Results.Win : (game.TeamScore < game.OpponentScore ? IGameLogManager.Results.Loss : IGameLogManager.Results.Draw);
         }
 
-        public object GetGameLogDataAsObj(object selectedGame, Fields field)
+        public object GetGameLogDataAsObj(object selectedGame, IGameLogManager.Fields field)
         {
             ValorantContext db = (_context ?? new ValorantContext());
             GameLogs game = (GameLogs)selectedGame;
@@ -223,21 +192,26 @@ namespace BussinessLayer.Managers
             object output = null;
             switch (field)
             {
-                case Fields.Mode:
+                case IGameLogManager.Fields.Mode:
                     output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.GameMode).Select(gl => gl.GameMode).FirstOrDefault();
                     break;
-                case Fields.RankAdjustment:
+
+                case IGameLogManager.Fields.RankAdjustment:
                     output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.RankAdjustment).Select(gl => gl.RankAdjustment).FirstOrDefault();
                     break;
-                case Fields.Agent:
+
+                case IGameLogManager.Fields.Agent:
                     output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Agent).Select(gl => gl.Agent).FirstOrDefault();
                     break;
-                case Fields.Map:
+
+                case IGameLogManager.Fields.Map:
                     output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Map).Select(gl => gl.Map).FirstOrDefault();
                     break;
-                case Fields.Rank:
+
+                case IGameLogManager.Fields.Rank:
                     output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Rank).Select(gl => gl.Rank).FirstOrDefault();
                     break;
+
                 default:
                     output = new object();
                     break;

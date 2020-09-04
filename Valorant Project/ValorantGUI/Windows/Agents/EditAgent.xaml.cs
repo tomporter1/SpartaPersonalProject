@@ -40,7 +40,7 @@ namespace ValorantGUI
 
             for (int i = 0; i < textBoxes.Count; i++)
             {
-                textBoxes[i].Text = _agentManager.GetAgentDataStr(_selectedAgent, (AgentManager.Fields)i);
+                textBoxes[i].Text = _agentManager.GetAgentDataStr(_selectedAgent, (IAgentManager.Fields)i);
             }
 
             AgentTypeManager typeManager = new AgentTypeManager();

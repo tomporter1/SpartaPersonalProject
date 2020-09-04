@@ -21,7 +21,7 @@ namespace ValorantGUI
         private readonly IGameLogManager _logManager;
         private readonly IRankAdjustmentManager _rankAdjustmentManager;
 
-        public AddGameLogWindow(IPage gameLogPage, IGameLogManager logManager, IModeManager modeManager, IMapManager mapManager, IAgentManager agentManager, IRanksManger ranksManger, IRankAdjustmentManager rankAdjustmentManager)
+        public AddGameLogWindow(IPage gameLogPage, IGameLogManager logManager, IModeManager modeManager, IMapManager mapManager, IAgentManager agentManager, IRanksManager ranksManger, IRankAdjustmentManager rankAdjustmentManager)
         {
             InitializeComponent();
             _gameLogPage = gameLogPage;
@@ -35,12 +35,12 @@ namespace ValorantGUI
 
             foreach (object rank in ranksManger.GetAllEntries())
             {
-                RankComboBox.Items.Add(new CustomImageItem(rank, ranksManger.GetRankDataStr(rank, RankManager.Fields.ImagePath)));
+                RankComboBox.Items.Add(new CustomImageItem(rank, ranksManger.GetRankDataStr(rank, IRanksManager.Fields.ImagePath)));
             }
             
             foreach (object rankAdjust in _rankAdjustmentManager.GetAllEntries())
             {
-                RankAdjustmentComboBox.Items.Add(new CustomImageItem(rankAdjust, _rankAdjustmentManager.GetRankAdjustmentDataStr(rankAdjust, RankAdjustmentManager.Fields.ImagePath)));
+                RankAdjustmentComboBox.Items.Add(new CustomImageItem(rankAdjust, _rankAdjustmentManager.GetRankAdjustmentDataStr(rankAdjust, IRankAdjustmentManager.Fields.ImagePath)));
             }
 
             RankComboBox.IsEnabled = false;

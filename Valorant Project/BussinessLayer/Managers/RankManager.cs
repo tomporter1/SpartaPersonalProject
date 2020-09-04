@@ -7,14 +7,8 @@ using ValorantDatabase;
 
 namespace BussinessLayer.Managers
 {
-    public class RankManager : SuperManager, IRanksManger
+    public class RankManager : SuperManager, IRanksManager
     {
-        public enum Fields
-        {
-            Name,
-            ImagePath
-        }
-
         private readonly ValorantContext _context;
 
         public RankManager(ValorantContext context = null)
@@ -50,7 +44,7 @@ namespace BussinessLayer.Managers
             throw new NotImplementedException();
         }
 
-        public string GetRankDataStr(object selectedRank, Fields field)
+        public string GetRankDataStr(object selectedRank, IRanksManager.Fields field)
         {
             ValorantContext db = (_context ?? new ValorantContext());
             Ranks rank = (Ranks)selectedRank;
@@ -66,9 +60,10 @@ namespace BussinessLayer.Managers
             string output = "";
             switch (field)
             {
-                case Fields.ImagePath:
+                case IRanksManager.Fields.ImagePath:
                     output = rankQuery.Select(r => r.ImagePath).FirstOrDefault();
                     break;
+
                 default:
                     output = "";
                     break;

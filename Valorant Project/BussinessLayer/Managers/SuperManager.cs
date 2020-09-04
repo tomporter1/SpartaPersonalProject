@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BussinessLayer.Managers
 {
-    public abstract class SuperManager: IBasicManager
+    public abstract class SuperManager : IBasicManager
     {
         public abstract List<object> GetAllEntries();
 
