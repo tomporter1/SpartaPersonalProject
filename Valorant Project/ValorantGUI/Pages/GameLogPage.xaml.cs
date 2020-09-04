@@ -139,16 +139,16 @@ namespace ValorantGUI
 
                 DateLabel.Content = $"Date Logged: {_gameLogManager.GetGameDataStr(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj, GameLogManager.Fields.DateLogged)}";
 
-                string mapImagePath = _mapManager.GetMapsDataStr(_gameLogManager.GetGameMapObj(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj), MapManager.Fields.ImagePath);
+                string mapImagePath = _mapManager.GetMapsDataStr(_gameLogManager.GetGameLogDataAsObj(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj, GameLogManager.Fields.Map), MapManager.Fields.ImagePath);
                 SetImageSource(MapImage, mapImagePath);
 
-                string agentImagePath = _agentManager.GetAgentDataStr(_gameLogManager.GetGameAgentObj(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj), AgentManager.Fields.ImagePath);
+                string agentImagePath = _agentManager.GetAgentDataStr(_gameLogManager.GetGameLogDataAsObj(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj, GameLogManager.Fields.Agent), AgentManager.Fields.ImagePath);
                 SetImageSource(AgentImage, agentImagePath);
 
-                string rankImagePath = _rankManager.GetRankDataStr(_gameLogManager.GetGameRankObj(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj), RankManager.Fields.ImagePath);
+                string rankImagePath = _rankManager.GetRankDataStr(_gameLogManager.GetGameLogDataAsObj(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj, GameLogManager.Fields.Rank), RankManager.Fields.ImagePath);
                 SetImageSource(RankImage, rankImagePath);
 
-                string rankAdjustmentImagePath = _rankAdjustmentManager.GetRankAdjustmentDataStr(_gameLogManager.GetRankAdjustmentObj(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj), RankAdjustmentManager.Fields.ImagePath);
+                string rankAdjustmentImagePath = _rankAdjustmentManager.GetRankAdjustmentDataStr(_gameLogManager.GetGameLogDataAsObj(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj, GameLogManager.Fields.RankAdjustment), RankAdjustmentManager.Fields.ImagePath);
                 SetImageSource(RankAdjustmentImage, rankAdjustmentImagePath);
             }
         }

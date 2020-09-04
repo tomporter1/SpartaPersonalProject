@@ -32,7 +32,10 @@ namespace BussinessLayer.Managers
             SeasonNum,
             Score,
             Result,
-            KD
+            KD,
+            Mode,
+            RankAdjustment,
+            Rank
         }
 
         public enum Results
@@ -112,44 +115,6 @@ namespace BussinessLayer.Managers
                 db.Dispose();
         }
 
-        public object GetGameMode(object selectedGame)
-        {
-            ValorantContext db = (_context ?? new ValorantContext());
-            GameLogs game = (GameLogs)selectedGame;
-            object output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.GameMode).Select(gl => gl.GameMode).FirstOrDefault();
-
-            //Disposes of the db context if it is not running off a set context
-            if (_context == null)
-                db.Dispose();
-
-            return output;
-        }
-
-        public object GetRankObj(object selectedGame)
-        {
-            ValorantContext db = (_context ?? new ValorantContext());
-            GameLogs game = (GameLogs)selectedGame;
-            object output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Rank).Select(gl => gl.Rank).FirstOrDefault();
-
-            //Disposes of the db context if it is not running off a set context
-            if (_context == null)
-                db.Dispose();
-
-            return output;
-        }
-
-        public object GetRankAdjustmentObj(object selectedGame)
-        {
-            ValorantContext db = (_context ?? new ValorantContext());
-            GameLogs game = (GameLogs)selectedGame;
-            object output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.RankAdjustment).Select(gl => gl.RankAdjustment).FirstOrDefault();
-
-            //Disposes of the db context if it is not running off a set context
-            if (_context == null)
-                db.Dispose();
-
-            return output;
-        }
 
         public override void UpdateEntry(object selectedGame, SuperArgs args)
         {
@@ -232,49 +197,6 @@ namespace BussinessLayer.Managers
             return output;
         }
 
-        public object GetGameRankObj(object selectedRank)
-        {
-            ValorantContext db = (_context ?? new ValorantContext());
-            GameLogs game = (GameLogs)selectedRank;
-            object output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Rank).Select(gl => gl.Rank).FirstOrDefault();
-
-            //Disposes of the db context if it is not running off a set context
-            if (_context == null)
-                db.Dispose();
-
-            return output;
-        }
-
-        public object GetGameMapObj(object selectedGame)
-        {
-            ValorantContext db = (_context ?? new ValorantContext());
-            GameLogs game = (GameLogs)selectedGame;
-            object output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Map).Select(gl => gl.Map).FirstOrDefault();
-
-            //Disposes of the db context if it is not running off a set context
-            if (_context == null)
-                db.Dispose();
-
-            return output;
-        }
-
-        public object GetGameAgentObj(object selectedGame)
-        {
-            ValorantContext db = (_context ?? new ValorantContext());
-            GameLogs game = (GameLogs)selectedGame;
-            object output = db.GameLogs
-                .Where(gl => gl.GameId == game.GameId)
-                .Include(gl => gl.Agent)
-                .Select(gl => gl.Agent)
-                .FirstOrDefault();
-
-            //Disposes of the db context if it is not running off a set context
-            if (_context == null)
-                db.Dispose();
-
-            return output;
-        }
-
         public DateTime GetDatePlayed(object selectedGame)
         {
             ValorantContext db = (_context ?? new ValorantContext());
@@ -291,6 +213,41 @@ namespace BussinessLayer.Managers
         {
             GameLogs game = (GameLogs)listItem;
             return game.TeamScore > game.OpponentScore ? Results.Win : (game.TeamScore < game.OpponentScore ? Results.Loss : Results.Draw);
-        }        
+        }
+
+        public object GetGameLogDataAsObj(object selectedGame, Fields field)
+        {
+            ValorantContext db = (_context ?? new ValorantContext());
+            GameLogs game = (GameLogs)selectedGame;
+
+            object output = null;
+            switch (field)
+            {
+                case Fields.Mode:
+                    output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.GameMode).Select(gl => gl.GameMode).FirstOrDefault();
+                    break;
+                case Fields.RankAdjustment:
+                    output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.RankAdjustment).Select(gl => gl.RankAdjustment).FirstOrDefault();
+                    break;
+                case Fields.Agent:
+                    output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Agent).Select(gl => gl.Agent).FirstOrDefault();
+                    break;
+                case Fields.Map:
+                    output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Map).Select(gl => gl.Map).FirstOrDefault();
+                    break;
+                case Fields.Rank:
+                    output = db.GameLogs.Where(gl => gl.GameId == game.GameId).Include(gl => gl.Rank).Select(gl => gl.Rank).FirstOrDefault();
+                    break;
+                default:
+                    output = new object();
+                    break;
+            }
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return output;
+        }
     }
 }

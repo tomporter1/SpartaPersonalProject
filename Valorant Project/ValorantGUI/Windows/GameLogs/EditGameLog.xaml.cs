@@ -39,7 +39,7 @@ namespace ValorantGUI
             DatePlayedPicker.SelectedDate = _oldTime;
 
             MapComboBox.ItemsSource = new MapManager().GetAllEntries();
-            object gameMap = _logManager.GetGameMapObj(selectedGame);
+            object gameMap = _logManager.GetGameLogDataAsObj(selectedGame, GameLogManager.Fields.Map);
             foreach (var item in MapComboBox.ItemsSource)
             {
                 if (item.Equals(gameMap))
@@ -49,7 +49,7 @@ namespace ValorantGUI
             }
 
             AgentComboBox.ItemsSource = new AgentManager().GetAllEntries();
-            object gameAgent = _logManager.GetGameAgentObj(selectedGame);
+            object gameAgent = _logManager.GetGameLogDataAsObj(selectedGame, GameLogManager.Fields.Agent);
             foreach (object item in AgentComboBox.ItemsSource)
             {
                 if (item.Equals(gameAgent))
@@ -59,7 +59,7 @@ namespace ValorantGUI
             }
 
             ModeComboBox.ItemsSource = modeManager.GetAllEntries();
-            object gameMode = _logManager.GetGameMode(selectedGame);
+            object gameMode = _logManager.GetGameLogDataAsObj(selectedGame, GameLogManager.Fields.Mode);
             foreach (object item in ModeComboBox.ItemsSource)
             {
                 if (item.Equals(gameMode))
@@ -80,7 +80,7 @@ namespace ValorantGUI
 
             if (_modesManager.IsRanked(ModeComboBox.SelectedItem))
             {
-                object rank = _logManager.GetRankObj(selectedGame);
+                object rank = _logManager.GetGameLogDataAsObj(selectedGame, GameLogManager.Fields.Rank);
                 foreach (var item in RankComboBox.Items)
                 {
                     if (((CustomImageItem)item).Obj.Equals(rank))
@@ -89,7 +89,7 @@ namespace ValorantGUI
                     }
                 }
 
-                object rankAdjustment = _logManager.GetRankAdjustmentObj(selectedGame);
+                object rankAdjustment = _logManager.GetGameLogDataAsObj(selectedGame, GameLogManager.Fields.RankAdjustment);
                 foreach (var item in RankAdjustmentComboBox.Items)
                 {
                     if (((CustomImageItem)item).Obj.Equals(rankAdjustment))

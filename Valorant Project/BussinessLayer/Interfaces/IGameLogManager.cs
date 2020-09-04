@@ -1,22 +1,15 @@
 ﻿using BussinessLayer.Managers;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BussinessLayer.Interfaces
 {
     public interface IGameLogManager : IBasicManager
     {
         int CurrentSeasonNum { get; set; }
-
-        object GetGameMode(object selectedGame);
-        object GetRankObj(object selectedGame);
         List<object> GetGamesForGameMode(object selectedGameMode, string season);
         string GetGameDataStr(object selectedGame, GameLogManager.Fields field);
-        object GetGameRankObj(object selectedRank);
-        object GetRankAdjustmentObj(object selectedGame);
-        object GetGameMapObj(object selectedGame);
-        object GetGameAgentObj(object selectedGame);
+        object GetGameLogDataAsObj(object selectedGame, GameLogManager.Fields field);
         DateTime GetDatePlayed(object selectedGame);
         GameLogManager.Results GetMatchResult(object listItem);
     }
