@@ -56,7 +56,11 @@ namespace ValorantGUI
 
             foreach (object game in _gameLogManager.GetGamesForGameMode(GameModeComboBox.SelectedItem, season))
             {
-                GamesListBox.Items.Add(new CustomBackgroundItem(game, GetGameColor(game)));
+                string rankImagePath = _rankManager.GetRankDataStr(_gameLogManager.GetGameLogDataAsObj(game, IGameLogManager.Fields.Rank), IRanksManager.Fields.ImagePath);
+
+                string rankAdjustmentImagePath = _rankAdjustmentManager.GetRankAdjustmentDataStr(_gameLogManager.GetGameLogDataAsObj(game, IGameLogManager.Fields.RankAdjustment), IRankAdjustmentManager.Fields.ImagePath);
+
+                GamesListBox.Items.Add(new CustomBackgroundItem(game, GetGameColor(game), rankImagePath, rankAdjustmentImagePath));
             }
 
             TotalKDStatLabel.Content = Math.Round(_statsManager.GetTotalKD(GameModeComboBox.SelectedItem, season), 3).ToString();
@@ -81,11 +85,14 @@ namespace ValorantGUI
             switch (gameOutcome)
             {
                 case IGameLogManager.Results.Win:
-                    return new Color() { R = 119, G = 193, B = 172, A = 100 };
+                    //return new Color() { R = 119, G = 193, B = 172, A = 100 };
+                    return new Color() { R = 64, G = 227, B = 64, A = 100 };
                 case IGameLogManager.Results.Loss:
-                    return new Color() { R = 230, G = 100, B = 95, A = 100 };
+                    //return new Color() { R = 230, G = 100, B = 95, A = 100 };
+                    return new Color() { R = 252, G = 74, B = 68, A = 100 };
                 case IGameLogManager.Results.Draw:
-                    return new Color() { R = 168, G = 168, B = 169, A = 100 };
+                    //return new Color() { R = 168, G = 168, B = 169, A = 100 };
+                    return new Color() { R = 143, G = 143, B = 143, A = 100 };
                 default:
                     return new Color();
             }
