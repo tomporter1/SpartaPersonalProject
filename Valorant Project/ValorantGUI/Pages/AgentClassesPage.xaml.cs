@@ -18,6 +18,7 @@ namespace ValorantGUI
         public AgentClassesPage(IWindow window, IAgentTypesManager agentTypeManager)
         {
             InitializeComponent();
+            _window = window;
             _agentTypeManager = agentTypeManager;
             PopulateItems();
         }
