@@ -36,7 +36,13 @@ namespace ValorantGUI
             _rankAdjustmentManager = adjustmentManager;
 
             GameModeComboBox.ItemsSource = modeManager.GetAllEntries();
-            GameModeComboBox.SelectedIndex = 0;
+            foreach (object mode in GameModeComboBox.ItemsSource)
+            {
+                if (_modeManager.IsRanked(mode))
+                {
+                    GameModeComboBox.SelectedItem = mode;
+                }
+            }
 
             List<string> seasonSelections = new List<string> { "All" };
             for (int i = 1; i <= _gameLogManager.CurrentSeasonNum; i++)

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Log Game" Height="508" Width="301" ResizeMode="NoResize">
     <Grid Background="#FF1C252E">
-        
+
         <Grid Margin="10,10,10,10">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -30,7 +30,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="ModeLabel" Content="Game Mode *" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="#FFECE8E1" Grid.Column="0"/>
-                <ComboBox x:Name="ModeComboBox" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" SelectionChanged="ModeSelectionChanged" Grid.Column="1"/>
+                <ComboBox x:Name="ModeComboBox" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" SelectionChanged="ModeSelectionChanged" Grid.Column="1" VerticalContentAlignment="Center"/>
             </Grid>
 
             <Grid Grid.Row="1">
@@ -39,7 +39,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="RankLabel" Content="Rank" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="#FFECE8E1" Grid.Column="0"/>
-                <ComboBox x:Name="RankComboBox" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Column="1">
+                <ComboBox x:Name="RankComboBox" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Column="1" VerticalContentAlignment="Center">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -57,7 +57,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="RankAdjustmentLabel" Content="Rank Adjustment" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="#FFECE8E1" Grid.Column="0"/>
-                <ComboBox x:Name="RankAdjustmentComboBox" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Column="1">
+                <ComboBox x:Name="RankAdjustmentComboBox" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Column="1" VerticalContentAlignment="Center">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -93,7 +93,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="MapLabel" Content="Map *" VerticalAlignment="Stretch" Margin="2,2,2,2" HorizontalAlignment="Stretch" Foreground="#FFECE8E1" Grid.Column="0" HorizontalContentAlignment="Right"/>
-                <ComboBox x:Name="MapComboBox" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Column="1"/>
+                <ComboBox x:Name="MapComboBox" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Column="1" VerticalContentAlignment="Center"/>
             </Grid>
 
             <Grid Grid.Row="6">
@@ -102,9 +102,9 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="AgentLabel" Content="Agent *" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="#FFECE8E1" Grid.Column="0"/>
-                <ComboBox x:Name="AgentComboBox" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Column="1" />
+                <ComboBox x:Name="AgentComboBox" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Grid.Column="1" VerticalContentAlignment="Center" />
             </Grid>
-            
+
             <Grid Grid.Row="7">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -113,7 +113,7 @@
                 <Label x:Name="KillsLabel" Content="Kills" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="#FFECE8E1" Grid.Column="0"/>
                 <TextBox x:Name="KillsTextBox" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Text="" TextWrapping="Wrap" VerticalContentAlignment="Center" BorderBrush="#FF121213" Foreground="#FFECE8E1" Background="#FF2F3F4F" PreviewTextInput="NumberValidationTextBox" Grid.Column="1"/>
             </Grid>
-            
+
             <Grid Grid.Row="8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -122,7 +122,7 @@
                 <Label x:Name="DeathsLabel" Content="Deaths" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="#FFECE8E1" Grid.Column="0"/>
                 <TextBox x:Name="DeathsTextBox" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Text="" TextWrapping="Wrap" VerticalContentAlignment="Center" BorderBrush="#FF121213" Foreground="#FFECE8E1" Background="#FF2F3F4F" PreviewTextInput="NumberValidationTextBox" Grid.Column="1"/>
             </Grid>
-            
+
             <Grid Grid.Row="9">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -131,7 +131,7 @@
                 <Label x:Name="AssistsLabel" Content="Assists" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="#FFECE8E1" Grid.Column="0"/>
                 <TextBox x:Name="AssistsTextBox" HorizontalAlignment="Stretch" Margin="2,2,2,2" VerticalAlignment="Stretch" Text="" TextWrapping="Wrap" VerticalContentAlignment="Center" BorderBrush="#FF121213" Foreground="#FFECE8E1" Background="#FF2F3F4F" PreviewTextInput="NumberValidationTextBox" Grid.Column="1"/>
             </Grid>
-            
+
             <Grid Grid.Row="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
