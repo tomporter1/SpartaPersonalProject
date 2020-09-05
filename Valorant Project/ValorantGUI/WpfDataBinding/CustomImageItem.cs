@@ -11,7 +11,6 @@ namespace ValorantGUI
         public CustomImageItem(object obj, string imagePath)
         {
             _obj = obj;
-
             _image = imagePath != null && imagePath != "" ? new BitmapImage(new Uri(imagePath, UriKind.Relative)) : null;
         }
 

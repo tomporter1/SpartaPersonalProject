@@ -66,7 +66,7 @@ namespace ValorantGUI
 
                 string rankAdjustmentImagePath = _rankAdjustmentManager.GetRankAdjustmentDataStr(_gameLogManager.GetGameLogDataAsObj(game, IGameLogManager.Fields.RankAdjustment), IRankAdjustmentManager.Fields.ImagePath);
 
-                GamesListBox.Items.Add(new CustomBackgroundItem(game, GetGameColor(game), rankImagePath, rankAdjustmentImagePath));
+                GamesListBox.Items.Add(new CustomGameItem(game, GetGameColor(game), rankImagePath, rankAdjustmentImagePath));
             }
 
             TotalKDStatLabel.Content = Math.Round(_statsManager.GetTotalKD(GameModeComboBox.SelectedItem, season), 3).ToString();
@@ -131,32 +131,32 @@ namespace ValorantGUI
         {
             if (GamesListBox.SelectedIndex >= 0)
             {
-                ResultLabel.Content = $"Result: {_gameLogManager.GetGameDataStr(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.Result)}";
-                ScoreLabel.Content = $"Score: {_gameLogManager.GetGameDataStr(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.Score)}";
+                ResultLabel.Content = $"Result: {_gameLogManager.GetGameDataStr(((CustomGameItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.Result)}";
+                ScoreLabel.Content = $"Score: {_gameLogManager.GetGameDataStr(((CustomGameItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.Score)}";
 
-                KillsLabel.Content = $"Kills: {_gameLogManager.GetGameDataStr(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.Kills)}";
-                DeathsLabel.Content = $"Deaths: {_gameLogManager.GetGameDataStr(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.Deaths)}";
+                KillsLabel.Content = $"Kills: {_gameLogManager.GetGameDataStr(((CustomGameItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.Kills)}";
+                DeathsLabel.Content = $"Deaths: {_gameLogManager.GetGameDataStr(((CustomGameItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.Deaths)}";
 
-                AssistsLabel.Content = $"Assists: {_gameLogManager.GetGameDataStr(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.Assists)}";
-                AdrLabel.Content = $"ADR: {_gameLogManager.GetGameDataStr(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.ADR)}";
+                AssistsLabel.Content = $"Assists: {_gameLogManager.GetGameDataStr(((CustomGameItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.Assists)}";
+                AdrLabel.Content = $"ADR: {_gameLogManager.GetGameDataStr(((CustomGameItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.ADR)}";
 
-                KDLabel.Content = $"K/D: {_gameLogManager.GetGameDataStr(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.KD)}";
+                KDLabel.Content = $"K/D: {_gameLogManager.GetGameDataStr(((CustomGameItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.KD)}";
 
-                MapLabel.Content = $"Map: {_gameLogManager.GetGameDataStr(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.Map)}";
-                AgentLabel.Content = $"Agent: {_gameLogManager.GetGameDataStr(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.Agent)}";
+                MapLabel.Content = $"Map: {_gameLogManager.GetGameDataStr(((CustomGameItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.Map)}";
+                AgentLabel.Content = $"Agent: {_gameLogManager.GetGameDataStr(((CustomGameItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.Agent)}";
 
-                DateLabel.Content = $"Date Logged: {_gameLogManager.GetGameDataStr(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.DateLogged)}";
+                DateLabel.Content = $"Date Logged: {_gameLogManager.GetGameDataStr(((CustomGameItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.DateLogged)}";
 
-                string mapImagePath = _mapManager.GetMapsDataStr(_gameLogManager.GetGameLogDataAsObj(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.Map), IMapManager.Fields.ImagePath);
+                string mapImagePath = _mapManager.GetMapsDataStr(_gameLogManager.GetGameLogDataAsObj(((CustomGameItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.Map), IMapManager.Fields.ImagePath);
                 SetImageSource(MapImage, mapImagePath);
 
-                string agentImagePath = _agentManager.GetAgentDataStr(_gameLogManager.GetGameLogDataAsObj(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.Agent), IAgentManager.Fields.ImagePath);
+                string agentImagePath = _agentManager.GetAgentDataStr(_gameLogManager.GetGameLogDataAsObj(((CustomGameItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.Agent), IAgentManager.Fields.ImagePath);
                 SetImageSource(AgentImage, agentImagePath);
 
-                string rankImagePath = _rankManager.GetRankDataStr(_gameLogManager.GetGameLogDataAsObj(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.Rank), IRanksManager.Fields.ImagePath);
+                string rankImagePath = _rankManager.GetRankDataStr(_gameLogManager.GetGameLogDataAsObj(((CustomGameItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.Rank), IRanksManager.Fields.ImagePath);
                 SetImageSource(RankImage, rankImagePath);
 
-                string rankAdjustmentImagePath = _rankAdjustmentManager.GetRankAdjustmentDataStr(_gameLogManager.GetGameLogDataAsObj(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.RankAdjustment), IRankAdjustmentManager.Fields.ImagePath);
+                string rankAdjustmentImagePath = _rankAdjustmentManager.GetRankAdjustmentDataStr(_gameLogManager.GetGameLogDataAsObj(((CustomGameItem)GamesListBox.SelectedItem).Obj, IGameLogManager.Fields.RankAdjustment), IRankAdjustmentManager.Fields.ImagePath);
                 SetImageSource(RankAdjustmentImage, rankAdjustmentImagePath);
             }
         }
@@ -173,7 +173,7 @@ namespace ValorantGUI
         {
             if (GamesListBox.SelectedIndex >= 0)
             {
-                EditGameLog editGameLog = new EditGameLog(this, ((CustomBackgroundItem)GamesListBox.SelectedItem).Obj, _gameLogManager, _modeManager, _rankManager, _rankAdjustmentManager);
+                EditGameLog editGameLog = new EditGameLog(this, ((CustomGameItem)GamesListBox.SelectedItem).Obj, _gameLogManager, _modeManager, _rankManager, _rankAdjustmentManager);
                 editGameLog.Show();
             }
             else
@@ -186,10 +186,10 @@ namespace ValorantGUI
         {
             if (GamesListBox.SelectedIndex >= 0)
             {
-                MessageBoxResult messageBoxResult = MessageBox.Show($"Are you sure out want to delete \"{((CustomBackgroundItem)GamesListBox.SelectedItem).Obj}\"?", "Delete Confirmation", MessageBoxButton.YesNo);
+                MessageBoxResult messageBoxResult = MessageBox.Show($"Are you sure out want to delete \"{((CustomGameItem)GamesListBox.SelectedItem).Obj}\"?", "Delete Confirmation", MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
-                    _gameLogManager.RemoveEntry(((CustomBackgroundItem)GamesListBox.SelectedItem).Obj);
+                    _gameLogManager.RemoveEntry(((CustomGameItem)GamesListBox.SelectedItem).Obj);
                     PopulateItems();
                 }
             }
@@ -228,7 +228,7 @@ namespace ValorantGUI
             object mostKillsGame = _statsManager.GetMostKillsGame(SeasonComboBox.SelectedItem.ToString(), GameModeComboBox.SelectedItem);
             foreach (object game in GamesListBox.Items)
             {
-                if (mostKillsGame.Equals(((CustomBackgroundItem)game).Obj))
+                if (mostKillsGame.Equals(((CustomGameItem)game).Obj))
                 {
                     GamesListBox.SelectedItem = game;
                 }
@@ -240,7 +240,7 @@ namespace ValorantGUI
             object mostKDGame = _statsManager.GetMostKDGame(SeasonComboBox.SelectedItem.ToString(), GameModeComboBox.SelectedItem);
             foreach (object game in GamesListBox.Items)
             {
-                if (mostKDGame.Equals(((CustomBackgroundItem)game).Obj))
+                if (mostKDGame.Equals(((CustomGameItem)game).Obj))
                 {
                     GamesListBox.SelectedItem = game;
                 }

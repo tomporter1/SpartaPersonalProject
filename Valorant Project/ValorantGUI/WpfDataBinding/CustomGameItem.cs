@@ -4,7 +4,7 @@ using System.Windows.Media.Imaging;
 
 namespace ValorantGUI
 {
-    public class CustomBackgroundItem
+    public class CustomGameItem
     {
         private object _obj;
         private SolidColorBrush _bgColour;
@@ -12,7 +12,7 @@ namespace ValorantGUI
         private BitmapImage _adjustmentImage;
         private const int _imageSize = 25;
 
-        public CustomBackgroundItem(object obj, Color colour, string rankImagePath, string rankAdjustmentImagePath)
+        public CustomGameItem(object obj, Color colour, string rankImagePath, string rankAdjustmentImagePath)
         {
             _obj = obj;
             _bgColour = new SolidColorBrush(colour);
