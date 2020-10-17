@@ -9,5 +9,6 @@
         }
 
         string GetRankDataStr(object selectedRank, Fields field);
+        bool IsUnranked(object selectedItem);
     }
 }

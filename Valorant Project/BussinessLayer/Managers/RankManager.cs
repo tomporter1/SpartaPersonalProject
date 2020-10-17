@@ -75,5 +75,18 @@ namespace BussinessLayer.Managers
 
             return output;
         }
+
+        public bool IsUnranked(object selectedRank)
+        {
+            ValorantContext db = (_context ?? new ValorantContext());
+            Ranks rank = (Ranks)selectedRank;
+            Ranks UnratedRank = db.Ranks.Where(m => m.RankName == "Unrated").FirstOrDefault();
+
+            //Disposes of the db context if it is not running off a set context
+            if (_context == null)
+                db.Dispose();
+
+            return rank == UnratedRank;
+        }
     }
 }

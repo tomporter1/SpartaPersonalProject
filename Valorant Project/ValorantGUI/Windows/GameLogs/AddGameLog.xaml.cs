@@ -17,6 +17,7 @@ namespace ValorantGUI
         private readonly IModeManager _modesManager;
         private readonly IGameLogManager _logManager;
         private readonly IRankAdjustmentManager _rankAdjustmentManager;
+        private readonly IRanksManager _ranksManager;
 
         public AddGameLogWindow(IPage gameLogPage, IGameLogManager logManager, IModeManager modeManager, IMapManager mapManager, IAgentManager agentManager, IRanksManager ranksManger, IRankAdjustmentManager rankAdjustmentManager)
         {
@@ -25,14 +26,15 @@ namespace ValorantGUI
             _logManager = logManager;
             _modesManager = modeManager;
             _rankAdjustmentManager = rankAdjustmentManager;
+            _ranksManager = ranksManger;
 
             ModeComboBox.ItemsSource = _modesManager.GetAllEntries();
             MapComboBox.ItemsSource = mapManager.GetAllEntries();
             AgentComboBox.ItemsSource = agentManager.GetAllEntries();
 
-            foreach (object rank in ranksManger.GetAllEntries())
+            foreach (object rank in _ranksManager.GetAllEntries())
             {
-                RankComboBox.Items.Add(new CustomImageItem(rank, ranksManger.GetRankDataStr(rank, IRanksManager.Fields.ImagePath)));
+                RankComboBox.Items.Add(new CustomImageItem(rank, _ranksManager.GetRankDataStr(rank, IRanksManager.Fields.ImagePath)));
             }
             
             foreach (object rankAdjust in _rankAdjustmentManager.GetAllEntries())
@@ -46,7 +48,7 @@ namespace ValorantGUI
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (TeamScoreTextBox.Text.Trim() != "" && OpponentScoreTextBox.Text.Trim() != "" && MapComboBox.SelectedIndex >= 0 && AgentComboBox.SelectedIndex >= 0 && ModeComboBox.SelectedIndex >= 0)
+            if (TeamScoreTextBox.Text.Trim() != "" && OpponentScoreTextBox.Text.Trim() != "" && MapComboBox.SelectedIndex >= 0 && AgentComboBox.SelectedIndex >= 0 && ModeComboBox.SelectedIndex >= 0 )
             {
                 GameLogArgs args = new GameLogArgs(
                     ModeComboBox.SelectedItem,
@@ -61,7 +63,7 @@ namespace ValorantGUI
                     DateTime.Now,
                     _logManager.CurrentSeasonNum,
                     _modesManager.IsRanked(ModeComboBox.SelectedItem) ? ((CustomImageItem)RankComboBox.SelectedItem).Obj : null,
-                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? ((CustomImageItem)RankAdjustmentComboBox.SelectedItem).Obj : null
+                     _modesManager.IsRanked(ModeComboBox.SelectedItem) && RankAdjustmentComboBox.SelectedItem == null ? null : ((CustomImageItem)RankAdjustmentComboBox.SelectedItem).Obj
                     );
 
                 _logManager.AddNewEntry(args);

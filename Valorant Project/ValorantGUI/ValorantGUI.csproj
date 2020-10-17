@@ -58,11 +58,13 @@
     <None Remove="Pages\Images\Reyna.png" />
     <None Remove="Pages\Images\Sage.png" />
     <None Remove="Pages\Images\Sentinel.png" />
+    <None Remove="Pages\Images\Skye.png" />
     <None Remove="Pages\Images\SlightlyDecreased.png" />
     <None Remove="Pages\Images\SlightlyIncreased.png" />
     <None Remove="Pages\Images\Sova.png" />
     <None Remove="Pages\Images\Split.png" />
     <None Remove="Pages\Images\SplitLayout.png" />
+    <None Remove="Pages\Images\Unranked.png" />
     <None Remove="Pages\Images\ValorantLogo.png" />
     <None Remove="Pages\Images\Viper.png" />
     <None Remove="Pages\ValorantLogo.png" />
@@ -224,6 +226,9 @@
     <Resource Include="Pages\Images\Sentinel.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Pages\Images\Skye.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Pages\Images\SlightlyDecreased.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -237,6 +242,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Pages\Images\SplitLayout.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Ranks\Unranked.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Pages\Images\ValorantLogo.png">
