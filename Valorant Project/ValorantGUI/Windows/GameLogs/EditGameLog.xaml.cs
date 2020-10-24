@@ -122,8 +122,10 @@ namespace ValorantGUI
                     ((DateTime)DatePlayedPicker.SelectedDate).AddHours(_oldTime.Hour).AddMinutes(_oldTime.Minute).AddSeconds(_oldTime.Second),
                     _logManager.CurrentSeasonNum,
                     _modesManager.IsRanked(ModeComboBox.SelectedItem) ? ((CustomImageItem)RankComboBox.SelectedItem).Obj : null,
-                    _modesManager.IsRanked(ModeComboBox.SelectedItem) ? ((CustomImageItem)RankAdjustmentComboBox.SelectedItem).Obj : null);
-                _logManager.UpdateEntry(_selectedGame, args);
+                    _modesManager.IsRanked(ModeComboBox.SelectedItem) && RankAdjustmentComboBox.SelectedItem != null ? ((CustomImageItem)RankAdjustmentComboBox.SelectedItem).Obj : null
+                    );
+
+                 _logManager.UpdateEntry(_selectedGame, args);
                 _gameLogPage.PopulateItems();
                 this.Close();
             }

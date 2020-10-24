@@ -24,6 +24,8 @@
     <None Remove="Pages\Images\GreatlyIncreased.png" />
     <None Remove="Pages\Images\Haven.png" />
     <None Remove="Pages\Images\HavenLayout.png" />
+    <None Remove="Pages\Images\Icebox.png" />
+    <None Remove="Pages\Images\IceboxLayout.png" />
     <None Remove="Pages\Images\Increased.png" />
     <None Remove="Pages\Images\Initiator.png" />
     <None Remove="Pages\Images\Jett.png" />
@@ -122,6 +124,12 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Pages\Images\HavenLayout.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\Icebox.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\Images\IceboxLayout.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Pages\Images\Increased.png">
