@@ -22,7 +22,7 @@ These changes include:
 #### Add or Edit an Agent
 *Matches can be added or edited here.*
 
-<img src = "ReadMeImages/LogGame.png" width = 300 height = 350>
+<img src = "ReadMeImages/LogGame.png" width = 275 height = 350>
 
 #### Agents Information Screen
 *This is where information about all of the agents can be viewed.*
@@ -32,6 +32,10 @@ These changes include:
 *This is where an agent can be added or edited.*
 
 <img src = "ReadMeImages/EditAgent.png" width = 375 height = 350>
+
+#### Long term data
+*As this application uses a database to store all of the data, it can be linked with Excel, via SQL, to produce graphs of long term data.*
+<img src = "ReadMeImages/LongTermDataGraph.png" width = 650 height = 350>
 
 ## Class Diagrams
 #### Entity Framework
