@@ -35,6 +35,7 @@ These changes include:
 
 #### Long term data
 *As this application uses a database to store all of the data, it can be linked with Excel, via SQL, to produce graphs of long term data.*
+
 <img src = "ReadMeImages/LongTermDataGraph.png" width = 650 height = 350>
 
 ## Class Diagrams
